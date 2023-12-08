@@ -18,7 +18,7 @@
 					<a href="${pageContext.request.contextPath}">여행목록</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}">커뮤니티</a>
+					<a href="${pageContext.request.contextPath}/comm/list.do">커뮤니티</a>
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}">자주 찾는 질문</a>
