@@ -15,7 +15,7 @@
 		<div class="content-main">
 			<ul>
 				<li>
-					<a href="${pageContext.request.contextPath}">여행상품</a>
+					<a href="${pageContext.request.contextPath}">여행상품목록</a>
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}">커뮤니티</a>
