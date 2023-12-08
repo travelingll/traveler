@@ -8,39 +8,8 @@
 <div id="main_nav">
 	<ul>
 		<li>
-			<a href="${pageContext.request.contextPath}/item/itemList.do">상품목록</a>
+			메뉴들어갈거임
 		</li>
-		<li>
-			<a href="${pageContext.request.contextPath}/board/list.do">게시판</a>
-		</li>
-		<c:if test="${!empty user_num && user_auth == 9}">
-		<li>
-			<a href="${pageContext.request.contextPath}/member/adminList.do">회원관리</a>
-		</li>
-		<li>
-			<a href="${pageContext.request.contextPath}/item/adminList.do">상품관리</a>
-		</li>
-		</c:if>
-		<c:if test="${!empty user_num}">
-		<li><a href="${pageContext.request.contextPath}/cart/list.do">장바구니</a></li>
-		<li><a href="${pageContext.request.contextPath}/member/myPage.do">MY페이지</a></li>
-		</c:if>
-		<c:if test="${!empty user_num && !empty user_photo}">
-		<li class="menu-profile"><img src="${pageContext.request.contextPath}/upload/${user_photo}" width="25" height="25" class="my-photo"></li>
-		</c:if>
-		<c:if test="${!empty user_num && empty user_photo}">
-		<li class="menu-profile"><img src="${pageContext.request.contextPath}/images/face.png" width="25" height="25" class="my-photo"></li>
-		</c:if>
-		<c:if test="${!empty user_num}">
-		<li class="menu-logout">
-			[<span>${user_id}</span>]
-			<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
-		</li>
-		</c:if>
-		<c:if test="${empty user_num}">
-		<li><a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a></li>
-		<li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
-		</c:if>
 	</ul>
 </div>
 <!-- header 끝 -->
