@@ -12,8 +12,14 @@ public class CommVO {
 	private String filename;
 	private String ip;
 	private int mem_num;
+	private String id;	
 	
-	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getComm_num() {
 		return comm_num;
 	}
