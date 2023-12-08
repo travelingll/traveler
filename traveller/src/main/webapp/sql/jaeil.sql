@@ -49,3 +49,4 @@ create table faq(
  constraint faq_pk primary key(faq_num)
 );
 create sequence faq_seq;
+
