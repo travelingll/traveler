@@ -8,7 +8,7 @@
 <div id="main_nav">
 	<ul>
 		<li>
-			메뉴들어갈거임
+			메뉴들어ㅎ갈거임
 		</li>
 	</ul>
 </div>
