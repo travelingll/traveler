@@ -11,7 +11,7 @@ import kr.comm.vo.CommVO;
 import kr.controller.Action;
 import kr.util.FileUtil;
 
-public class WriteActioin implements Action{
+public class WriteAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
