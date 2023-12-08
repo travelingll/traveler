@@ -50,3 +50,4 @@ create table faq(
 );
 create sequence faq_seq;
 
+
