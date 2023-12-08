@@ -53,15 +53,14 @@
 					</li>
 				</c:if>
 				<c:if test="${empty user_num}"> <%-- 로그인하지 않은 사용자에게 보임 --%>
-					<li><a href="${pageContext.request.contextPath}">회원가입</a></li>
-					<li><a href="${pageContext.request.contextPath}">로그인</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
 				</c:if>
 			</ul>
 		</div>
 	</div>
 </body>
 </html>
-
 
 
 
