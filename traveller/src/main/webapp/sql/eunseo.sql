@@ -11,15 +11,15 @@ create table member_detail(
  passwd varchar2(12) not null,
  phone varchar2(15) not null,
  email varchar2(50) not null,
- birth number(10) not null,
- gender number(1) not null, --회원성별:1.남자 2.여자
+ birth varchar2(8) not null,
+ gender varchar2(1) not null, --회원성별:남자(M), 여자(F)
  zipcode varchar2(5) not null,
  address1 varchar2(90) not null,
  address2 varchar2(90) not null,
  style1 number(1) not null,
  style2 number(1) not null,
  style3 number(1) not null,
- mem_push number(1) not null,
+ push varchar2(1) not null, --동의(Y), 비동의(N)
  photo varchar2(150), --null 인정
  reg_date date default sysdate not null,
  modify_date date, --null 인정
