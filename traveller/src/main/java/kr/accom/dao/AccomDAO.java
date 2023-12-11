@@ -154,7 +154,76 @@ public class AccomDAO {
 		return list;
 	}
 	//글 상세
+	public AccomVO getAccom(int accom_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		AccomVO accom = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			//(주의)회원 탈퇴하면 member_detail에 레코드가 존재하지 않기 때문에 외부조인을 사용해서 데이터 누락을 방지함
+			sql = "SELECT * FROM accom JOIN member USING(mem_num) "
+					+ "LEFT OUTER JOIN member_detail USING(mem_num) "
+					+ "WHERE accom_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, accom_num);
+			//SQL문 실행
+			if(rs.next()) {
+				accom = new AccomVO();
+				accom.setAccom_num(rs.getInt("accom_num"));
+				accom.setAccom_status(rs.getInt("accom_status"));
+				accom.setAccom_title(rs.getString("accom_title"));
+				accom.setAccom_content(rs.getString("accom_content"));
+				accom.setAccom_hit(rs.getInt("accom_hit"));
+				accom.setAccom_regdate(rs.getDate("accom_regdate"));
+				accom.setAccom_modifydate(rs.getDate("accom_modifydate"));
+				accom.setAccom_quantity(rs.getInt("accom_quantity"));
+				accom.setAccom_expense(rs.getInt("accom_expense"));
+				accom.setAccom_filename(rs.getString("accom_filename"));
+				accom.setAccom_start(rs.getString("accom_start"));
+				accom.setAccom_end(rs.getString("accom_end"));
+				accom.setMem_num(rs.getInt("mem_num"));
+				accom.setId(rs.getString("id"));
+				accom.setPhoto(rs.getString("photo"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return accom;
+	}
 	//조회 수 증가
+	public void updateReadCount(int accom_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE accom SET accom_hit=accom_hit+1 WHERE accom_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, accom_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//파일 삭제
 	//글 수정
 	//글 삭제

@@ -12,12 +12,13 @@ public class AccomVO {
 	private Date accom_modifydate; //수정일
 	private int accom_quantity; //모집 인원수
 	private int accom_expense;//여행 경비
-	private String accom_filename; //
-	private String accom_start;
-	private String accom_end;
-	private String ip;
-	private int mem_num;
-	private String id;
+	private String accom_filename; //첨부하 사진 파일 이름
+	private String accom_start;//여행 시작일
+	private String accom_end;//여행 종료일
+	private String ip;//IP
+	private int mem_num;//회원 번호
+	private String id;//회원 아이디
+	private String photo;//회원 프로필 사진(조인해야함)
 	
 	public int getAccom_num() {
 		return accom_num;
@@ -108,6 +109,12 @@ public class AccomVO {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 	
 	
