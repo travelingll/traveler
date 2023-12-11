@@ -27,7 +27,7 @@
 					<a href="${pageContext.request.contextPath}">동행구하기</a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}">이벤트</a>
+					<a href="${pageContext.request.contextPath}/event/eventList.do">이벤트</a>
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}">일대일문의</a>
@@ -61,6 +61,3 @@
 	</div>
 </body>
 </html>
-
-
-
