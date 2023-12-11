@@ -31,7 +31,7 @@ public class CommDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "INSERT INTO comm (comm_num, title, content, filename, ip, mem_num) "
+			sql = "INSERT INTO comm (comm_num, comm_title, comm_content, filename, ip, mem_num) "
 					+ "VALUES (comm_seq.nextval,?,?,?,?,?)";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
