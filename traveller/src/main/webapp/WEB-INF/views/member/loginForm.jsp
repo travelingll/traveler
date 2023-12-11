@@ -41,6 +41,7 @@ $(function(){
 				</li>
 			</ul>
 			<div class="align-center">
+				<input type="button" value="비밀번호 찾기" onclick="location.href='${pageContext.request.contextPath}/member/findPasswordForm.do'">
 				<input type="submit" value="로그인">
 				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div>
