@@ -8,6 +8,7 @@
 <title>게시판 상세 정보</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/comm.fav.js"></script>
 </head>
 <body>
 <div class="page-main">
@@ -43,7 +44,9 @@
 		<ul class="detail-sub">
 			<li>
 				<%--좋아요 --%>
-				
+				<img id="output_fav" data-num="${comm.comm_num}" src="${pageContext.request.contextPath}/upload/fav01.png" width="50">
+				좋아요
+				<span id="output_fcount"></span>
 			</li>
 			<li>
 				<c:if test="${!empty comm.modify_date}">

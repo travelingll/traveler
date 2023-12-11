@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import kr.comm.vo.CommFavVO;
 import kr.comm.vo.CommVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
@@ -321,13 +322,114 @@ public class CommDAO {
 		}
 	}
 	//좋아요 등록
-
+	public void insertFav(CommFavVO favVO)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			conn = DBUtil.getConnection();
+			 
+			sql="INSERT INTO comm_fav (comm_num,mem_num) "
+					+ "VALUES (?,?)";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, favVO.getComm_num());
+			pstmt.setInt(2, favVO.getMem_num());
+		
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//좋아요 개수
-
+	public int selectFavCount(int comm_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql="SELECT COUNT(*) FROM comm_fav WHERE comm_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, comm_num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
 	//회원번호와 게시물 번호를 이용한 좋아요 상세정보
-
+	public CommFavVO selectFav(CommFavVO favVO)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CommFavVO fav =null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn =  DBUtil.getConnection();
+			
+			sql = "SELECT * FROM comm_fav WHERE comm_num=? AND mem_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, favVO.getComm_num());
+			pstmt.setInt(2, favVO.getMem_num());
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				fav = new CommFavVO();
+				fav.setComm_num(rs.getInt("comm_num"));
+				fav.setMem_num(rs.getInt("mem_num"));
+			}
+			  
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs,pstmt,conn);
+		}
+		return fav;
+	}
 	//좋아요 삭제
-	
+	public void deleteFav(CommFavVO favVO)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn =  DBUtil.getConnection();
+			
+			sql="DELETE FROM comm_fav WHERE comm_num=? AND mem_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, favVO.getComm_num());
+			pstmt.setInt(2, favVO.getMem_num());
+			
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null,pstmt,conn);
+		}
+	}
 	//내가 선택한 좋아요 목록
 
 	//댓글 등록
