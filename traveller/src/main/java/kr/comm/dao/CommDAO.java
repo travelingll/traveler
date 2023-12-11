@@ -281,7 +281,45 @@ public class CommDAO {
 		}
 	}
 	//글 삭제
-
+	public void deleteComm(int comm_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
+		String sql = null;
+		try {
+			//커넥션풀로부터 커넥션 객체 할당
+			conn = DBUtil.getConnection();
+			//오토커밋 해제
+			conn.setAutoCommit(false);
+			
+			//좋아요 삭제
+			sql="DELETE FROM comm_fav WHERE comm_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, comm_num);
+			pstmt.executeUpdate();
+			//댓글 삭제
+			sql = "DELETE FROM comm_reply WHERE comm_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, comm_num);
+			pstmt2.executeUpdate();
+			//부모글 삭제
+			sql = "DELETE FROM comm WHERE comm_num=?";
+			pstmt3 = conn.prepareStatement(sql);
+			pstmt3.setInt(1,comm_num);
+			pstmt3.executeUpdate();
+			
+			conn.commit();
+		}catch(Exception e) {
+			//하나라도 SQL문이 실패하면
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt3, null);
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//좋아요 등록
 
 	//좋아요 개수
