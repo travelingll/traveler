@@ -4,3 +4,4 @@
 	alert('${notice_msg}'); //문자열이므로 작은따옴표 필요함
 	location.href='${notice_url}';
 </script>
+

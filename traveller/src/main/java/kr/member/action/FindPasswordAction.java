@@ -32,5 +32,5 @@ public class FindPasswordAction implements Action{
 		return "/WEB-INF/views/member/findPassword.jsp";
 		
 	}
-
+	
 }
