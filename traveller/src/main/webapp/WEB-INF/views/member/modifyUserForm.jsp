@@ -4,53 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>회원정보 수정</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	let idChecked = 0; //0은 중복체크 미실행 또는 중복, 1은 미중복
-	//아이디 중복 체크
-	$('#id_check').click(function(){
-		if(!/^[A-Za-z0-9]{8,12}$/.test($('#id').val())){
-			alert('영문 또는 숫자 사용, 최소 8자 ~ 최대 12자를 사용하세요!');
-			$('#id').val('').focus();
-			return false;
-		}
-		//서버와 통신
-		$.ajax({
-			url:'checkDuplicatedId.do',
-			type:'post',
-			data:{id:$('#id').val()},
-			dataType:'json',
-			success:function(param){
-				if(param.result == 'idNotFound'){
-					idChecked = 1;
-					$('#message_id').css('color','#000000').text('등록 가능 ID');
-				}else if(param.result == 'idDuplicated'){
-					$('#message_id').css('color','red').text('중복된 ID');
-					$('#id').val('').focus();
-				}else{
-					idChecked = 0;
-					alert('아이디 중복체크 오류 발생');
-				}
-			},
-			error:function(){
-				idChecked = 0;
-				alert('네트워크 오류 발생');
-			}
-		});
-		
-	}); //end of click
-	
-	//아이디 중복 안내 메시지 초기화 및 아이디 중복 값 초기화
-	$('#register_form #id').keydown(function(){
-		idChecked = 0;
-		$('#message_id').text('');
-	}); //end of keydown
-	
-	//회원정보 등록 유효성 체크
-	$('#register_form').submit(function(){
+	//회원정보 수정 유효성 체크
+	$('#modify_form').submit(function(){
 		let items = document.querySelectorAll('.input-check');
 		for(let i=0;i<items.length;i++){
 			if(items[i].value.trim()==''){
@@ -61,30 +21,11 @@ $(function(){
 				return false;
 			} //end of if
 			
-			if($('#passwd').val()!=$('#cpasswd').val()){
-				alert('비밀번호와 비밀번호 확인이 불일치');
-				$('#passwd').val('').focus();
-				$('#cpasswd').val('');
-				return false;
-			}
-			
-			if(items[i].id == 'id' && !/^[A-Za-z0-9]{8,12}$/.test($('#id').val())){
-				alert('영문 또는 숫자 사용, 최소 8자 ~ 최대 12자를 사용하세요!');
-				$('#id').val('').focus();
-				return false;
-			}
-			
-			if(items[i].id == 'id' && idChecked == 0){
-				alert('아이디 중복체크 필수');
-				return false;
-			}
-			
 			if(items[i].id == 'zipcode' && !/^[0-9]{5}$/.test($('#zipcode').val())){
 				alert('우편번호를 입력하세요(숫자 5자리)');
 				$('#zipcode').val('').focus();
 				return false;
 			}
-				
 		} //end of for
 	}); //end of submit
 });
@@ -94,92 +35,42 @@ $(function(){
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
-		<h2>회원가입</h2>
-		<form id="register_form" action="registerUser.do" method="post">
+		<h2>연락처 수정</h2>
+		<form id="modify_form" action="modifyUser.do" method="post">
 			<ul>
 				<li>
-					<label for="id">아이디</label>
-					<input type="text" name="id" id="id" maxlength="12" autocomplete="off" placeholder="아이디 입력" class="input-check">
-					<input type="button" value="ID중복체크" id="id_check">
-					<span id="message_id"></span>
-				</li>
-				<li>
-					<label for="name">이름</label>
-					<input type="text" name="name" id="name" maxlength="10" placeholder="이름 입력" class="input-check">
-				</li>
-				<li>
-					<label for="passwd">비밀번호</label>
-					<input type="password" name="passwd" id="passwd" maxlength="12" placeholder="비밀번호 입력" class="input-check">
-				</li>
-				<li>
-					<label for="cpasswd">비밀번호 확인</label>
-					<input type="password" name="cpasswd" id="cpasswd" maxlength="12" placeholder="비밀번호 확인" class="input-check">
-				</li>
-				<li>
-					<label for="email">이메일</label>
-					<input type="email" name="email" id="email" maxlength="50" placeholder="email@example.com" class="input-check">
+					<label>이름</label>
+					${member.name}
 				</li>
 				<li>
 					<label for="phone">전화번호</label>
-					<input type="text" name="phone" id="phone" maxlength="15" placeholder="010-****-****" class="input-check">
+					<input type="text" name="phone" id="phone" maxlength="15" value="${member.phone}" class="input-check">
 				</li>
 				<li>
-					<label for="birth">생년월일</label>
-  					<input type="text" name="birth" id="birth" maxlength="10" placeholder="생년월일 8자리 (YYYYMMDD)" class="input-check">
-				</li>
-				<li>
-					<label for="gender">성별</label>
-					<input type="radio" name="gender" value="F" class="input-check">남자
-					<input type="radio" name="gender" value="M" class="input-check">여자
+					<label for="email">이메일</label>
+					<input type="email" name="email" id="email" maxlength="50" value="${member.email}" class="input-check">
 				</li>
 				<li>
 					<label for="zipcode">우편번호</label>
-					<input type="text" name="zipcode" id="zipcode" maxlength="5" autocomplete="off" class="input-check" placeholder="우편번호">
+					<input type="text" name="zipcode" id="zipcode" value="${member.zipcode}" maxlength="5" autocomplete="off" class="input-check">
 					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">
 				</li>
 				<li>
-					<label for="address1" >주소</label>
-					<input type="text" name="address1" id="address1" maxlength="30" class="right" placeholder="주소">
+					<label for="address1">주소</label>
+					<input type="text" name="address1" id="address1" value="${member.address1}" maxlength="30" class="input-check">
 				</li>
 				<li>
-					<label for="address2">상세주소</label>
-					<input type="text" name="address2" id="address2" maxlength="30" class="right" placeholder="상세주소">
-				</li>
-				<li>
-					<label for="style1">선호하는 여행지</label>
-					<input type="checkbox" name="style1" value="1">동남아
-					<input type="checkbox" name="style1" value="2">북미
-					<input type="checkbox" name="style1" value="3">유럽
-					<input type="checkbox" name="style1" value="4">호주
-					<input type="checkbox" name="style1" value="5">국내
-				</li>
-				<li>
-					<label for="style2">여행 스타일1</label>
-					<input type="checkbox" name="style2" value="1">혼자
-					<input type="checkbox" name="style2" value="2">연인
-					<input type="checkbox" name="style2" value="3">친구
-				</li>
-				<li>
-					<label for="style3">여행 스타일2</label>
-					<input type="checkbox" name="style3" value="1">휴양
-					<input type="checkbox" name="style3" value="2">액티비티
-					<input type="checkbox" name="style3" value="3">관광
-				</li>
-				<li>
-					<label for="push">광고 수신 동의</label>
-					<input type="radio" name="push" value="Y" class="input-check">동의
-					<input type="radio" name="push" value="N" class="input-check">비동의
+					<label for="address2">나머지 주소</label>
+					<input type="text" name="address2" id="address2" value="${member.address2}" maxlength="30" class="input-check">
 				</li>
 			</ul>
 			<div class="align-center">
-				<input type="submit" value="등록">
+				<input type="submit" value="수정">
 				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div>
 		</form>
 	</div>
 </div>
-</body>
-</html>
 <!-- 우편번호 검색 시작 -->
 	<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
 <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
@@ -278,3 +169,5 @@ $(function(){
     }
 </script>
 <!-- 우편번호 검색 끝 -->
+</body>
+</html>
