@@ -13,6 +13,7 @@ public class CommVO {
 	private String ip;
 	private int mem_num;
 	private String id;	
+	private String photo;		//회원 프로필 사진(조인해야함)
 	
 	public String getId() {
 		return id;
@@ -73,6 +74,13 @@ public class CommVO {
 	}
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 	
 }

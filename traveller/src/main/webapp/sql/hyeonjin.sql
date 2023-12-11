@@ -2,8 +2,7 @@ CREATE TABLE item (
 item_num number(12) not null,
 item_name varchar2(30) not null,
 item_content varchar2(300),
-item_price_adult number(10) not null,
-item_price_kid number(10) not null,
+item_price number(10) not null,
 item_img1 varchar2(30) not null,
 item_img2 varchar2(30) not null,
 item_img3 varchar2(30) not null,
@@ -58,8 +57,7 @@ CREATE sequence item_renum
 CREATE TABLE order_item(
 order_num number(12) not null,
 item_num number(12) not null,
-item_price_adult number(10) not null,
-item_price_kid number(10) not null,
+item_price number(10) not null,
 item_custprice number(10) not null,
 mem_num number not null,
 order_status number(1) not null,
@@ -82,21 +80,12 @@ CREATE TABLE order_detail (
 detail_num number(12) not null,
 item_num number(12) not null,
 item_name varchar2(30) not null,
-item_price_adult number(10) not null,
-item_price_kid number(10) not null,
+item_price number(10) not null,
 order_num number(12) not null,
-order_quantity_adult number(3) not null,
-order_quantity_kid number(3) not null,
+order_quantity number(3) not null,
 constraint order_detail_pk primary key (detail_num),
 constraint order_detail_fk foreign key (order_num) references order_item (order_num)
 );
-
-CREATE TRIGGER set_item_price_child
-BEFORE INSERT ON order_item
-FOR EACH ROW
-BEGIN
-    SET NEW.item_price_kid = NEW.item_price_adult * 0.8;
-END;
 
 
 

@@ -31,7 +31,7 @@ public class CommDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "INSERT INTO comm (comm_num, title, content, filename, ip, mem_num) "
+			sql = "INSERT INTO comm (comm_num, comm_title, comm_content, filename, ip, mem_num) "
 					+ "VALUES (comm_seq.nextval,?,?,?,?,?)";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -150,13 +150,136 @@ public class CommDAO {
 		return list; 
 	}
 	//글 상세
-
+	public CommVO getComm(int comm_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CommVO comm = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션객체 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			//(주의) 회원탈퇴하면 zmember_detail의 레코드가 존재하지 않기 때문에 외부 조인을
+			//사용해서 데이터 누락 방지
+			sql = "SELECT * FROM comm JOIN member USING(mem_num) "
+					+ "LEFT OUTER JOIN member_detail USING(mem_num) WHERE comm_num=?";
+			//preparedStatement객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, comm_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				comm = new CommVO();
+				comm.setComm_num(rs.getInt("comm_num"));
+				comm.setComm_title(rs.getString("comm_title"));
+				comm.setComm_content(rs.getString("comm_content"));
+				comm.setComm_hit(rs.getInt("comm_hit"));
+				comm.setReg_date(rs.getDate("reg_date"));
+				comm.setModify_date(rs.getDate("modify_date"));
+				comm.setFilename(rs.getString("filename"));
+				comm.setMem_num(rs.getInt("mem_num"));
+				comm.setId(rs.getString("id"));
+				comm.setPhoto(rs.getString("photo"));
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		
+		
+		return comm; 
+	}
+	 
 	//조회수 증가
-
+	public void updateReadcount(int comm_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE comm SET comm_hit=comm_hit+1 WHERE comm_num=?";
+			//preparedStatement객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, comm_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+			
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//파일 삭제
-	
+	public void deleteFile(int comm_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션객체 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE comm SET filename='' WHERE comm_num=?";
+			//preparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, comm_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//글 수정
-
+	public void updateComm(CommVO comm)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 객체 할당
+			conn = DBUtil.getConnection();
+			
+			if(comm.getFilename()!=null) {
+				sub_sql += ", filename=?";
+			}
+			//SQL문 작성
+			sql = "UPDATE comm SET comm_title=?,comm_content=?,modify_date=SYSDATE,ip=? "+sub_sql+" WHERE comm_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(++cnt, comm.getComm_title());
+			pstmt.setString(++cnt, comm.getComm_content());
+			pstmt.setString(++cnt, comm.getIp());
+			if(comm.getFilename()!=null) {
+				pstmt.setString(++cnt, comm.getFilename());
+			}
+			pstmt.setInt(++cnt, comm.getComm_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//글 삭제
 
 	//좋아요 등록

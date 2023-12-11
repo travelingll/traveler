@@ -85,7 +85,7 @@ $(function(){
 	//이미지 미리보기 취소
 	$('#photo_reset').click(function(){
 		//초기 이미지 표시
-		$('.my-photo').attr('src',photo-path); //이미지 미리보기 전 이미지로 되돌리기
+		$('.my-photo').attr('src',photo_path); //이미지 미리보기 전 이미지로 되돌리기
 		$('#photo').val('');
 		$('#photo_choice').hide();
 		$('#photo_btn').show(); //수정 버튼 표시
