@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- header 시작 -->
 <div id="main_logo">
-	<h1 class="align-center"><a href="${pageContext.request.contextPath}/main/main.do">트래블러</a></h1>
+	<h1 class="align-center"><a href="${pageContext.request.contextPath}/main/main.do"><img src="../upload/logo.png" width="250px"></a></h1>
 	<ul>
 		<c:if test="${!empty user_num}">
 		<li><a href="${pageContext.request.contextPath}/member/myPage.do">MY페이지</a></li>

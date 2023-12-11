@@ -431,7 +431,44 @@ public class CommDAO {
 		}
 	}
 	//내가 선택한 좋아요 목록
-
+	public List<CommVO> getListCommFav(int start, int end, int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<CommVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "JOIN comm_fav f USING(comm_num) WHERE f.mem_num=? "
+					+ "ORDER BY comm_num DESC)a) WHERE rnum >= ? AND rnum <=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mem_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			
+			rs=pstmt.executeQuery();
+			list = new ArrayList<CommVO>();
+			while(rs.next()) {
+				CommVO comm = new CommVO();
+				comm.setComm_num(rs.getInt("comm_num"));
+				comm.setComm_title(rs.getString("comm_title"));
+				comm.setReg_date(rs.getDate("reg_date"));
+				comm.setId(rs.getString("id"));
+				
+				list.add(comm);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null,pstmt,conn);
+		}
+		return list;
+	}
 	//댓글 등록
 
 	//댓글 갯수

@@ -4,7 +4,7 @@ $(function(){
 		$.ajax({
 			url:'getFav.do',
 			type:'post',
-			data:{board_num:$('#output_fav').attr('data-num')},
+			data:{comm_num:$('#output_fav').attr('data-num')},
 			dataType:'json',
 			success:function(param){
 				displayFav(param);

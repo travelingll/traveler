@@ -44,7 +44,7 @@
 		<ul class="detail-sub">
 			<li>
 				<%--좋아요 --%>
-				<img id="output_fav" data-num="${comm.comm_num}" src="${pageContext.request.contextPath}/upload/fav01.png" width="50">
+				<img id="output_fav" data-num="${comm.comm_num}" src="${pageContext.request.contextPath}/upload/fav01.png" width="20">
 				좋아요
 				<span id="output_fcount"></span>
 			</li>
