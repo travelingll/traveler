@@ -65,8 +65,8 @@ $(function(){
 				</li>
 			</ul>
 			<div class="align-center">
-				<input type="submit" value="수정">
-				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+				<input type="submit" value="연락처 수정">
+				<input type="button" value="My페이지" onclick="location.href='myPage.do'">
 			</div>
 		</form>
 	</div>
