@@ -13,9 +13,11 @@ public class AccomVO {
 	private int accom_quantity; //모집 인원수
 	private int accom_expense;//여행 경비
 	private String accom_filename; //
-	private int accom_start;
-	private int accom_end;
+	private String accom_start;
+	private String accom_end;
 	private String ip;
+	private int mem_num;
+	private String id;
 	
 	public int getAccom_num() {
 		return accom_num;
@@ -77,16 +79,16 @@ public class AccomVO {
 	public void setAccom_filename(String accom_filename) {
 		this.accom_filename = accom_filename;
 	}
-	public int getAccom_start() {
+	public String getAccom_start() {
 		return accom_start;
 	}
-	public void setAccom_start(int accom_start) {
+	public void setAccom_start(String accom_start) {
 		this.accom_start = accom_start;
 	}
-	public int getAccom_end() {
+	public String getAccom_end() {
 		return accom_end;
 	}
-	public void setAccom_end(int accom_end) {
+	public void setAccom_end(String accom_end) {
 		this.accom_end = accom_end;
 	}
 	public String getIp() {
@@ -94,6 +96,18 @@ public class AccomVO {
 	}
 	public void setIp(String ip) {
 		this.ip = ip;
+	}
+	public int getMem_num() {
+		return mem_num;
+	}
+	public void setMem_num(int mem_num) {
+		this.mem_num = mem_num;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	
