@@ -46,7 +46,7 @@
 				</c:if>
 				<c:if test="${!empty user_num}"> <%-- 로그인된 사용자만 보임 --%>
 					<li><a href="${pageContext.request.contextPath}">장바구니</a></li>
-					<li><a href="${pageContext.request.contextPath}">MY페이지</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/myPage.do">MY페이지</a></li>
 					<li class="menu-logout">
 						[<span>${user_id}</span>]
 						<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
