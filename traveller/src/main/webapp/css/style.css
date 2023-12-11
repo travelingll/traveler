@@ -55,6 +55,13 @@ a:hover{
 #main_logo{
 	padding-top:20px;
 }
+#main_logo ul{
+	text-align:right;
+}
+#main_logo ul li{
+	display:inline;
+	margin:3px;
+}
 #main_nav{
 	padding:2px 10px 20px 10px;
 	height:20px;
@@ -66,8 +73,9 @@ a:hover{
 	padding:0;
 }
 #main_nav ul li{
-	display:inline-block;
-	width:100px;
+	display:inline;
+	margin:5px;
+	width:120px;
 	text-align:center;
 	vertical-align:middle;
 	padding-top:8px;
@@ -351,9 +359,6 @@ input[type="number"].quantity-width{
 form[id="cart_order"]{
 	border:none;
 }
-
-
-
 
 
 
