@@ -18,7 +18,7 @@ public class DeleteAction implements Action{
 		if(user_num == null) {
 			return "redirect:/member/loginForm.do";
 		}
-		
+		  
 		int comm_num = Integer.parseInt(request.getParameter("comm_num"));
 		
 		CommDAO dao = CommDAO.getInstance();
