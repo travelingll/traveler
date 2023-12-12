@@ -44,8 +44,8 @@
 				</li>
 				<li>
 					<label>진행여부</label>
-					<input type="radio" name="accom_status" value="0" id="accom_status0">진행
-					<input type="radio" name="accom_status" value="1" id="accom_status1">완료
+					<input type="radio" name="accom_status" value="1" id="accom_status1">진행중
+					<input type="radio" name="accom_status" value="2" id="accom_status">완료
 				</li>
 		</ul>
 		<div class="align-center">

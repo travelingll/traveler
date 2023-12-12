@@ -74,8 +74,7 @@ window.onload = function(){
 			<c:forEach var="accom" items="${list}">
 			<tr>
 				<td>${accom.accom_num}</td>
-				<td>${accom.accom_status}</td>
-				
+				<td>${accom_status}</td>
 				<td><a href="detaiil.do?accom_num=${accom.accom_num}">${accom.accom_title}</a></td>
 				<td>${accom.id}</td>
 				<td>${accom.accom_regdate}</td>
