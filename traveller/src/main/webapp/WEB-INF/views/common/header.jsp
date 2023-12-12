@@ -50,7 +50,7 @@
 			<li>
 				<a href="${pageContext.request.contextPath}/admin/main.do">관리자 페이지</a>
 			</li>
-		</c:if>		
+		</c:if>		 
 	</ul>
 </div>
 <!-- header 끝 -->
