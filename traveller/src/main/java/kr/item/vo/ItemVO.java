@@ -14,12 +14,12 @@ public class ItemVO {
 	private String item_img4;
 	private String item_img5;
 	private String item_img6;
-	private int item_st1;
-	private int item_st2;
-	private int item_st3;
+	private String item_st1;
+	private String item_st2;
+	private String item_st3;
 	private String date_start;
 	private String date_end;
-	private int status;
+	private String status;
 	private Date reg_date;
 	private Date modifydate;
 	private int quantity;
@@ -85,24 +85,7 @@ public class ItemVO {
 	public void setItem_img6(String item_img6) {
 		this.item_img6 = item_img6;
 	}
-	public int getItem_st1() {
-		return item_st1;
-	}
-	public void setItem_st1(int item_st1) {
-		this.item_st1 = item_st1;
-	}
-	public int getItem_st2() {
-		return item_st2;
-	}
-	public void setItem_st2(int item_st2) {
-		this.item_st2 = item_st2;
-	}
-	public int getItem_st3() {
-		return item_st3;
-	}
-	public void setItem_st3(int item_st3) {
-		this.item_st3 = item_st3;
-	}
+	
 	public String getDate_start() {
 		return date_start;
 	}
@@ -115,10 +98,29 @@ public class ItemVO {
 	public void setDate_end(String date_end) {
 		this.date_end = date_end;
 	}
-	public int getStatus() {
+	
+	public String getItem_st1() {
+		return item_st1;
+	}
+	public void setItem_st1(String item_st1) {
+		this.item_st1 = item_st1;
+	}
+	public String getItem_st2() {
+		return item_st2;
+	}
+	public void setItem_st2(String item_st2) {
+		this.item_st2 = item_st2;
+	}
+	public String getItem_st3() {
+		return item_st3;
+	}
+	public void setItem_st3(String item_st3) {
+		this.item_st3 = item_st3;
+	}
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	public Date getReg_date() {
