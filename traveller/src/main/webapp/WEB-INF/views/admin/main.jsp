@@ -20,6 +20,9 @@
 				<li>
 					<a href="${pageContext.request.contextPath}/admin/itemInsert.do">관리자 상품등록</a>
 				</li>
+				<li>
+					<a href="${pageContext.request.contextPath}/admin/userList.do">회원관리</a>
+				</li>
 			</ul>
 		</div>
 	</div>
