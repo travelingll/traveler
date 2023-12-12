@@ -9,7 +9,7 @@ $(function(){
 		
 		//로딩 이미지 노출
 		$('#loading').show();
-		
+		  
 		$.ajax({
 			url:'listReply.do',
 			type:'post',
