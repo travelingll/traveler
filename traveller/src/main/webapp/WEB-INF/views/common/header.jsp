@@ -31,7 +31,7 @@
 			<a href="${pageContext.request.contextPath}">자주 찾는 질문</a>
 		</li>
 		<li>
-			<a href="${pageContext.request.contextPath}">동행구하기</a>
+			<a href="${pageContext.request.contextPath}/accom/list.do">동행구하기</a>
 		</li>
 		<li>
 			<a href="${pageContext.request.contextPath}/event/eventList.do">이벤트</a>
