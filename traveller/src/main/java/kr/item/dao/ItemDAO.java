@@ -27,7 +27,14 @@ private static ItemDAO instance = new ItemDAO();
 			//커넥션풀로부터 커넥션 객체 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "INSERT INTO item ()";
+			sql = "INSERT INTO item (item_num, item_name, item_content, item_price, "
+					+ "item_img1, item_img2, item_img3, item_img4, item_img5, item_img6, "
+					+ "item_st1, item_st2, item_st3, date_start, date_end, status, "
+					+ "reg_date, modify_date, quantity) VALUES(item_seq.nextval, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			
 			
 		}catch(Exception e) {
 			throw new Exception(e);
