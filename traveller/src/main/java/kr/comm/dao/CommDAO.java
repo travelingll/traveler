@@ -6,10 +6,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import kr.comm.vo.CommFavVO;
+import kr.comm.vo.CommReplyVO;
 import kr.comm.vo.CommVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 public class CommDAO {
@@ -470,15 +471,195 @@ public class CommDAO {
 		return list;
 	}
 	//댓글 등록
-
+	public void insertReplyComm(CommReplyVO commReply)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn =  DBUtil.getConnection();
+		
+			sql = "INSERT INTO comm_reply (comm_renum,comm_recontent,"
+				+ "comm_reip,mem_num,comm_num) VALUES (comm_reply_seq.nextval,?,?,?,?)";
+	
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+		
+			pstmt.setString(1, commReply.getComm_recontent());
+			pstmt.setString(2, commReply.getComm_reip());
+			pstmt.setInt(3, commReply.getMem_num());
+			pstmt.setInt(4, commReply.getComm_num());
+		
+			pstmt.executeUpdate();
+		
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null,pstmt,conn);
+		}
+	}
+	
 	//댓글 갯수
-
+	public int getReplyCommCount(int comm_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		
+				
+		try {
+			conn =  DBUtil.getConnection();
+			
+			sql = "SELECT COUNT(*) FROM comm_reply JOIN member "
+					+ "USING(mem_num) WHERE comm_num=?";		
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, comm_num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {			
+			throw new Exception(e);
+		}finally {	
+			DBUtil.executeClose(rs,pstmt,conn);
+		}
+						
+		
+		return count;
+	}
 	//댓글 목록
-
+	public List<CommReplyVO> getListReplyComm(int start, int end, int comm_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<CommReplyVO> list = null;
+		String sql = null;
+		
+		try {
+			conn =  DBUtil.getConnection();
+			
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM comm_reply JOIN member "
+					+ "USING(mem_num) WHERE comm_num=? "
+					+ "ORDER BY comm_renum DESC)a) WHERE rnum >= ? AND rnum <= ?";		
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, comm_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<CommReplyVO>();
+			while(rs.next()) {
+				CommReplyVO reply = new CommReplyVO();
+				reply.setComm_renum(rs.getInt("comm_renum"));
+				reply.setComm_redate(DurationFromNow.getTimeDiffLabel(rs.getString("comm_redate")));
+				if(rs.getString("comm_remodifydate")!=null) {
+					reply.setComm_remodifydate(DurationFromNow.getTimeDiffLabel(rs.getString("comm_remodifydate")));
+				}
+				reply.setComm_recontent(StringUtil.useBrNoHtml(rs.getString("Comm_recontent")));
+				reply.setComm_num(rs.getInt("comm_num"));
+				reply.setMem_num(rs.getInt("mem_num"));
+				reply.setId(rs.getString("id"));
+				
+				list.add(reply);
+			}
+			
+		}catch(Exception e) {			
+			throw new Exception(e);
+		}finally {	
+			DBUtil.executeClose(rs,pstmt,conn);
+		}
+		
+		return list;
+	}
 	//댓글 상세(댓글 수정,삭제 시 작성자 회원번호 체크 용도로 사용)
-
-	//댓글 수정
-
+	public CommReplyVO getReplyComm(int comm_renum)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CommReplyVO reply = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT * FROM comm_reply WHERE comm_renum=?";
+			
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1,comm_renum);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				reply = new CommReplyVO();
+				reply.setComm_renum(rs.getInt("comm_renum"));
+				reply.setMem_num(rs.getInt("mem_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs,pstmt,conn);
+		}
+		
+		return reply;
+	}
+	public void updateReplyComm(CommReplyVO reply)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "UPDATE comm_reply SET comm_recontent=?, "
+					+ "comm_remodifydate=SYSDATE, comm_reip=? WHERE comm_renum=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, reply.getComm_recontent());
+			pstmt.setString(2, reply.getComm_reip());
+			pstmt.setInt(3, reply.getComm_renum());
+			
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null,pstmt,conn);
+		}
+	}
 	//댓글 삭제
-
+	public void deleteReplyComm(int comm_renum)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "DELETE FROM comm_reply WHERE comm_renum=?";
+			
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1,comm_renum);
+			
+			pstmt.executeUpdate();
+			
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null,pstmt,conn);
+		}
+		
+		return ;
+	
+	}
+	
+	
 }

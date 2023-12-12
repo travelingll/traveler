@@ -114,7 +114,7 @@ $(function(){
 			<ul>
 				<li>
 					<c:if test="${empty member.photo}">
-					<img src="${pageContext.request.contextPath}/images/face.png" width="200" height="200" class="my-photo">
+					<img src="${pageContext.request.contextPath}/images/face.jpg" width="200" height="200" class="my-photo">
 					</c:if>
 					<c:if test="${!empty member.photo}">
 					<img src="${pageContext.request.contextPath}/upload/${member.photo}" width="200" height="200" class="my-photo">
