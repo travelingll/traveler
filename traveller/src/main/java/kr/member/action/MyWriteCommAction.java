@@ -11,7 +11,6 @@ import kr.comm.vo.CommVO;
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
-import kr.util.PageUtil;
 
 public class MyWriteCommAction implements Action{
 
@@ -25,30 +24,17 @@ public class MyWriteCommAction implements Action{
 		//로그인 된 경우
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.getMember(user_num);
-				
-		request.setAttribute("member", member);
-		
-		//페이지 처리
-		String pageNum = request.getParameter("pageNum");
-		if(pageNum == null) pageNum = "1"; //처음에 get방식으로 넘길때는 null이므로 1페이지로 처리
-		
-		String keyfield = request.getParameter("keyfield");
-		String keyword = request.getParameter("keyword");
 		
 		CommDAO commDao = CommDAO.getInstance();
-		int count = commDao.getCommCount(keyfield, keyword);
-		
-		//페이지 처리
-		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 20, 10, "list.do");
-		
-		List<CommVO> list = null;
+		int count = commDao.getCommCount(null, null, user_num);
+		List<CommVO> commList = null;
 		if(count > 0) {
-			list = commDao.getListComm(page.getStartRow(), page.getEndRow(), keyfield, keyword);
+			commList = commDao.getListComm(1, 5, null, null, user_num);
 		}
 		
 		request.setAttribute("count", count);
-		request.setAttribute("list", list);
-		request.setAttribute("page", page.getPage());
+		request.setAttribute("member", member);
+		request.setAttribute("commList", commList);
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/member/myWriteComm.jsp";

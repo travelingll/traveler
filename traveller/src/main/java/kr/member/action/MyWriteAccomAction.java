@@ -11,7 +11,6 @@ import kr.accom.vo.AccomVO;
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
-import kr.util.PageUtil;
 
 public class MyWriteAccomAction implements Action{
 
@@ -26,29 +25,18 @@ public class MyWriteAccomAction implements Action{
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.getMember(user_num);
 		
-		request.setAttribute("member", member);
-		
-		String pageNum = request.getParameter("pageNum");
-		if(pageNum == null) pageNum = "1";
-		
-		String keyfield = request.getParameter("keyfield");
-		String keyword = request.getParameter("keyword");
-		
 		AccomDAO accomDao = AccomDAO.getInstance();
-		int count = accomDao.getAccomCount(keyfield, keyword);
-		
-		//페이지 처리
-		PageUtil page = new PageUtil(keyfield, keyword,Integer.parseInt(pageNum),count,20,10,"list.do");
-		
-		List<AccomVO> list = null;
+		int count = accomDao.getAccomCount(null, null, user_num);
+		List<AccomVO> accomList = null;
 		if(count > 0) {
-			list = accomDao.getListAccom(page.getStartRow(),page.getEndRow(),keyfield,keyword);
+			accomList = accomDao.getListAccom(1, 5, null, null, user_num);
 		}
 		
 		request.setAttribute("count", count);
-		request.setAttribute("list", list);
-		request.setAttribute("page", page.getPage());
+		request.setAttribute("member", member);
+		request.setAttribute("accomList", accomList);
 		
+		//JSP 경로 반환
 		return "/WEB-INF/views/member/myWriteAccom.jsp";
 	}
 

@@ -42,7 +42,12 @@
 		<c:if test="${member.auth == 9}"><b>등급 : 관리자</b></c:if>
 		</c:if>
 		<c:if test="${!empty user_num && empty user_photo}">
-		<img src="${pageContext.request.contextPath}/images/face.png" width="100" height="120" class="my-photo">
+		<img src="${pageContext.request.contextPath}/images/face.jpg" width="100" height="120" class="my-photo">
+		<br>${member.name}<br>
+		<c:if test="${member.auth == 3}"><b>등급 : 일반</b></c:if>
+		<c:if test="${member.auth == 2}"><b>등급 : VIP</b></c:if>
+		<c:if test="${member.auth == 1}"><b>등급 : VVIP</b></c:if>
+		<c:if test="${member.auth == 9}"><b>등급 : 관리자</b></c:if>
 		</c:if>
 		</div>
 		<c:if test="${count == 0}">
@@ -57,7 +62,7 @@
 				<th>작성일</th>
 				<th>조회수</th>
 			</tr>
-			<c:forEach var="accom" items="${list}">
+			<c:forEach var="accom" items="${accomList}">
 			<tr>
 				<td><a href="${pageContext.request.contextPath}/accom/detail.do?accom_num=${accom.accom_num}">${accom.accom_title}</a></td>
 				<td>${accom.reg_date}</td>

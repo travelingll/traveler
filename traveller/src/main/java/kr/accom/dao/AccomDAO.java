@@ -56,12 +56,13 @@ public class AccomDAO {
 		}
 	}
 	//전체 레코드 수/검색 레코드 수
-	public int getAccomCount(String keyfield, String keyword)throws Exception{
+	public int getAccomCount(String keyfield, String keyword,int mem_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		String sub_sql="";
+		String sub_sql2="";
 		int count = 0;
 		
 		try {
@@ -74,12 +75,18 @@ public class AccomDAO {
 				else if (keyfield.equals("2")) sub_sql += "WHERE id LIKE ?";
 				else if (keyfield.equals("3")) sub_sql += "WHERE accom_content LIKE ?";
 			}
+			if(mem_num > 0) {
+				sub_sql2 += "WHERE mem_num=?";
+			}
 			//SQL문 작성
-			sql = "SELECT COUNT (*) FROM accom JOIN member USING(mem_num) " + sub_sql;
+			sql = "SELECT COUNT (*) FROM accom JOIN member USING(mem_num) " + sub_sql + sub_sql2;
 			//PrepardStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			if(keyword != null && !"".equals(keyword)) {
 				pstmt.setString(1, "%"+keyword+"%");
+			}
+			if(mem_num > 0) {
+				pstmt.setInt(1, mem_num);
 			}
 			//SQL문 실행
 			rs = pstmt.executeQuery();
@@ -94,12 +101,13 @@ public class AccomDAO {
 		return count;
 	}
 	//전체 글/검색 글 목록
-	public List<AccomVO> getListAccom(int start, int end, String keyfield, String keyword) throws Exception{
+	public List<AccomVO> getListAccom(int start, int end, String keyfield, String keyword,int mem_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<AccomVO> list = null;
 		String sub_sql = "";
+		String sub_sql2 = "";
 		String sql = null;
 		int cnt = 0;
 		
@@ -113,15 +121,20 @@ public class AccomDAO {
 				else if (keyfield.equals("2")) sub_sql += "WHERE id LIKE ?";
 				else if (keyfield.equals("3")) sub_sql += "WHERE accom_content LIKE ?";
 			}
-			
+			if(mem_num > 0) {
+				sub_sql2 += "WHERE mem_num=?";
+			}
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-					+ "(SELECT * FROM accom JOIN member USING(mem_num) " + sub_sql
+					+ "(SELECT * FROM accom JOIN member USING(mem_num) " + sub_sql + sub_sql2
 					+ "ORDER BY accom_num_ DESC)a) WHERE rnum >= ? AND rnum <= ?";
 			//PrepardStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			if(keyword != null && !"".equals(keyword)) {
 				pstmt.setString(++cnt, "%"+keyword+"%");
+			}
+			if(mem_num > 0) {
+				pstmt.setInt(++cnt, mem_num);
 			}
 			pstmt.setInt(++cnt, start);
 			pstmt.setInt(++cnt, end);

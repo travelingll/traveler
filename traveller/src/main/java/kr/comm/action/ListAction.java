@@ -27,7 +27,7 @@ public class ListAction implements Action{
 		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum),count,20,10,"list.do");
 		List<CommVO> list = null;
 		if(count>0) {
-			list = dao.getListComm(page.getStartRow(), page.getEndRow(), keyfield, keyword);
+			list = dao.getListComm(page.getStartRow(), page.getEndRow(), keyfield, keyword, 0);
 			
 		}
 		request.setAttribute("count", count);
