@@ -45,12 +45,12 @@ private static ItemDAO instance = new ItemDAO();
 			pstmt.setString(7,item.getItem_img4());
 			pstmt.setString(8,item.getItem_img5());
 			pstmt.setString(9,item.getItem_img6());
-			pstmt.setInt(10,item.getItem_st1());
-			pstmt.setInt(11,item.getItem_st2());
-			pstmt.setInt(12,item.getItem_st3());
+			pstmt.setString(10,item.getItem_st1());
+			pstmt.setString(11,item.getItem_st2());
+			pstmt.setString(12,item.getItem_st3());
 			pstmt.setString(13,item.getDate_start());
 			pstmt.setString(14,item.getDate_end());
-			pstmt.setInt(15,item.getStatus());
+			pstmt.setString(15,item.getStatus());
 			pstmt.setInt(16,item.getQuantity());
 			//SQL문 실행
 			pstmt.executeUpdate();
@@ -160,7 +160,55 @@ private static ItemDAO instance = new ItemDAO();
 		return list;
 	}
 	//관리자/사용자 - 상품 상세
-	
+	public ItemVO getItem(int item_num)throws Exception{
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		ItemVO vo = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 객체 할당
+			conn = DBUtil.getConnection();
+			//SQL문 실행
+			sql = "SELECT * FROM item WHERE item_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, item_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				vo = new ItemVO();
+				vo.setItem_num(rs.getInt("item_num"));
+				vo.setItem_name(rs.getString("item_name"));
+				vo.setItem_content(rs.getString("item_content"));
+				vo.setPrice(rs.getInt("item_price"));
+				vo.setItem_img1(rs.getString("item_img1"));
+				vo.setItem_img1(rs.getString("item_img2"));
+				vo.setItem_img1(rs.getString("item_img3"));
+				vo.setItem_img1(rs.getString("item_img4"));
+				vo.setItem_img1(rs.getString("item_img5"));
+				vo.setItem_img1(rs.getString("item_img6"));
+				vo.setItem_st1(rs.getString("item_st1"));
+				vo.setItem_st2(rs.getString("item_st2"));
+				vo.setItem_st3(rs.getString("item_st3"));
+				vo.setDate_start(rs.getString("date_start"));
+				vo.setDate_end(rs.getString("date_end"));
+				vo.setStatus(rs.getString("status"));
+				vo.setReg_date(rs.getDate("reg_date"));
+				vo.setModifydate(rs.getDate("modify_date"));
+				vo.setQuantity(rs.getInt("quantity"));	
+			}	
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}	
+		return vo;
+	}
 	
 	
 	

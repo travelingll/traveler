@@ -45,9 +45,9 @@ public class ItemInsertFormAction implements Action{
 			item.setItem_img4(multi.getFilesystemName("pic4"));
 			item.setItem_img5(multi.getFilesystemName("pic5"));
 			item.setItem_img6(multi.getFilesystemName("pic6"));
-			item.setItem_st1(Integer.parseInt(multi.getParameter("item_st1")));
-			item.setItem_st2(Integer.parseInt(multi.getParameter("item_st2")));
-			item.setItem_st3(Integer.parseInt(multi.getParameter("item_st3")));
+			item.setItem_st1((multi.getParameter("item_st1")));
+			item.setItem_st2((multi.getParameter("item_st2")));
+			item.setItem_st3((multi.getParameter("item_st3")));
 			item.setDate_start(multi.getParameter("start_date"));
 			item.setDate_end(multi.getParameter("end_date"));
 			item.setQuantity(Integer.parseInt(multi.getParameter("quantity")));
@@ -60,7 +60,7 @@ public class ItemInsertFormAction implements Action{
 			request.setAttribute("accessUrl", "itemList.do");
 		
 		
-		return "/WEB-INF/views/common/notice.jsp";
+		return "/WEB-INF/views/common/notice.jsp"; 
 	}
 
 }
