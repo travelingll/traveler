@@ -127,7 +127,7 @@ public class AccomDAO {
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
 					+ "(SELECT * FROM accom JOIN member USING(mem_num) " + sub_sql + sub_sql2
-					+ "ORDER BY accom_num_ DESC)a) WHERE rnum >= ? AND rnum <= ?";
+					+ "ORDER BY accom_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 			//PrepardStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			if(keyword != null && !"".equals(keyword)) {
