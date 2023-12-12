@@ -4,6 +4,11 @@
 <div class="global_menu">
 	<div class="fr">
 		<ul>
+			<c:if test="${!empty user_num && user_auth == 9}"> <%-- 관리자만 진입 가능 --%>
+			<li>
+				<a href="${pageContext.request.contextPath}/admin/main.do">관리자 페이지</a>
+			</li>
+			</c:if>		
 			<c:if test="${empty user_num}">
 			<li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
 			<li><a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a></li>
@@ -69,12 +74,7 @@
 				
 		<li>
 			<a href="${pageContext.request.contextPath}">사용자 맞춤 추천</a>
-		</li>
-		<c:if test="${!empty user_num && user_auth == 9}"> <%-- 관리자만 진입 가능 --%>
-			<li>
-				<a href="${pageContext.request.contextPath}/admin/main.do">관리자 페이지</a>
-			</li>
-		</c:if>		 
+		</li> 
 	</ul>
 </div>
 <!-- header 끝 -->
