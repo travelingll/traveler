@@ -16,17 +16,26 @@
 	</div>
 </div>
 
+
+
 <div id="local_menu">
 	<c:if test="${!empty user_num}">
-	<div class="fr">  
-		<ul>
-			<li> 
-				<a href="${pageContext.request.contextPath}/member/myPage.do"><img alt="예약내역" src="../upload/icon_mypage.svg">::before 마이메뉴</a>
-				<a href="${pageContext.request.contextPath}"><img alt="예약내역" src="../upload/icon_reservation.svg">예약내역</a>
-			</li>		
-		</ul>
-	</div>
-	</c:if>
+    <div class="fr">  
+        <ul class="private_menu align-right">
+            <li> 
+                <a href="${pageContext.request.contextPath}/member/myPage.do">
+                    <img alt="마이페이지" src="../upload/icon_mypage.svg">
+                    <span>마이페이지</span>
+                </a>
+                <a href="${pageContext.request.contextPath}">
+                    <img alt="예약내역" src="../upload/icon_reservation.svg">
+                    <span>예약내역</span>
+                </a>
+            </li>        
+        </ul>
+    </div>
+</c:if>
+	
 	<h1 class="align-left"><a href="${pageContext.request.contextPath}/main/main.do"><img src="../upload/logo.png" width="250px"></a></h1>
 	<ul>
 		<c:if test="${!empty user_num}">

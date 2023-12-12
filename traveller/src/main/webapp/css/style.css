@@ -23,11 +23,22 @@
     font-size: 12px;
     letter-spacing: -0.3px;
 }
-.local_menu li{
-	 display: list-item;
-    text-align: -webkit-match-parent;
-        position: absolute;
+
+.private_menu {
+    list-style: none; /* Remove default list styles */
+    padding: 0; /* Remove default padding */
 }
+
+.private_menu li {
+    display: inline-block; /* 리스트 아이템을 같은 줄에 표시 */
+    margin-right: 10px; /* 메뉴 아이템 사이의 간격 조절 */
+}
+
+.align-right {
+    text-align: right; /* 텍스트를 오른쪽으로 정렬 */
+}
+
+
 body{
 	width:1200px;
 	margin:0 auto;
