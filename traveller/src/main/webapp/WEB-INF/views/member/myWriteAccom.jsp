@@ -31,7 +31,7 @@
 		</ul>
 	</div>
 	<div class="content-main">
-		<h2>내가 쓴 글 : 커뮤니티</h2>
+		<h2>내가 쓴 글 : 동행게시판</h2>
 		<div>
 		<c:if test="${!empty user_num && !empty user_photo}">
 		<img src="${pageContext.request.contextPath}/upload/${user_photo}" width="100" height="120" class="my-photo">
@@ -57,11 +57,11 @@
 				<th>작성일</th>
 				<th>조회수</th>
 			</tr>
-			<c:forEach var="comm" items="${list}">
+			<c:forEach var="accom" items="${list}">
 			<tr>
-				<td><a href="${pageContext.request.contextPath}/comm/detail.do?comm_num=${comm.comm_num}">${comm.comm_title}</a></td>
-				<td>${comm.reg_date}</td>
-				<td>${comm.comm_hit}</td>
+				<td><a href="${pageContext.request.contextPath}/accom/detail.do?accom_num=${accom.accom_num}">${accom.accom_title}</a></td>
+				<td>${accom.reg_date}</td>
+				<td>${accom.accom_hit}</td>
 			</tr>
 			</c:forEach>
 		</table>
