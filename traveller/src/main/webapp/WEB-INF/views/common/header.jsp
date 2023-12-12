@@ -3,10 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- header 시작 -->
 <div id="main_logo">
-	<h1 class="align-center"><a href="${pageContext.request.contextPath}/main/main.do"><img src="../upload/logo.png" width="250px"></a></h1>
+	<c:if test="${empty user_num}">
+		<div class="align-right">
+			<a href="${pageContext.request.contextPath}/member/loginForm.do"><img alt="My페이지" src="../upload/icon_mypage.svg">로그인</a>
+			<a href="${pageContext.request.contextPath}/member/registerUserForm.do"><img alt="My페이지" src="../upload/icon_reservation.svg">예약내역</a>
+		</div>
+	</c:if>
+	
+	<c:if test="${!empty user_num}">
+	<div class="align-right"><a href="${pageContext.request.contextPath}/member/myPage.do"><img alt="My페이지" src="../upload/icon_mypage.svg"><br>로그인</a></div>
+	</c:if>
+	<h1 class="align-left"><a href="${pageContext.request.contextPath}/main/main.do"><img src="../upload/logo.png" width="250px"></a></h1>
 	<ul>
 		<c:if test="${!empty user_num}">
-		<li><a href="${pageContext.request.contextPath}/member/myPage.do">MY페이지</a></li>
 		<li><a href="${pageContext.request.contextPath}">장바구니</a></li>
 		<li class="menu-logout">
 			[<span>${user_id}</span>]

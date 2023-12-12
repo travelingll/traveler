@@ -3,9 +3,9 @@
 /* 전체 레이아웃
 ------------------------------*/
 body{
-	width:960px;
+	width:1200px;
 	margin:0 auto;
-	background:#E6E6E6;
+	background:#FFFFFF;
 }
 a:link{
 	text-decoration:none;
@@ -23,9 +23,7 @@ a:hover{
 ------------------------------*/
 .page-main{
 	background:#FFFFFF;
-	margin:40px 0;
 	border-radius:5px;
-	box-shadow:0 2px 6px rgba(100,100,100,0.3);
 	min-height:650px;
 }
 .content-main{
