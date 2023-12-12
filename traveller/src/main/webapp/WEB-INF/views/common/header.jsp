@@ -20,7 +20,7 @@
 	<c:if test="${!empty user_num}">
 	<div class="fr">  
 		<ul>
-			<li>
+			<li> 
 				<a href="${pageContext.request.contextPath}/member/myPage.do"><img alt="예약내역" src="../upload/icon_mypage.svg">::before 마이메뉴</a>
 				<a href="${pageContext.request.contextPath}"><img alt="예약내역" src="../upload/icon_reservation.svg">예약내역</a>
 			</li>		
