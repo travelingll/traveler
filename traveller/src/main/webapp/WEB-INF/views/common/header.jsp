@@ -18,7 +18,7 @@
 
 <div id="local_menu">
 	<c:if test="${!empty user_num}">
-	<div class="fr">
+	<div class="fr">  
 		<ul>
 			<li>
 				<a href="${pageContext.request.contextPath}/member/myPage.do"><img alt="예약내역" src="../upload/icon_mypage.svg">::before 마이메뉴</a>
