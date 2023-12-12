@@ -48,7 +48,7 @@
 		</li>
 		<c:if test="${!empty user_num && user_auth == 9}"> <%-- 관리자만 진입 가능 --%>
 			<li>
-				<a href="${pageContext.request.contextPath}">관리자 페이지</a>
+				<a href="${pageContext.request.contextPath}/admin/main.do">관리자 페이지</a>
 			</li>
 		</c:if>		
 	</ul>
