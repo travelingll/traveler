@@ -20,7 +20,7 @@ public class UpdateReplyAction implements Action{
 		//전송된 데이터 인코딩 처리
 				request.setCharacterEncoding("utf-8");
 				//댓글 번호
-				int comm_renum = Integer.parseInt(request.getParameter("re_num"));
+				int comm_renum = Integer.parseInt(request.getParameter("comm_renum"));
 				
 				CommDAO dao = CommDAO.getInstance();
 				CommReplyVO db_reply = dao.getReplyComm(comm_renum);

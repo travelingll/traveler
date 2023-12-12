@@ -119,11 +119,11 @@ $(function(){
 				
 			}else{
 				let remain = 300 -inputLength;
-				remain += '300';
+				remain += '/300';
 				if($(this).attr('id') =='comm_recontent'){
 					$('#re_first .letter-count').text(remain); //re_first .letter-count 붙이면 안됨
 				}else{
-					$('mre_first .letter-count').text(remain);
+					$('#mre_first .letter-count').text(remain);
 				}
 				
 			
@@ -139,7 +139,7 @@ $(function(){
 		//댓글 수정폼 UI
 		let modifyUI = '<form id="mre_form">';
 		modifyUI += '<input type="hidden" name="comm_renum" id="comm_mrenum" value="'+comm_renum+'">';
-		modifyUI += '<textarea row="3" cols="50" name="re_content" id="mre_content" class="rep-content">'+content+'</textarea>';
+		modifyUI += '<textarea row="3" cols="50" name="comm_recontent" id="comm_mrecontent" class="rep-content">'+content+'</textarea>';
 		modifyUI += '<div id="mre_first"><span class="letter-count">300/300</span><div>';
 		modifyUI += '<div id="mre_second" class-"align-right">';
 		modifyUI += '<input type="submit" values"수행">';
