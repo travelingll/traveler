@@ -25,7 +25,7 @@ public class MyWriteCommAction implements Action{
 		//로그인 된 경우
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.getMember(user_num);
-		
+				
 		request.setAttribute("member", member);
 		
 		//페이지 처리

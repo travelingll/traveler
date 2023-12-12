@@ -25,7 +25,7 @@ public class MyWriteAccomAction implements Action{
 		//로그인 된 경우
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.getMember(user_num);
-				
+		
 		request.setAttribute("member", member);
 		
 		String pageNum = request.getParameter("pageNum");
