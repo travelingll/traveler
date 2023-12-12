@@ -99,7 +99,7 @@ $(function(){
 	<div style="text-align:center;">
 		<ul>
 			<li style="display:inline-block;"><a href="${pageContext.request.contextPath}/member/myPage.do">개인정보</a></li>
-			<li style="display:inline-block;"><a>내가 쓴 글</a></li>
+			<li style="display:inline-block;"><a href="${pageContext.request.contextPath}/member/myWriteComm.do">내가 쓴 글</a></li>
 			<li style="display:inline-block;"><a>1:1 문의</a></li>
 			<li style="display:inline-block;"><a>예약 내역</a></li>
 			<li style="display:inline-block;"><a>장바구니</a></li>

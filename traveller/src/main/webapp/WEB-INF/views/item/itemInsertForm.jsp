@@ -47,7 +47,7 @@ form ul li label{
 	float:left;
 }
 </style>
-</head>
+</head> 
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -106,24 +106,24 @@ form ul li label{
 					<input type="radio" id="item_st5" name="item_st1" value="5" class="insert_check">국내
 				</li>
 				<li>
-					<label for="item_st2">여행스타일1</label>
+					<label for="item_st6">여행스타일1</label>
 					<input type="radio" id="item_st6" name="item_st2" value="1" class="insert_check">혼자
 					<input type="radio" id="item_st7" name="item_st2" value="2" class="insert_check">연인
 					<input type="radio" id="item_st8" name="item_st2" value="3" class="insert_check">친구
 				</li>
 				<li>
-					<label for="item_st2">여행스타일2</label>
+					<label for="item_st9">여행스타일2</label>
 					<input type="radio" id="item_st9" name="item_st3" value="1" class="insert_check">휴양
 					<input type="radio" id="item_st10" name="item_st3" value="2" class="insert_check">액티비티
 					<input type="radio" id="item_st11" name="item_st3" value="3" class="insert_check">관광
 				</li>
 				<li>
 					<label for="start_date">여행출발일</label>
-					<input type="text" id="name" name="start_date" maxlength="100" size="20" class="insert_check">
+					<input type="date" id="name" name="start_date" maxlength="100" size="20" class="insert_check">
 				</li>
 				<li>
 					<label for="end_date">여행종료일</label>
-					<input type="text" id="name" name="end_date" maxlength="100" size="20" class="insert_check">
+					<input type="date" id="name" name="end_date" maxlength="100" size="20" class="insert_check">
 				</li>
 				<li>
 					<label for="quantity">모집인원</label>

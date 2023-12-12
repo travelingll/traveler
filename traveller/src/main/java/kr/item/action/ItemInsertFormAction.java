@@ -7,17 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import com.oreilly.servlet.MultipartRequest;
 
 import kr.controller.Action;
+import kr.item.dao.ItemDAO;
 import kr.item.vo.ItemVO;
+import kr.util.FileUtil;
 
 public class ItemInsertFormAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//전송된 데이터 인코딩 처리
-		request.setCharacterEncoding("utf-8");
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
@@ -26,41 +26,42 @@ public class ItemInsertFormAction implements Action{
 		Map<String,String>mapAjax = new HashMap<String,String>();
 		
 		if(user_num==null) {//로그인 되지 않은 경우
-			mapAjax.put("result","logout");
-		}else if(user_auth!=9) {//로그인이 되었지만 관리자가 아닌 경우
-			mapAjax.put("result", "notAdmin");
-		}else {//관리자로 로그인한 경우
-			
-			ItemVO item = new ItemVO();
-			item.setItem_name(request.getParameter("name"));
-			item.setItem_content(request.getParameter("city"));
-			item.setPrice(Integer.parseInt(request.getParameter("item_price")));
-			item.setItem_img1(request.getParameter("pic1"));
-			item.setItem_img2(request.getParameter("pic2"));
-			item.setItem_img3(request.getParameter("pic3"));
-			item.setItem_img4(request.getParameter("pic4"));
-			item.setItem_img5(request.getParameter("pic5"));
-			item.setItem_img6(request.getParameter("pic6"));
-			item.setItem_st1(Integer.parseInt(request.getParameter("item_st1")));
-			item.setItem_st2(Integer.parseInt(request.getParameter("item_st2")));
-			item.setItem_st3(Integer.parseInt(request.getParameter("item_st3")));
-			item.setDate_start(request.getParameter("start_date"));
-			item.setDate_end(request.getParameter("end_date"));
-			item.setQuantity(Integer.parseInt(request.getParameter("quantity")));
-			
-			mapAjax.put("result", "success");
-			
-			
-			
+			return "redirect:/member/loginForm.do";
 		}
 		
-		ObjectMapper mapper = new ObjectMapper();
-		String ajaxData = mapper.writeValueAsString(mapAjax);
+		if(user_auth!=9) {//로그인이 되었지만 관리자가 아닌 경우
+			return "/WEB-INF/views/common/notice.jsp";
+		}	
 		
-		request.setAttribute("ajaxData", ajaxData);
+			ItemVO item = new ItemVO();
+			
+			MultipartRequest multi = FileUtil.createFile(request);
+			
+			item.setItem_name(multi.getParameter("name"));
+			item.setItem_content(multi.getParameter("city"));
+			item.setPrice(Integer.parseInt(multi.getParameter("price")));
+			item.setItem_img1(multi.getFilesystemName("pic1"));
+			item.setItem_img2(multi.getFilesystemName("pic2"));
+			item.setItem_img3(multi.getFilesystemName("pic3"));
+			item.setItem_img4(multi.getFilesystemName("pic4"));
+			item.setItem_img5(multi.getFilesystemName("pic5"));
+			item.setItem_img6(multi.getFilesystemName("pic6"));
+			item.setItem_st1(Integer.parseInt(multi.getParameter("item_st1")));
+			item.setItem_st2(Integer.parseInt(multi.getParameter("item_st2")));
+			item.setItem_st3(Integer.parseInt(multi.getParameter("item_st3")));
+			item.setDate_start(multi.getParameter("start_date"));
+			item.setDate_end(multi.getParameter("end_date"));
+			item.setQuantity(Integer.parseInt(multi.getParameter("quantity")));
+			
+			ItemDAO dao = ItemDAO.getInstance();
+			dao.insertItem(item);
+			
+			response.addHeader("Refresh", "2;url=itemList.do");
+			request.setAttribute("accessMsg", "성공적으로 등록되었습니다.");
+			request.setAttribute("accessUrl", "itemList.do");
 		
 		
-		return "/WEB-INF/views/common/ajax_view.jsp";
+		return "/WEB-INF/views/common/notice.jsp";
 	}
 
 }
