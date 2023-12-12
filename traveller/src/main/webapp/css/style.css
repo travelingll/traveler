@@ -2,6 +2,32 @@
 
 /* 전체 레이아웃
 ------------------------------*/
+.global_menu{
+	width:1200px;
+	height:48px;
+	margin:0 auto;
+}
+.fr{
+	float:right;
+}
+
+.global_menu li {
+    height: 48px;
+    float: left;
+    line-height: 45px;
+    margin-left: 14px;
+    position: relative;
+}
+
+.global_menu li a {
+    font-size: 12px;
+    letter-spacing: -0.3px;
+}
+.local_menu li{
+	 display: list-item;
+    text-align: -webkit-match-parent;
+        position: absolute;
+}
 body{
 	width:1200px;
 	margin:0 auto;

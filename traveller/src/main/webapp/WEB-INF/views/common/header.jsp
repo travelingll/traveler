@@ -1,30 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- header 시작 -->
-<div id="main_logo">
-	<c:if test="${empty user_num}">
-		<div class="align-right">
-			<a href="${pageContext.request.contextPath}/member/loginForm.do"><img alt="My페이지" src="../upload/icon_mypage.svg">로그인</a>
-			<a href="${pageContext.request.contextPath}/member/registerUserForm.do"><img alt="My페이지" src="../upload/icon_reservation.svg">예약내역</a>
-		</div>
-	</c:if>
-	
+<div class="global_menu">
+	<div class="fr">
+		<ul>
+			<c:if test="${empty user_num}">
+			<li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
+			<li><a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a></li>
+			</c:if>
+			<c:if test="${!empty user_num}">
+			<li><a href="${pageContext.request.contextPath}/member/logout.do"> <span>${user_id}</span>  로그아웃</a></li>
+			</c:if>
+			<li><a href="${pageContext.request.contextPath}">고객센터</a></li>
+		</ul>
+	</div>
+</div>
+
+<div id="local_menu">
 	<c:if test="${!empty user_num}">
-	<div class="align-right"><a href="${pageContext.request.contextPath}/member/myPage.do"><img alt="My페이지" src="../upload/icon_mypage.svg"><br>로그인</a></div>
+	<div class="fr">
+		<ul>
+			<li>
+				<a href="${pageContext.request.contextPath}/member/myPage.do"><img alt="예약내역" src="../upload/icon_mypage.svg">::before 마이메뉴</a>
+				<a href="${pageContext.request.contextPath}"><img alt="예약내역" src="../upload/icon_reservation.svg">예약내역</a>
+			</li>		
+		</ul>
+	</div>
 	</c:if>
 	<h1 class="align-left"><a href="${pageContext.request.contextPath}/main/main.do"><img src="../upload/logo.png" width="250px"></a></h1>
 	<ul>
 		<c:if test="${!empty user_num}">
 		<li><a href="${pageContext.request.contextPath}">장바구니</a></li>
-		<li class="menu-logout">
-			[<span>${user_id}</span>]
-			<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
-		</li>
-		</c:if>
-		<c:if test="${empty user_num}">
-		<li><a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a></li>
-		<li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
 		</c:if>
 	</ul>
 </div>
