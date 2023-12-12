@@ -65,7 +65,7 @@
 			<c:forEach var="accom" items="${accomList}">
 			<tr>
 				<td><a href="${pageContext.request.contextPath}/accom/detail.do?accom_num=${accom.accom_num}">${accom.accom_title}</a></td>
-				<td>${accom.reg_date}</td>
+				<td>${accom.accom_regdate}</td>
 				<td>${accom.accom_hit}</td>
 			</tr>
 			</c:forEach>
