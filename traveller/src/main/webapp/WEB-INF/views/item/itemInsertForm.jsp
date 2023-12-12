@@ -47,7 +47,7 @@ form ul li label{
 	float:left;
 }
 </style>
-</head>
+</head> 
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>

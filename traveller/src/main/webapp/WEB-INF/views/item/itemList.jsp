@@ -9,4 +9,4 @@
 <body>
 관리자 여행상품 게시판
 </body>
-</html>
+</html> 
