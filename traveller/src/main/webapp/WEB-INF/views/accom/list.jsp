@@ -74,12 +74,16 @@ window.onload = function(){
 			<c:forEach var="accom" items="${list}">
 			<tr>
 				<td>${accom.accom_num}</td>
-				<td>${accom_status}</td>
+				<td>
+					<c:if test="${accom.accom_status == 0}">진행중</c:if>
+				    <c:if test="${accom.accom_status == 1}">완료</c:if>
+				</td>
 				<td><a href="detaiil.do?accom_num=${accom.accom_num}">${accom.accom_title}</a></td>
 				<td>${accom.id}</td>
 				<td>${accom.accom_regdate}</td>
 				<td>${accom.accom_quantity}</td>
 				<td>${accom.accom_hit}</td>
+				<td></td>
 				<%-- 추천수 부분 --%>
 			</tr>
 			</c:forEach>
