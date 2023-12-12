@@ -21,7 +21,7 @@ public class ListAction implements Action{
 		String keyword = request.getParameter("keyword");
 		
 		CommDAO dao = CommDAO.getInstance();
-		int count = dao.getCommCount(keyfield, keyword);
+		int count = dao.getCommCount(keyfield, keyword, 0);
 		
 		//페이지 처리
 		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum),count,20,10,"list.do");
@@ -39,3 +39,4 @@ public class ListAction implements Action{
 	}
 
 }
+  

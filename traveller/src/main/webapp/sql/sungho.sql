@@ -5,7 +5,7 @@ create table accom(
  accom_status number(1) not null,
  accom_title varchar2(150) not null,
  accom_content clob not null,
- accom_hit number(9) not null,
+ accom_hit number(9) default 0 not null,
  accom_regdate date default sysdate not null,
  accom_modifydate date,
  accom_quantity number(3) not null,

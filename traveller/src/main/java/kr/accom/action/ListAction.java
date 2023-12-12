@@ -39,4 +39,4 @@ public class ListAction implements Action {
 		return "/WEB-INF/views/accom/list.jsp";
 	}
 
-}
+}  

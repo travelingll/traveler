@@ -30,8 +30,8 @@ public class AccomDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "INSERT INTO accom(accom_num, accom_status, accom_title, accom_content"
-					+ "accom_quantity, accom_expense, accom_filename, accom_start, accom_end"
+			sql = "INSERT INTO accom(accom_num, accom_status, accom_title, accom_content,"
+					+ "accom_quantity, accom_expense, accom_filename, accom_start, accom_end,"
 					+ "ip, mem_num) VALUES (accom_seq.nextval, "
 					+ "?,?,?,?,?,?,?,?,?,?)";
 			//PreparedStatement 객체 생성
@@ -147,12 +147,12 @@ public class AccomDAO {
 				accom.setAccom_num(rs.getInt("accom_num"));
 				accom.setAccom_status(rs.getInt("accom_status"));
 				//HTML을 허용하지 않음
-				accom.setAccom_title(StringUtil.useNoHtml("accom_title"));
+				accom.setAccom_title(StringUtil.useNoHtml(rs.getString("accom_title")));
 				accom.setId(rs.getString("id"));
 				accom.setAccom_regdate(rs.getDate("accom_regdate"));
 				accom.setAccom_quantity(rs.getInt("accom_quantity"));
 				accom.setAccom_hit(rs.getInt("accom_hit"));
-				
+				// 추천수
 				list.add(accom);
 			}
 			
@@ -238,6 +238,27 @@ public class AccomDAO {
 		}
 	}
 	//파일 삭제
+	public void deleteAccom(int accom_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE accom SET filename='' WHERE accom_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, accom_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
 	//글 수정
 	//글 삭제
 	//좋아요 등록
@@ -250,5 +271,5 @@ public class AccomDAO {
 	//댓글 상세(댓글 수정, 삭제 시 작성자 회원번호 체크 용도로 사용)
 	//댓글 수정
 	//댓글 삭제
-	
-}
+		}
+	}  
