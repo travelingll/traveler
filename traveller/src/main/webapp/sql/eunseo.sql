@@ -44,3 +44,4 @@ create table money(
  constraint money_fk foreign key (mem_num) references member(mem_num)
 );
 create sequence money_seq;
+
