@@ -241,7 +241,7 @@ public class AccomDAO {
 	//동행 신청(현재 인원수 증가)
 	//동행신청 내역?
 	//파일 삭제
-	public void deleteAccom(int accom_num) throws Exception {
+	public void deleteFile(int accom_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -262,11 +262,94 @@ public class AccomDAO {
 		}finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
+	}
 	//글 수정
+	public void updateAccom(AccomVO accom) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			if(accom.getAccom_filename()!=null) {
+				sub_sql +=",filename=?";
+			}
+			
+			//SQL문 작성
+			sql = "UPDATE accom SET accom_title=?, accom_contnet=?, accom_quantity=?,"
+					+ "accom_expense=?, accom_strat=?, accom_end=?, accom_status=?,"
+					+ "modify_date=SYSDATE,ip=?" +sub_sql+ "WHERE accom_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(++cnt, accom.getAccom_title());
+			pstmt.setString(++cnt, accom.getAccom_content());
+			pstmt.setInt(++cnt, accom.getAccom_quantity());
+			pstmt.setInt(++cnt, accom.getAccom_expense());
+			pstmt.setString(++cnt, accom.getAccom_start());
+			pstmt.setString(++cnt, accom.getAccom_end());
+			pstmt.setInt(++cnt, accom.getAccom_status());
+			pstmt.setString(++cnt, accom.getIp());
+			if(accom.getAccom_filename()!=null) {
+				pstmt.setString(++cnt, accom.getAccom_filename());
+			}
+			pstmt.setInt(++cnt, accom.getAccom_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//글 삭제
+	public void deleteAccom(int accom_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 객체 할당
+			conn = DBUtil.getConnection();
+			//오토커밋 해제
+			conn.setAutoCommit(false);
+			
+			//좋아요 삭제
+			sql="DELETE FROM accom_fav WHERE accom_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, accom_num);
+			pstmt.executeUpdate();
+			//댓글 삭제
+			sql = "DELETE FROM accom_reply WHERE accom_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, accom_num);
+			pstmt2.executeUpdate();
+			//부모글 삭제
+			sql = "DELETE FROM accom WHERE accom_num=?";
+			pstmt3 = conn.prepareStatement(sql);
+			pstmt3.setInt(1,accom_num);
+			pstmt3.executeUpdate();
+			
+			conn.commit();
+		}catch(Exception e) {
+			//하나라도 SQL문이 실패하면
+			conn.rollback();
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt3, null);
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//좋아요 등록
 	//좋아요 개수
-	//회원 번호와 게시물 번호를 이용한 좋아요 정보(좋아요 선택 여부)
+	//회원번호와 게시물 번호를 이용한 좋아요 정보(좋아요 선택 여부)
 	//내가 선택한 좋아요 목록
 	//댓글 등록
 	//댓글 개수
@@ -274,5 +357,4 @@ public class AccomDAO {
 	//댓글 상세(댓글 수정, 삭제 시 작성자 회원번호 체크 용도로 사용)
 	//댓글 수정
 	//댓글 삭제
-		}
 	}  
