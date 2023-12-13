@@ -3,43 +3,53 @@
 
 /*나브바*/
 .menu {
-  width: 1200px;
-  overflow: hidden;
-  margin: 0px auto;
+    width: 100%; /* 네비게이션 바를 화면 전체로 확장 */
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 .menu > li {
-  width: 20%; /*20*5=100%*/
-  float: left;
-  text-align: center;
-  line-height: 40px;
-  background-color: #FFFFFF;
+    margin-top: 70px;
+    width: 20%; /* 20*5=100% */
+    float: left;
+    text-align: left;
+    line-height: 50px;
+    background-color: #FFFFFF;
 }
 
 .menu a {
-  color: #FFFFFF;
+    color: #000000; /* 글자 색상을 흰색으로 설정 */
+    text-decoration: none;
+    padding: 0 10px; /* 글자 양쪽에 여백 추가 */
 }
 
 .submenu > li {
-  line-height: 50px;
-  background-color: #FFFFFF;
+    line-height: 30px;
+    background-color: #FFFFFF;
 }
 
 .submenu {
-  height: 0; /*ul의 높이를 안보이게 처리*/
-  overflow: hidden;
+    height: 0;
+    overflow: hidden;
 }
 
 .menu > li:hover {
-  background-color: #FFFFFF;
-  transition-duration: 0.5s;
+    background-color: #FFFFFF;
+    transition-duration: 0.5s;
 }
 
 .menu > li:hover .submenu {
-  height: 250px; /*서브메뉴 li한개의 높이 50*5*/
-  transition-duration: 1s;
+    height: 70px;
+    transition-duration: 1s;
 }
-  
+
+.menu > li:last-child {
+    margin-left: auto; /* '이달의 혜택'을 오른쪽으로 이동 */
+}
+
+/* 추가적인 스타일링이 필요할 경우 여기에 추가하세요 */
+
 /* 전체 레이아웃
 ------------------------------*/
 .global_menu{
