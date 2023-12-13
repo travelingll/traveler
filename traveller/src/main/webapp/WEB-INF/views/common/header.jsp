@@ -16,7 +16,7 @@
 			<c:if test="${!empty user_num}">
 			<li><a href="${pageContext.request.contextPath}/member/logout.do"> <span>${user_id}</span>  로그아웃</a></li>
 			</c:if>
-			<li><a href="${pageContext.request.contextPath}">고객센터</a></li><!-- 자주찾는 질문 페이지로 연결 > 1:1문의로 연-->
+			<li><a href="${pageContext.request.contextPath}/question/questionList.do">고객센터</a></li><!-- 자주찾는 질문 페이지로 연결 > 1:1문의로 연-->
 		</ul>
 	</div>
 </div>
