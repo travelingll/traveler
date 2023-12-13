@@ -37,7 +37,7 @@
 .menu > li:hover {
     background-color: #FFFFFF;
     transition-duration: 0.5s;
-}
+}  
 
 .menu > li:hover .submenu {
     height: 70px;
