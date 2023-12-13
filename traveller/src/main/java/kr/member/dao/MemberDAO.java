@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.member.vo.MemberVO;
+import kr.money.vo.MoneyVO;
 import kr.util.DBUtil;
 
 public class MemberDAO {
@@ -23,6 +24,7 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;
+		PreparedStatement pstmt4 = null;
 		ResultSet rs = null;
 		String sql = null;
 		int num = 0; //시퀀스 번호 저장
@@ -69,6 +71,12 @@ public class MemberDAO {
 			pstmt3.setString(14, member.getPush());
 			pstmt3.executeUpdate();
 			
+			sql = "INSERT INTO money (sm_num,mem_num,saved_money,sm_content,sm_date) "
+				+ "VALUES (money_seq.nextval,?,5000,'회원가입 축하',SYSDATE)";
+			pstmt4 = conn.prepareStatement(sql);
+			pstmt4.setInt(1, num);
+			pstmt4.executeUpdate();
+			
 			//SQL문 실행시 모두 성공하면 commit
 			conn.commit();
 			
@@ -77,6 +85,7 @@ public class MemberDAO {
 			conn.rollback();
 			throw new Exception(e);
 		}finally {
+			DBUtil.executeClose(null, pstmt4, conn);
 			DBUtil.executeClose(null, pstmt3, conn);
 			DBUtil.executeClose(null, pstmt2, conn);
 			DBUtil.executeClose(rs, pstmt, conn);

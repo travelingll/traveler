@@ -39,6 +39,7 @@ create table money(
  sm_num number not null,
  mem_num number not null,
  saved_money varchar2(50),
+ sm_content varchar2(100),
  sm_date date default sysdate not null,
  constraint money_pk primary key (sm_num),
  constraint money_fk foreign key (mem_num) references member(mem_num)
