@@ -12,26 +12,26 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div style="text-align:center;">
+	<div class="side-menu">
 		<ul>
-			<li style="display:inline-block;"><a href="${pageContext.request.contextPath}/member/myPage.do">개인정보</a></li>
-			<li style="display:inline-block;"><a href="${pageContext.request.contextPath}/member/myWriteComm.do">내가 쓴 글</a></li>
-			<li style="display:inline-block;"><a>1:1 문의</a></li>
-			<li style="display:inline-block;"><a>예약 내역</a></li>
-			<li style="display:inline-block;"><a>장바구니</a></li>
-			<li style="display:inline-block;"><a>적립금</a></li>
-			<li style="display:inline-block;"><a>동행 신청내역</a></li>
-		</ul>
-	</div>
-	<div style="text-align:center;">
-		<ul>
-			<li style="display:inline-block;"><a href="${pageContext.request.contextPath}/member/myWriteComm.do">커뮤니티</a></li>
-			<li style="display:inline-block;"><a href="${pageContext.request.contextPath }/member/myWriteAccom.do">동행게시판</a></li>
-			<li style="display:inline-block;"><a>후기글</a></li>
+ 			<li><a href="${pageContext.request.contextPath}/member/myPage.do" style="font-weight:bold; font-size:24px; border-bottom:2px solid #000;">마이페이지</a></li>
+  			<li><a href="${pageContext.request.contextPath}/member/myPage.do">개인정보</a></li>
+ 			<li><a href="${pageContext.request.contextPath}/member/myWriteComm.do">내가 쓴 글</a></li>
+ 			<li><a>1:1 문의</a></li>
+ 			<li><a>적립금</a></li>
+ 			<li><a>동행 신청내역</a></li>
 		</ul>
 	</div>
 	<div class="content-main">
 		<h2>내가 쓴 글 : 동행게시판</h2>
+		<hr size="2" color="black">
+		<div style="text-align:center;">
+			<ul>
+				<li style="display:inline-block;"><a href="${pageContext.request.contextPath}/member/myWriteComm.do">커뮤니티</a></li>
+				<li style="display:inline-block;"><a href="${pageContext.request.contextPath }/member/myWriteAccom.do">동행게시판</a></li>
+				<li style="display:inline-block;"><a>후기글</a></li>
+			</ul>
+		</div>		
 		<div>
 		<c:if test="${!empty user_num && !empty user_photo}">
 		<img src="${pageContext.request.contextPath}/upload/${user_photo}" width="100" height="120" class="my-photo">

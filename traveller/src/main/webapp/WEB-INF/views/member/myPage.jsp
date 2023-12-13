@@ -96,20 +96,20 @@ $(function(){
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div style="text-align:center;">
+	<div class="side-menu">
 		<ul>
-			<li style="display:inline-block;"><a href="${pageContext.request.contextPath}/member/myPage.do">개인정보</a></li>
-			<li style="display:inline-block;"><a href="${pageContext.request.contextPath}/member/myWriteComm.do">내가 쓴 글</a></li>
-			<li style="display:inline-block;"><a>1:1 문의</a></li>
-			<li style="display:inline-block;"><a>예약 내역</a></li>
-			<li style="display:inline-block;"><a>장바구니</a></li>
-			<li style="display:inline-block;"><a>적립금</a></li>
-			<li style="display:inline-block;"><a>동행 신청내역</a></li>
+ 			<li><a href="${pageContext.request.contextPath}/member/myPage.do" style="font-weight:bold; font-size:24px; border-bottom:2px solid #000;">마이페이지</a></li>
+  			<li><a href="${pageContext.request.contextPath}/member/myPage.do">개인정보</a></li>
+ 			<li><a href="${pageContext.request.contextPath}/member/myWriteComm.do">내가 쓴 글</a></li>
+ 			<li><a>1:1 문의</a></li>
+ 			<li><a>적립금</a></li>
+ 			<li><a>동행 신청내역</a></li>
 		</ul>
 	</div>
 	<div class="content-main">
 		<h2>회원정보</h2>
-		<div class="mypage-div">
+		<hr size="2" color="black">
+		<div class="mypage-div" style="float:left;text-align:center;">
 			<h3>프로필 사진</h3>
 			<ul>
 				<li>
@@ -145,6 +145,8 @@ $(function(){
 					</div>
 				</li>
 			</ul>
+		</div>
+		<div class="mypage-div2" style="float:right;">
 			<h3>
 				연락처
 			</h3>
@@ -161,13 +163,13 @@ $(function(){
 				<li>최근 정보 수정일 : ${member.modify_date}</li>
 				</c:if>
 			</ul>
-			<div>
-				<input type="button" value="연락처 수정" onclick="location.href='modifyUserForm.do'">
-				<input type="button" value="비밀번호 수정" onclick="location.href='modifyPasswordForm.do'">
-				<input type="button" value="회원탈퇴" onclick="location.href='deleteUserForm.do'">
-			</div>
 		</div>
 		<div class="mypage-end"></div>
+	</div>
+	<div class="buttons" style="text-align:center;">
+		<input type="button" value="연락처 수정" onclick="location.href='modifyUserForm.do'">
+		<input type="button" value="비밀번호 수정" onclick="location.href='modifyPasswordForm.do'">
+		<input type="button" value="회원탈퇴" onclick="location.href='deleteUserForm.do'">
 	</div>
 </div>
 </body>
