@@ -57,31 +57,26 @@
 	
 </div>
 
-<div>
-<ul class="menu">
-      <li>
-        <a href="#">여행목록</a>
-      </li>
-      <li>
-        <a href="#">트래블러PICK</a>
-        <ul class="submenu">
-          <li><a href="#">트래블러 추천</a></li>
-          <li><a href="#">사용자 맞춤 추천</a></li>
-
-        </ul>
-      </li>
-      <li>
-        <a href="#">트래블러클럽</a>
-        <ul class="submenu">
-          <li><a href="${pageContext.request.contextPath}/accom/list.do">동행구하기</a></li>
-          <li><a href="${pageContext.request.contextPath}/comm/list.do">커뮤니티</a></li>
-  
-        </ul>
-      </li>
-      <li>
-        <a href="${pageContext.request.contextPath}/event/eventList.do">이달의혜택</a>
-      </li>
-    </ul>
-</div>
-
 <!-- header 끝 -->
+<nav>
+ <ul class="list-wrap" style="border-bottom: 1px solid #ddd;">
+   <li class="dropdown-wrap">
+   		<button onclick="location.href='#'" class="dropdown-btn">여행상품</button>
+   </li>
+    <li class="dropdown-wrap"><button class="dropdown-btn">트래블러PICK</button>
+      <ul class="dropdown">
+        <li><a href="#" class="dropdown-item">트래블러추천</a></li>
+        <li><a href="#" class="dropdown-item">사용자맞춤추천</a></li>
+      </ul>
+   </li>
+      <li class="dropdown-wrap"><button class="dropdown-btn">트래블러클럽</button>
+      <ul class="dropdown">
+        <li><a href="${pageContext.request.contextPath}/accom/list.do" class="dropdown-item">동행구하기</a></li>
+        <li><a href="${pageContext.request.contextPath}/comm/list.do" class="dropdown-item">커뮤니티</a></li>
+      </ul>
+   </li>
+      <li class="dropdown-wrap">
+      	<button onclick="location.href='${pageContext.request.contextPath}/event/eventList.do'" class="dropdown-btn">이달의 혜택</button>
+  	 </li>
+ </ul>
+</nav>

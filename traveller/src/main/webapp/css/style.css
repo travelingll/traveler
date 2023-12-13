@@ -3,8 +3,8 @@
 .side-menu ul {
   list-style-type: none;
   padding: 0px;
-  margin: 0px;
-  margin-top:12px;
+  margin-left: 40px;
+  margin-top:150px;
   width: 200px;
   background: #FFFFFF;
   height: 80%;
@@ -24,68 +24,85 @@
   background: #FFFFFF;
   color: #5e2bb8; 
 }
-/*나브바*/
-.menu {
-    width: 100%; /* 네비게이션 바를 화면 전체로 확장 */
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-}
+/* 나브바 */
 
-.menu > li {
-    margin-top: 70px;
-    width: 20%; /* 20*5=100% */
-    float: left;
-    text-align: left;
-    line-height: 50px;
-    background-color: #FFFFFF;
-}
+nav {
+       position: fixed;
+       margin-top: 60px;
+       left: 0;
+       width: 100%;
+       
+	}
 
-.menu a {
-    color: #000000; /* 글자 색상을 흰색으로 설정 */
-    text-decoration: none;
-    padding: 0 10px; /* 글자 양쪽에 여백 추가 */
-}
-
-.submenu > li {
-    line-height: 30px;
-    background-color: #FFFFFF;
-     position: relative; /* 상대적 위치 설정 */
-}
-
-.submenu {
-    height: 0;
-    overflow: hidden;
-}
-
-.menu > li:hover {
-    background-color: #FFFFFF;
+ul {
+       text-align: center;
+       list-style: none;
+       
+	}
     
-}  
+a {
+      text-decoration: none;
+      color: #000;
+     
+	}
 
-.menu > li:hover .submenu {
-    height: 70px;
+main {
+       margin-top: 4rem;
+	}
+.list-wrap {
+            display: flex;
+            background-color: #FFFFFF;
+      
+	}
+.dropdown-btn {
+            border: none;
+            background-color: transparent;
+            font-size: 1rem;
+
+            padding: 1rem;
+         
+            
+	}
+.dropdown {
+            width: 200px;
+            background-color: #FFFFFF;
+            position: absolute;
+            display: none;
+            
+	}
+
+.dropdown-item {
+            display: block;
+            padding: 10px;
+            
+	}
+
+.dropdown-wrap:hover .dropdown {
+            display: block;
+	}
     
-}
+.menu-list:hover {
+            background-color: #FFFFFF;
+	}
 
-.menu > li:last-child {
-    margin-left: auto; /* '이달의 혜택'을 오른쪽으로 이동 */
-}
-
-/* 추가적인 스타일링이 필요할 경우 여기에 추가하세요 */
-
+.dropdown-item:hover {
+            background-color: #FFFFFF;
+            color: #5e2bb8;
+	}
 /* 전체 레이아웃
 ------------------------------*/
 .global_menu{
-	width:1200px;
+
 	height:48px;
-	margin:0 auto;
+
 }
 .fr{
 	float:right;
+	margin-right:30px;
 }
 .fl{
 	float:left;
+	margin-left:30px;
 }
 .global_menu li {
     height: 48px;
@@ -130,8 +147,6 @@
 }
 
 body{
-	width:1200px;
-	margin:0 auto;
 	background:#FFFFFF;
 }
 a:link{
@@ -155,8 +170,8 @@ a:hover{
 }
 .content-main{
 	padding:10px 20px;
-	margin-left:230px;
-
+	margin-left:300px;
+	margin-top: 150px;
 }
 /* 공통 메시지
 ------------------------------*/
@@ -181,6 +196,7 @@ a:hover{
 ------------------------------*/
 #main_logo{
 	padding-top:20px;
+	
 }
 #main_logo ul{
 	text-align:right;
