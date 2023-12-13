@@ -16,9 +16,9 @@ create table member_detail(
  zipcode varchar2(5) not null,
  address1 varchar2(90) not null,
  address2 varchar2(90) not null,
- style1 number(1) not null,
- style2 number(1) not null,
- style3 number(1) not null,
+ style1 varchar2(10) not null,
+ style2 varchar2(10) not null,
+ style3 varchar2(10) not null,
  push varchar2(1) not null, --동의(Y), 비동의(N)
  photo varchar2(150), --null 인정
  reg_date date default sysdate not null,

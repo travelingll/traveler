@@ -15,9 +15,9 @@ public class MemberVO {
 	private String zipcode;
 	private String address1;
 	private String address2;
-	private int style1;
-	private int style2;
-	private int style3;
+	private String style1;
+	private String style2;
+	private String style3;
 	private String push;
 	private String photo;
 	private Date reg_date;
@@ -127,27 +127,28 @@ public class MemberVO {
 		this.address2 = address2;
 	}
 
-	public int getStyle1() {
+
+	public String getStyle1() {
 		return style1;
 	}
 
-	public void setStyle1(int style1) {
+	public void setStyle1(String style1) {
 		this.style1 = style1;
 	}
 
-	public int getStyle2() {
+	public String getStyle2() {
 		return style2;
 	}
 
-	public void setStyle2(int style2) {
+	public void setStyle2(String style2) {
 		this.style2 = style2;
 	}
 
-	public int getStyle3() {
+	public String getStyle3() {
 		return style3;
 	}
 
-	public void setStyle3(int style3) {
+	public void setStyle3(String style3) {
 		this.style3 = style3;
 	}
 

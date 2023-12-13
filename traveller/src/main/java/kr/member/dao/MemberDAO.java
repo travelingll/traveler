@@ -63,9 +63,9 @@ public class MemberDAO {
 			pstmt3.setString(8, member.getZipcode());
 			pstmt3.setString(9, member.getAddress1());
 			pstmt3.setString(10, member.getAddress2());
-			pstmt3.setInt(11, member.getStyle1());
-			pstmt3.setInt(12, member.getStyle2());
-			pstmt3.setInt(13, member.getStyle3());
+			pstmt3.setString(11, member.getStyle1());
+			pstmt3.setString(12, member.getStyle2());
+			pstmt3.setString(13, member.getStyle3());
 			pstmt3.setString(14, member.getPush());
 			pstmt3.executeUpdate();
 			
@@ -154,9 +154,9 @@ public class MemberDAO {
 				member.setZipcode(rs.getString("zipcode"));
 				member.setAddress1(rs.getString("address1"));
 				member.setAddress2(rs.getString("address2"));
-				member.setStyle1(rs.getInt("style1"));
-				member.setStyle2(rs.getInt("style2"));
-				member.setStyle3(rs.getInt("style3"));
+				member.setStyle1(rs.getString("style1"));
+				member.setStyle2(rs.getString("style2"));
+				member.setStyle3(rs.getString("style3"));
 				member.setPush(rs.getString("push"));
 				member.setPhoto(rs.getString("photo"));
 				member.setReg_date(rs.getDate("reg_date")); //가입일
@@ -322,9 +322,9 @@ public class MemberDAO {
 				member.setZipcode(rs.getString("zipcode"));
 				member.setAddress1(rs.getString("address1"));
 				member.setAddress2(rs.getString("address2"));
-				member.setStyle1(rs.getInt("style1"));
-				member.setStyle2(rs.getInt("style2"));
-				member.setStyle3(rs.getInt("style3"));
+				member.setStyle1(rs.getString("style1"));
+				member.setStyle2(rs.getString("style2"));
+				member.setStyle3(rs.getString("style3"));
 				member.setPush(rs.getString("push"));
 				member.setPhoto(rs.getString("photo"));
 				member.setReg_date(rs.getDate("reg_date")); //가입일
@@ -433,9 +433,9 @@ public class MemberDAO {
 				member.setZipcode(rs.getString("zipcode"));
 				member.setAddress1(rs.getString("address1"));
 				member.setAddress2(rs.getString("address2"));
-				member.setStyle1(rs.getInt("style1"));
-				member.setStyle2(rs.getInt("style2"));
-				member.setStyle3(rs.getInt("style3"));
+				member.setStyle1(rs.getString("style1"));
+				member.setStyle2(rs.getString("style2"));
+				member.setStyle3(rs.getString("style3"));
 				member.setPush(rs.getString("push"));
 				member.setPhoto(rs.getString("photo"));
 				member.setReg_date(rs.getDate("reg_date")); //가입일
