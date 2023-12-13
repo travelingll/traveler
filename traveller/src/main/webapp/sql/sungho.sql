@@ -21,12 +21,13 @@ create sequence accom_seq;
 
 -- 동행 신청 내역 
 create table accom_info(
+ info_num number not null,
  accom_num number not null,
  mem_num number not null,
- accom_yn number(1) not null,
- ip varchar2(40) not null,
- constraint accom_info_pk primary key(accom_num),
- constraint accom_info_fk foreign key(mem_num) references member(mem_num) 
+ accom_yn number(1),
+ constraint accom_info_pk primary key(info_num),
+ constraint accom_info_fk1 foreign key(accom_num) references accom(accom_num), 
+ constraint accom_info_fk2 foreign key(mem_num) references member(mem_num) 
 );
 create sequence accom_info_seq;
 

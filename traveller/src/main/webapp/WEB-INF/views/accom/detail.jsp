@@ -33,15 +33,34 @@
 	<hr size="1" noshade="noshade" width="100%" >
 	<c:if test="${!empty accom.accom_filename}">
 		<div class="align-center">
-			<img src="${pageContext.request.contextPath}/upload/${accon.accpm_filename}" class="detail-img">
-		</div>	
+			<img src="${pageContext.request.contextPath}/upload/${accom.accom_filename}" class="detail-img">
+		</div>		
 		</c:if>
 		<p>
 			${accom.accom_content}
 		</p>
-		<hr size="1" noshade="noshade" width="100%" >
-	</div>
-	
+			<hr size="1" noshade="noshade" width="100%">
+			<p>모집 인원: ${accom.accom_quantity} 여행 경비: ${accom.accom_expense} 출발일: ${accom.accom_start} 종료일: ${accom.accom_end}</p>
+			<hr size="1" noshade="noshade" width="100%" >
+			작성일 : ${accom.accom_regdate}
+			<hr size="1" noshade="noshade" width="100%" >
+			<c:if test="${user_num == accom.mem_num}">
+			<input type="button" value="수정" onclick="location.href='updateForm.do?accom_num=${accom.accom_num}'">
+			<input type="button" value="삭제" id="delete_btn">
+			<script>
+				let delete_btn = document.getElementById('delete_btn');
+				//이벤트 연결
+				delete_btn.onclick=function(){
+					let choice = confirm('삭제하시겠습니까');
+					if(choice){
+						location.replace('delete.do?comm_num=${accom.accom_num}');
+					}
+				};
+				  <!-- 동행신청 버튼 -->
+				  <!-- 동행신청내역 버튼 -->
+			</script>
+			</c:if>
+	</div>	
 </div>
 </body>
 </html>

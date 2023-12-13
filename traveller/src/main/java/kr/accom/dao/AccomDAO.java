@@ -238,6 +238,8 @@ public class AccomDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	//동행 신청(현재 인원수 증가)
+	//동행신청 내역?
 	//파일 삭제
 	public void deleteAccom(int accom_num) throws Exception {
 		Connection conn = null;

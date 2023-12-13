@@ -85,7 +85,7 @@ window.onload = function(){
 					<c:if test="${accom.accom_status == 0}">진행중</c:if>
 				    <c:if test="${accom.accom_status == 1}">완료</c:if>
 				</td>
-				<td><a href="detaiil.do?accom_num=${accom.accom_num}">${accom.accom_title}</a></td>
+				<td><a href="detail.do?accom_num=${accom.accom_num}">${accom.accom_title}</a></td>
 				<td>${accom.id}</td>
 				<td>${accom.accom_regdate}</td>
 				<td>${accom.accom_quantity}</td>
