@@ -8,17 +8,17 @@ public class EventVO {
 	private int event_category;
 	private String event_title;
 	private String event_start;
-	private String evnet_end;
-	private String evnet_photo1;
-	private String evnet_photo2;
-	private String evnet_photo3;
-	private String evnet_photo4;
-	private String evnet_photo5;
-	private String evnet_content;
-	private int evnet_hit;
-	private Date evnet_regdate;
-	private Date evnet_modifydate;
-	private int evnet_count;
+	private String event_end;
+	private String event_photo1;
+	private String event_photo2;
+	private String event_photo3;
+	private String event_photo4;
+	private String event_photo5;
+	private String event_content;
+	private int event_hit;
+	private Date event_regdate;
+	private Date event_modifydate;
+	private int event_count;
 	
 	
 	public int getEvent_num() {
@@ -45,70 +45,70 @@ public class EventVO {
 	public void setEvent_start(String event_start) {
 		this.event_start = event_start;
 	}
-	public String getEvnet_end() {
-		return evnet_end;
+	public String getEvent_end() {
+		return event_end;
 	}
-	public void setEvnet_end(String evnet_end) {
-		this.evnet_end = evnet_end;
+	public void setEvent_end(String event_end) {
+		this.event_end = event_end;
 	}
-	public String getEvnet_photo1() {
-		return evnet_photo1;
+	public String getEvent_photo1() {
+		return event_photo1;
 	}
-	public void setEvnet_photo1(String evnet_photo1) {
-		this.evnet_photo1 = evnet_photo1;
+	public void setEvent_photo1(String event_photo1) {
+		this.event_photo1 = event_photo1;
 	}
-	public String getEvnet_photo2() {
-		return evnet_photo2;
+	public String getEvent_photo2() {
+		return event_photo2;
 	}
-	public void setEvnet_photo2(String evnet_photo2) {
-		this.evnet_photo2 = evnet_photo2;
+	public void setEvent_photo2(String event_photo2) {
+		this.event_photo2 = event_photo2;
 	}
-	public String getEvnet_photo3() {
-		return evnet_photo3;
+	public String getEvent_photo3() {
+		return event_photo3;
 	}
-	public void setEvnet_photo3(String evnet_photo3) {
-		this.evnet_photo3 = evnet_photo3;
+	public void setEvent_photo3(String event_photo3) {
+		this.event_photo3 = event_photo3;
 	}
-	public String getEvnet_photo4() {
-		return evnet_photo4;
+	public String getEvent_photo4() {
+		return event_photo4;
 	}
-	public void setEvnet_photo4(String evnet_photo4) {
-		this.evnet_photo4 = evnet_photo4;
+	public void setEvent_photo4(String event_photo4) {
+		this.event_photo4 = event_photo4;
 	}
-	public String getEvnet_photo5() {
-		return evnet_photo5;
+	public String getEvent_photo5() {
+		return event_photo5;
 	}
-	public void setEvnet_photo5(String evnet_photo5) {
-		this.evnet_photo5 = evnet_photo5;
+	public void setEvent_photo5(String event_photo5) {
+		this.event_photo5 = event_photo5;
 	}
-	public String getEvnet_content() {
-		return evnet_content;
+	public String getEvent_content() {
+		return event_content;
 	}
-	public void setEvnet_content(String evnet_content) {
-		this.evnet_content = evnet_content;
+	public void setEvent_content(String event_content) {
+		this.event_content = event_content;
 	}
-	public int getEvnet_hit() {
-		return evnet_hit;
+	public int getEvent_hit() {
+		return event_hit;
 	}
-	public void setEvnet_hit(int evnet_hit) {
-		this.evnet_hit = evnet_hit;
+	public void setEvent_hit(int event_hit) {
+		this.event_hit = event_hit;
 	}
-	public Date getEvnet_regdate() {
-		return evnet_regdate;
+	public Date getEvent_regdate() {
+		return event_regdate;
 	}
-	public void setEvnet_regdate(Date evnet_regdate) {
-		this.evnet_regdate = evnet_regdate;
+	public void setEvent_regdate(Date event_regdate) {
+		this.event_regdate = event_regdate;
 	}
-	public Date getEvnet_modifydate() {
-		return evnet_modifydate;
+	public Date getEvent_modifydate() {
+		return event_modifydate;
 	}
-	public void setEvnet_modifydate(Date evnet_modifydate) {
-		this.evnet_modifydate = evnet_modifydate;
+	public void setEvent_modifydate(Date event_modifydate) {
+		this.event_modifydate = event_modifydate;
 	}
-	public int getEvnet_count() {
-		return evnet_count;
+	public int getEvent_count() {
+		return event_count;
 	}
-	public void setEvnet_count(int evnet_count) {
-		this.evnet_count = evnet_count;
+	public void setEvent_count(int event_count) {
+		this.event_count = event_count;
 	}
 }
