@@ -7,7 +7,7 @@
   margin-top:12px;
   width: 200px;
   background: #FFFFFF;
-  height: 40%;
+  height: 80%;
   overflow: auto;
   position: fixed;
 }
@@ -50,6 +50,7 @@
 .submenu > li {
     line-height: 30px;
     background-color: #FFFFFF;
+     position: relative; /* 상대적 위치 설정 */
 }
 
 .submenu {
@@ -59,12 +60,12 @@
 
 .menu > li:hover {
     background-color: #FFFFFF;
-    transition-duration: 0.5s;
+    
 }  
 
 .menu > li:hover .submenu {
     height: 70px;
-    transition-duration: 1s;
+    
 }
 
 .menu > li:last-child {
@@ -155,6 +156,7 @@ a:hover{
 .content-main{
 	padding:10px 20px;
 	margin-left:230px;
+
 }
 /* 공통 메시지
 ------------------------------*/
