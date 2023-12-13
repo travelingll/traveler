@@ -1,6 +1,29 @@
 @charset "UTF-8";
+/*사이드바*/
+.side-menu ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+  margin-top:12px;
+  width: 200px;
+  background: #FFFFFF;
+  height: 40%;
+  overflow: auto;
+  position: fixed;
+}
 
+.side-menu li a {
+  text-decoration: none;
+  padding: 20px;
+  display: block;
+  color: #000000;
+  border-bottom: 1px solid #ddd;
+}
 
+.side-menu li a:hover {
+  background: #FFFFFF;
+  color: #5e2bb8; 
+}
 /*나브바*/
 .menu {
     width: 100%; /* 네비게이션 바를 화면 전체로 확장 */
@@ -131,6 +154,7 @@ a:hover{
 }
 .content-main{
 	padding:10px 20px;
+	margin-left:230px;
 }
 /* 공통 메시지
 ------------------------------*/

@@ -26,6 +26,13 @@ window.onload = function(){
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div class="side-menu">
+		<ul>
+ 			<li><a href="${pageContext.request.contextPath}/comm/list.do" style="font-weight:bold; font-size:24px; border-bottom:2px solid #000;">트래블러클럽</a></li>
+  			<li><a href="${pageContext.request.contextPath}/accom/list.do">동행구하기</a></li>
+ 			<li><a href="${pageContext.request.contextPath}/comm/list.do">커뮤니티</a></li>
+		</ul>
+	</div>
 	<div class = "content-main">
 		<h2>동행구하기 게시판</h2>
 		<form id = "search_form" action="list.do" method="get">
