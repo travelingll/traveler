@@ -169,7 +169,16 @@ $(function(){
 	<div class="buttons" style="text-align:center;">
 		<input type="button" value="연락처 수정" onclick="location.href='modifyUserForm.do'">
 		<input type="button" value="비밀번호 수정" onclick="location.href='modifyPasswordForm.do'">
-		<input type="button" value="회원탈퇴" onclick="location.href='deleteUserForm.do'">
+		<input type="button" value="회원탈퇴" id="user_delete">
+		<script>
+			let user_delete = document.getElementById('user_delete');
+			user_delete.onclick = function(){
+				let choice = confirm('정말 탈퇴 하시겠습니까?');
+				if(choice){
+					location.replace('deleteUserForm.do');
+				}
+			};
+		</script>
 	</div>
 </div>
 </body>

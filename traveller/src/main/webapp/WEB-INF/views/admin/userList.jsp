@@ -36,6 +36,7 @@ window.onload=function(){
 	</div>
 	<div class="content-main">
 		<h2>회원목록(관리자 전용)</h2>
+		<hr size="2" color="black">
 		<form id="search_form" action="userList.do" method="get">
 			<ul class="search">
 				<li>

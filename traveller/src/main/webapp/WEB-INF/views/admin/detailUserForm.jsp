@@ -21,16 +21,17 @@
 	</div>
 	<div class="content-main">
 		<h2>${member.id}의 회원정보 (관리자 전용)</h2>
-		<form action="adminUser.do" method="post" id="detail_form">
+		<hr size="2" color="black">
+		<form action="detailUser.do" method="post" id="detail_form">
 			<input type="hidden" name="mem_num" value="${member.mem_num}">
 			<ul>
 				<li>
 					<label>등급</label>
 					<c:if test="${member.auth != 9}">
 					<input type="radio" name="auth" value="0" id="auth1"<c:if test="${member.auth == 0}">checked</c:if>>탈퇴
-					<input type="radio" name="auth" value="1" id="auth2"<c:if test="${member.auth == 0}">checked</c:if>>VVIP
-					<input type="radio" name="auth" value="2" id="auth3"<c:if test="${member.auth == 0}">checked</c:if>>VIP
-					<input type="radio" name="auth" value="3" id="auth4"<c:if test="${member.auth == 2}">checked</c:if>>일반
+					<input type="radio" name="auth" value="1" id="auth2"<c:if test="${member.auth == 1}">checked</c:if>>VVIP
+					<input type="radio" name="auth" value="2" id="auth3"<c:if test="${member.auth == 2}">checked</c:if>>VIP
+					<input type="radio" name="auth" value="3" id="auth4"<c:if test="${member.auth == 3}">checked</c:if>>일반
 					</c:if>
 					<c:if test="${member.auth == 9}">
 					<input type="radio" name="auth" value="9" id="auth5" checked>관리

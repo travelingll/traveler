@@ -40,7 +40,6 @@ $(function(){
 				alert('네트워크 오류 발생');
 			}
 		});
-		
 	}); //end of click
 	
 	//아이디 중복 안내 메시지 초기화 및 아이디 중복 값 초기화
@@ -61,21 +60,17 @@ $(function(){
 				return false;
 			} //end of if
 			
-			if($('#passwd').val()!=$('#cpasswd').val()){
-				alert('비밀번호와 비밀번호 확인이 불일치');
-				$('#passwd').val('').focus();
-				$('#cpasswd').val('');
-				return false;
-			}
-			
 			if(items[i].id == 'id' && !/^[A-Za-z0-9]{8,12}$/.test($('#id').val())){
 				alert('영문 또는 숫자 사용, 최소 8자 ~ 최대 12자를 사용하세요!');
 				$('#id').val('').focus();
 				return false;
 			}
-			
 			if(items[i].id == 'id' && idChecked == 0){
 				alert('아이디 중복체크 필수');
+				return false;
+			}
+			if(items[i].id == 'phone' && !/^\d{3}-\d{3,4}-\d{4}$/.test($('#phone').val())){
+				alert('010-0000-0000 형식으로 입력해주세요.');
 				return false;
 			}
 			
@@ -84,8 +79,15 @@ $(function(){
 				$('#zipcode').val('').focus();
 				return false;
 			}
-				
+			
 		} //end of for
+		
+		if($('#passwd').val()!=$('#cpasswd').val()){
+			alert('비밀번호와 비밀번호 확인이 불일치');
+			$('#passwd').val('').focus();
+			$('#cpasswd').val('');
+			return false;
+		}
 	}); //end of submit
 });
 </script>
@@ -128,9 +130,9 @@ $(function(){
   					<input type="text" name="birth" id="birth" maxlength="10" placeholder="생년월일 8자리 (YYYYMMDD)" class="input-check">
 				</li>
 				<li>
-					<label for="gender">성별</label>
-					<input type="radio" name="gender" value="F" class="input-check">남자
-					<input type="radio" name="gender" value="M" class="input-check">여자
+					<label>성별</label>
+					<input type="radio" name="gender" value="F">남자
+					<input type="radio" name="gender" value="M">여자
 				</li>
 				<li>
 					<label for="zipcode">우편번호</label>
@@ -139,14 +141,14 @@ $(function(){
 				</li>
 				<li>
 					<label for="address1" >주소</label>
-					<input type="text" name="address1" id="address1" maxlength="30" class="right" placeholder="주소">
+					<input type="text" name="address1" id="address1" maxlength="30" placeholder="주소" class="input-check">
 				</li>
 				<li>
 					<label for="address2">상세주소</label>
-					<input type="text" name="address2" id="address2" maxlength="30" class="right" placeholder="상세주소">
+					<input type="text" name="address2" id="address2" maxlength="30" placeholder="상세주소" class="input-check">
 				</li>
 				<li>
-					<label for="style1">선호하는 여행지</label>
+					<label>선호하는 여행지</label>
 					<input type="checkbox" name="style1" value="1">동남아
 					<input type="checkbox" name="style1" value="2">북미
 					<input type="checkbox" name="style1" value="3">유럽
@@ -154,21 +156,21 @@ $(function(){
 					<input type="checkbox" name="style1" value="5">국내
 				</li>
 				<li>
-					<label for="style2">여행 스타일1</label>
+					<label>여행 스타일1</label>
 					<input type="checkbox" name="style2" value="1">혼자
 					<input type="checkbox" name="style2" value="2">연인
 					<input type="checkbox" name="style2" value="3">친구
 				</li>
 				<li>
-					<label for="style3">여행 스타일2</label>
+					<label>여행 스타일2</label>
 					<input type="checkbox" name="style3" value="1">휴양
 					<input type="checkbox" name="style3" value="2">액티비티
 					<input type="checkbox" name="style3" value="3">관광
 				</li>
 				<li>
-					<label for="push">광고 수신 동의</label>
-					<input type="radio" name="push" value="Y" class="input-check">동의
-					<input type="radio" name="push" value="N" class="input-check">비동의
+					<label>광고 수신 동의</label>
+					<input type="radio" name="push" value="Y">동의
+					<input type="radio" name="push" value="N">비동의
 				</li>
 			</ul>
 			<div class="align-center">
