@@ -85,15 +85,14 @@ public class QuestionDAO {
 				else if(keyfield.equals("2")) sub_sql += "WHERE question_content LIKE ?"; //내용
 			}
 			if(mem_num > 0) {
-				sub_sql2 += "WHERE mem_num=?";
+				sub_sql2 += " WHERE mem_num=?";
 			}
-			sql = "SELECT COUNT(*) FROM question JOIN member USING(mem_num) " + sub_sql;
+			sql = "SELECT COUNT(*) FROM question JOIN member USING(mem_num) " + sub_sql + sub_sql2;
 			
 			pstmt = conn.prepareStatement(sub_sql);
 			
 			if(keyword!=null && !"".equals(keyword)) { //검색 처리
-				if(keyfield.equals("1")) pstmt.setString(1, "%"+keyword+"%");
-				else if(keyfield.equals("2")) pstmt.setString(1, "%"+keyword+"%");
+				pstmt.setString(1, "%"+keyword+"%");
 			}
 			if(mem_num > 0) {
 				pstmt.setInt(1, mem_num);
@@ -116,8 +115,7 @@ public class QuestionDAO {
 		//검색 처리, 페이지 처리
 		
 		Connection conn = null;
-		PreparedStatement pstmt1 = null;
-		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<QuestionVO> list = null;
 		String sql = null;
@@ -128,14 +126,7 @@ public class QuestionDAO {
 		try {
 			conn = DBUtil.getConnection();
 			
-			conn.setAutoCommit(false);
-			
-			//sql = "SELECT mem_num FROM question";
-			//pstmt1 = conn.prepareStatement(sql);
-			//rs = pstmt1.executeQuery();
-			
-			
-			
+
 			if(keyword!=null && !"".equals(keyword)) {
 				if(keyfield.equals("1")) sub_sql += "WHERE question_title LIKE ?";
 				else if(keyfield.equals("2")) sub_sql += "WHERE question_content LIKE ?";
@@ -144,22 +135,21 @@ public class QuestionDAO {
 				sub_sql2 += "WHERE mem_num=?";
 			}
 			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM question "
-					+ sub_sql 
+					+ sub_sql + sub_sql2
 					+ " ORDER BY question_num DESC)a) WHERE rnum>=? AND rnum<=?";
 			
-			pstmt2 = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			
 			if(keyword!=null && !"".equals(keyword)) { //검색 처리
-				if(keyfield.equals("1")) pstmt2.setString(++cnt, "%"+keyword+"%");
-				else if(keyfield.equals("2")) pstmt2.setString(++cnt, "%"+keyword+"%");
+				pstmt.setString(++cnt, "%"+keyword+"%");
 			}
 			if(mem_num > 0) {
-				pstmt2.setInt(++cnt, mem_num);
+				pstmt.setInt(++cnt, mem_num);
 			}
-			pstmt2.setInt(++cnt, start);
-			pstmt2.setInt(++cnt, end);
+			pstmt.setInt(++cnt, start);
+			pstmt.setInt(++cnt, end);
 			
-			rs = pstmt2.executeQuery();
+			rs = pstmt.executeQuery();
 			list = new ArrayList<QuestionVO>();
 			
 			while(rs.next()) {
@@ -168,6 +158,9 @@ public class QuestionDAO {
 				question.setQuestion_category(rs.getString("question_category"));
 				question.setQuestion_title(rs.getString("question_title"));
 				question.setMem_num(rs.getInt("mem_num"));
+				if(rs.getInt("mem_num")!=0) {
+					question.setId(rs.getString("id"));
+				}
 				question.setQuestion_regdate(rs.getDate("question_regdate"));
 				question.setQuestion_hit(rs.getInt("question_hit"));
 				
@@ -179,8 +172,7 @@ public class QuestionDAO {
 			conn.rollback();
 			throw new Exception(e);
 		} finally {
-			DBUtil.executeClose(null, pstmt2, null);
-			DBUtil.executeClose(rs, pstmt1, conn);
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return list;
 	}
