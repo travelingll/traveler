@@ -6,13 +6,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>일대일 문의 목록</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-	<div class="content-main">
-		
-		<c:if test="${!empty questionList}">
-			<%-- 사이드 메뉴 삽입 필요 --%>
-			<%-- 카테고리 삽입 필요 --%>
+	<div class="page-main">
+		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+		<%-- 사이드 메뉴 삽입 필요 --%>
+		<%-- 카테고리 삽입 필요 --%>
+		<div class="content-main">
 			<form action="eventList.do" id="search_form" method="get"><%-- 검색바 --%>
 				<ul class="search">
 					<li>
@@ -29,18 +30,39 @@
 					<li>
 						<input type="submit" value="검색">
 					</li>
-					<li>
-						<input type="button" value="문의 작성" onclick="location.href='questionWriteForm.do'">
-					</li>
 				</ul>
 			</form>
-			<c:if test="${category==0}">
-				<%-- 일대일 문의 목록 출력 필요 --%>
-			</c:if>
-			<c:if test="${empty questionList}">
+			<div class="list-space align-right">
+				<input type="button" value="문의 작성" onclick="location.href='questionWriteForm.do'">
+			</div>
+			<c:if test="${empty list}">
 				<div class="result-display">표시할 일대일 문의가 없습니다</div>
 			</c:if>
-		</c:if>
+			<c:if test="${!empty list}">
+				<table>
+					<tr>
+						<th>카테고리</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일자</th>
+						<th>조회수</th>
+					</tr>
+					<c:forEach var="question" items="${list}">
+						<tr>
+							<td>${question.question_category}</td>
+							<td>${question.question_title}</td>
+							<td>
+								<c:if test="${question.mem_num}==0">비회원</c:if>
+								<c:if test="${question.mem_num}!=0">${question.mem_num}</c:if>
+								
+							</td>
+							<td>${question.question_regdate}</td>
+							<td>${question.question_hit}</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</c:if>
+		</div>
 	</div>
 </body>
 </html>

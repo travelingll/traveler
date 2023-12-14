@@ -7,7 +7,7 @@ public class QuestionVO {
 	private int question_num;
 	private int mem_num;
 	private String question_ip;
-	private int question_category;
+	private String question_category;
 	private String question_title;
 	private int question_lock;
 	private String question_passwd;
@@ -16,7 +16,21 @@ public class QuestionVO {
 	private Date question_regdate;
 	private Date question_modifydate;
 	private int question_level;
+	private int question_hit;
+	private String id;
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public int getQuestion_hit() {
+		return question_hit;
+	}
+	public void setQuestion_hit(int question_hit) {
+		this.question_hit = question_hit;
+	}
 	public int getQuestion_num() {
 		return question_num;
 	}
@@ -35,10 +49,10 @@ public class QuestionVO {
 	public void setQuestion_ip(String question_ip) {
 		this.question_ip = question_ip;
 	}
-	public int getQuestion_category() {
+	public String getQuestion_category() {
 		return question_category;
 	}
-	public void setQuestion_category(int question_category) {
+	public void setQuestion_category(String question_category) {
 		this.question_category = question_category;
 	}
 	public String getQuestion_title() {

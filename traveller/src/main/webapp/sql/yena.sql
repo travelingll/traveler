@@ -36,7 +36,7 @@ create sequence event_re_seq;
 
 create table question(
 	question_num number not null,
-	mem_num number not null,
+	mem_num number,
 	question_ip varchar2(40) not null,
 	question_category number(1) not null, --1상품 2교환/환불 3기타
 	question_title varchar2(150) not null,
@@ -47,6 +47,7 @@ create table question(
 	question_regdate date default sysdate not null,
 	question_modifydate date,
 	question_level number(1) not null, --1질문 2답변
+	question_hit number default 0 not null,
 	constraint question_pk primary key (question_num),
 	constraint question_fk foreign key (mem_num) references member (mem_num)
 );
