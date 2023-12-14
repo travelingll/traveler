@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.accom.vo.AccomFavVO;
 import kr.accom.vo.AccomVO;
+import kr.comm.vo.CommVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
 
@@ -461,6 +462,45 @@ public class AccomDAO {
 		}
 	}
 	//내가 선택한 좋아요 목록
+	public List<AccomVO> getListAccomFav(int start, int end, int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<AccomVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+					+ "(SELECT * FROM accom JOIN member USING(mem_num) "
+					+ "JOIN accom_fav f USING(accom_num) WHERE f.mem_num=? "
+					+ "ORDER BY accom_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mem_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			
+			rs=pstmt.executeQuery();
+			list = new ArrayList<AccomVO>();
+			while(rs.next()) {
+				AccomVO accom = new AccomVO();
+				accom.setAccom_num(rs.getInt("accom_num"));
+				accom.setAccom_title(rs.getString("accom_title"));
+				accom.setAccom_regdate(rs.getDate("accom_regdate"));
+				accom.setId(rs.getString("id"));
+				
+				list.add(accom);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null,pstmt,conn);
+		}
+		return list;
+	}
 	//댓글 등록
 	//댓글 개수
 	//댓글 목록

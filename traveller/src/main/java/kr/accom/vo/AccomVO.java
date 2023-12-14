@@ -19,7 +19,6 @@ public class AccomVO {
 	private int mem_num;//회원 번호
 	private String id;//회원 아이디
 	private String photo;//회원 프로필 사진(조인해야함)
-	
 	public int getAccom_num() {
 		return accom_num;
 	}
