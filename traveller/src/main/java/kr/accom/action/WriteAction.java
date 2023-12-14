@@ -8,7 +8,7 @@ import com.oreilly.servlet.MultipartRequest;
 
 import kr.accom.dao.AccomDAO;
 import kr.accom.vo.AccomVO;
-import kr.comm.dao.CommDAO;
+import kr.accom.dao.AccomDAO;
 import kr.controller.Action;
 import kr.util.FileUtil;
 
@@ -26,6 +26,7 @@ public class WriteAction implements Action {
 		AccomVO accom = new AccomVO();
 		accom.setAccom_title(multi.getParameter("accom_title"));
 		accom.setAccom_content(multi.getParameter("accom_content"));
+		accom.setAccom_status(Integer.parseInt(multi.getParameter("accom_status")));
 		accom.setIp(request.getRemoteAddr());
 		accom.setAccom_filename(multi.getFilesystemName("accom_filename"));
 		accom.setAccom_quantity(Integer.parseInt(multi.getParameter("accom_quantity")));
