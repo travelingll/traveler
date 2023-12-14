@@ -17,7 +17,7 @@
  			<li><a href="${pageContext.request.contextPath}/member/myPage.do" style="font-weight:bold; font-size:24px; border-bottom:2px solid #000;">마이페이지</a></li>
   			<li><a href="${pageContext.request.contextPath}/member/myPage.do">개인정보</a></li>
  			<li><a href="${pageContext.request.contextPath}/member/myWriteComm.do">내가 쓴 글</a></li>
- 			<li><a>1:1 문의</a></li>
+ 			<li><a href="${pageContext.request.contextPath}/member/myQuestion.do">1:1 문의</a></li>
  			<li><a href="${pageContext.request.contextPath}/member/myMoney.do">적립금</a></li>
  			<li><a>동행 신청내역</a></li>
 		</ul>
