@@ -18,13 +18,20 @@
   			<li><a href="${pageContext.request.contextPath}/member/myPage.do">개인정보</a></li>
  			<li><a href="${pageContext.request.contextPath}/member/myWriteComm.do">내가 쓴 글</a></li>
  			<li><a href="">1:1 문의</a></li>
- 			<li><a href="${pageContext.request.contextPath}/member/myWriteMoney.do">적립금</a></li>
+ 			<li><a href="${pageContext.request.contextPath}/member/myMoney.do">적립금</a></li>
  			<li><a>동행 신청내역</a></li>
 		</ul>
+	</div>
 	</div>
 	<div class="content-main">
 		<h2>적립금</h2>
 		<hr size="2" color="black">
+		<c:if test="${count == 0}">
+		<div class="result-display">
+			적립금이 없습니다.
+		</div>
+		</c:if>
+		<c:if test="${count > 0}">
 		<table>
 			<tr>
 				<th>적립금액</th>
@@ -37,6 +44,7 @@
 				<td>${money.sm_date}</td>
 			</tr>
 		</table>
+		</c:if>
 	</div>
 </div>
 </body>

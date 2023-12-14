@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.member.dao.MemberDAO;
+import kr.member.vo.MemberVO;
 
 public class DetailUserAction implements Action{
 
@@ -26,15 +27,30 @@ public class DetailUserAction implements Action{
 		//관리자로 로그인한 경우
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
-		
+
 		//전송된 데이터 반환
 		int mem_num = Integer.parseInt(request.getParameter("mem_num"));
-		
+		String id = request.getParameter("id");
 		int auth = Integer.parseInt(request.getParameter("auth"));
 		MemberDAO dao = MemberDAO.getInstance();
-		dao.updateMemberByAdmin(auth, mem_num);
-		
+		dao.updateMemberAuthByAdmin(auth, id, mem_num);
+				
 		request.setAttribute("mem_num", mem_num);
+		
+		//자바빈 생성
+		MemberVO member = new MemberVO();
+		member.setMem_num(mem_num); //회원번호
+		member.setName(request.getParameter("name"));
+		member.setPasswd(request.getParameter("passwd"));
+		member.setPhone(request.getParameter("phone"));
+		member.setEmail(request.getParameter("email"));
+		member.setBirth(request.getParameter("birth"));
+		member.setGender(request.getParameter("gender"));
+		member.setZipcode(request.getParameter("zipcode"));
+		member.setAddress1(request.getParameter("address1"));
+		member.setAddress2(request.getParameter("address2"));
+		
+		dao.updateMemberByAdmin(member);
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/admin/detailUser.jsp";

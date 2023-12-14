@@ -70,22 +70,40 @@ $(function(){
 				return false;
 			}
 			if(items[i].id == 'phone' && !/^\d{3}-\d{3,4}-\d{4}$/.test($('#phone').val())){
-				alert('010-0000-0000 형식으로 입력해주세요.');
+				alert('010-0000-0000 형식으로 입력하세요');
 				return false;
 			}
-			
 			if(items[i].id == 'zipcode' && !/^[0-9]{5}$/.test($('#zipcode').val())){
 				alert('우편번호를 입력하세요(숫자 5자리)');
 				$('#zipcode').val('').focus();
 				return false;
 			}
-			
 		} //end of for
 		
 		if($('#passwd').val()!=$('#cpasswd').val()){
 			alert('비밀번호와 비밀번호 확인이 불일치');
 			$('#passwd').val('').focus();
 			$('#cpasswd').val('');
+			return false;
+		}
+		if($('input[name="gender"]:radio:checked').length < 1){
+			alert('성별을 선택하세요');
+			return false;
+		}
+		if($('input[name="style1"]:checkbox:checked').length < 1){
+			alert('선호하는 여행지를 1개 이상 선택하세요');
+			return false;
+		}
+		if($('input[name="style2"]:checkbox:checked').length < 1){
+			alert('여행 스타일1을 1개 이상 선택하세요');
+			return false;
+		}
+		if($('input[name="style3"]:checkbox:checked').length < 1){
+			alert('여행 스타일2를 1개 이상 선택하세요');
+			return false;
+		}
+		if($('input[name="push"]:radio:checked').length < 1){
+			alert('광고 수신 동의 여부를 선택하세요');
 			return false;
 		}
 	}); //end of submit
@@ -130,11 +148,6 @@ $(function(){
   					<input type="text" name="birth" id="birth" maxlength="10" placeholder="생년월일 8자리 (YYYYMMDD)" class="input-check">
 				</li>
 				<li>
-					<label>성별</label>
-					<input type="radio" name="gender" value="F">남자
-					<input type="radio" name="gender" value="M">여자
-				</li>
-				<li>
 					<label for="zipcode">우편번호</label>
 					<input type="text" name="zipcode" id="zipcode" maxlength="5" autocomplete="off" class="input-check" placeholder="우편번호">
 					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">
@@ -146,6 +159,11 @@ $(function(){
 				<li>
 					<label for="address2">상세주소</label>
 					<input type="text" name="address2" id="address2" maxlength="30" placeholder="상세주소" class="input-check">
+				</li>
+				<li>
+					<label>성별</label>
+					<input type="radio" name="gender" value="M">남자
+					<input type="radio" name="gender" value="F">여자
 				</li>
 				<li>
 					<label>선호하는 여행지</label>

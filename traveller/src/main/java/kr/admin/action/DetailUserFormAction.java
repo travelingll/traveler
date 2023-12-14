@@ -27,9 +27,9 @@ public class DetailUserFormAction implements Action{
 		//전송된 데이터 반환
 		int mem_num = Integer.parseInt(request.getParameter("mem_num"));
 		MemberDAO dao = MemberDAO.getInstance();
-		MemberVO member = dao.getMember(mem_num);
+		MemberVO mem = dao.getMember(mem_num);
 		
-		request.setAttribute("member", member);
+		request.setAttribute("mem", mem);
 		
 		return "/WEB-INF/views/admin/detailUserForm.jsp";
 	}

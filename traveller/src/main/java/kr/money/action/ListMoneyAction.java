@@ -25,12 +25,14 @@ public class ListMoneyAction implements Action{
 		MemberVO member = dao.getMember(user_num);	
 		
 		MoneyDAO moneyDao = MoneyDAO.getInstance();
+		int count = moneyDao.getMoneyCount(user_num);
 		MoneyVO money = moneyDao.getMoney(user_num);
 		
 		request.setAttribute("member", member);
+		request.setAttribute("count", count);
 		request.setAttribute("money", money);
 		
-		return "/WEB-INF/views/member/myWriteMoney.jsp";
+		return "/WEB-INF/views/member/myMoney.jsp";
 	}
 
 }
