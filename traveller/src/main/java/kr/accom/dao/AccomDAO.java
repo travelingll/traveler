@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.accom.vo.AccomFavVO;
 import kr.accom.vo.AccomVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
@@ -250,7 +251,7 @@ public class AccomDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "UPDATE accom SET filename='' WHERE accom_num=?";
+			sql = "UPDATE accom SET accom_filename='' WHERE accom_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -348,8 +349,117 @@ public class AccomDAO {
 		}
 	}
 	//좋아요 등록
+	public void insertFav(AccomFavVO favVO)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "INSERT INTO accom_fav (accom_num, mem_num) "
+					+ "VALUES (?,?)";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, favVO.getAccom_num());
+			pstmt.setInt(2, favVO.getMem_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}	
 	//좋아요 개수
+	public int selectFavCount(int accom_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FORM accom_fav WHERE accom_num=?";
+			//PreparedStatement 객체 상태
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, accom_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return count;
+	}
 	//회원번호와 게시물 번호를 이용한 좋아요 정보(좋아요 선택 여부)
+	public AccomFavVO selectFav(AccomFavVO favVO)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		AccomFavVO fav = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM accom_fav WHERE accom_num=? AND mem_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, favVO.getAccom_num());
+			pstmt.setInt(2, favVO.getMem_num());
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				fav = new AccomFavVO();
+				fav.setAccom_num(rs.getInt("accom_num"));
+				fav.setMem_num(rs.getInt("mem-num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return fav;
+	}
+	//좋아요 삭제
+	public void deleteFav(AccomFavVO favVO)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql ="DELETE FROM accom_fav WHERE accom_num=? AND mem_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, favVO.getAccom_num());
+			pstmt.setInt(2, favVO.getMem_num());
+			//SQL문 실행
+			DBUtil.executeClose(null, pstmt, conn);
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//내가 선택한 좋아요 목록
 	//댓글 등록
 	//댓글 개수

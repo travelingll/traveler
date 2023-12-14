@@ -10,7 +10,7 @@ create table accom(
  accom_modifydate date,
  accom_quantity number(3) not null,
  accom_expense number(10) not null,
- accom_filename varchar2(150) not null,
+ accom_filename varchar2(150),
  accom_start varchar2(10) not null,
  accom_end varchar2(10) not null,
  ip varchar2(40) not null,

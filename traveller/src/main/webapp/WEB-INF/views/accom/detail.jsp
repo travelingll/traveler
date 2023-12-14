@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>동행구하기 게시판 상세</title>
+<title>게시판 상세 정보</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
@@ -40,7 +40,7 @@
 			${accom.accom_content}
 		</p>
 			<hr size="1" noshade="noshade" width="100%">
-			<p>모집 인원: ${accom.accom_quantity} 여행 경비: ${accom.accom_expense} 출발일: ${accom.accom_start} 종료일: ${accom.accom_end}</p>
+			<p>모집 인원: ${accom.accom_quantity}명 여행 경비: ${accom.accom_expense}원 출발일: ${accom.accom_start} 종료일: ${accom.accom_end}</p>
 			<hr size="1" noshade="noshade" width="100%" >
 			작성일 : ${accom.accom_regdate}
 			<hr size="1" noshade="noshade" width="100%" >
@@ -53,7 +53,7 @@
 				delete_btn.onclick=function(){
 					let choice = confirm('삭제하시겠습니까');
 					if(choice){
-						location.replace('delete.do?comm_num=${accom.accom_num}');
+						location.replace('delete.do?accom_num=${accom.accom_num}');
 					}
 				};
 				  <!-- 동행신청 버튼 -->
