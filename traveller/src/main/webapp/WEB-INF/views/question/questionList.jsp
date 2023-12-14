@@ -52,8 +52,8 @@
 							<td>${question.question_category}</td>
 							<td>${question.question_title}</td>
 							<td>
-								<c:if test="${question.mem_num}==0">비회원</c:if>
-								<c:if test="${question.mem_num}!=0">${question.mem_num}</c:if>
+								<c:if test="${question.mem_num==0}">비회원</c:if>
+								<c:if test="${question.mem_num!=0}">${question.mem_num}</c:if>
 								
 							</td>
 							<td>${question.question_regdate}</td>

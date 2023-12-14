@@ -89,7 +89,7 @@ public class QuestionDAO {
 			}
 			sql = "SELECT COUNT(*) FROM question JOIN member USING(mem_num) " + sub_sql + sub_sql2;
 			
-			pstmt = conn.prepareStatement(sub_sql);
+			pstmt = conn.prepareStatement(sql);
 			
 			if(keyword!=null && !"".equals(keyword)) { //검색 처리
 				pstmt.setString(1, "%"+keyword+"%");
