@@ -158,18 +158,16 @@ public class QuestionDAO {
 				question.setQuestion_category(rs.getString("question_category"));
 				question.setQuestion_title(rs.getString("question_title"));
 				question.setMem_num(rs.getInt("mem_num"));
-				if(rs.getInt("mem_num")!=0) {
-					question.setId(rs.getString("id"));
-				}
+
 				question.setQuestion_regdate(rs.getDate("question_regdate"));
 				question.setQuestion_hit(rs.getInt("question_hit"));
 				
 				list.add(question);
 			}
 			
-			conn.commit();
+			
 		} catch (Exception e) {
-			conn.rollback();
+
 			throw new Exception(e);
 		} finally {
 			DBUtil.executeClose(rs, pstmt, conn);
