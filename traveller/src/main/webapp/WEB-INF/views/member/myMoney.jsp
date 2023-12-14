@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,6 @@
  			<li><a>동행 신청내역</a></li>
 		</ul>
 	</div>
-	</div>
 	<div class="content-main">
 		<h2>적립금</h2>
 		<hr size="2" color="black">
@@ -39,7 +39,7 @@
 				<th>적립일</th>
 			</tr>
 			<tr>
-				<td>${money.saved_money}</td>
+				<td><fmt:formatNumber value="${money.saved_money}"/>원</td>
 				<td>${money.sm_content}</td>
 				<td>${money.sm_date}</td>
 			</tr>
