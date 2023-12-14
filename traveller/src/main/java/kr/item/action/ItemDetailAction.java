@@ -18,11 +18,12 @@ public class ItemDetailAction implements Action{
 		int item_num = Integer.parseInt(request.getParameter("item_num"));
 		
 		ItemDAO dao = ItemDAO.getInstance();
-		ItemVO vo = dao.getItem(item_num); 
-		request.setAttribute("item", vo);
+		ItemVO item = dao.getItem(item_num); 
+		System.out.println(item);
+		request.setAttribute("item", item);
 		request.setAttribute("user_num", user_num);
 		
-		return "/WEB-INF/views/item/itemDetail.jsp";
+		return "/WEB-INF/views/item/adminItemDetail.jsp";
 	}
 
 }

@@ -7,7 +7,7 @@ public class ItemVO {
 	private int item_num;
 	private String item_name;
 	private String item_content;
-	private int price;
+	private int item_price;
 	private String item_img1;
 	private String item_img2;
 	private String item_img3;
@@ -23,7 +23,6 @@ public class ItemVO {
 	private Date reg_date;
 	private Date modifydate;
 	private int quantity;
-	
 	
 	public int getItem_num() {
 		return item_num;
@@ -43,11 +42,11 @@ public class ItemVO {
 	public void setItem_content(String item_content) {
 		this.item_content = item_content;
 	}
-	public int getPrice() {
-		return price;
+	public int getItem_price() {
+		return item_price;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setItem_price(int price) {
+		this.item_price = price;
 	}
 	public String getItem_img1() {
 		return item_img1;
@@ -141,7 +140,13 @@ public class ItemVO {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	
-	
+	@Override
+	public String toString() {
+		return "ItemVO [item_num=" + item_num + ", item_name=" + item_name + ", item_content=" + item_content
+				+ ", price=" +  ", item_img1=" + item_img1 + ", item_img2=" + item_img2 + ", item_img3="
+				+ item_img3 + ", item_img4=" + item_img4 + ", item_img5=" + item_img5 + ", item_img6=" + item_img6
+				+ ", item_st1=" + item_st1 + ", item_st2=" + item_st2 + ", item_st3=" + item_st3 + ", date_start="
+				+ date_start + ", date_end=" + date_end + ", status=" + status + ", reg_date=" + reg_date
+				+ ", modifydate=" + modifydate + ", quantity=" + quantity + "]";
+	}
 }

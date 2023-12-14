@@ -38,7 +38,7 @@ public class ItemInsertFormAction implements Action{
 			
 			item.setItem_name(multi.getParameter("name"));
 			item.setItem_content(multi.getParameter("city"));
-			item.setPrice(Integer.parseInt(multi.getParameter("price")));
+			item.setItem_price(Integer.parseInt(multi.getParameter("price")));
 			item.setItem_img1(multi.getFilesystemName("pic1"));
 			item.setItem_img2(multi.getFilesystemName("pic2"));
 			item.setItem_img3(multi.getFilesystemName("pic3"));
@@ -50,6 +50,7 @@ public class ItemInsertFormAction implements Action{
 			item.setItem_st3((multi.getParameter("item_st3")));
 			item.setDate_start(multi.getParameter("start_date"));
 			item.setDate_end(multi.getParameter("end_date"));
+			item.setStatus(multi.getParameter("status"));
 			item.setQuantity(Integer.parseInt(multi.getParameter("quantity")));
 			
 			ItemDAO dao = ItemDAO.getInstance();

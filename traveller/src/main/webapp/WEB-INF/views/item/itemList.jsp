@@ -39,11 +39,13 @@ td{
 					<td>${item.date_start}</td>
 					<td>${item.date_end}</td>
 					<td>${item.reg_date}</td>
-					<td>${item.quantity}</td>
+					<td><span class="total_order"></span>/ ${item.quantity} 명</td>
 				</tr>
 			</c:forEach>
 		</table>
-			${page}
+			<div class="content-center">
+				${page}
+			</div>
 	</div>
 </div>
 
