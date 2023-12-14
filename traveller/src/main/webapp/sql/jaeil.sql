@@ -39,16 +39,12 @@ constraint Comm_reply_fk2 foreign key (mem_num) references member (mem_num)
 create sequence Comm_reply_seq;
 
 --자주찾는 질문 게시판
-create table faq(
- faq_num number	not null,
- faq_title varchar2(150) not null,
- reg_date date not null,
- faq_content clob not null,
- modify_date	date,
- faq_cat number not null,
- constraint faq_pk primary key(faq_num)
+
+CREATE TABLE faq (
+  faq_num number NOT NULL,
+  faq_title varchar2(100) not NULL,
+  faq_content clob NOT NULL,
+  faq_category number(1) NOT NULL ,
+  constraint faq_pk primary key(faq_num)
 );
-create sequence faq_seq;
-
-
 
