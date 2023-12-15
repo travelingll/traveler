@@ -32,18 +32,24 @@
 		</div>
 		</c:if>
 		<c:if test="${count > 0}">
-		<table>
-			<tr>
-				<th>적립금액</th>
-				<th>내역</th>
-				<th>적립일</th>
-			</tr>
-			<tr>
-				<td><fmt:formatNumber value="${money.saved_money}"/>원</td>
-				<td>${money.sm_content}</td>
-				<td>${money.sm_date}</td>
-			</tr>
-		</table>
+		<div class="mypage-div1">
+			${member.name}님의 사용가능한 적립금은<br>
+			총 <b><fmt:formatNumber value="${money_total}"/>원</b> 입니다.
+		</div>
+		<div class="mypage-div2">
+			<table>
+				<tr>
+					<th>적립금액</th>
+					<th>내역</th>
+					<th>적립일</th>
+				</tr>
+				<tr>
+					<td><fmt:formatNumber value="${money.saved_money}"/>원</td>
+					<td>${money.sm_content}</td>
+					<td>${money.sm_date}</td>
+				</tr>
+			</table>
+		</div>
 		</c:if>
 	</div>
 </div>

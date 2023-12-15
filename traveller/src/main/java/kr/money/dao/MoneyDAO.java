@@ -72,4 +72,32 @@ public class MoneyDAO {
 		}
 		return count;
 	}
+	
+	public int getTotalByMem_num(int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int total = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT SUM(saved_money) FROM money WHERE mem_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return total;
+	}
 }

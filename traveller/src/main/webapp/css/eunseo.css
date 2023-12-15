@@ -1,0 +1,53 @@
+@charset "UTF-8";
+/* 마이페이지 */
+.mypage-div1{
+	width:48%;
+	float:left;
+	margin-top:30px;
+}
+.mypage-div1 ul li{
+	line-height:1.8em;
+	font-size:12pt;
+}
+.mypage-div2{
+	width:48%;
+	float:right;
+	margin-top:30px;
+}
+.mypage-div2 ul{
+	list-style:none;
+	padding-left:0px;
+}
+.mypage-div2 ul li{
+	line-height:1.8em;
+	font-size:12pt;
+}
+.buttons{
+	text-align:center;
+}
+/* 내가 쓴 글 */
+.category ul{
+	list-style:none;
+}
+.category ul li{
+	display:inline;
+	text-align:left;
+}
+.category ul li a{
+	text-align:center;
+	text-decoration:none;
+	background-color:#e1e8f0;
+	color:black;
+	display:inline-block;
+	width:100px;
+	height:30px;
+	padding-top:3px;
+	padding-left:10px;
+}
+.category ul li a:hover{
+	text-decoration:none;
+	background-color:#afc8f0;
+}
+.profile{
+	padding-top:30px;
+}

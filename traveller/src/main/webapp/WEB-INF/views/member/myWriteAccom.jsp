@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>내가 쓴 글</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/eunseo.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -25,17 +26,17 @@
 	<div class="content-main">
 		<h2>내가 쓴 글 : 동행게시판</h2>
 		<hr size="2" color="black">
-		<div style="text-align:center;">
+		<div class="category">
 			<ul>
-				<li style="display:inline-block;"><a href="${pageContext.request.contextPath}/member/myWriteComm.do">커뮤니티</a></li>
-				<li style="display:inline-block;"><a href="${pageContext.request.contextPath }/member/myWriteAccom.do">동행게시판</a></li>
-				<li style="display:inline-block;"><a>후기글</a></li>
+				<li><a href="${pageContext.request.contextPath}/member/myWriteComm.do">커뮤니티</a></li>
+				<li><a href="${pageContext.request.contextPath }/member/myWriteAccom.do">동행게시판</a></li>
+				<li><a>후기글</a></li>
 			</ul>
-		</div>		
-		<div>
+		</div>	
+		<div class="profile">
 		<c:if test="${!empty user_num && !empty user_photo}">
-		<img src="${pageContext.request.contextPath}/upload/${user_photo}" width="100" height="120" class="my-photo">
-		${member.name}
+		<img src="${pageContext.request.contextPath}/upload/${user_photo}" width="120" height="140" class="my-photo"><br>
+		<br>${member.name}<br>
 		<c:if test="${member.auth == 3}"><b>등급 : 일반</b></c:if>
 		<c:if test="${member.auth == 2}"><b>등급 : VIP</b></c:if>
 		<c:if test="${member.auth == 1}"><b>등급 : VVIP</b></c:if>

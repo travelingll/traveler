@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>My페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/eunseo.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -109,17 +110,26 @@ $(function(){
 	<div class="content-main">
 		<h2>회원정보</h2>
 		<hr size="2" color="black">
-		<div class="mypage-div" style="float:left;text-align:center;">
-			<h3>프로필 사진</h3>
+		<div class="mypage-div1">
 			<ul>
 				<li>
 					<c:if test="${empty member.photo}">
-					<img src="${pageContext.request.contextPath}/images/face.jpg" width="200" height="200" class="my-photo">
+					<img src="${pageContext.request.contextPath}/images/face.jpg" width="200" height="220" class="my-photo">
 					</c:if>
 					<c:if test="${!empty member.photo}">
-					<img src="${pageContext.request.contextPath}/upload/${member.photo}" width="200" height="200" class="my-photo">
+					<img src="${pageContext.request.contextPath}/upload/${member.photo}" width="200" height="220" class="my-photo">
 					</c:if>
 				</li>
+				<li>
+					<div class="align-center">
+						<input type="button" value="수정" id="photo_btn">
+					</div>
+					<div id="photo_choice" style="display:none;">
+						<input type="file" id="photo" accept="image/gif,image/png,image/jpeg"><br>
+						<input type="button" value="전송" id="photo_submit">
+						<input type="button" value="취소" id="photo_reset">
+					</div>
+				</li><br>
 				<li>
 					<c:if test="${member.auth == 3}">
 					<b>등급 : 일반</b>
@@ -134,51 +144,39 @@ $(function(){
 					<b>등급 : 관리자</b>
 					</c:if>
 				</li>
-				<li>
-					<div class="align-center">
-						<input type="button" value="수정" id="photo_btn">
-					</div>
-					<div id="photo_choice" style="display:none;">
-						<input type="file" id="photo" accept="image/gif,image/png,image/jpeg"><br>
-						<input type="button" value="전송" id="photo_submit">
-						<input type="button" value="취소" id="photo_reset">
-					</div>
-				</li>
 			</ul>
 		</div>
-		<div class="mypage-div2" style="float:right;">
-			<h3>
-				연락처
-			</h3>
+		<div class="mypage-div2">
+			<h3>연락처</h3>
 			<ul>
-				<li>아이디 : ${member.id}</li>
-				<li>이름 : ${member.name}</li>
-				<li>전화번호 : ${member.phone}</li>
-				<li>이메일 : ${member.email}</li>
-				<li>생년월일 : ${member.birth}</li>
-				<li>우편번호 : ${member.zipcode}</li>
-				<li>주소 : ${member.address1} ${member.address2}</li>
-				<li>가입일 : ${member.reg_date}</li>
+				<li><b>아이디</b> : ${member.id}</li>
+				<li><b>이름</b> : ${member.name}</li>
+				<li><b>전화번호</b> : ${member.phone}</li>
+				<li><b>이메일</b> : ${member.email}</li>
+				<li><b>생년월일</b> : ${member.birth}</li>
+				<li><b>우편번호</b> : ${member.zipcode}</li>
+				<li><b>주소</b> : ${member.address1} ${member.address2}</li>
+				<li><b>가입일</b> : ${member.reg_date}</li>
 				<c:if test="${!empty member.modify_date}">
-				<li>최근 정보 수정일 : ${member.modify_date}</li>
+				<li><b>최근 정보 수정일</b> : ${member.modify_date}</li>
 				</c:if>
 			</ul>
 		</div>
 		<div class="mypage-end"></div>
-	</div>
-	<div class="buttons" style="text-align:center;">
-		<input type="button" value="연락처 수정" onclick="location.href='modifyUserForm.do'">
-		<input type="button" value="비밀번호 수정" onclick="location.href='modifyPasswordForm.do'">
-		<input type="button" value="회원탈퇴" id="user_delete">
-		<script>
-			let user_delete = document.getElementById('user_delete');
-			user_delete.onclick = function(){
-				let choice = confirm('정말 탈퇴 하시겠습니까?');
-				if(choice){
-					location.replace('deleteUserForm.do');
-				}
-			};
-		</script>
+		<div class="buttons">
+			<input type="button" value="연락처 수정" onclick="location.href='modifyUserForm.do'">
+			<input type="button" value="비밀번호 수정" onclick="location.href='modifyPasswordForm.do'">
+			<input type="button" value="회원탈퇴" id="user_delete">
+			<script>
+				let user_delete = document.getElementById('user_delete');
+				user_delete.onclick = function(){
+					let choice = confirm('정말 탈퇴 하시겠습니까?');
+					if(choice){
+						location.replace('deleteUserForm.do');
+					}
+				};
+			</script>
+		</div>
 	</div>
 </div>
 </body>
