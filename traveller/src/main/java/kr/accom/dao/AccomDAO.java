@@ -127,7 +127,8 @@ public class AccomDAO {
 			}
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-					+ "(SELECT * FROM accom JOIN member USING(mem_num) " + sub_sql + sub_sql2
+					+ "(SELECT * FROM accom JOIN member USING(mem_num) "
+					+ "LEFT OUTER JOIN (SELECT accom_num, COUNT(*) cnt FROM accom_fav GROUP BY accom_num) USING(accom_num) " + sub_sql + sub_sql2
 					+ "ORDER BY accom_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 			//PrepardStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -154,6 +155,8 @@ public class AccomDAO {
 				accom.setAccom_quantity(rs.getInt("accom_quantity"));
 				accom.setAccom_hit(rs.getInt("accom_hit"));
 				// 추천수
+				accom.setCnt(rs.getInt("cnt"));
+				
 				list.add(accom);
 			}
 			
@@ -182,6 +185,7 @@ public class AccomDAO {
 			//(주의)회원 탈퇴하면 member_detail에 레코드가 존재하지 않기 때문에 외부조인을 사용해서 데이터 누락을 방지함
 			sql = "SELECT * FROM accom JOIN member USING(mem_num) "
 					+ "LEFT OUTER JOIN member_detail USING(mem_num) "
+					+ "LEFT OUTER JOIN (SELECT accom_num, COUNT(*) cnt FROM accom_fav GROUP BY accom_num) USING(accom_num) "
 					+ "WHERE accom_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -277,13 +281,13 @@ public class AccomDAO {
 			conn = DBUtil.getConnection();
 			
 			if(accom.getAccom_filename()!=null) {
-				sub_sql +=",filename=?";
+				sub_sql +=",accom_filename=?";
 			}
 			
 			//SQL문 작성
-			sql = "UPDATE accom SET accom_title=?, accom_contnet=?, accom_quantity=?,"
-					+ "accom_expense=?, accom_strat=?, accom_end=?, accom_status=?,"
-					+ "modify_date=SYSDATE,ip=?" +sub_sql+ "WHERE accom_num=?";
+			sql = "UPDATE accom SET accom_title=?, accom_content=?, accom_quantity=?,"
+					+ "accom_expense=?, accom_start=?, accom_end=?, accom_status=?,"
+					+ "accom_modifydate=SYSDATE,ip=?" +sub_sql+ "WHERE accom_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -385,7 +389,7 @@ public class AccomDAO {
 			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "SELECT COUNT(*) FORM accom_fav WHERE accom_num=?";
+			sql = "SELECT COUNT(*) FROM accom_fav WHERE accom_num=?";
 			//PreparedStatement 객체 상태
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -426,7 +430,7 @@ public class AccomDAO {
 			if(rs.next()) {
 				fav = new AccomFavVO();
 				fav.setAccom_num(rs.getInt("accom_num"));
-				fav.setMem_num(rs.getInt("mem-num"));
+				fav.setMem_num(rs.getInt("mem_num"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -453,7 +457,7 @@ public class AccomDAO {
 			pstmt.setInt(1, favVO.getAccom_num());
 			pstmt.setInt(2, favVO.getMem_num());
 			//SQL문 실행
-			DBUtil.executeClose(null, pstmt, conn);
+			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {

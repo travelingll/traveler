@@ -21,14 +21,14 @@ public class ListAction implements Action {
 		String keyword = request.getParameter("keyword");
 		
 		AccomDAO dao = AccomDAO.getInstance();
-		int count = dao.getAccomCount(keyfield, keyword);
+		int count = dao.getAccomCount(keyfield, keyword,0);
 		
 		//페이지 처리
 		PageUtil page = new PageUtil(keyfield, keyword,Integer.parseInt(pageNum),count,20,10,"list.do");
 		
 		List<AccomVO> list = null;
 		if(count > 0) {
-			list = dao.getListAccom(page.getStartRow(),page.getEndRow(),keyfield,keyword);
+			list = dao.getListAccom(page.getStartRow(),page.getEndRow(),keyfield,keyword,0);
 		}
 		
 		request.setAttribute("count", count);
