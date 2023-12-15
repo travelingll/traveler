@@ -58,37 +58,30 @@ public class AccomDAO {
 		}
 	}
 	//전체 레코드 수/검색 레코드 수
-	public int getAccomCount(String keyfield, String keyword,int mem_num)throws Exception{
+	public int getAccomCount(String keyfield, String keyword)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		String sub_sql="";
-		String sub_sql2="";
 		int count = 0;
 		
 		try {
 			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			
-			if(keyword!=null &&"".equals(keyword)) {
+			if(keyword!=null && !"".equals(keyword)) {
 				//검색 처리
 				if(keyfield.equals("1")) sub_sql += "WHERE accom_title LIKE ?";
 				else if (keyfield.equals("2")) sub_sql += "WHERE id LIKE ?";
 				else if (keyfield.equals("3")) sub_sql += "WHERE accom_content LIKE ?";
 			}
-			if(mem_num > 0) {
-				sub_sql2 += "WHERE mem_num=?";
-			}
 			//SQL문 작성
-			sql = "SELECT COUNT (*) FROM accom JOIN member USING(mem_num) " + sub_sql + sub_sql2;
+			sql = "SELECT COUNT (*) FROM accom JOIN member USING(mem_num) " + sub_sql;
 			//PrepardStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			if(keyword != null && !"".equals(keyword)) {
 				pstmt.setString(1, "%"+keyword+"%");
-			}
-			if(mem_num > 0) {
-				pstmt.setInt(1, mem_num);
 			}
 			//SQL문 실행
 			rs = pstmt.executeQuery();
@@ -103,13 +96,12 @@ public class AccomDAO {
 		return count;
 	}
 	//전체 글/검색 글 목록
-	public List<AccomVO> getListAccom(int start, int end, String keyfield, String keyword,int mem_num) throws Exception{
+	public List<AccomVO> getListAccom(int start, int end, String keyfield, String keyword) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<AccomVO> list = null;
 		String sub_sql = "";
-		String sub_sql2 = "";
 		String sql = null;
 		int cnt = 0;
 		
@@ -117,26 +109,20 @@ public class AccomDAO {
 			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			
-			if(keyword!=null &&"".equals(keyword)) {
+			if(keyword!=null && !"".equals(keyword)) {
 				//검색 처리
 				if(keyfield.equals("1")) sub_sql += "WHERE accom_title LIKE ?";
 				else if (keyfield.equals("2")) sub_sql += "WHERE id LIKE ?";
 				else if (keyfield.equals("3")) sub_sql += "WHERE accom_content LIKE ?";
 			}
-			if(mem_num > 0) {
-				sub_sql2 += "WHERE mem_num=?";
-			}
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-					+ "(SELECT * FROM accom JOIN member USING(mem_num) " + sub_sql + sub_sql2
+					+ "(SELECT * FROM accom JOIN member USING(mem_num) " + sub_sql
 					+ "ORDER BY accom_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 			//PrepardStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			if(keyword != null && !"".equals(keyword)) {
 				pstmt.setString(++cnt, "%"+keyword+"%");
-			}
-			if(mem_num > 0) {
-				pstmt.setInt(++cnt, mem_num);
 			}
 			pstmt.setInt(++cnt, start);
 			pstmt.setInt(++cnt, end);
@@ -507,5 +493,4 @@ public class AccomDAO {
 	//댓글 상세(댓글 수정, 삭제 시 작성자 회원번호 체크 용도로 사용)
 	//댓글 수정
 	//댓글 삭제
-	} 
-
+	}  
