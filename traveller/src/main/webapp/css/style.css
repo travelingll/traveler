@@ -228,6 +228,28 @@ h1.logo {
     border-radius: 4px;
     border: solid 1px #c2c2c2;
 }
+.inr input[type="file"] {
+	position: relative;
+    display: inline-block;
+    height: 25px;
+    line-height: 23px;
+    font-size: 12px;
+    padding: 0 10px;
+    margin: 0;
+    color: #666;
+    background-color: #fff;
+    font-weight: 400;
+    text-align: center;
+    border-radius: 4px;
+    border: solid 1px #c2c2c2;
+    margin-top:10px;
+}
+
+.inr input[type="file"] {
+    padding: 0;
+    
+    border: 0;
+}
 /*-----------------gnb 메뉴 왼쪽*/
 gnb_wrap {
     height: 170px;
@@ -431,13 +453,14 @@ button, input, textarea {
     line-height: 23px;
     font-size: 12px;
     padding: 0 10px;
-    margin: 0;
+    margin-bottom: 10px;
     color: #666;
     background-color: #fff;
     font-weight: 400;
     text-align: center;
     border-radius: 4px;
     border: solid 1px #c2c2c2;
+    
 }
 button {
     background-color: transparent;
@@ -592,6 +615,7 @@ table {
     border-spacing: 2px;
     border-color: gray;
 }
+
 col {
     display: table-column;
 }
@@ -610,3 +634,23 @@ table td, table th{
 	padding:10px;
 }
 /*----------버튼*/
+.ly_tbl .default_list li {
+    padding: 15px 0 16px;
+}
+.ly_tbl .inr.w526 {
+    
+    padding-right: 48px;
+}
+.my_page .inr {
+    float: left;
+    display: block;
+}
+
+.my_page .inr + .inr {
+    width: 436px;
+}
+
+.ly_tbl {
+    display: table;
+    width: 100%;
+}
