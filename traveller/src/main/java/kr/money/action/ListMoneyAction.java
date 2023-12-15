@@ -1,5 +1,7 @@
 package kr.money.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,11 +29,11 @@ public class ListMoneyAction implements Action{
 		MoneyDAO moneyDao = MoneyDAO.getInstance();
 		int count = moneyDao.getMoneyCount(user_num);
 		int money_total = moneyDao.getTotalByMem_num(user_num);
-		MoneyVO money = moneyDao.getMoney(user_num);
+		List<MoneyVO> moneyList = moneyDao.getMoney(user_num);
 		
 		request.setAttribute("member", member);
 		request.setAttribute("count", count);
-		request.setAttribute("money", money);
+		request.setAttribute("moneyList", moneyList);
 		request.setAttribute("money_total", money_total);
 		
 		return "/WEB-INF/views/member/myMoney.jsp";

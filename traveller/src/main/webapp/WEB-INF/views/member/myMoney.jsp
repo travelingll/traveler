@@ -44,11 +44,13 @@
 					<th>내역</th>
 					<th>적립일</th>
 				</tr>
+				<c:forEach var="money" items="${moneyList}">
 				<tr>
 					<td><fmt:formatNumber value="${money.saved_money}"/>원</td>
 					<td>${money.sm_content}</td>
 					<td>${money.sm_date}</td>
 				</tr>
+				</c:forEach>
 			</table>
 		</div>
 		</c:if>

@@ -3,6 +3,8 @@ package kr.money.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import kr.money.dao.MoneyDAO;
 import kr.money.vo.MoneyVO;
@@ -16,11 +18,11 @@ public class MoneyDAO {
 	}
 	private MoneyDAO() {}
 	
-	public MoneyVO getMoney(int mem_num)throws Exception{
+	public List<MoneyVO> getMoney(int mem_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		MoneyVO money = null;
+		List<MoneyVO> list = null;
 		String sql = null;
 		
 		try {
@@ -29,13 +31,16 @@ public class MoneyDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
 			rs = pstmt.executeQuery();
+			list = new ArrayList<MoneyVO>();
 			while(rs.next()) {
-				money = new MoneyVO();
+				MoneyVO money = new MoneyVO();
 				money.setMem_num(rs.getInt("mem_num"));
 				money.setSm_num(rs.getInt("sm_num"));
 				money.setSaved_money(rs.getString("saved_money"));
 				money.setSm_content(rs.getString("sm_content"));
 				money.setSm_date(rs.getDate("sm_date"));
+				
+				list.add(money);
 			}
 		}catch(Exception e){
 			throw new Exception(e);
@@ -43,7 +48,7 @@ public class MoneyDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		
-		return money;
+		return list;
 	}
 	public int getMoneyCount(int mem_num)throws Exception{
 		Connection conn = null;
@@ -100,4 +105,5 @@ public class MoneyDAO {
 		
 		return total;
 	}
+
 }
