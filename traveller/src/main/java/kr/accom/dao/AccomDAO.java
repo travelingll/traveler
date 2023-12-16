@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.accom.vo.AccomFavVO;
+import kr.accom.vo.AccomReplyVO;
 import kr.accom.vo.AccomVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 public class AccomDAO {
@@ -243,8 +245,6 @@ public class AccomDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	//동행 신청(현재 인원수 증가)
-	//동행신청 내역?
 	//파일 삭제
 	public void deleteFile(int accom_num) throws Exception {
 		Connection conn = null;
@@ -505,9 +505,194 @@ public class AccomDAO {
 		return list;
 	}
 	//댓글 등록
+	public void insertReplyAccom(AccomReplyVO accomReply) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "INSERT INTO accom_reply (accom_renum, accom_recontent, "
+				+ "accom_reip,mem_num,accom_num) VALUES "
+				+ "(accom_reply_seq.nextval,?,?,?,?)";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, accomReply.getAccom_recontent());
+			pstmt.setString(2, accomReply.getAccom_reip());
+			pstmt.setInt(3, accomReply.getMem_num());
+			pstmt.setInt(4, accomReply.getAccom_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//댓글 개수
+	public int getReplyAccomCount(int accom_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM accom_reply JOIN member "
+				+ "USING(mem_num) WHERE accom_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, accom_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			//SQL문 실행
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return count;
+	}
 	//댓글 목록
+	public List<AccomReplyVO> getListReplyAccom(int start, int end, int accom_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		List<AccomReplyVO> list  = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+				+ "(SELECT * FROM accom_reply JOIN member "
+				+ "USING(mem_num) WHERE accom_num=? "
+				+ "ORDER BY accom_renum DESC)a) WHERE rnum >= ? AND rnum <= ?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, accom_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<AccomReplyVO>();
+			while(rs.next()) {
+				AccomReplyVO reply = new AccomReplyVO();
+				reply.setAccom_renum(rs.getInt("accom_renum"));
+				//날짜 -> 1분전, 1시간전, 1일전 형식의 문자열로 반환
+				reply.setAccom_redate(DurationFromNow.getTimeDiffLabel(rs.getString("accom_redate")));
+				if(rs.getString("accom_remodifydate")!=null) {
+					reply.setAccom_remodifydate(DurationFromNow.getTimeDiffLabel(rs.getString("accom_remodifydate")));	
+				}
+				reply.setAccom_recontent(StringUtil.useBrNoHtml(rs.getString("accom_recontent")));
+				reply.setAccom_num(rs.getInt("accom_num"));
+				reply.setMem_num(rs.getInt("mem_num"));
+				reply.setId(rs.getString("id"));
+				
+				list.add(reply);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
 	//댓글 상세(댓글 수정, 삭제 시 작성자 회원번호 체크 용도로 사용)
+	public AccomReplyVO getReplyAccom(int accom_renum)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		AccomReplyVO reply = null;
+		String sql = null;
+		
+		try {
+			//커낵션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM accom_reply WHERE accom_renum=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, accom_renum);
+			//SQL문을 실행해서 결과행을 ResultSet에 담음
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				reply = new AccomReplyVO();
+				reply.setAccom_renum(rs.getInt("accom_renum"));
+				reply.setMem_num(rs.getInt("mem_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return reply;
+	}
 	//댓글 수정
+	public void updateReplyAccom(AccomReplyVO reply) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커낵션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE accom_reply SET accom_recontent=?, "
+				+ "accom_remodifydate=SYSDATE, accom_reip=? WHERE accom_renum=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, reply.getAccom_recontent());
+			pstmt.setString(2, reply.getAccom_reip());
+			pstmt.setInt(3,reply.getAccom_renum());
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//댓글 삭제
-	}  
+	public void deleteReplyAccom(int accom_renum)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커낵션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "DELETE FROM accom_reply WHERE accom_renum=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, accom_renum);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally{
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	//동행 신청(현재 인원수 증가)
+	//동행신청 내역?
+	}
+}
