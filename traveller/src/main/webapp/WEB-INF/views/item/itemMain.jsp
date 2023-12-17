@@ -10,20 +10,33 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="side-menu">
-		<ul>
-			<li>
-				<a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1">동남아</a>
-				<a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=2">북미</a>
-				<a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=3">호주</a>
-				<a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=4">유럽</a>
-				<a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=5">국내</a>
-			</li>
-		</ul>
+	
+	<div id="container">
+	<div class="inr">
+		<div id="lnb" class="lnb">
+			<div class="inr">
+				<dl>
+					<dt class="type">
+						<a href="#">여행상품</a>
+					</dt>
+					<dd>
+						<ul class="list_lnb">
+							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1">동남아</a></li>
+							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=2">북미</a></li>
+							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=3">호주</a></li>
+							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=4">유럽</a></li>
+							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=5">국내</a></li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		</div>
 	</div>
+</div>
+	
 	<div class="content-main">
 		<a href="#"><img src="${pageContext.request.contextPath}/upload/event_test1.jpg">캐러셀이미지</a>
 	</div>
-</div>
 </body>
 </html>
