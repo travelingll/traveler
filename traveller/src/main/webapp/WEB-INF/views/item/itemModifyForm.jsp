@@ -100,6 +100,10 @@ form ul li label{
 					<input type="radio" name="status" value="3" id="status3" <c:if test="${item.status==3}"> checked="checked"</c:if> >종료
 				</li>
 				<li>
+					<label>유형 : $item.item_case}</label>
+					
+				</li>
+				<li>
 					<label for="name">상품명</label>
 					<input type="text" id="name" name="name" maxlength="100" size="20" value="${item.item_name}" class="insert_check">
 				</li>

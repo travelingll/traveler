@@ -62,6 +62,12 @@ form ul li label{
 					<input type="radio" name="status" value="3" id="status3">종료
 				</li>
 				<li>
+					<label>상품 유형</label>
+					<input type="radio" name="item_case" value="1" id="case1">1
+					<input type="radio" name="item_case" value="1" id="case1">2
+					<input type="radio" name="item_case" value="1" id="case1">3
+				</li>
+				<li>
 					<label for="name">상품명</label>
 					<input type="text" id="name" name="name" maxlength="100" size="20" class="insert_check">
 				</li>

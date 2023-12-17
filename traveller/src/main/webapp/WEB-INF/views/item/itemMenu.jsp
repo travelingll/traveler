@@ -15,6 +15,22 @@
 td{
 	text-align:center;
 }
+a {
+    color: #333;
+    text-decoration: none;
+}
+#lnb.lnb ul.list_lnb > li {
+    border-bottom: 1px solid #ddd;
+    line-height: 50px;
+}
+.list_lnb li{
+	font-size:14px;
+}
+
+.card {
+            width: 200px; /* 카드의 너비 조정 */
+            margin: 200px auto; /* 카드를 가운데로 정렬 */
+        }
 </style>
 </head>
 <body>
@@ -33,9 +49,9 @@ td{
 						<ul class="list_lnb">
 							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1">동남아</a></li>
 							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=2">북미</a></li>
-							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=3">호주</a></li>
-							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=4">유럽</a></li>
-							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=5">국내</a></li>
+							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1">호주</a></li>
+							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1">유럽</a></li>
+							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1">국내</a></li>
 						</ul>
 					</dd>
 				</dl>
@@ -51,19 +67,19 @@ td{
 			<c:forEach var="item" items="${list}" varStatus="status">
 				<c:if test="${status.index < 3}">
 					<div class="col-md-4">
-						<div class="card" style="width:18rem;">
+						<div class="card" style="width:28rem;">
 							<img src="${pageContext.request.contextPath}/upload/${item.item_img1}" class="card-img-top">
 							<div class="card-body">
 								<h5 class="card-title">${item.item_name}</h5>
 								<p class="card-text">${item.item_content}</p>
-								<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}" class="btn btn-primary">더보기</a>
+								<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}" class="btn btn-primary" width="100px">더보기</a>
 							</div>
 						</div>
 					</div>
 				</c:if>
 			</c:forEach>
 		</div>
-
+		
 			<div class="align-center">
 				${page}
 			</div>

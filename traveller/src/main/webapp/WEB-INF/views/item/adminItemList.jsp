@@ -19,6 +19,25 @@ td{
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<div id="container">
+	<div class="inr">
+		<div id="lnb" class="lnb">
+			<div class="inr">
+				<dl>
+					<dt class="type">
+						<a href="${pageContext.request.contextPath}/admin/main.do">관리자 페이지</a>
+					</dt>
+					<dd>
+						<ul class="list_lnb">
+				  			<li><a href="${pageContext.request.contextPath}/admin/adminItemList.do">관리자 상품 게시판</a></li>
+				 			<li><a href="${pageContext.request.contextPath}/admin/itemInsert.do">관리자 상품등록</a></li>
+				 			<li><a href="${pageContext.request.contextPath}/admin/userList.do">회원관리</a></li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+		</div> 
+		
 	<div class="content-main">
 		<h2>
 			관리자 여행상품 게시판
@@ -53,6 +72,7 @@ td{
 			</div>
 	</div>
 </div>
-
+</div>
+		</div>
 </body>
 </html> 

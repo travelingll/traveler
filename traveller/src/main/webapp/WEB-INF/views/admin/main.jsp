@@ -12,17 +12,31 @@
 <body>
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<div class="side-menu">
-			<ul>
-	 			<li><a href="${pageContext.request.contextPath}/admin/main.do" style="font-weight:bold; font-size:24px; border-bottom:2px solid #000;">관리자 페이지</a></li>
-	  			<li><a href="${pageContext.request.contextPath}/admin/adminItemList.do">관리자 상품 게시판</a></li>
-	 			<li><a href="${pageContext.request.contextPath}/admin/itemInsert.do">관리자 상품등록</a></li>
-	 			<li><a href="${pageContext.request.contextPath}/admin/userList.do">회원관리</a></li>
-			</ul>
-		</div>
+		
 		<div class="content-main">
 		
 		</div>
 	</div>
+	
+	<div id="container">
+	<div class="inr">
+		<div id="lnb" class="lnb">
+			<div class="inr">
+				<dl>
+					<dt class="type">
+						<a href="${pageContext.request.contextPath}/admin/main.do">관리자 페이지</a>
+					</dt>
+					<dd>
+						<ul class="list_lnb">
+				  			<li><a href="${pageContext.request.contextPath}/admin/adminItemList.do">관리자 상품 게시판</a></li>
+				 			<li><a href="${pageContext.request.contextPath}/admin/itemInsert.do">관리자 상품등록</a></li>
+				 			<li><a href="${pageContext.request.contextPath}/admin/userList.do">회원관리</a></li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+		</div> 
+		</div>
+		</div>
 </body>
 </html>
