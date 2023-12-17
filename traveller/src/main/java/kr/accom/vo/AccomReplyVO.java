@@ -9,6 +9,7 @@ public class AccomReplyVO {
 	private int accom_num; //게시판 번호
 	private int mem_num; //작성자 회원번호
 	private String id; //작성자 ID
+	
 	public int getAccom_renum() {
 		return accom_renum;
 	}
