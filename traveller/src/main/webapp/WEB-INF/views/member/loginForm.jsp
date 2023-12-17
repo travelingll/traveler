@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -25,28 +25,81 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="content-main">
-		<h2>로그인</h2>
-		<form id="login_form" action="login.do" method="post">
-			<ul>
-				<li class="floating-label">
-					<input type="text" class="form-input" placeholder="아이디" name="id" id="id" maxlength="12" autocomplete="off">
-					<label for="id">아이디</label>
-				</li>
-				<li class="floating-label">
-					<input type="password" class="form-input" placeholder="비밀번호" name="passwd" id="passwd" maxlength="12">
-					<label for="passwd">비밀번호</label>
-				</li>
-			</ul>
-			<div class="align-center">
-				<input type="submit" value="로그인">
-				<input type="button" value="비밀번호 찾기" onclick="location.href='${pageContext.request.contextPath}/member/findPasswordForm.do'">
-				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-			</div>
-		</form>
-	</div>
+<div id="__nuxt">
+    	<!---->
+    		<div id="__layout">
+    			<div id="wrapper">
+    				<div id="wrap">
+    					<div id="headerWrap" class="header_wrap">
+    						<div id="header">
+    							<a href="${pageContext.request.contextPath}/main/main.do" class="js_act btn_prev">
+    							
+    								<span>이전페이지</span>
+    							</a> 
+    							<h1 class="title">로그인</h1> 
+    						<!---->
+    					</div>
+    				</div> 
+    				
+    				<div id="container">
+    					<div class="contents_wrap login_wrap">
+    						<div class="logo_wrap">
+    							<span class="logo">트래블러</span>
+    						</div> 
+    					<!---->
+    					<form id="login_form" action="login.do" method="post">
+    						<div class="inner_cont">
+    							<div class="input_duo">
+    								<span class="input_text">
+    									<input maxlength="12" name="id" class="form-input" id="id" type="text" title="아이디" autocomplete="off" placeholder="" > 
+    									<label for="id">아이디</label>
+    								</span> 
+    								<span class="input_text">
+    									<input maxlength="12" name="passwd" class="form-input" id="passwd" type="password" title="비밀번호" autocomplete="off" placeholder=""> 
+    									<label for="passwd">비밀번호</label>
+    								</span> 
+    							</div>
+    						</div> 
+    					<!----> 
+    						<div class="btn_wrap mt12">
+    							<input type="submit" class="btn em big disable" value="로그인">
+     								 
+  							 
+  							</div> 
+  							</form>
+  							<div class="btn_wrap align_wrap mt24">
+  								<div class="leftbox">
+  									<button type="button" class="btn txt" onclick="location.href='${pageContext.request.contextPath}/member/findPasswordForm.do'">
+  										비밀번호 찾기
+  									</button>
+  								</div> 
+  								<div class="rightbox">
+  									<button type="button" class="btn txt blue ico join" onclick="location.href='${pageContext.request.contextPath}/member/registerUserForm.do'">회원가입</button>
+  								</div>
+  							</div> 
+  							<div class="inner_cont align_wrap mt04">
+  								<div class="rightbox">
+  									<span class="tooltip02">
+  										<em class="txt_none">회원가입하고 마일리지 혜택을 받아보세요!</em>
+  									</span>
+  								</div>
+  							</div> 
+  						   
+  					<!---->
+  				</div>
+  			</div>
+  		</div> 
+  	<!---->
+  </div>
+ </div>
 </div>
+  
 </body>
 </html>
+
+
+
+    
+
+ 
+
