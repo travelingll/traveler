@@ -7,7 +7,7 @@
 	<div id="__nuxt">
 		<div id="__layout">
 			<div id="wrapper">
-				<div id="screenArea">
+				<div id="screenArea">  
 					<div id="wrap">
 						<div><!----> 
 							<div id="gnb_wrap" class="gnb_wrap">
