@@ -198,7 +198,6 @@ $(function(){
 	</div>
 </div>
 </body>
-</html>
 <!-- 우편번호 검색 시작 -->
 	<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
 <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
@@ -297,3 +296,4 @@ $(function(){
     }
 </script>
 <!-- 우편번호 검색 끝 -->
+</html>
