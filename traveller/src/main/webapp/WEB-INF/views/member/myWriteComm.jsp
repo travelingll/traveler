@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eunseo.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
-<body>
+
 <body class="chrome">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div id="__nuxt">
