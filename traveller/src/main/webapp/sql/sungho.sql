@@ -24,7 +24,7 @@ create table accom_info(
  info_num number not null,
  accom_num number not null,
  mem_num number not null,
- accom_yn number(1),
+ accom_yn number(1), 
  constraint accom_info_pk primary key(info_num),
  constraint accom_info_fk1 foreign key(accom_num) references accom(accom_num), 
  constraint accom_info_fk2 foreign key(mem_num) references member(mem_num) 

@@ -21,7 +21,7 @@ public class AccomDAO {
 		return instance;
 	}
 	
-	private AccomDAO() {}
+	public AccomDAO() {}
 	
 	//글 등록
 	public void insertAccom(AccomVO accom) throws Exception{
@@ -692,7 +692,80 @@ public class AccomDAO {
 		}finally{
 			DBUtil.executeClose(null, pstmt, conn);
 		}
-	//동행 신청(현재 인원수 증가)
-	//동행신청 내역?
 	}
+	//동행 신청(현재 인원수 증가)
+	public boolean applyForAccom(int accom_num, int user_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2= null;
+		PreparedStatement pstmt3 = null;
+		ResultSet rs = null;
+		String sql = null;
+		boolean applied = false;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//오토커밋 해제
+			conn.setAutoCommit(false);
+			
+			//SQL문 작성
+			//현재 신청된 인원수와 모집 인원수 조회
+			sql = "SELECT accom_quantity, COUNT(*) AS apply_quantity FROM accom WHERE accom_num = ?";
+			//PreparedStatement 객체 상태
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, accom_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			
+			int totalQuantity = 0;
+			int appliedQuantity = 0;
+			
+			if(rs.next()) {
+				totalQuantity = rs.getInt("accom_quantity");
+                appliedQuantity = rs.getInt("apply_quantity");
+			}
+			
+			//모집인원수보다 현재 신청된 인원수가 적은 경우 동행 신청 가능
+			if(totalQuantity > appliedQuantity) {
+				//동행 신청 수행
+				sql = "INSERT INTO accom_info(info_num, accom_num, mem_num) VALUES"
+					+ "(accom_info_seq.nextval, ?, ?)";
+				
+				 pstmt2 = conn.prepareStatement(sql);
+	             pstmt2.setInt(1, accom_num);
+	             pstmt2.setInt(2, user_num); 
+	             pstmt2.executeUpdate();
+	             
+	             //현재 신청된 인원 수를 증가시킴
+	             appliedQuantity++;
+	             
+	          //accom 테이블의 신청 인원 수를 업데이트
+	          sql = "UPDATE accom SET accom_quantity = ? WHERE accom_num = ?";
+	          pstmt3 = conn.prepareStatement(sql);
+	          pstmt3.setInt(1, appliedQuantity);
+	          pstmt3.setInt(2, accom_num);
+	          pstmt3.executeUpdate();
+
+	          applied = true;
+	          
+	        //모든 SQL문이 정상적으로 수행
+	        conn.commit();
+			}
+		}catch(Exception e) {
+			//SQL문이 하나라도 실패하면
+			conn.rollback();
+			throw new Exception(e);
+		
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(null, pstmt3, null);
+			;
+		}
+		
+		return applied;
+	}
+	//동행신청 내역?
 }

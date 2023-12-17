@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +43,7 @@
 			${accom.accom_content}
 		</p>
 		<hr size="1" noshade="noshade" width="100%">
-		<p>모집 인원: ${accom.accom_quantity}명 여행 경비: ${accom.accom_expense}원 출발일: ${accom.accom_start} 종료일: ${accom.accom_end}</p>
+		<p>모집 인원: ${accom.accom_quantity}명 여행 경비: <fmt:formatNumber value="${accom.accom_expense}"/>원 출발일: ${accom.accom_start} 종료일: ${accom.accom_end}</p>
 		<hr size="1" noshade="noshade" width="100%" >
 		<ul class="detail-sub">
 			<li>
@@ -72,6 +73,13 @@
 				};
 			</script>
 			</c:if>
+			<c:if test="${!empty user_num}">
+    		<form action="applyForAccom.do" method="post">
+        	<input type="hidden" name="accom_num" value="${accom.accom_num}">
+        	<input type="hidden" name="user_num" value="${user_num}">
+        	<input type="submit" value="동행 신청">
+    	</form>
+	</c:if>			
 		</ul>
 		<!-- 댓글 시작 -->
   	<div id="reply_div">
