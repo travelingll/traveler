@@ -64,7 +64,7 @@
 									</div> 
 									<div>
 										<ul class="list_gnb_menu">
-											<li><a href="">여행상품</a>
+											<li><a href="${pageContext.request.contextPath}/item/itemMain.do" class="dropdown-btn">여행상품</a>
 												<div>
 												</div>
 											</li>
