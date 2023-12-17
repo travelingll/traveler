@@ -79,13 +79,6 @@ $(function(){
 				return false;
 			}
 		} //end of for
-		
-		if($('#passwd').val()!=$('#cpasswd').val()){
-			alert('비밀번호와 비밀번호 확인이 불일치');
-			$('#passwd').val('').focus();
-			$('#cpasswd').val('');
-			return false;
-		}
 		if($('input[name="gender"]:radio:checked').length < 1){
 			alert('성별을 선택하세요');
 			return false;
@@ -104,6 +97,12 @@ $(function(){
 		}
 		if($('input[name="push"]:radio:checked').length < 1){
 			alert('광고 수신 동의 여부를 선택하세요');
+			return false;
+		}
+		if($('#passwd').val()!=$('#cpasswd').val()){
+			alert('비밀번호와 비밀번호 확인이 불일치');
+			$('#passwd').val('').focus();
+			$('#cpasswd').val('');
 			return false;
 		}
 	}); //end of submit
