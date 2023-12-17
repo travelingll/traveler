@@ -12,19 +12,18 @@ public class ItemDetailAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		
 		int item_num = Integer.parseInt(request.getParameter("item_num"));
 		
 		ItemDAO dao = ItemDAO.getInstance();
-		ItemVO item = dao.getItem(item_num);
-		
+		ItemVO item = dao.getItem(item_num); 
+		System.out.println(item);
 		request.setAttribute("item", item);
+		request.setAttribute("user_num", user_num);
 		
-		return "/WEB-INF/views/item/itemDetail.jsp";
+		return "/WEB-INF/views/item/adminItemDetail.jsp";
 	}
 
 }
