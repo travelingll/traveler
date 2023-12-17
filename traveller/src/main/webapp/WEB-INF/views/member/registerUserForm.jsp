@@ -79,13 +79,6 @@ $(function(){
 				return false;
 			}
 		} //end of for
-		
-		if($('#passwd').val()!=$('#cpasswd').val()){
-			alert('비밀번호와 비밀번호 확인이 불일치');
-			$('#passwd').val('').focus();
-			$('#cpasswd').val('');
-			return false;
-		}
 		if($('input[name="gender"]:radio:checked').length < 1){
 			alert('성별을 선택하세요');
 			return false;
@@ -104,6 +97,12 @@ $(function(){
 		}
 		if($('input[name="push"]:radio:checked').length < 1){
 			alert('광고 수신 동의 여부를 선택하세요');
+			return false;
+		}
+		if($('#passwd').val()!=$('#cpasswd').val()){
+			alert('비밀번호와 비밀번호 확인이 불일치');
+			$('#passwd').val('').focus();
+			$('#cpasswd').val('');
 			return false;
 		}
 	}); //end of submit
@@ -199,7 +198,6 @@ $(function(){
 	</div>
 </div>
 </body>
-</html>
 <!-- 우편번호 검색 시작 -->
 	<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
 <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
@@ -298,3 +296,4 @@ $(function(){
     }
 </script>
 <!-- 우편번호 검색 끝 -->
+</html>
