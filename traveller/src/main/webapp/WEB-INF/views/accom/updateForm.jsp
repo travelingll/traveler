@@ -60,7 +60,8 @@ $(function(){
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class = "content-main">
 		<h2>게시판 글수정</h2>
-		<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
+		<form id="write_form" action="update.do" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="accom_num" value="${accom.accom_num}">
 		<ul>
 			<li>
 				<label for = "accom_title">제목</label>

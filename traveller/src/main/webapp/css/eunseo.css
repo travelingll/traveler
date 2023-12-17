@@ -1,0 +1,244 @@
+@charset "UTF-8";
+/*-------마이페이지*/
+#lnb.lnb + .contents {
+    float: right;
+    width: 1010px;
+}
+.contents {
+    min-height: 350px;
+}
+div {
+    display: block;
+}
+body {
+    -webkit-text-size-adjust: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    word-break: break-all;
+    line-height: 1;
+    letter-spacing: -.4px;
+}
+.text_wrap.big.fix, .text_wrap.fix {
+    margin: 0;
+    height: 55px;
+}
+.text_wrap.big {
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+.text_wrap {
+    position: relative;
+    margin: 40px 0 0;
+    padding: 0;
+}
+.text_wrap.fix strong, .text_wrap.big strong.tit {
+    font-size: 22px;
+    font-weight: 600;
+    color: #111;
+}
+.text_wrap.fix + .cont_unit, .text_wrap.fix + .tbl, .text_wrap.fix + .js_tabs {
+    margin-top: 0 !important;
+}
+.js_tabs {
+    position: relative;
+    margin-bottom: 40px;
+}
+.tabs {
+    overflow: hidden;
+}
+ol, ul, li {
+    list-style: none;
+}
+.js_tabs:not(.box_tab) > div {
+    position: relative;
+}
+.panels {
+    position: relative;
+    padding: 30px 0 0;
+}
+.panels .panel.selected {
+    display: block;
+}
+.panels .panel {
+    display: none;
+}
+.tbl {
+    position: relative;
+}
+.tbl {
+    table-layout: fixed;
+    display: table;
+    width: 100%;
+}
+.tbl table {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    border-collapse: separate;
+    table-layout: fixed;
+    font-size: 15px;
+}
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+colgroup {
+    display: table-column-group;
+}
+.tbl tbody {
+    position: relative;
+}
+.tbl table.type2 tr:first-child th, .tbl .type2 tr:first-child td {
+    border-top: 1px solid #999;
+}
+.tbl table.type2 th {
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+.tbl th {
+    background-color: #f7f7f7;
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+}
+.tbl td {
+    color: #333;
+    font-size: 15px;
+}
+.tbl th, .tbl td {
+    text-align: left;
+    min-height: 54px;
+    padding: 15px 20px;
+    font-weight: 400;
+    line-height: 23px;
+}
+.list_bul.billiard>li {
+    padding-left: 15px;
+    font-size: 13px;
+    color: #888;
+    line-height: 20px;
+    text-align: left;
+}
+.list_bul>li:first-child, .list_dash>li:first-child, .notice_wrap .list_bul>li {
+    margin-top: 0;
+}
+.list_bul>li {
+    position: relative;
+    padding: 2px 0 2px 10px;
+    line-height: 1.46;
+    font-size: 13px;
+    color: #888;
+}
+
+.tbl table.type2 td {
+    border-top: 1px solid #ddd;
+}
+
+.tabs {
+    overflow: hidden;
+}
+.type1 .tabs>li.selected {
+    border-color: #111;
+    border-right: 1px solid #111;
+}
+.type1 .tabs>li {
+    display: table;
+    height: 52px;
+    line-height: 52px;
+    border-width: 1px 0 0 1px;
+    border-color: #ddd;
+    border-style: solid;
+    background-color: #fff;
+}
+.tabs>li.selected {
+    border-color: #5e2bb8;
+    border-left: 1px solid #5e2bb8;
+    z-index: 2;
+}
+.tabs>li {
+    float: left;
+    position: relative;
+    border-top: none;
+    text-align: center;
+    height: 59px;
+    line-height: 59px;
+    border: 1px solid #dcdcdc;
+    border-bottom: 1px solid #111;
+    z-index: 1;
+}
+.type1 .tabs>li.selected>a {
+    color: #5e2bb8;
+    background-color: #fff;
+}
+.type1 > .tabs>li>a {
+    display: table-cell;
+}
+.type1 .tabs>li>a {
+    color: #333;
+    font-size: 15px;
+    line-height: 20px;
+    vertical-align: middle;
+}
+.tabs>li.selected>a {
+    color: #fff;
+    background-color: #5e2bb8;
+    font-weight: 600;
+}
+.tabs>li>a {
+    display: block;
+    height: 100%;
+    color: #111;
+    font-size: 18px;
+    line-height: 57px;
+    font-weight: 400;
+}
+a {
+    color: #333;
+    text-decoration: none;
+}
+.type1 .tabs>li:last-child {
+    border-right: 1px solid #ddd;
+}
+.type1 .tabs>li {
+    display: table;
+    height: 52px;
+    line-height: 52px;
+    border-width: 1px 0 0 1px;
+    border-color: #ddd;
+    border-style: solid;
+    background-color: #fff;
+}
+.tabs>li + li {
+    border-left: none;
+}
+.tabs>li {
+    float: left;
+    position: relative;
+    border-top: none;
+    text-align: center;
+    height: 59px;
+    line-height: 59px;
+    border: 1px solid #dcdcdc;
+    border-bottom: 1px solid #111;
+    z-index: 1;
+}
+
+
+
+
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    -webkit-tap-highlight-color: transparent;
+    -moz-tap-highlight-color: transparent;
+}

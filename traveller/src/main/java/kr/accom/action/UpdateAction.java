@@ -52,7 +52,7 @@ public class UpdateAction implements Action{
 			FileUtil.removeFile(request, db_accom.getAccom_filename());
 		}
 
-		return "redirect:/comm/detail.do?accom_num="+accom_num;
+		return "redirect:/accom/detail.do?accom_num="+accom_num;
 	}  
 
 }

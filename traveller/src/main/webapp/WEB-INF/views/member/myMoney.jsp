@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>내가 쓴 글</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/eunseo.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -32,18 +33,26 @@
 		</div>
 		</c:if>
 		<c:if test="${count > 0}">
-		<table>
-			<tr>
-				<th>적립금액</th>
-				<th>내역</th>
-				<th>적립일</th>
-			</tr>
-			<tr>
-				<td><fmt:formatNumber value="${money.saved_money}"/>원</td>
-				<td>${money.sm_content}</td>
-				<td>${money.sm_date}</td>
-			</tr>
-		</table>
+		<div class="mypage-div1 align-center color">
+			${member.name}님의 사용가능한 적립금은<br>
+			총 <b><fmt:formatNumber value="${money_total}"/>원</b> 입니다.
+		</div>
+		<div class="mypage-div2 align-center">
+			<table>
+				<tr>
+					<th>적립금액</th>
+					<th>내역</th>
+					<th>적립일</th>
+				</tr>
+				<c:forEach var="money" items="${moneyList}">
+				<tr>
+					<td><fmt:formatNumber value="${money.saved_money}"/>원</td>
+					<td>${money.sm_content}</td>
+					<td>${money.sm_date}</td>
+				</tr>
+				</c:forEach>
+			</table>
+		</div>
 		</c:if>
 	</div>
 </div>

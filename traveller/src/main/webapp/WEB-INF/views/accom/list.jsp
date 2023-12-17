@@ -90,7 +90,7 @@ window.onload = function(){
 				<td>${accom.accom_regdate}</td>
 				<td>${accom.accom_quantity}</td>
 				<td>${accom.accom_hit}</td>
-				<td></td>
+				<td>${accom.cnt}</td>
 				<%-- 추천수 부분 --%>
 			</tr>
 			</c:forEach>

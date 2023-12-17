@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>My페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/eunseo.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -93,93 +94,171 @@ $(function(){
 });
 </script>
 </head>
-<body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="side-menu">
-		<ul>
- 			<li><a href="${pageContext.request.contextPath}/member/myPage.do" style="font-weight:bold; font-size:24px; border-bottom:2px solid #000;">마이페이지</a></li>
-  			<li><a href="${pageContext.request.contextPath}/member/myPage.do">개인정보</a></li>
- 			<li><a href="${pageContext.request.contextPath}/member/myWriteComm.do">내가 쓴 글</a></li>
- 			<li><a href="${pageContext.request.contextPath}/member/myQuestion.do">1:1 문의</a></li>
- 			<li><a href="${pageContext.request.contextPath}/member/myMoney.do">적립금</a></li>
- 			<li><a>동행 신청내역</a></li>
-		</ul>
-	</div>
-	<div class="content-main">
-		<h2>회원정보</h2>
-		<hr size="2" color="black">
-		<div class="mypage-div" style="float:left;text-align:center;">
-			<h3>프로필 사진</h3>
-			<ul>
-				<li>
-					<c:if test="${empty member.photo}">
-					<img src="${pageContext.request.contextPath}/images/face.jpg" width="200" height="200" class="my-photo">
-					</c:if>
-					<c:if test="${!empty member.photo}">
-					<img src="${pageContext.request.contextPath}/upload/${member.photo}" width="200" height="200" class="my-photo">
-					</c:if>
-				</li>
-				<li>
-					<c:if test="${member.auth == 3}">
-					<b>등급 : 일반</b>
-					</c:if>
-					<c:if test="${member.auth == 2}">
-					<b>등급 : VIP</b>
-					</c:if>
-					<c:if test="${member.auth == 1}">
-					<b>등급 : VVIP</b>
-					</c:if>
-					<c:if test="${member.auth == 9}">
-					<b>등급 : 관리자</b>
-					</c:if>
-				</li>
-				<li>
-					<div class="align-center">
-						<input type="button" value="수정" id="photo_btn">
-					</div>
-					<div id="photo_choice" style="display:none;">
-						<input type="file" id="photo" accept="image/gif,image/png,image/jpeg"><br>
-						<input type="button" value="전송" id="photo_submit">
-						<input type="button" value="취소" id="photo_reset">
-					</div>
-				</li>
-			</ul>
-		</div>
-		<div class="mypage-div2" style="float:right;">
-			<h3>
-				연락처
-			</h3>
-			<ul>
-				<li>아이디 : ${member.id}</li>
-				<li>이름 : ${member.name}</li>
-				<li>전화번호 : ${member.phone}</li>
-				<li>이메일 : ${member.email}</li>
-				<li>생년월일 : ${member.birth}</li>
-				<li>우편번호 : ${member.zipcode}</li>
-				<li>주소 : ${member.address1} ${member.address2}</li>
-				<li>가입일 : ${member.reg_date}</li>
-				<c:if test="${!empty member.modify_date}">
-				<li>최근 정보 수정일 : ${member.modify_date}</li>
-				</c:if>
-			</ul>
-		</div>
-		<div class="mypage-end"></div>
-	</div>
-	<div class="buttons" style="text-align:center;">
-		<input type="button" value="연락처 수정" onclick="location.href='modifyUserForm.do'">
-		<input type="button" value="비밀번호 수정" onclick="location.href='modifyPasswordForm.do'">
-		<input type="button" value="회원탈퇴" id="user_delete">
-		<script>
-			let user_delete = document.getElementById('user_delete');
-			user_delete.onclick = function(){
-				let choice = confirm('정말 탈퇴 하시겠습니까?');
-				if(choice){
-					location.replace('deleteUserForm.do');
-				}
-			};
-		</script>
-	</div>
-</div>
+
+<body class="chrome">
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+    <div id="__nuxt">
+    	<div id="__layout">
+    		<div id="wrapper">
+    			<div id="screenArea">
+    				<div id="wrap">
+    					<div id="container">
+    						<div class="inr">
+    						<!-- 여기서 부터 사이드바 입니다.-->
+    							<div id="lnb" class="lnb">
+    								<div class="inr">
+    									<dl>
+											<dt class="type">		
+												<a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a>
+											</dt>
+											<dd>
+												<ul class="list_lnb">
+												<li><a href="${pageContext.request.contextPath}/member/myPage.do">개인정보</a></li>
+ 												<li><a href="${pageContext.request.contextPath}/member/myWriteComm.do">내가 쓴 글</a></li>
+ 												<li><a href="${pageContext.request.contextPath}/member/myQuestion.do">1:1 문의</a></li>
+ 												<li><a href="${pageContext.request.contextPath}/member/myMoney.do">적립금</a></li>
+ 												<li><a>동행 신청내역</a></li>
+												</ul>
+											</dd>
+										</dl>
+    								</div>
+    							</div> 
+    							<!-- 여기까지 사이드바 입니다.-->
+    							<div id="contents" class="contents">
+    								<div class="text_wrap big fix"><strong class="tit">개인정보</strong></div> 
+    								<div class="js_tabs link type1 v-tabs">
+    									<ul class="tabs"></ul> 
+    										<div class="panels">
+    											<div id="tabCon01" class="panel selected">
+    												<div class="tbl">  
+    												<ul>
+														<li>
+															<c:if test="${empty member.photo}">
+															<img src="${pageContext.request.contextPath}/images/face.jpg" width="150" height="150" class="my-photo">
+															</c:if>
+															<c:if test="${!empty member.photo}">
+															<img src="${pageContext.request.contextPath}/upload/${member.photo}" width="150" height="150" class="my-photo">
+															</c:if>					
+														</li>
+														<li>
+															<div class="align-center">
+																<input class=btn type="button" value="수정" id="photo_btn">
+															</div>
+															<div id="photo_choice" style="display:none;">
+																<input type="file" id="photo" accept="image/gif,image/png,image/jpeg"><br><br>
+																<input class=btn type="button" value="전송" id="photo_submit">
+																<input class=btn type="button" value="취소" id="photo_reset">
+															</div>
+														</li>
+														<li>
+														<div class="buttons" style="float:right" >
+														
+															<input class="btn" type="button" value="비밀번호 수정" onclick="location.href='modifyPasswordForm.do'">
+															<input class="btn" type="button" value="회원탈퇴" id="user_delete">
+															<script>
+																let user_delete = document.getElementById('user_delete');
+																	user_delete.onclick = function(){
+																	let choice = confirm('정말 탈퇴 하시겠습니까?');
+																		if(choice){
+																			location.replace('deleteUserForm.do');
+																					}
+																				};
+															</script>
+														</div>	
+															
+														</li>
+														<li>
+															<c:if test="${member.auth == 3}">
+															<b>등급 : 일반</b>
+															</c:if>
+															<c:if test="${member.auth == 2}">	
+															<b>등급 : VIP</b>
+															</c:if>
+															<c:if test="${member.auth == 1}">
+															<b>등급 : VVIP</b>
+															</c:if>
+															<c:if test="${member.auth == 9}">
+															<b>등급 : 관리자</b>
+															</c:if>
+														</li>
+													</ul>
+    													<table class="type2">
+    														<colgroup><col style="width: 20%;"><col></colgroup> 
+    														<tbody>
+    															<tr>
+    																<th>이름</th><td>${member.name}</td>
+    															</tr> 
+    															<tr><th>아이디</th>
+    																<td>
+    																	${member.id}<!----> 
+    																	<ul class="list_bul billiard">
+    																		<li>트래블러닷컴에서는 사용하고 계신 아이디는 변경불가합니다.</li> <!---->
+    																	</ul>
+    																</td>
+    															</tr> 
+    															<tr>
+    																<th>휴대폰번호</th> 
+    																<td>${member.phone}
+    																<input class="btn" type="button" value="연락처 수정" onclick="location.href='modifyUserForm.do'">
+    																</td>
+    															</tr> 
+    															<tr>
+    																<th>생년월일/성별</th> 
+    																<td>${member.birth}</td>
+    															</tr> 
+    															<tr>
+    																<th>이메일</th> 
+    																<td>${member.email}
+    																	<ul class="list_bul billiard">
+    																		<li>트래블러닷컴에서는 사용하고 계신 e-mail주소는 변경 불가합니다.</li>
+    																	</ul>
+    																</td>
+    															</tr>
+    															<tr>
+    																<th>우편번호</th> 
+    																<td>${member.zipcode}</td>
+    															</tr> 
+    															<tr>
+    																<th>주소</th> 
+    																<td>${member.address1} ${member.address2}</td>
+    															</tr> 
+    															<tr>
+    																<th>가입일</th> 
+    																<td>${member.reg_date}</td>
+    															</tr> 
+    															<c:if test="${!empty member.modify_date}">
+    															<tr>
+    																<th>최근 정보 수정일</th> 
+    																<td>${member.modify_date}</td>
+    															</tr> 
+    															</c:if>
+    														</tbody>
+    													</table>
+    												</div>     
+    											</div>
+    										</div>
+    									</div> <!---->
+    								</div>
+    							</div>
+    						</div>
+    					</div> 
+    				</div> <!----> 
+    				<div id="printArea">
+    				</div> 
+    														
+    			</div>
+    		</div>
+    	</div>
+  
+
+
+
+
+
+
+
+
+ 
+
 </body>
 </html>
