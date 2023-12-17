@@ -29,7 +29,7 @@ a {
 
 .card {
             width: 200px; /* 카드의 너비 조정 */
-            margin: 200px auto; /* 카드를 가운데로 정렬 */
+            margin: 200px 100px 200px 0px; /* 카드를 가운데로 정렬 */
         }
 </style>
 </head>
@@ -67,7 +67,7 @@ a {
 			<c:forEach var="item" items="${list}" varStatus="status">
 				<c:if test="${status.index < 3}">
 					<div class="col-md-4">
-						<div class="card" style="width:28rem;">
+						<div class="card" style="width:40rem;">
 							<img src="${pageContext.request.contextPath}/upload/${item.item_img1}" class="card-img-top">
 							<div class="card-body">
 								<h5 class="card-title">${item.item_name}</h5>
