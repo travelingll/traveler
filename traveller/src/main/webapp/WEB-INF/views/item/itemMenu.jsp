@@ -17,7 +17,7 @@ td{
 }
 a {
     color: #333;
-    text-decoration: none;
+    text-decoration: none; 
 }
 #lnb.lnb ul.list_lnb > li {
     border-bottom: 1px solid #ddd;

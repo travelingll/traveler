@@ -11,7 +11,7 @@
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	
-	<div id="container">
+	<div id="container"> 
 	<div class="inr">
 		<div id="lnb" class="lnb">
 			<div class="inr">
