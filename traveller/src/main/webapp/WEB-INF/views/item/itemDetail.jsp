@@ -30,7 +30,16 @@
 	width:300px;
 	}
 	
+	
 </style>
+<script>
+	function openPopup1() {
+    window.open("popup1.do", "예약시 유의사항", "width=500,height=500");
+	}
+	function openPopup2() {
+    window.open("popup2.do", "여행시 유의사항", "width=500,height=500");
+	}
+</script>
 </head>
 <body>
 <div class="page-main">
@@ -56,7 +65,7 @@
 				</div>
 				<br>
 				<div style="border: 1px solid black;">
-					<h3>${item.item_name}<h3></h3><br>
+					<h3>${item.item_name}</h3><br>
 				</div>
 				<br>
 				<div style="border: 1px solid black;">
@@ -100,8 +109,8 @@
 		<br>
 		<br>
 		<hr size="10px">
-			<input type="button" value="예약시 유의사항">	
-			<input type="button" value="여행시 유의사항">
+			<button onclick="openPopup1()">예약시 유의사항</button>	
+			<button onclick="openPopup2()">여행시 유의사항</button>	
 		</div>
 	<!-- 상품가격 알림 끝 -->
 	<br>
@@ -134,7 +143,7 @@
 			<br>
 		</c:if>
 		
-		<c:if test="${!empty item.item_img4 && !empty item.item_img5 !empty item.item_img6}">
+		<c:if test="${!empty item.item_img4 && !empty item.item_img5 && !empty item.item_img6}">
 			<h2>6일차</h2>
 			<img src="${pageContext.request.contextPath}/upload/${item.item_img6}" width="100%">
 			<br>

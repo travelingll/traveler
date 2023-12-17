@@ -15,7 +15,7 @@
 		<div class="side-menu">
 			<ul>
 	 			<li><a href="${pageContext.request.contextPath}/admin/main.do" style="font-weight:bold; font-size:24px; border-bottom:2px solid #000;">관리자 페이지</a></li>
-	  			<li><a href="${pageContext.request.contextPath}/admin/itemList.do">관리자 상품 게시판</a></li>
+	  			<li><a href="${pageContext.request.contextPath}/admin/adminItemList.do">관리자 상품 게시판</a></li>
 	 			<li><a href="${pageContext.request.contextPath}/admin/itemInsert.do">관리자 상품등록</a></li>
 	 			<li><a href="${pageContext.request.contextPath}/admin/userList.do">회원관리</a></li>
 			</ul>

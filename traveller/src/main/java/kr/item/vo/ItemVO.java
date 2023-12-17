@@ -23,7 +23,14 @@ public class ItemVO {
 	private Date reg_date;
 	private Date modifydate;
 	private int quantity;
+	private String item_case;
 	
+	public String getItem_case() {
+		return item_case;
+	}
+	public void setItem_case(String item_case) {
+		this.item_case = item_case;
+	}
 	public int getItem_num() {
 		return item_num;
 	}

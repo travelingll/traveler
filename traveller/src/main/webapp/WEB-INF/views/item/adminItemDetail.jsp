@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +40,13 @@ $(function(){
 			}
 		}
 		
+		$('#photo_btn1').click(function(){
+			$('#photo_choice1').show();
+			$(this).hide();
+		});
+		
+		
+		
 	});
 });
 </script>
@@ -55,85 +63,114 @@ form ul li label{
 	<div class="content-main">
 		<h2>상품 등록</h2>
 		<form action="itemInsertForm.do" method="post" id="insert_form" enctype="multipart/form-data">
+		<input type="hidden" name="item_num" value="${item.item_num}">
 			<ul>
 				<li>
-					<label>상품표시여부</label>
-					<input type="radio" name="status" value="1" id="status1" <c:if test="${item.status==1}"> checked="checked"</c:if> >미표시
-					<input type="radio" name="status" value="2" id="status2" <c:if test="${item.status==2}"> checked="checked"</c:if> >판매가능
-					<input type="radio" name="status" value="3" id="status3" <c:if test="${item.status==3}"> checked="checked"</c:if> >종료
+					상품표시여부
+					<c:if test="${item.status==1}">미표시</c:if>
+					<c:if test="${item.status==2}">판매가능</c:if>
+					<c:if test="${item.status==3}">종료</c:if>
+					<br>
 				</li>
 				<li>
-					<label for="name">상품명</label>
-					<input type="text" id="name" name="name" maxlength="100" size="20" value="${item.item_name}" class="insert_check">
+				<br>
+					상품명 ${item.item_name}
 				</li>
 				<li>
-					<label for="city">방문도시</label>
-					<input type="text" id="city" name="city" maxlength="100" size="20" value="${item.item_content}" class="insert_check">
+				<br>
+					방문 도시 ${item.item_content}
 				</li>
 				<li>
-					<label for="price">상품가격</label>
-					<input type="number" id="price" name="price" maxlength="30" size="20" value="${item.item_price}" class="insert_check">원
+				<br>
+					상품 가격 <fmt:formatNumber value="${item.item_price}"/>원
 				</li>
 				<li>
-					<label for="pic1">1일차 사진(필수입력)</label>
-					<input type="file" id="pic1" name="pic1" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
+				<br>
+					<img src="${pageContext.request.contextPath}/upload/${item.item_img1}" width="150px">
+					<br>
+					1일차 사진
+					<br>
 				</li>
 				<li>
-					<label for="pic2">2일차 사진(필수입력)</label>
-					<input type="file" id="pic2" name="pic2" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img2}" class="insert_check">
+				<br>
+					<img src="${pageContext.request.contextPath}/upload/${item.item_img2}" width="150px">
+					<br>
+					2일차 사진
+					<br> 
 				</li>
 				<li>
-					<label for="pic3">3일차 사진(필수입력)</label>
-					<input type="file" id="pic3" name="pic3" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img3}" class="insert_check">
+				<br>
+					<img src="${pageContext.request.contextPath}/upload/${item.item_img3}" width="150px">
+					<br>
+					3일차 사진
+					<br> 
+				</li>
+					<c:if test="${!empty item.item_img4}">
+				<li>
+				<br>
+					<img src="${pageContext.request.contextPath}/upload/${item.item_img4}" width="150px">
+					<br>
+					4일차 사진
+					<br>
+				</li>
+				<br>
+					</c:if>
+					<c:if test="${!empty item.item_img4 && item.item_img5}">
+				<li>
+				<br>
+					<img src="${pageContext.request.contextPath}/upload/${item.item_img5}" width="150px">
+					<br>
+					5일차 사진
+					<br>
+				</li>
+					</c:if>
+					<c:if test="${!empty item.item_img4 && item.item_img5 && item.item_img6}">
+				<li>
+				<br>
+					<img src="${pageContext.request.contextPath}/upload/${item.item_img6}" width="150px">
+					<br>
+					6일차 사진
+					<br>
+				</li>
+					</c:if>
+				<li>
+				<br>
+					여행지
+					<c:if test= "${item.item_st1==1}">동남아</c:if>
+					<c:if test= "${item.item_st1==2}">북미</c:if>
+					<c:if test= "${item.item_st1==3}">호주</c:if>
+					<c:if test= "${item.item_st1==4}">유럽</c:if>
+					<c:if test= "${item.item_st1==5}">국내</c:if>
 				</li>
 				<li>
-					<label for="pic4">4일차 사진(선택입력)</label>
-					<input type="file" id="pic4" name="pic4" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="plus">
+				<br>
+					여행스타일1
+					<c:if test= "${item.item_st2==1}">혼자</c:if>
+					<c:if test= "${item.item_st2==2}">연인</c:if>
+					<c:if test= "${item.item_st2==3}">친구</c:if>
 				</li>
 				<li>
-					<label for="pic5">5일차 사진(선택입력)</label>
-					<input type="file" id="pic5" name="pic5" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="plus">
+				<br>
+					여행스타일2
+					<c:if test= "${item.item_st3==1}">휴양</c:if>
+					<c:if test= "${item.item_st3==2}">액티비티</c:if>
+					<c:if test= "${item.item_st3==3}">관광</c:if>
 				</li>
 				<li>
-					<label for="pic6">6일차 사진(선택입력)</label>
-					<input type="file" id="pic6" name="pic6" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="plus">
+				<br>
+					여행출발일 ${item.date_start}
 				</li>
 				<li>
-					<label for="item_st1">여행지</label>
-					<input type="radio" id="item_st1" name="item_st1" value="1" <c:if test="${item.item_st1==1}">checked="checked"</c:if>  class="insert_check">동남아
-					<input type="radio" id="item_st2" name="item_st1" value="2" <c:if test="${item.item_st1==2}">checked="checked"</c:if>  class="insert_check">북미
-					<input type="radio" id="item_st3" name="item_st1" value="3" <c:if test="${item.item_st1==3}">checked="checked"</c:if>  class="insert_check">호주
-					<input type="radio" id="item_st4" name="item_st1" value="4" <c:if test="${item.item_st1==4}">checked="checked"</c:if>  class="insert_check">유럽
-					<input type="radio" id="item_st5" name="item_st1" value="5" <c:if test="${item.item_st1==5}">checked="checked"</c:if>  class="insert_check">국내
+				<br>
+					여행종료일 ${item.date_end}
 				</li>
 				<li>
-					<label for="item_st6">여행스타일1</label>
-					<input type="radio" id="item_st6" name="item_st2" value="1" <c:if test="${item.item_st2==1}">checked="checked"</c:if> class="insert_check">혼자
-					<input type="radio" id="item_st7" name="item_st2" value="2" <c:if test="${item.item_st2==2}">checked="checked"</c:if> class="insert_check">연인
-					<input type="radio" id="item_st8" name="item_st2" value="3" <c:if test="${item.item_st2==3}">checked="checked"</c:if> class="insert_check">친구
-				</li>
-				<li>
-					<label for="item_st9">여행스타일2</label>
-					<input type="radio" id="item_st9" name="item_st3" value="1"  <c:if test="${item.item_st3==1}">checked="checked"</c:if>  class="insert_check">휴양
-					<input type="radio" id="item_st10" name="item_st3" value="2" <c:if test="${item.item_st3==2}">checked="checked"</c:if>  class="insert_check">액티비티
-					<input type="radio" id="item_st11" name="item_st3" value="3" <c:if test="${item.item_st3==3}">checked="checked"</c:if>  class="insert_check">관광
-				</li>
-				<li>
-					<label for="start_date">여행출발일</label>
-					<input type="date" id="name" name="start_date" maxlength="100" size="20" value="${item.date_start}" class="insert_check">
-				</li>
-				<li>
-					<label for="end_date">여행종료일</label>
-					<input type="date" id="name" name="end_date" maxlength="100" size="20" value="${item.date_end}" class="insert_check">
-				</li>
-				<li>
-					<label for="quantity">모집인원</label>
-					<input type="number" id="quantity" name="quantity" min="1" size="3" value="${item.quantity}" class="insert_check">
-					<input type="button" id="quantity" value="마감">
+				<br>
+					모집인원 ${item.quantity}
 				</li>
 			</ul>
 			<div class="align-center">
-				<input type="submit" value="수정">
+				<input type="button" value="수정" onclick="location.href='itemModifyForm.do?item_num=${item.item_num}'">
 				<input type="button" value="목록" onclick="location.href='itemUpdateList.do'">
 			<!--<input type="button" value="홈으로" onclick=request.getContextPath()+"/main/main.do">  -->
 			</div>

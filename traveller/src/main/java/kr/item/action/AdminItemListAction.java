@@ -12,7 +12,7 @@ import kr.item.dao.ItemDAO;
 import kr.item.vo.ItemVO;
 import kr.util.PageUtil;
 
-public class ItemListAction implements Action{
+public class AdminItemListAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -41,15 +41,15 @@ public class ItemListAction implements Action{
 		String keyword = request.getParameter("keyword");
 		
 		ItemDAO dao = ItemDAO.getInstance();
-		int count = dao.getItemCount(keyfield, keyword);
+		int count = dao.getItemCount(keyfield, keyword, null);
 		
 		//페이지 처리
 		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum),count,20,10,"/item/list.do");
 	
-		List<ItemVO> itemList = null;
+		List<ItemVO> itemList = new ArrayList<ItemVO>();
 		
 		if(count >0) {
-			itemList = dao.getItemList(page.getStartRow(),page.getEndRow(), keyfield, keyword, status);
+			itemList = dao.getItemList(page.getStartRow(),page.getEndRow(), keyfield, keyword, status, null);
 		}
 		
 		request.setAttribute("count", count);
@@ -57,7 +57,7 @@ public class ItemListAction implements Action{
 		request.setAttribute("page", page.getPage());
 		
 		
-		return "/WEB-INF/views/item/itemList.jsp";
+		return "/WEB-INF/views/item/adminItemList.jsp"; 
 	}
 
 }

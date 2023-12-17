@@ -62,31 +62,99 @@ private static ItemDAO instance = new ItemDAO();
 		}
 	}
 	//관리자-상품 수정
+	public void modifyItem(ItemVO item)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		
+		try {
+			//커넥션 풀로부터 커넥션 객체 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE item SET item_name=?, item_content=?, item_price=?, item_img1=?, item_img2=?,"
+					+ " item_img3=?, item_img4=?, item_img5=?, item_img6=?, item_st1=?, item_st2=?, item_st3=?,"
+					+ " date_start=?, date_end=?, status=?, quantity=?, item_case=? WHERE item_num=?";
+			
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			
+			//?에 데이터 바인딩
+			pstmt.setString(1,item.getItem_name());
+			pstmt.setString(2,item.getItem_content());
+			pstmt.setInt(3,item.getItem_price());
+			pstmt.setString(4,item.getItem_img1());
+			pstmt.setString(5,item.getItem_img2());
+			pstmt.setString(6,item.getItem_img3());
+			pstmt.setString(7,item.getItem_img4());
+			pstmt.setString(8,item.getItem_img5());
+			pstmt.setString(9,item.getItem_img6());
+			pstmt.setString(10,item.getItem_st1());
+			pstmt.setString(11,item.getItem_st2());
+			pstmt.setString(12,item.getItem_st3());
+			pstmt.setString(13,item.getDate_start());
+			pstmt.setString(14,item.getDate_end());
+			pstmt.setString(15,item.getStatus());
+			pstmt.setInt(16,item.getQuantity());
+			pstmt.setString(17,item.getItem_case());
+			pstmt.setInt(18,item.getItem_num());
+			
+			//SQL문 실행
+			pstmt.executeUpdate();
+			//System.out.println(item.toString());
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		
+		
+	
+	}
+	
+	
 	//관리자-상품 삭제
 	//관리자/사용자 - 전체 상품 개수/검색 상품 개수
-	public int getItemCount(String keyfield, String keyword) throws Exception{
+	public int getItemCount(String keyfield, String keyword, String list_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		String sub_sql = "";
+		String sub_sql2 =""; 
+		int cnt = 0;
 		int count = 0;
 		
 		try {
 			//커넥션풀로부터 커넥션 객체 할당
 			conn = DBUtil.getConnection();
-			if(keyword!=null && "".equals(keyword)) {
+			
+			if(keyword!=null && !"".equals(keyword)) {
 				if(keyfield.equals("1")) sub_sql = " WHERE item_name LIKE ?";
 				else if(keyfield.equals("2")) sub_sql = " WHERE item_content LIKE ?";
+			
+				if(list_num!=null && !"".equals(list_num)) {
+					sub_sql2 = " AND item_st1 = ?";
+				}
+			}
+			
+			if(list_num!=null && !"".equals(list_num)) {
+				sub_sql2 = " WHERE item_st1 = ?";
 			}
 			
 			//SQL문 작성
-			sql = "SELECT COUNT(*) FROM item" + sub_sql;
+			sql = "SELECT COUNT(*) FROM item" + sub_sql + sub_sql2;
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			if(keyword!=null && "".equals(keyword)) {
-				pstmt.setString(1, "%" + keyword + "%");
+				pstmt.setString(++cnt, "%" + keyword + "%");
+				if(list_num!=null && !"".equals(list_num)) {
+					pstmt.setString(++cnt, list_num);
+				}
+			}
+			if(list_num!=null && !"".equals(list_num)) {
+				pstmt.setString(++cnt, list_num);
 			}
 			//SQL문 실행
 			rs = pstmt.executeQuery();
@@ -106,12 +174,14 @@ private static ItemDAO instance = new ItemDAO();
 	}
 	
 	//관리자/사용자 - 전체 상품 목록/검색 상품 목록
-	public List<ItemVO> getItemList(int start, int end, String keyword, String keyfield, String status) throws Exception{
+	public List<ItemVO> getItemList(int start, int end, String keyword, String keyfield, String status, String list_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		String sub_sql = "";
+		String sub_sql2 = "";
+		String sub_sql3 = "";
 		int cnt = 0;
 		List<ItemVO> list = null;
 		
@@ -122,18 +192,43 @@ private static ItemDAO instance = new ItemDAO();
 			if(keyword!=null && !"".equals(keyword)) {
 				if(keyfield.equals("1")) sub_sql = " WHERE item_name LIKE ? ";
 				if(keyfield.equals("2")) sub_sql = " WHERE item_content LIKE ? ";
+				
+				if(list_num!=null && !"".equals(list_num)) {
+					sub_sql2 = " AND item_st1 = ?";
+				}
+			}
+			if(list_num!=null && !"".equals(list_num)) {
+				sub_sql2 = " WHERE item_st1 = ?";
+			}
+			
+			if(status!=null && !"".equals(status)) {
+				if(keyword!=null && !"".equals(keyword) || list_num!=null && !"".equals(list_num)) {
+					sub_sql3 = " AND status =?";
+				}else {
+					sub_sql3 = " WHERE status=?";
+				}
 			}
 			
 			//SQL문 작성
-			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM item "  + sub_sql 
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM item  "  + sub_sql +sub_sql2 +sub_sql3
 					+ " ORDER BY item_num DESC)a) WHERE rnum>=? AND rnum<=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			//pstmt.setString(1, status);
+			
 			if(keyword!=null && !"".equals(keyword)) {
 				pstmt.setString(++cnt, "%" + keyword + "%");
+				if(list_num!=null && !"".equals(list_num)) {
+					pstmt.setString(++cnt, list_num);
+				}
 			}
+			if(list_num!=null && !"".equals(list_num)) {
+				pstmt.setString(++cnt, list_num);
+			}
+			if(status!=null && !"".equals(status)) {
+				pstmt.setString(++cnt, status);
+			}
+	
 			pstmt.setInt(++cnt, start);
 			pstmt.setInt(++cnt, end);
 			//SQL문 실행
@@ -143,11 +238,23 @@ private static ItemDAO instance = new ItemDAO();
 				ItemVO item = new ItemVO();
 				item.setItem_num(rs.getInt("item_num"));
 				item.setItem_name(rs.getString("item_name"));
+				item.setItem_content(rs.getString("item_content"));
+				item.setItem_price(rs.getInt("item_price"));
+				item.setItem_img1(rs.getString("item_img1"));
+				item.setItem_img2(rs.getString("item_img2"));
+				item.setItem_img3(rs.getString("item_img3"));
+				item.setItem_img4(rs.getString("item_img4"));
+				item.setItem_img5(rs.getString("item_img5"));
+				item.setItem_img6(rs.getString("item_img6"));
+				item.setItem_st1(rs.getString("item_st1"));
+				item.setItem_st2(rs.getString("item_st2"));
+				item.setItem_st3(rs.getString("item_st3"));
+				item.setStatus(rs.getString("status"));
 				item.setDate_start(rs.getString("date_start"));
 				item.setDate_end(rs.getString("date_end"));
 				item.setReg_date(rs.getDate("reg_date"));
 				item.setQuantity(rs.getInt("quantity"));
-				
+				item.setItem_case(rs.getString("item_case"));
 				list.add(item);
 			}
 			
@@ -209,6 +316,7 @@ private static ItemDAO instance = new ItemDAO();
 		}	
 		return vo;
 	}
+	
 	
 	
 	
