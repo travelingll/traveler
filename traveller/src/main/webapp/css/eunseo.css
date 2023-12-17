@@ -136,8 +136,94 @@ colgroup {
     border-top: 1px solid #ddd;
 }
 
-
-
+.tabs {
+    overflow: hidden;
+}
+.type1 .tabs>li.selected {
+    border-color: #111;
+    border-right: 1px solid #111;
+}
+.type1 .tabs>li {
+    display: table;
+    height: 52px;
+    line-height: 52px;
+    border-width: 1px 0 0 1px;
+    border-color: #ddd;
+    border-style: solid;
+    background-color: #fff;
+}
+.tabs>li.selected {
+    border-color: #5e2bb8;
+    border-left: 1px solid #5e2bb8;
+    z-index: 2;
+}
+.tabs>li {
+    float: left;
+    position: relative;
+    border-top: none;
+    text-align: center;
+    height: 59px;
+    line-height: 59px;
+    border: 1px solid #dcdcdc;
+    border-bottom: 1px solid #111;
+    z-index: 1;
+}
+.type1 .tabs>li.selected>a {
+    color: #5e2bb8;
+    background-color: #fff;
+}
+.type1 > .tabs>li>a {
+    display: table-cell;
+}
+.type1 .tabs>li>a {
+    color: #333;
+    font-size: 15px;
+    line-height: 20px;
+    vertical-align: middle;
+}
+.tabs>li.selected>a {
+    color: #fff;
+    background-color: #5e2bb8;
+    font-weight: 600;
+}
+.tabs>li>a {
+    display: block;
+    height: 100%;
+    color: #111;
+    font-size: 18px;
+    line-height: 57px;
+    font-weight: 400;
+}
+a {
+    color: #333;
+    text-decoration: none;
+}
+.type1 .tabs>li:last-child {
+    border-right: 1px solid #ddd;
+}
+.type1 .tabs>li {
+    display: table;
+    height: 52px;
+    line-height: 52px;
+    border-width: 1px 0 0 1px;
+    border-color: #ddd;
+    border-style: solid;
+    background-color: #fff;
+}
+.tabs>li + li {
+    border-left: none;
+}
+.tabs>li {
+    float: left;
+    position: relative;
+    border-top: none;
+    text-align: center;
+    height: 59px;
+    line-height: 59px;
+    border: 1px solid #dcdcdc;
+    border-bottom: 1px solid #111;
+    z-index: 1;
+}
 
 
 

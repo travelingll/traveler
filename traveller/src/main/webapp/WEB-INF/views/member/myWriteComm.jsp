@@ -11,67 +11,143 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="side-menu">
-		<ul>
- 			<li><a href="${pageContext.request.contextPath}/member/myPage.do" style="font-weight:bold; font-size:24px; border-bottom:2px solid #000;">마이페이지</a></li>
-  			<li><a href="${pageContext.request.contextPath}/member/myPage.do">개인정보</a></li>
- 			<li><a href="${pageContext.request.contextPath}/member/myWriteComm.do">내가 쓴 글</a></li>
- 			<li><a href="${pageContext.request.contextPath}/member/myQuestion.do">1:1 문의</a></li>
- 			<li><a href="${pageContext.request.contextPath}/member/myMoney.do">적립금</a></li>
- 			<li><a>동행 신청내역</a></li>
-		</ul>
-	</div>
-	<div class="content-main">
-		<h2>내가 쓴 글 : 커뮤니티</h2>
-		<hr size="2" color="black">
-		<div class="category">
-			<ul>
-				<li><a href="${pageContext.request.contextPath}/member/myWriteComm.do">커뮤니티</a></li>
-				<li><a href="${pageContext.request.contextPath }/member/myWriteAccom.do">동행게시판</a></li>
-				<li><a>후기글</a></li>
-			</ul>
+<body class="chrome">
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+    <div id="__nuxt">
+    	<div id="__layout">
+    		<div id="wrapper">
+    			<div id="screenArea">
+    				<div id="wrap">
+    					<div id="container">
+    						<div class="inr">
+    						<!-- 여기서 부터 사이드바 입니다.-->
+    							<div id="lnb" class="lnb">
+    								<div class="inr">
+    									<dl>
+											<dt class="type">		
+												<a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a>
+											</dt>
+											<dd>
+												<ul class="list_lnb">
+												<li><a href="${pageContext.request.contextPath}/member/myPage.do">개인정보</a></li>
+ 												<li><a href="${pageContext.request.contextPath}/member/myWriteComm.do">내가 쓴 글</a></li>
+ 												<li><a href="${pageContext.request.contextPath}/member/myQuestion.do">1:1 문의</a></li>
+ 												<li><a href="${pageContext.request.contextPath}/member/myMoney.do">적립금</a></li>
+ 												<li><a>동행 신청내역</a></li>
+												</ul>
+											</dd>
+										</dl>
+    								</div>
+    							</div> 
+    							
+							<div id="contents" class="contents">
+								<div class="text_wrap big fix">
+									<strong class="tit">내가 쓴 글</strong>
+								</div> 
+								<div class="js_tabs type1 v-tabs">
+									<ul class="tabs">
+										<li class="selected fx-cobrand-pkg" style="width: 33.3333%;">
+											<a href="${pageContext.request.contextPath}/member/myWriteComm.do">커뮤니티</a>
+										</li> 
+										<li class="fx-cobrand-htl" style="width: 33.3333%;">
+											<a href="${pageContext.request.contextPath }/member/myWriteAccom.do">동행게시판</a>
+										</li> 
+										<li class="fx-cobrand-fnd" style="width: 32.3333%;">
+											<a href="#">후기글</a>
+										</li>
+									</ul> 
+								<div class="panels">
+									<div id="tabPkg" class="panel selected">
+										<div class="tbl">
+				
+											<c:if test="${count == 0}">
+											<table class="board_type">
+													<colgroup>
+													<col> 
+													<col style="width: 15%;"> 
+													<col style="width: 15%;"> 
+													<col style="width: 13%;"></colgroup> 
+														<thead>
+															<tr>
+																<th>제목</th> 
+																<th>작성일</th> 
+																<th>조회수</th> 
+																<th></th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																
+																<td style="float:right;"> 표시할 게시물이 없습니다.</td>
+															</tr>
+                   										</tbody>
+                   									</table>
+												
+											</c:if>
+											<c:if test="${count > 0}">
+											<table class="board_type">
+														<colgroup>
+													<col> 
+													<col style="width: 15%;"> 
+													<col style="width: 15%;"> 
+													<col style="width: 13%;"></colgroup> 
+														<thead>
+															<tr>
+																<th>제목</th> 
+																<th>작성일</th> 
+																<th>조회수</th> 
+																<th></th>
+															</tr>
+														</thead>
+														<tbody>
+															<c:forEach var="comm" items="${commList}">
+															<tr>
+																<td class="txl">
+																	
+																	<a href="${pageContext.request.contextPath}/comm/detail.do?comm_num=${comm.comm_num}">
+																		<strong class="item_title">
+																			${comm.comm_title}
+																		</strong>
+																	</a> 
+																	
+																</td> 
+																<td>
+																	<p class="date">
+																		${comm.reg_date}
+																	</p> 
+										
+																</td> 
+																<td>
+																	<span class="hit">
+                   														&nbsp;&nbsp;&nbsp;&nbsp;${comm.comm_hit}
+                   														
+                   													</span>
+                   												</td> 
+                   												<td>
+                   													<div class="btn_wrap">
+                   														<a href="${pageContext.request.contextPath}/comm/detail.do?comm_num=${comm.comm_num}" class="btn sml">
+                   															보기
+                   														</a>
+                   													</div>
+                   												</td>
+                   											</tr>
+                   											</c:forEach>
+                   										</tbody>
+                   									</table>
+                   									</c:if>
+                   								</div> 
+                   								
+                   								<!----> 
+                   							
+                   						</div>
+                   					</div>
+                   				</div>
+                   			</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="profile">
-		<c:if test="${!empty user_num && !empty user_photo}">
-		<img src="${pageContext.request.contextPath}/upload/${user_photo}" width="120" height="140" class="my-photo"><br>
-		<br>${member.name}<br>
-		<c:if test="${member.auth == 3}"><b>등급 : 일반</b></c:if>
-		<c:if test="${member.auth == 2}"><b>등급 : VIP</b></c:if>
-		<c:if test="${member.auth == 1}"><b>등급 : VVIP</b></c:if>
-		<c:if test="${member.auth == 9}"><b>등급 : 관리자</b></c:if>
-		</c:if>
-		<c:if test="${!empty user_num && empty user_photo}">
-		<img src="${pageContext.request.contextPath}/images/face.jpg" width="100" height="120" class="my-photo">
-		<br>${member.name}<br>
-		<c:if test="${member.auth == 3}"><b>등급 : 일반</b></c:if>
-		<c:if test="${member.auth == 2}"><b>등급 : VIP</b></c:if>
-		<c:if test="${member.auth == 1}"><b>등급 : VVIP</b></c:if>
-		<c:if test="${member.auth == 9}"><b>등급 : 관리자</b></c:if>
-		</c:if>
-		</div>
-		<c:if test="${count == 0}">
-		<div class="result-display">
-			표시할 게시물이 없습니다.
-		</div>
-		</c:if>
-		<c:if test="${count > 0}">
-		<table>
-			<tr>
-				<th>제목</th>
-				<th>작성일</th>
-				<th>조회수</th>
-			</tr>
-			<c:forEach var="comm" items="${commList}">
-			<tr>
-				<td><a href="${pageContext.request.contextPath}/comm/detail.do?comm_num=${comm.comm_num}">${comm.comm_title}</a></td>
-				<td>${comm.reg_date}</td>
-				<td>${comm.comm_hit}</td>
-			</tr>
-			</c:forEach>
-		</table>
-		</c:if>
 	</div>
 </div>
 </body>

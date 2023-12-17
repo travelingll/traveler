@@ -94,8 +94,9 @@ $(function(){
 });
 </script>
 </head>
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
 <body class="chrome">
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div id="__nuxt">
     	<div id="__layout">
     		<div id="wrapper">
