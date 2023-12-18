@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>일대일 문의 목록</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssss.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 	<script type="text/javascript">
 		window.onload = function(){
 			let searchForm = document.getElementById('search_form');
@@ -75,7 +75,7 @@
 									<c:if test="${question.question_renum!=0}">
 										<br>
 										<a href="questionDetail.do?question_num=${question.question_num}">
-											&nbsp;&nbsp;&nbsp;ㄴ 답변 완료&nbsp;<img src="${pageContext.request.contextPath}/upload/question_answer.png" width="14">
+											&nbsp;&nbsp;&nbsp;[답변 완료]&nbsp;<img src="${pageContext.request.contextPath}/upload/question_answer.png" width="12">
 										</a>
 									</c:if>
 								</td>

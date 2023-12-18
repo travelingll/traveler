@@ -25,15 +25,20 @@ public class QuestionDetailAction implements Action {
 		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		if(user_auth==null) user_auth=0;
 		
+		//문의글 상세 저장
+		dao.updateHit(question_num);
+		QuestionVO detail = dao.getQuestionDetail(question_num);
+		Integer question_renum = detail.getQuestion_renum();
+		
 		 //비밀글의 경우 조건체크
 		if( user_auth!=9 && db_question.getQuestion_lock()==2 && passwdCheck==null ) { //관리자, 공개글, 이미 비밀번호를 체크한 경우 제외
 			
 			Integer user_num = (Integer)session.getAttribute("user_num");
 			
-			if( db_question.getMem_num()==0 ) { 
+			if( db_question.getMem_num()==0 ) {
+				
 				//비회원글의 경우 비회원/회원 상관없이 비밀번호 확인
 				request.setAttribute("question_num", question_num);
-				
 				return "/WEB-INF/views/question/userQuestionPasswd.jsp"; //비밀번호 확인페이지로
 				
 			} else if( user_num==null || db_question.getMem_num()!=user_num ) { 
@@ -47,12 +52,9 @@ public class QuestionDetailAction implements Action {
 		
 		session.removeAttribute("passwdCheck"); //추후 다른 페이지에서 진입할 경우 비밀번호 다시 체크하도록
 
-		//조건체크를 통과할 경우 문의글 상세 볼 수 있음
-		dao.updateHit(question_num);
-		QuestionVO detail = dao.getQuestionDetail(question_num);
-		
+		//조건체크를 통과할 경우 문의글 상세 볼 수 있음		
 		//답변 번호 저장되어있을 경우 답변 정보도 전송
-		if(detail.getQuestion_renum()!=0) { 
+		if(question_renum != null) { 
 			QuestionVO answer = dao.getQuestionDetail(detail.getQuestion_renum());
 			request.setAttribute("answer", answer);
 		}

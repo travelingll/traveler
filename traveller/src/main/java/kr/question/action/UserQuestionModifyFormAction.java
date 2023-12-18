@@ -20,7 +20,7 @@ public class UserQuestionModifyFormAction implements Action {
 		QuestionDAO dao = QuestionDAO.getInstance();
 		QuestionVO detail = dao.getQuestionDetail(question_num);
 		
-		if(session.getAttribute("user_num")==null) { //비회원 글 - 비밀번호
+		if( detail.getMem_num()==0 ) { //비회원 글 - 비밀번호
 			
 			request.setAttribute("question_num", question_num);
 			request.setAttribute("check", "modify");
