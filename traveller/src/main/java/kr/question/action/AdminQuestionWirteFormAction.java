@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
+import kr.question.dao.QuestionDAO;
+import kr.question.vo.QuestionVO;
 
 public class AdminQuestionWirteFormAction implements Action {
 
@@ -17,9 +19,12 @@ public class AdminQuestionWirteFormAction implements Action {
 		if(user_auth!=9) 
 			return "redirect:/question/questionList.do";
 		
-		//question_num 얻어서 보내주기
+		//원글 내용 불러오기
+		QuestionDAO dao = QuestionDAO.getInstance();
 		int question_num = Integer.parseInt(request.getParameter("question_num"));
-		request.setAttribute("question_num", question_num);
+		QuestionVO question = dao.getQuestionDetail(question_num);
+		
+		request.setAttribute("question", question);
 		
 		return "/WEB-INF/views/question/adminQuestionWriteForm.jsp";
 	}

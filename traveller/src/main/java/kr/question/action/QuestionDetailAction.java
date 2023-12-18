@@ -15,10 +15,11 @@ public class QuestionDetailAction implements Action {
 		
 		//get방식으로 넘어온 question_num으로 문의글 lock 여부 알아내기
 		HttpSession session = request.getSession();
-		int question_num = Integer.parseInt(request.getParameter("question_num"));
 		QuestionDAO dao = QuestionDAO.getInstance();
+		
+		int question_num = Integer.parseInt(request.getParameter("question_num"));
+		String passwdCheck = (String)session.getAttribute("passwdCheck"); //이미 비밀번호를 체크한 비회원은 다시 체크할 필요 없도록
 		QuestionVO db_question = dao.getQuestionDetail(question_num);
-		String passwdCheck = (String)session.getAttribute("passwdCheck");
 		
 		//관리자는 바로 진입 가능하도록 등급 체크
 		Integer user_auth = (Integer)session.getAttribute("user_auth");

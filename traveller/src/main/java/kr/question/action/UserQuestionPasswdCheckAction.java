@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.controller.Action;
 import kr.question.dao.QuestionDAO;
 import kr.question.vo.QuestionVO;
+import kr.util.FileUtil;
 
 public class UserQuestionPasswdCheckAction implements Action {
 
@@ -28,11 +29,16 @@ public class UserQuestionPasswdCheckAction implements Action {
 			if( check.equals("modify") ) {//수정폼 비밀번호 체크인 경우
 				request.setAttribute("notice_url", "questionDetail.do?question_num="+question_num);
 				request.getSession().setAttribute("passwdCheck", "success");
+			} else if( check.equals("delete") ) { //삭제폼 비밀번호 체크인 경우
+				request.setAttribute("notice_url", "questionDetail.do?question_num="+question_num);
+				request.getSession().setAttribute("passwdCheck", "success");
 			} else{ //상세글 진입 비밀번호체크인 경우
 				request.setAttribute("notice_url", "questionList.do");
 			}
 			return "/WEB-INF/views/common/alert_singleView.jsp";
 		}
+		
+		//비밀번호 일치할 경우
 		
 		dao.updateHit(question_num);
 		QuestionVO detail = dao.getQuestionDetail(question_num);
@@ -40,6 +46,16 @@ public class UserQuestionPasswdCheckAction implements Action {
 		
 		if( check.equals("modify") ) {//수정폼 비밀번호 체크인 경우
 			return "/WEB-INF/views/question/userQuestionModifyForm.jsp";
+		} else if( check.equals("delete") ) { //삭제폼 비밀번호 체크인 경우
+			
+			dao.deleteQuestion(question_num);
+			FileUtil.removeFile(request, db_question.getQuestion_photo());
+			
+			request.setAttribute("notice_msg", "글 삭제가 완료되었습니다!");
+			request.setAttribute("notice_url", "questionList.do");
+			
+			return "/WEB-INF/views/common/alert_singleView.jsp";
+			
 		} else { //상세글 진입 비밀번호체크인 경우
 			return "/WEB-INF/views/question/questionDetail.jsp";
 		}

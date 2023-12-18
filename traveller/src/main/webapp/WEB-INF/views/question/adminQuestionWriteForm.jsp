@@ -31,7 +31,8 @@
 		<jsp:include page="question_sidemenu.jsp"/>
 		<div class="content-main">
 			<h2>[관리자] 일대일 문의 답변 등록</h2>
-			<form id="question_writeForm" action="adminQuestionWrite.do?question_num=${question_num}" method="post">
+			<form id="question_writeForm" action="adminQuestionWrite.do" method="post">
+				<input type="hidden" value="${question.question_num}" name="question_num" id="question_num">
 				<ul>
 					<li>
 						<label for="question_title">제목</label>

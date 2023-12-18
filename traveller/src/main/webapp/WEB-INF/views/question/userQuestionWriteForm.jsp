@@ -52,7 +52,7 @@
 		<jsp:include page="question_sidemenu.jsp"/>
 		<div class="content-main">
 			<h2>일대일 문의 등록</h2>
-			<form id="question_writeForm" action="userQuestionWrite.do" method="post" enctype="multipart/form-data">
+			<form id="question_writeForm" action="userQuestionWrite.do?question_num=${question_num}" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="user_num" value="${user_num}">
 				<ul>
 					<li>
@@ -73,6 +73,12 @@
 						<label for="question_photo">사진</label>
 						<input type="file" id="question_photo" name="question_photo">
 					</li>
+					<c:if test="${empty user_num}">
+						<li>
+							<label for="question_passwd">비밀번호</label>
+							<input type="password" id="question_passwd" name="question_passwd">
+						</li>
+					</c:if>
 					<li>
 						<label for="question_lock">잠금 유무</label>
 						<input type="radio" name="question_lock" class="question_lock" value="1">공개글

@@ -26,7 +26,7 @@
 					<li>작성일 : ${detail.question_regdate}</li>
 					<li>조회수 : ${detail.question_hit}</li>
 				</ul>
-				<c:if test="${ detail.question_renum==0 && (user_num==detail.mem_num || detail.mem_num==0) }"> <%-- 작성자 일치, 답변 미완료 시 수정/삭제 가능 --%>
+				<c:if test="${ detail.question_renum==0 && (detail.mem_num==user_num || detail.mem_num==0) }"> <%-- 작성자 일치, 답변 미완료 시 수정/삭제 가능 --%>
 					<div class="align-right">
 						<input type="button" value="수정" onclick="location.href='userQuestionModifyForm.do?question_num=${detail.question_num}'">
 						<input id="delete_btn" type="button" value="삭제">
@@ -51,7 +51,9 @@
 				<h2>${answer.question_title}</h2>
 				<div class="align-center">
 					${answer.question_content}
-					<input type="button" value="수정" onclick="location.href='adminQuestionModifyForm.do?question_num=${detail.question_num}'">
+					<c:if test="${user_auth==9}"><%-- 관리자만 보임 --%>
+						<br><input type="button" value="수정" onclick="location.href='adminQuestionModifyForm.do?question_num=${detail.question_num}'">
+					</c:if>
 				</div>
 			</c:if>
 			<c:if test="${empty answer && user_auth==9}"> <%-- 관리자만 보임 --%>

@@ -23,7 +23,6 @@ public class AdminQuestionWrtieAction implements Action {
 		}
 		
 		request.setCharacterEncoding("utf-8");
-		
 		int question_num = Integer.parseInt(request.getParameter("question_num"));
 		
 		QuestionDAO dao = QuestionDAO.getInstance();

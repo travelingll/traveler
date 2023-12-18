@@ -299,21 +299,28 @@ public class QuestionDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "UPDATE question SET question_ip=?,question_category=?,"
-					+ "question_title=?,question_photo=?,"
-					+ "question_content=?,question_modifydate=SYSDATE WHERE question_num=?";
+			if(!question.getQuestion_category().equals("0")) { //고객 문의글 수정의 경우
+				sub_sql += ",question_category=?,question_photo=?";
+			}
+			sql = "UPDATE question SET question_ip=?,question_title=?,"
+					+ "question_content=?,question_modifydate=SYSDATE"
+					+sub_sql + " WHERE question_num=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, question.getQuestion_ip());
-			pstmt.setString(2, question.getQuestion_category());
-			pstmt.setString(3, question.getQuestion_title());
-			pstmt.setString(4, question.getQuestion_photo());
-			pstmt.setString(5, question.getQuestion_content());
-			pstmt.setInt(6, question.getQuestion_num());
+			pstmt.setString(++cnt, question.getQuestion_ip());
+			pstmt.setString(++cnt, question.getQuestion_title());
+			pstmt.setString(++cnt, question.getQuestion_content());
+			if(!question.getQuestion_category().equals("0")) {
+				pstmt.setString(++cnt, question.getQuestion_category());
+				pstmt.setString(++cnt, question.getQuestion_photo());
+			}
+			pstmt.setInt(++cnt, question.getQuestion_num());
 			
 			pstmt.executeUpdate();
 			

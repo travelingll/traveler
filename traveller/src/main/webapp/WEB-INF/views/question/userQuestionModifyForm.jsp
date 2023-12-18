@@ -101,7 +101,7 @@
 					</li>
 				</ul>
 				<div class="align-center">
-					<input type="submit" value="문의 등록">
+					<input type="submit" value="문의 수정">
 				</div>
 			</form>
 		</div>
