@@ -31,6 +31,9 @@ a {
             width: 200px; /* 카드의 너비 조정 */
             margin: 200px 100px 200px 0px; /* 카드를 가운데로 정렬 */
         }
+ p{
+	font-size:10px;
+}
 </style>
 </head>
 <body>
@@ -67,12 +70,19 @@ a {
 			<c:forEach var="item" items="${list}" varStatus="status">
 				<c:if test="${status.index < 3}">
 					<div class="col-md-4">
-						<div class="card" style="width:40rem;">
-							<img src="${pageContext.request.contextPath}/upload/${item.item_img1}" class="card-img-top">
+						<div class="card" style="width:30rem;">
+							<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}" >
+								<img src="${pageContext.request.contextPath}/upload/${item.item_img1}" class="card-img-top">
+							</a>
 							<div class="card-body">
-								<h5 class="card-title">${item.item_name}</h5>
-								<p class="card-text">${item.item_content}</p>
-								<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}" class="btn btn-primary" width="100px">더보기</a>
+								<h3 class="card-title">
+								<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}" >
+									<h3>${item.item_name}</h3>
+								</a></h3>
+								<p class="card-text">
+								<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}" >
+								${item.item_content}</a>
+								</p>
 							</div>
 						</div>
 					</div>

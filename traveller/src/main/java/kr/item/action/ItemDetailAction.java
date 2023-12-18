@@ -23,8 +23,15 @@ public class ItemDetailAction implements Action{
 		ItemVO item = dao.getItem(item_num);
 		
 		request.setAttribute("item", item);
+		request.setAttribute("user_num", user_num);
+		request.setAttribute("user_auth", user_auth);
+		
+		System.out.println(item.getItem_img5());
+		
 		
 		return "/WEB-INF/views/item/itemDetail.jsp";
+		
+	
 	}
 
 }

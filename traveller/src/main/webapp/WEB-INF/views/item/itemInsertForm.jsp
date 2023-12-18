@@ -80,27 +80,27 @@ form ul li label{
 					<input type="number" id="price" name="price" maxlength="30" size="20" class="insert_check">원
 				</li>
 				<li>
-					<label for="pic1">1일차 사진(필수입력)</label>
+					<label for="pic1">대표 상품사진(필수입력)</label>
 					<input type="file" id="pic1" name="pic1" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="insert_check">
 				</li>
 				<li>
-					<label for="pic2">2일차 사진(필수입력)</label>
+					<label for="pic2">상품사진1(필수입력)</label>
 					<input type="file" id="pic2" name="pic2" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="insert_check">
 				</li>
 				<li>
-					<label for="pic3">3일차 사진(필수입력)</label>
+					<label for="pic3">상품사진2(필수입력)</label>
 					<input type="file" id="pic3" name="pic3" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="insert_check">
 				</li>
 				<li>
-					<label for="pic4">4일차 사진(선택입력)</label>
+					<label for="pic4">상품사진3(선택입력)</label>
 					<input type="file" id="pic4" name="pic4" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="plus">
 				</li>
 				<li>
-					<label for="pic5">5일차 사진(선택입력)</label>
+					<label for="pic5">상품사진4(선택입력)</label>
 					<input type="file" id="pic5" name="pic5" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="plus">
 				</li>
 				<li>
-					<label for="pic6">6일차 사진(선택입력)</label>
+					<label for="pic6">상품사진5(선택입력)</label>
 					<input type="file" id="pic6" name="pic6" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="plus">
 				</li>
 				<li>

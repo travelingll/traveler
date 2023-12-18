@@ -56,9 +56,9 @@ public class ItemInsertFormAction implements Action{
 			ItemDAO dao = ItemDAO.getInstance();
 			dao.insertItem(item);
 			
-			response.addHeader("Refresh", "2;url=itemList.do");
+			response.addHeader("Refresh", "2;url=adminItemList.do");
 			request.setAttribute("accessMsg", "성공적으로 등록되었습니다.");
-			request.setAttribute("accessUrl", "itemList.do");
+			request.setAttribute("accessUrl", "adminItemList.do");
 		
 		
 		return "/WEB-INF/views/common/notice.jsp"; 
