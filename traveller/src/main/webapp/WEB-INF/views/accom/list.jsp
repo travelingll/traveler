@@ -88,7 +88,7 @@ window.onload = function(){
 				<td><a href="detail.do?accom_num=${accom.accom_num}">${accom.accom_title}</a></td>
 				<td>${accom.id}</td>
 				<td>${accom.accom_regdate}</td>
-				<td>${accom.apply_quantity}/${accom.accom_quantity}</td>
+				<td>${accom.present_cnt}/${accom.accom_quantity}</td>
 				<td>${accom.accom_hit}</td>
 				<td>${accom.cnt}</td>
 				<%-- 추천수 부분 --%>

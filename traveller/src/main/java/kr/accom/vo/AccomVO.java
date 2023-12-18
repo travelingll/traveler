@@ -20,7 +20,7 @@ public class AccomVO {
 	private String id;//회원 아이디
 	private String photo;//회원 프로필 사진(조인해야함)
 	private int cnt; //좋아요수
-	private int apply_quantity; //현재 신청 인원수
+	private int present_cnt; //현재 등록 인원수
 	
 	public int getAccom_num() {
 		return accom_num;
@@ -124,11 +124,11 @@ public class AccomVO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
-	public int getApply_quantity() {
-		return apply_quantity;
+	public int getPresent_cnt() {
+		return present_cnt;
 	}
-	public void setApply_quantity(int apply_quantity) {
-		this.apply_quantity = apply_quantity;
+	public void setPresent_cnt(int present_cnt) {
+		this.present_cnt = present_cnt;
 	}
 	
 }

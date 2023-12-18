@@ -1,14 +1,17 @@
 package kr.recommend.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-import kr.item.dao.ItemDAO;
 import kr.item.vo.ItemVO;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
+import kr.recommend.dao.RecommendDAO;
+import kr.util.PageUtil;
 
 public class UserRecommendAction implements Action{
 
@@ -24,12 +27,22 @@ public class UserRecommendAction implements Action{
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.getMember(user_num);
 		
-		int item_num = Integer.parseInt(request.getParameter("item_num"));
-		ItemDAO itemDao = ItemDAO.getInstance();
-		ItemVO item = itemDao.getItem(item_num);
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum == null) pageNum = "1";
+		
+		RecommendDAO recDao = RecommendDAO.getInstance();
+		int count = recDao.getRecommendCount("2");
+		
+		PageUtil page = new PageUtil(null,null,Integer.parseInt(pageNum),count,20,10,"userRecommend.do");
+		List<ItemVO> list = null;
+		if(count > 0) {
+			list = recDao.getRecommendList(page.getStartRow(), page.getEndRow(), "2");
+		}
 		
 		request.setAttribute("member", member);
-		request.setAttribute("item", item);
+		request.setAttribute("count", count);
+		request.setAttribute("list", list);
+		request.setAttribute("page", page.getPage());
 		
 		return "/WEB-INF/views/recommend/userRecommend.jsp";
 	}

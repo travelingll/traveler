@@ -47,6 +47,7 @@ create table question(
 	question_regdate date default sysdate not null,
 	question_modifydate date,
 	question_level number(1) not null, --1질문 2답변
+	question_renum number, --관리자 답변 시 원글 번호를 저장하기 위함
 	question_hit number default 0 not null,
 	constraint question_pk primary key (question_num),
 	constraint question_fk foreign key (mem_num) references member (mem_num)

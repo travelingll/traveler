@@ -44,6 +44,33 @@
 		</p>
 		<hr size="1" noshade="noshade" width="100%">
 		<p>모집 인원: ${accom.accom_quantity}명 여행 경비: <fmt:formatNumber value="${accom.accom_expense}"/>원 출발일: ${accom.accom_start} 종료일: ${accom.accom_end}</p>
+				<c:if test="${user_num == accom.mem_num}">
+			<input type="button" value="수정" onclick="location.href='updateForm.do?accom_num=${accom.accom_num}'">
+			<input type="button" value="삭제" id="delete_btn">
+			<script>
+				let delete_btn = document.getElementById('delete_btn');
+				//이벤트 연결
+				delete_btn.onclick=function(){
+					let choice = confirm('삭제하시겠습니까');
+					if(choice){
+						location.replace('delete.do?accom_num=${accom.accom_num}');
+					}
+				};
+			</script>
+			</c:if>
+		<c:if test="${accom.present_cnt < accom.accom_quantity}">
+		<input type="button" value="동행신청" id="apply_btn">
+		</c:if>
+		<script>
+				let delete_btn = document.getElementById('apply_btn');
+				//이벤트 연결
+				delete_btn.onclick=function(){
+					let choice = confirm('동행 신청하시겠습니까');
+					if(choice){
+						location.replace('applyForAccom.do?accom_num=${accom.accom_num}');
+					}
+				};
+			</script>
 		<hr size="1" noshade="noshade" width="100%" >
 		<ul class="detail-sub">
 			<li>
@@ -58,28 +85,7 @@
 				</c:if>
 				작성일 : ${accom.accom_regdate}
 				<%-- 로그인한 회원 번호와 작성자 회원번호가 일치해야 수정,삭제 가능 --%>
-			</li>
-			<c:if test="${user_num == accom.mem_num}">
-			<input type="button" value="수정" onclick="location.href='updateForm.do?accom_num=${accom.accom_num}'">
-			<input type="button" value="삭제" id="delete_btn">
-			<script>
-				let delete_btn = document.getElementById('delete_btn');
-				//이벤트 연결
-				delete_btn.onclick=function(){
-					let choice = confirm('삭제하시겠습니까');
-					if(choice){
-						location.replace('delete.do?accom_num=${accom.accom_num}');
-					}
-				};
-			</script>
-			</c:if>
-			<c:if test="${!empty user_num}">
-    		<form action="applyForAccom.do" method="post">
-        	<input type="hidden" name="accom_num" value="${accom.accom_num}">
-        	<input type="hidden" name="user_num" value="${user_num}">
-        	<input type="submit" value="동행 신청">
-    	</form>
-	</c:if>			
+			</li>	
 		</ul>
 		<!-- 댓글 시작 -->
   	<div id="reply_div">

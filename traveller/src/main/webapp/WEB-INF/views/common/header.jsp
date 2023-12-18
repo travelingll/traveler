@@ -20,8 +20,10 @@
 												<li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
 												<li><a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a></li> 
 												</c:if>
-												<c:if test="${!empty user_num}">
+												<c:if test="${!empty user_num && user_auth == 9}">
 												<li><a href="${pageContext.request.contextPath}/admin/main.do">관리자 페이지</a></li>
+												</c:if>
+												<c:if test="${!empty user_num}">
 												<li><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
 												</c:if>
 												<li><a href="${pageContext.request.contextPath}/faq/list.do" class="">고객센터</a></li>
@@ -38,7 +40,11 @@
 									<div class="fr">
 										<div class="private_menu">
 											<ul>
-												<li><a href="${pageContext.request.contextPath}/member/myPage.do" class="link_my">마이메뉴</a>
+												<li>
+												<a href="${pageContext.request.contextPath}/member/myPage.do" class="link_my">
+
+													마이메뉴
+												</a>
 													<div class="my_menu_wrap">
 														<div class="inr">
 															<p class="tit"> 마이메뉴는 <br> <strong>회원 전용</strong> 메뉴 입니다.</p> 
@@ -63,16 +69,29 @@
 										</div>
 									</div> 
 									<div>
-										<ul class="list_gnb_menu">
-											<li><a href="${pageContext.request.contextPath}/item/itemMain.do" class="dropdown-btn">여행상품</a>
+										<ul id="main-menu" class="list_gnb_menu">
+											<li>
+												<a href="${pageContext.request.contextPath}/item/itemMain.do" class="dropdown-btn">여행상품</a>
 												<div>
 												</div>
 											</li>
-											<li><a href="">트래블러PICK</a>
+											<li>
+												<a href="">트래블러PICK</a>
+													<ul id="sub-menu">
+														
+														<li ><a href="${pageContext.request.contextPath}" >트래블러추천</a></li>
+														<li style="margin-left:20px;"><a href="${pageContext.request.contextPath}/recommend/userRecommend.do">사용자맞춤추천</a></li>
+													</ul>
 												<div>
 												</div>
 											</li>
-											<li><a href="${pageContext.request.contextPath}/comm/list.do">트래블러클럽</a>
+											<li>
+												<a href="${pageContext.request.contextPath}/comm/list.do">트래블러클럽</a>
+													<ul id="sub-menu">
+														
+														<li ><a href="${pageContext.request.contextPath}/accom/list.do" >동행구하기</a></li>
+														<li style="margin-left:20px;"><a href="${pageContext.request.contextPath}/comm/list.do">커뮤니티</a></li>
+													</ul>
 												<div>
 												</div>
 											</li>

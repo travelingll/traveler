@@ -113,11 +113,11 @@ $(function(){
 											</dt>
 											<dd>
 												<ul class="list_lnb">
-												<li><a href="${pageContext.request.contextPath}/member/myPage.do">개인정보</a></li>
- 												<li><a href="${pageContext.request.contextPath}/member/myWriteComm.do">내가 쓴 글</a></li>
- 												<li><a href="${pageContext.request.contextPath}/member/myQuestion.do">1:1 문의</a></li>
- 												<li><a href="${pageContext.request.contextPath}/member/myMoney.do">적립금</a></li>
- 												<li><a>동행 신청내역</a></li>
+													<li><a href="${pageContext.request.contextPath}/member/myPage.do">개인정보</a></li>
+	 												<li><a href="${pageContext.request.contextPath}/member/myWriteComm.do">내가 쓴 글</a></li>
+	 												<li><a href="${pageContext.request.contextPath}/member/myQuestion.do">1:1 문의</a></li>
+	 												<li><a href="${pageContext.request.contextPath}/member/myMoney.do">적립금</a></li>
+	 												<li><a>동행 신청내역</a></li>
 												</ul>
 											</dd>
 										</dl>

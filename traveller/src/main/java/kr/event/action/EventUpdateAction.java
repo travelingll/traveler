@@ -52,8 +52,9 @@ public class EventUpdateAction implements Action {
 		
 		dao.eventUpdate(event);
 		
-		request.setAttribute("event_num", event_num);
+		request.setAttribute("notice_msg","이벤트를 수정했습니다!");
+		request.setAttribute("notice_url","eventDetail.do?event_num="+event_num);
 		
-		return "/WEB-INF/views/event/eventUpdate.jsp";
+		return "/WEB-INF/views/common/alert_singleView.jsp";
 	}
 }

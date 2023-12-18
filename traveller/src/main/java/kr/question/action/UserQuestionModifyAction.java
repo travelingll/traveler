@@ -1,0 +1,61 @@
+package kr.question.action;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.oreilly.servlet.MultipartRequest;
+
+import kr.controller.Action;
+import kr.question.dao.QuestionDAO;
+import kr.question.vo.QuestionVO;
+import kr.util.FileUtil;
+
+public class UserQuestionModifyAction implements Action {
+
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		HttpSession session = request.getSession();
+		MultipartRequest multi = FileUtil.createFile(request);
+		
+		int question_num = Integer.parseInt(multi.getParameter("question_num"));
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		
+		QuestionDAO dao = QuestionDAO.getInstance();
+		QuestionVO db_question = dao.getQuestionDetail(question_num);
+		
+		//회원글 조건 체크
+		if( db_question.getMem_num()!=0 ) {
+			if(user_num==null) {
+				request.setAttribute("notice_msg", "로그인이 필요합니다!");
+				request.setAttribute("notice_url", request.getContextPath()+"/member/loginForm.jsp");
+				return "/WEB-INF/views/common/alert_singleView.jsp";
+			}
+			if(user_num!=db_question.getMem_num()) {
+				request.setAttribute("notice_msg", "회원글은 작성자만 수정 가능합니다!");
+				request.setAttribute("notice_url", "/WEB-INF/question/questionDetail.do?question_num="+question_num);
+				return "/WEB-INF/views/common/alert_singleView.jsp";
+			}
+		}	
+		
+		QuestionVO question = new QuestionVO();
+		
+		question.setQuestion_ip(request.getRemoteAddr());
+		question.setQuestion_category(multi.getParameter("question_category"));
+		question.setQuestion_title(multi.getParameter("question_title"));
+		question.setQuestion_photo(multi.getFilesystemName("question_photo"));
+		question.setQuestion_content(multi.getParameter("question_content"));
+		question.setQuestion_num(question_num);
+		
+		dao.modifyQuestion(question);
+		
+		if(multi.getFilesystemName("question_photo")!=null)
+			FileUtil.removeFile(request, db_question.getQuestion_photo());
+		
+		request.setAttribute("notice_msg", "글 수정이 완료되었습니다!");
+		request.setAttribute("notice_url", "questionDetail.do?question_num="+question_num);
+		
+		return "/WEB-INF/views/common/alert_singleView.jsp";
+	}
+}

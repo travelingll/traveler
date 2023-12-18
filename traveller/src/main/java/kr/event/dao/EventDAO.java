@@ -9,6 +9,7 @@ import java.util.List;
 import kr.event.vo.EventReplyVO;
 import kr.event.vo.EventVO;
 import kr.util.DBUtil;
+import kr.util.StringUtil;
 
 public class EventDAO {
 	
@@ -128,7 +129,7 @@ public class EventDAO {
 				event.setEvent_num(rs.getInt("event_num"));
 				event.setEvent_category(rs.getInt("event_category"));
 				event.setEvent_photo1(rs.getString("event_photo1"));
-				event.setEvent_title(rs.getString("event_title"));
+				event.setEvent_title(StringUtil.useBrNoHtml(rs.getString("event_title")));
 				event.setEvent_start(rs.getString("event_start"));
 				event.setEvent_end(rs.getString("event_end"));
 				
@@ -314,7 +315,7 @@ public class EventDAO {
 				EventReplyVO reply = new EventReplyVO();
 				
 				reply.setEvent_renum(rs.getInt("event_renum"));
-				reply.setEvent_recontent(rs.getString("event_recontent"));
+				reply.setEvent_recontent(StringUtil.useBrNoHtml(rs.getString("event_recontent")));
 				reply.setEvent_redate(rs.getDate("event_redate"));
 				reply.setEvent_modifydate(rs.getDate("event_modifydate"));
 				reply.setEvent_reip(rs.getString("event_reip"));

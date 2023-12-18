@@ -20,6 +20,7 @@ public class EventDetailAction implements Action {
 		dao.updateEventHit(event_num);
 		EventVO event = dao.getEventDetail(event_num);
 		
+		event.setEvent_title(StringUtil.useBrNoHtml(event.getEvent_title()));
 		event.setEvent_content(StringUtil.useBrNoHtml(event.getEvent_content()));
 		
 		request.setAttribute("event", event);

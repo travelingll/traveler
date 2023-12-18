@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>이벤트 상세</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssss.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/eventReply.js"></script>	
 </head>

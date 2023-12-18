@@ -17,13 +17,22 @@ public class QuestionVO {
 	private Date question_modifydate;
 	private int question_level;
 	private int question_hit;
-	private String id;
+	private String name;
+	private int question_renum;
 	
-	public String getId() {
-		return id;
+	
+
+	public int getQuestion_renum() {
+		return question_renum;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setQuestion_renum(int question_renum) {
+		this.question_renum = question_renum;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public int getQuestion_hit() {
 		return question_hit;

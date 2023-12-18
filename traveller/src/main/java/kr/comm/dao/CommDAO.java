@@ -71,9 +71,9 @@ public class CommDAO {
 			
 			if(keyword!=null && !"".equals(keyword)) {
 				//검색 처리
-				if(keyfield.equals("1")) sub_sql +="WHERE title LIKE ?";
+				if(keyfield.equals("1")) sub_sql +="WHERE comm_title LIKE ?";
 				else if(keyfield.equals("2")) sub_sql +="WHERE id LIKE ?";
-				else if(keyfield.equals("3")) sub_sql +="WHERE content LIKE ?";
+				else if(keyfield.equals("3")) sub_sql +="WHERE comm_content LIKE ?";
 			}
 			if(mem_num > 0) {
 				sub_sql2 += "WHERE mem_num=?";
@@ -120,9 +120,9 @@ public class CommDAO {
 			
 			if(keyword!=null && !"".equals(keyword)) {
 				//검색 처리
-				if(keyfield.equals("1")) sub_sql += "WHERE title LIKE ?";
+				if(keyfield.equals("1")) sub_sql += "WHERE comm_title LIKE ?";
 				else if(keyfield.equals("2")) sub_sql += "WHERE id LIKE ?";
-				else if(keyfield.equals("3")) sub_sql += "WHERE content LIKE ?";
+				else if(keyfield.equals("3")) sub_sql += "WHERE comm_content LIKE ?";
 			}
 			if(mem_num > 0) {
 				sub_sql2 += "WHERE mem_num=?";
