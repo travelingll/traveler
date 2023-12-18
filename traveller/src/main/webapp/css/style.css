@@ -206,8 +206,23 @@ h1.logo {
     position: relative;
     color: #333;
 }
-.local_menu_wrap .private_menu > ul > li > a.link_my:before {
-    background-image: url('https://image.hanatour.com/usr/static/img2/pc/com/ico-mymenu.png');
+.local_menu_wrap .private_menu > ul > li > a.link_my {
+    background-image: url('../upload/icon_mypage.svg');
+    background-position: 10px 0px;
+    background-repeat:no-repeat;
+
+}
+.local_menu_wrap .private_menu > ul > li > a.link_reservation {
+    background-image: url('../upload/icon_reservation.svg');
+    background-position: 8px 0px;
+    background-repeat:no-repeat;
+
+}
+.local_menu_wrap .private_menu > ul > li > a.link_choice {
+    background-image: url('../upload/icon_reservationhistory.png');
+    background-position: 8px 0px;
+    background-repeat:no-repeat;
+
 }
 /*-----------------마이 메뉴 클릭시*/
 .my_menu_wrap {

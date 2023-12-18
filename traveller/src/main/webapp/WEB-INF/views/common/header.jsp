@@ -40,7 +40,11 @@
 									<div class="fr">
 										<div class="private_menu">
 											<ul>
-												<li><a href="${pageContext.request.contextPath}/member/myPage.do" class="link_my">마이메뉴</a>
+												<li>
+												<a href="${pageContext.request.contextPath}/member/myPage.do" class="link_my">
+
+													마이메뉴
+												</a>
 													<div class="my_menu_wrap">
 														<div class="inr">
 															<p class="tit"> 마이메뉴는 <br> <strong>회원 전용</strong> 메뉴 입니다.</p> 
