@@ -316,6 +316,7 @@ private static ItemDAO instance = new ItemDAO();
 		}	
 		return vo;
 	}
+	//동행 신청 내역 본인
 	
 	
 	

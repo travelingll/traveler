@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.accom.vo.AccomFavVO;
+import kr.accom.vo.AccomInfoVO;
 import kr.accom.vo.AccomReplyVO;
 import kr.accom.vo.AccomVO;
 import kr.util.DBUtil;
@@ -130,6 +131,7 @@ public class AccomDAO {
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
 					+ "(SELECT * FROM accom JOIN member USING(mem_num) "
+					+ "LEFT OUTER JOIN (SELECT accom_num, COUNT(*) present_cnt FROM accom_info GROUP BY accom_num) USING(accom_num) "
 					+ "LEFT OUTER JOIN (SELECT accom_num, COUNT(*) cnt FROM accom_fav GROUP BY accom_num) USING(accom_num) " + sub_sql + sub_sql2
 					+ "ORDER BY accom_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 			//PrepardStatement 객체 생성
@@ -158,6 +160,7 @@ public class AccomDAO {
 				accom.setAccom_hit(rs.getInt("accom_hit"));
 				// 추천수
 				accom.setCnt(rs.getInt("cnt"));
+				accom.setPresent_cnt(rs.getInt("present_cnt"));//현재 등록 인원
 				
 				list.add(accom);
 			}
@@ -187,6 +190,7 @@ public class AccomDAO {
 			//(주의)회원 탈퇴하면 member_detail에 레코드가 존재하지 않기 때문에 외부조인을 사용해서 데이터 누락을 방지함
 			sql = "SELECT * FROM accom JOIN member USING(mem_num) "
 					+ "LEFT OUTER JOIN member_detail USING(mem_num) "
+					+ "LEFT OUTER JOIN (SELECT accom_num, COUNT(*) present_cnt FROM accom_info GROUP BY accom_num) USING(accom_num) "
 					+ "LEFT OUTER JOIN (SELECT accom_num, COUNT(*) cnt FROM accom_fav GROUP BY accom_num) USING(accom_num) "
 					+ "WHERE accom_num=?";
 			//PreparedStatement 객체 생성
@@ -212,6 +216,7 @@ public class AccomDAO {
 				accom.setMem_num(rs.getInt("mem_num"));
 				accom.setId(rs.getString("id"));
 				accom.setPhoto(rs.getString("photo"));
+				accom.setPresent_cnt(rs.getInt("present_cnt"));//현재 등록 인원
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -693,79 +698,70 @@ public class AccomDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	//동행 신청(현재 인원수 증가)
-	public boolean applyForAccom(int accom_num, int user_num)throws Exception{
+	//동행 신청
+	public void applyForAccom(int accom_num, int mem_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2= null;
-		PreparedStatement pstmt3 = null;
-		ResultSet rs = null;
 		String sql = null;
-		boolean applied = false;
+		
+		try {
+			//커넥션풀에 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "INSERT INTO accom_info (info_num, accom_num, mem_num)"
+					+ "VALUES (accom_info_seq.nextval, ?, ?)";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, accom_num);
+			pstmt.setInt(2, mem_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	//동행 신청 상세
+	public AccomInfoVO getAccomInfo(int accom_num, int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		AccomInfoVO accominfo = null;
+		String sql = null;
 		
 		try {
 			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
-			//오토커밋 해제
-			conn.setAutoCommit(false);
-			
 			//SQL문 작성
-			//현재 신청된 인원수와 모집 인원수 조회
-			sql = "SELECT accom_quantity, COUNT(*) AS apply_quantity FROM accom WHERE accom_num = ?";
-			//PreparedStatement 객체 상태
+			sql = "SELECT * FROM accom_info WHERE accom_num = ? AND mem_num = ? ";
+			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			pstmt.setInt(1, accom_num);
-			//SQL문 실행
+			pstmt.setInt(2, mem_num);
+			//SQL문을 실행해서 결과행을 ResultSet에 담음
 			rs = pstmt.executeQuery();
 			
-			int totalQuantity = 0;
-			int appliedQuantity = 0;
-			
 			if(rs.next()) {
-				totalQuantity = rs.getInt("accom_quantity");
-                appliedQuantity = rs.getInt("apply_quantity");
+				accominfo = new AccomInfoVO();
+				accominfo.setAccom_num(rs.getInt("accom_num"));
+				accominfo.setMem_num(rs.getInt("mem_num"));
 			}
 			
-			//모집인원수보다 현재 신청된 인원수가 적은 경우 동행 신청 가능
-			if(totalQuantity > appliedQuantity) {
-				//동행 신청 수행
-				sql = "INSERT INTO accom_info(info_num, accom_num, mem_num) VALUES"
-					+ "(accom_info_seq.nextval, ?, ?)";
-				
-				 pstmt2 = conn.prepareStatement(sql);
-	             pstmt2.setInt(1, accom_num);
-	             pstmt2.setInt(2, user_num); 
-	             pstmt2.executeUpdate();
-	             
-	             //현재 신청된 인원 수를 증가시킴
-	             appliedQuantity++;
-	             
-	          //accom 테이블의 신청 인원 수를 업데이트
-	          sql = "UPDATE accom SET accom_quantity = ? WHERE accom_num = ?";
-	          pstmt3 = conn.prepareStatement(sql);
-	          pstmt3.setInt(1, appliedQuantity);
-	          pstmt3.setInt(2, accom_num);
-	          pstmt3.executeUpdate();
-
-	          applied = true;
-	          
-	        //모든 SQL문이 정상적으로 수행
-	        conn.commit();
-			}
 		}catch(Exception e) {
-			//SQL문이 하나라도 실패하면
-			conn.rollback();
 			throw new Exception(e);
-		
 		}finally {
 			DBUtil.executeClose(rs, pstmt, conn);
-			DBUtil.executeClose(null, pstmt2, null);
-			DBUtil.executeClose(null, pstmt3, null);
-			;
 		}
 		
-		return applied;
+		return accominfo;
 	}
-	//동행신청 내역?
+	//동행 신청 내역 (신청자)
+	
+	//동행 신청 내역 (작성자)
+	
+	
 }
