@@ -6,22 +6,34 @@
 <head>
 	<meta charset="UTF-8">
 	<title>일대일 문의 목록</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssss.css">
+	<script type="text/javascript">
+		window.onload = function(){
+			let searchForm = document.getElementById('search_form');
+			searchForm.onsubmit = function(){
+				let keyword = document.getElementById('keyword');
+				if(keyword.value.trim()==''){
+					alert('검색어를 입력하세요!');
+					keyword.value='';
+					keyword.focus();
+					return false;
+				}
+			};
+		};
+	</script>
 </head>
 <body>
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<%-- 사이드 메뉴 삽입 필요 --%>
+		<jsp:include page="question_sidemenu.jsp"/>
 		<%-- 카테고리 삽입 필요 --%>
 		<div class="content-main">
-			<form action="eventList.do" id="search_form" method="get"><%-- 검색바 --%>
+			<form action="questionList.do" id="search_form" method="get"><%-- 검색바 --%>
 				<ul class="search">
 					<li>
 						<select name="keyfield">
-							<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>전체</option>
-							<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>상품</option>
-							<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>교환/환불</option>
-							<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>기타</option>
+							<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
+							<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>내용</option>
 						</select>
 					</li>
 					<li>
@@ -33,7 +45,7 @@
 				</ul>
 			</form>
 			<div class="list-space align-right">
-				<input type="button" value="문의 작성" onclick="location.href='questionWriteForm.do'">
+				<input type="button" value="문의 작성" onclick="location.href='userQuestionWriteForm.do'">
 			</div>
 			<c:if test="${empty list}">
 				<div class="result-display">표시할 일대일 문의가 없습니다</div>
@@ -48,20 +60,37 @@
 						<th>조회수</th>
 					</tr>
 					<c:forEach var="question" items="${list}">
-						<tr>
-							<td>${question.question_category}</td>
-							<td>${question.question_title}</td>
-							<td>
-								<c:if test="${question.mem_num==0}">비회원</c:if>
-								<c:if test="${question.mem_num!=0}">${question.mem_num}</c:if>
-								
-							</td>
-							<td>${question.question_regdate}</td>
-							<td>${question.question_hit}</td>
-						</tr>
+						<c:if test="${question.question_category!=0}">
+							<tr>
+								<td>
+									<c:if test="${question.question_category==1}">상품</c:if>
+									<c:if test="${question.question_category==2}">교환/환불</c:if>
+									<c:if test="${question.question_category==3}">기타</c:if>
+								</td>
+								<td>
+									<c:if test="${question.question_lock==2}">
+										<img src="${pageContext.request.contextPath}/upload/question_lock.png" width="8">
+									</c:if>
+									<a href="questionDetail.do?question_num=${question.question_num}">${question.question_title}</a>
+									<c:if test="${question.question_renum!=0}">
+										<br>
+										<a href="questionDetail.do?question_num=${question.question_num}">
+											&nbsp;&nbsp;&nbsp;ㄴ 답변 완료&nbsp;<img src="${pageContext.request.contextPath}/upload/question_answer.png" width="14">
+										</a>
+									</c:if>
+								</td>
+								<td>
+									<c:if test="${empty question.name}">비회원</c:if>
+									<c:if test="${!empty question.name}">${question.name}</c:if>
+								</td>
+								<td>${question.question_regdate}</td>
+								<td>${question.question_hit}</td>
+							</tr>
+						</c:if>
 					</c:forEach>
 				</table>
 			</c:if>
+			<div class="align-center">${page}</div>
 		</div>
 	</div>
 </body>

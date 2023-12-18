@@ -11,7 +11,7 @@ import kr.question.dao.QuestionDAO;
 import kr.question.vo.QuestionVO;
 import kr.util.FileUtil;
 
-public class QuestionWriteAction implements Action {
+public class UserQuestionWriteAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -23,25 +23,30 @@ public class QuestionWriteAction implements Action {
 		
 		if(session.getAttribute("user_num")!=null) { //로그인된 사용자의 경우
 			question.setMem_num((Integer)session.getAttribute("user_num"));
-		} else { //로그인하지 않은 사용자의 경우
+		} else { //로그인하지 않은 사용자의 경우 0으로 처리
 			question.setMem_num(0);
 		}
-		question.setQuestion_ip(request.getRemoteAddr()); 
+		
+		question.setQuestion_ip(request.getRemoteAddr());
 		question.setQuestion_category(multi.getParameter("question_category"));
 		question.setQuestion_title(multi.getParameter("question_title"));
-		question.setQuestion_lock(Integer.parseInt(multi.getParameter("question_lock")));
+		question.setQuestion_lock(Integer.parseInt(multi.getParameter("question_lock"))); //관리자 답변의 경우 원글 설정과 동일하게
+		
 		if(multi.getParameter("question_passwd") != null) { //비회원 글 작성 시 비밀번호 설정
 			question.setQuestion_passwd(multi.getParameter("question_passwd"));
 		}
+		
 		question.setQuestion_photo(multi.getFilesystemName("question_photo"));
 		question.setQuestion_content(multi.getParameter("question_content"));
-		if( session.getAttribute("user_num")!=null && (int)session.getAttribute("user_num")==9) question.setQuestion_level(2); //관리자의 경우 답변 레벨 2
-		else question.setQuestion_level(1); //관리자 외 회원 진입 시 답변 레벨 1
 		
+		question.setQuestion_level(1); //답변 레벨 1
 		
 		QuestionDAO dao = QuestionDAO.getInstance();
 		dao.writeQuestion(question);
 		
-		return "/WEB-INF/views/question/questionWrite.jsp";
+		request.setAttribute("notice_msg", "문의글이 등록되었습니다!");
+		request.setAttribute("notice_url", "questionList.do");
+		
+		return "/WEB-INF/views/common/alert_singleView.jsp";
 	}
 }

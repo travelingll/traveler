@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>관리자-이벤트 수정</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssss.css">
 	<script type="text/javascript">
 		window.onload = function(){
 			let updateForm = document.getElementById('event_updateForm');
