@@ -63,6 +63,7 @@ public class FaqDAO {
 				if(keyword!=null && !"".equals(keyword)) {
 					if(keyfield.equals("1")) sub_sql += "WHERE faq_title LIKE ?";
 					else if(keyfield.equals("2")) sub_sql += "WHERE faq_content LIKE ?";
+					else if(keyfield.equals("3")) sub_sql += "WHERE faq_category LIKE ?";
 				}
 				sql = "SELECT COUNT(*) FROM faq " + sub_sql;
 				
@@ -98,6 +99,7 @@ public class FaqDAO {
 				if(keyword !=null && !"".equals(keyword)) {
 					if(keyfield.equals("1")) sub_sql += "WHERE faq_title LIKE ?";
 					else if(keyfield.equals("2")) sub_sql += "WHERE faq_content LIKE ?";
+					else if(keyfield.equals("3")) sub_sql += "WHERE faq_category LIKE ?";
 				}
 				sql = "SELECT * FROM(SELECT a.*, rownum rnum FROM "
 						+ "(SELECT * FROM faq " + sub_sql
@@ -115,6 +117,7 @@ public class FaqDAO {
 					FaqVO faq = new FaqVO();
 					faq.setFaq_title(rs.getString("faq_title"));
 					faq.setFaq_content(rs.getString("faq_content"));
+					faq.setFaq_category(rs.getInt("faq_category"));
 					
 					list.add(faq);
 				}

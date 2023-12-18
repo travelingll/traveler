@@ -15,7 +15,7 @@
 		<ul>
 			<li>
 				<label for="title">제목</label>
-				<input type="text" name="title" id="title" maxlength="50">
+				<input type="text" name="title" id="title" class="faq_category">
 			</li>
 			<li>
 				<label for="content">내용</label>
@@ -23,7 +23,9 @@
 			</li>
 			<li>
 				<label for="category">카테고리</label>
-				<input type="text" name="category" id="category">
+				<input type="radio" name="category" id="category" class="question_category" value="1">[상품예약.결제]
+				<input type="radio" name="category" id="category2" class="question_category" value="2">[해외패키지]
+				<input type="radio" name="category" id="category3" class="question_category" value="3">[개인정보변경]
 			</li>
 		</ul>
 		<div class="align-center">
