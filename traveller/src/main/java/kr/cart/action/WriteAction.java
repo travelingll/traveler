@@ -51,17 +51,17 @@ public class WriteAction implements Action {
 				int ordertotal_quantity = cart.getOrder_quantity() + db_cart.getOrder_quantity();
 				if(ordertotal_quantity > quantity) {
 					
-					request.setAttribute("accessMsg", "구매 가능 수량을 초과하였습니다.");
-					request.setAttribute("accessUrl", "adminItemList.do");
+					request.setAttribute("notice_msg", "구매 가능 수량을 초과하였습니다.");
+					request.setAttribute("notice_url", "adminItemList.do");
 					
 					return "/WEB-INF/views/common/notice.jsp"; 
 				}else {
 					cart.setOrder_quantity(ordertotal_quantity);
 					dao.updateCartByItem_num(cart);
 					
-					response.addHeader("Refresh", "2;url=/item/itemDetail.do");
-					request.setAttribute("accessMsg", "성공적으로 등록되었습니다..");
-					request.setAttribute("accessUrl", "/item/itemDetail.do");
+					response.addHeader("Refresh", "2;url="+request.getContextPath()+"/item/itemDetail.do?item_num="+item_num);
+					request.setAttribute("notice_msg", "성공적으로 등록되었습니다.");
+					request.setAttribute("notice_url", request.getContextPath()+"/item/itemDetail.do?item_num="+item_num);
 					
 					return "/WEB-INF/views/common/alert_singleView.jsp";
 
