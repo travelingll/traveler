@@ -57,6 +57,10 @@ public class UserQuestionPasswdCheckAction implements Action {
 			return "/WEB-INF/views/common/alert_singleView.jsp";
 			
 		} else { //상세글 진입 비밀번호체크인 경우
+			if( detail.getQuestion_renum() != 0) { //답변이 있는 경우 답변 저장
+				QuestionVO answer = dao.getQuestionDetail(detail.getQuestion_renum());
+				request.setAttribute("answer", answer);
+			}
 			return "/WEB-INF/views/question/questionDetail.jsp";
 		}
 	}

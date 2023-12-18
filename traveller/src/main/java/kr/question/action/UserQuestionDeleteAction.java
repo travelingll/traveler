@@ -23,22 +23,20 @@ public class UserQuestionDeleteAction implements Action {
 		QuestionDAO dao = QuestionDAO.getInstance();
 		QuestionVO db_question = dao.getQuestionDetail(question_num);
 		
-		if( db_question.getMem_num()!=0 ) { //회원글 조건 체크
-			if(user_num==null) {//미로그인
+		if( db_question.getMem_num()!=0 ) { //회원글
+			if(user_num==null) { //로그인 체크
 				request.setAttribute("notice_msg", "로그인이 필요합니다!");
 				request.setAttribute("notice_url", request.getContextPath()+"/member/loginForm.jsp");
 				return "/WEB-INF/views/common/alert_singleView.jsp";
-			}
-			if(user_num!=db_question.getMem_num()) {//작성자
+			} else if( user_num!=db_question.getMem_num()) {//작성자 체크
 				request.setAttribute("notice_msg", "회원글은 작성자만 삭제 가능합니다!");
 				request.setAttribute("notice_url", "/WEB-INF/question/questionDetail.do?question_num="+question_num);
 				return "/WEB-INF/views/common/alert_singleView.jsp";
 			}
-		} else { //비회원글은 비밀번호 체크
+		} else { //비회원글 - 비밀번호 체크
 			request.setAttribute("question_num", question_num);
 			request.setAttribute("check", "delete");
-			
-			return "/WEB-INF/views/question/userQuestionPasswd.jsp"; //비밀번호 확인페이지로
+			return "/WEB-INF/views/question/userQuestionPasswd.jsp";
 		}
 		
 		//조건체크 통과 시 삭제 가능

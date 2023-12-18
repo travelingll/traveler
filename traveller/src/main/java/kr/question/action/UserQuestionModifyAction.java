@@ -23,20 +23,17 @@ public class UserQuestionModifyAction implements Action {
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		
 		QuestionDAO dao = QuestionDAO.getInstance();
-		QuestionVO db_question = dao.getQuestionDetail(question_num);
+		QuestionVO db_question = dao.getQuestionDetail(question_num); //원글 정보 읽어오기
 		
 		//회원글 조건 체크
-		if( db_question.getMem_num()!=0 ) {
-			if(user_num==null) {
-				request.setAttribute("notice_msg", "로그인이 필요합니다!");
-				request.setAttribute("notice_url", request.getContextPath()+"/member/loginForm.jsp");
-				return "/WEB-INF/views/common/alert_singleView.jsp";
-			}
-			if(user_num!=db_question.getMem_num()) {
-				request.setAttribute("notice_msg", "회원글은 작성자만 수정 가능합니다!");
-				request.setAttribute("notice_url", "/WEB-INF/question/questionDetail.do?question_num="+question_num);
-				return "/WEB-INF/views/common/alert_singleView.jsp";
-			}
+		if( db_question.getMem_num()!=0 && user_num==null) { //미 로그인시
+			request.setAttribute("notice_msg", "로그인이 필요합니다!");
+			request.setAttribute("notice_url", request.getContextPath()+"/member/loginForm.jsp");
+			return "/WEB-INF/views/common/alert_singleView.jsp";
+		} else if(db_question.getMem_num()!=0 && user_num!=db_question.getMem_num()) { //작성자 불일치
+			request.setAttribute("notice_msg", "회원글은 작성자만 수정 가능합니다!");
+			request.setAttribute("notice_url", "/WEB-INF/question/questionDetail.do?question_num="+question_num);
+			return "/WEB-INF/views/common/alert_singleView.jsp";
 		}	
 		
 		QuestionVO question = new QuestionVO();
