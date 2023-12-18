@@ -9,7 +9,7 @@ public class CartVO {
 	private int mem_num;
 	private int item_num;
 	private Date cart_regdate;
-	private int cart_count;
+	private int order_quantity;
 	
 	private ItemVO itemVO;
 	
@@ -37,11 +37,12 @@ public class CartVO {
 	public void setCart_regdate(Date cart_regdate) {
 		this.cart_regdate = cart_regdate;
 	}
-	public int getCart_count() {
-		return cart_count;
+	
+	public int getOrder_quantity() {
+		return order_quantity;
 	}
-	public void setCart_count(int cart_count) {
-		this.cart_count = cart_count;
+	public void setOrder_quantity(int order_quantity) {
+		this.order_quantity = order_quantity;
 	}
 	public ItemVO getItemVO() {
 		return itemVO;

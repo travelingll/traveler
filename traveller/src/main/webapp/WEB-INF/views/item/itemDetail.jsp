@@ -20,7 +20,6 @@
 	.content-right{
 	 	float: right;
         width: 27%;
-        background-color: lightgreen;
 	}
 	.last-div{
 	clear: right;
@@ -43,7 +42,24 @@ a {
 hr{
     color: black;
   }
-	
+#button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 18px 20px;
+  margin-right: 20px;
+}
+img{
+	width:80%;
+}
 </style>
 <script>
 	function openPopup1() {
@@ -87,7 +103,7 @@ hr{
 		<div class="item-header">
 			<div class="content-center">
 				<div class="content-main-left">
-					<img src="${pageContext.request.contextPath}/upload/${item.item_img1}" width="100%">
+					<img src="${pageContext.request.contextPath}/upload/${item.item_img1}" >
 					<br><br><br>
 				</div>
 			</div>
@@ -105,6 +121,16 @@ hr{
 					<h2>가격 <fmt:formatNumber value="${item.item_price}"/>원</h2>
 				</div>
 				</div>
+					<div>
+						<form id="reservationForm" action="${pageContext.request.contextPath}/cart/write.do" method="post">
+						<label for="order_quantity">구매수량</label>
+						<input type="number" name="order_quantity" id="order_quantity" value="1" min="1" max="${item.quantity}">
+						<input type="hidden" name="item_num" value="${item.item_num}" >
+						<input type="hidden" name="item_price" value="${item.item_price}" >
+						<input type="hidden" name="quantity" value="${item.quantity}">
+	 					<input type="submit" value="예약하기" id="button">
+						</form>
+					</div>
 			</div>
 		</div>
 	<!-- item-header 영역 끝 -->
@@ -124,9 +150,7 @@ hr{
 		<br><br><br>
 		</div>
 		<!-- 여행 주요일정 끝 -->
-		<div class="content-right">
-			예약하는 부분
-		</div>
+		
 	<!-- 상품가격 알림 시작 -->
 		<div class="content-center">
 		<hr size="5px" color="black">
@@ -150,25 +174,26 @@ hr{
 			<br><br><br>
 		</div>
 	<!-- 상품가격 알림 끝 -->
-	<br>
+		
+	
 	<!-- 여행 상세정보 시작 -->
 	<div class="content-center">
 		<h2>여행 상세정보</h2>
 		<br>
 		<hr size="5px" color="black">
 		
-		<img src="${pageContext.request.contextPath}/upload/${item.item_img2}" width="100%">
+		<img src="${pageContext.request.contextPath}/upload/${item.item_img2}" >
 		
-		<img src="${pageContext.request.contextPath}/upload/${item.item_img3}" width="100%">
+		<img src="${pageContext.request.contextPath}/upload/${item.item_img3}" >
 		
 		<c:if test="${!empty item.item_img4}">
-		<img src="${pageContext.request.contextPath}/upload/${item.item_img4}" width="100%">
+		<img src="${pageContext.request.contextPath}/upload/${item.item_img4}" >
 		</c:if>
 		<c:if test="${!empty item.item_img4 && !empty item.item_img5}">
-		<img src="${pageContext.request.contextPath}/upload/${item.item_img5}" width="100%">
+		<img src="${pageContext.request.contextPath}/upload/${item.item_img5}" >
 		</c:if>
 		<c:if test="${!empty item.item_img4 && !empty item.item_img5 && !empty item.item_img6}">
-		<img src="${pageContext.request.contextPath}/upload/${item.item_img6}" width="100%">
+		<img src="${pageContext.request.contextPath}/upload/${item.item_img6}" >
 		</c:if>
 		
 	

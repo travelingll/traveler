@@ -29,13 +29,13 @@ public class CartDAO {
 		try {
 			conn = DBUtil.getConnection();
 			
-			sql = "INSERT INTO cart (cart_num,mem_num,item_num,cart_regdate,cart_count) "
+			sql = "INSERT INTO cart (cart_num,mem_num,item_num,cart_regdate,order_quantity) "
 				+ "VALUES (cart_seq.nextval,?,?,SYSDATE,?)";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, cart.getMem_num());
 			pstmt.setInt(2, cart.getItem_num());
-			pstmt.setInt(3, cart.getCart_count());
+			pstmt.setInt(3, cart.getOrder_quantity());
 			pstmt.executeUpdate();
 			
 		}catch(Exception e) {
@@ -69,7 +69,7 @@ public class CartDAO {
 				cart.setCart_num(rs.getInt("cart_num"));
 				cart.setItem_num(rs.getInt("item_num"));
 				cart.setMem_num(rs.getInt("mem_num"));
-				cart.setCart_count(rs.getInt("cart_count"));
+				cart.setOrder_quantity(rs.getInt("order_quantity"));
 				
 				ItemVO item = new ItemVO();
 				item.setItem_name(rs.getString("item_name"));
@@ -113,4 +113,97 @@ public class CartDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	public CartVO getCart(CartVO cart)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		CartVO vo = null;
+		ResultSet rs = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 객체 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM cart WHERE item_num=? AND mem_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, cart.getItem_num());
+			pstmt.setInt(2, cart.getMem_num());
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				vo = new CartVO();
+				vo.setItem_num(rs.getInt("item_num"));
+				vo.setMem_num(rs.getInt("mem_num"));
+				vo.setOrder_quantity(rs.getInt("order_quantity"));
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		
+		
+		return vo;
+	}
+	
+	public void updateCart(CartVO cart) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션객체 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE zcart SET order_quantity=? WHERE cart_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, cart.getOrder_quantity());
+			pstmt.setInt(2, cart.getCart_num());
+			//SQL문 실행
+			pstmt.executeUpdate();
+			
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//장바구니 상품번호와 회원번호별 수정
+		public void updateCartByItem_num(CartVO cart)throws Exception{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;
+			
+			try {
+				//커넥션풀로부터 커넥션 객체 할당
+				conn = DBUtil.getConnection();
+				//SQL문 작성
+				sql = "UPDATE cart SET order_quantity=? WHERE item_num=? AND mem_num=?";
+				//PreparedStatement 객체 생성
+				pstmt = conn.prepareStatement(sql);
+				//?에 데이터 바인딩
+				pstmt.setInt(1, cart.getOrder_quantity());
+				pstmt.setInt(2,  cart.getItem_num());
+				pstmt.setInt(3,  cart.getMem_num());
+				//SQL문 실행
+				pstmt.executeUpdate();
+				
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.getConnection();
+			}
+			
+		}
+	
+	
 }
