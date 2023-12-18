@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>게시판 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/eunseo.css">
+
 <script type="text/javascript">
 window.onload=function(){
 	let myForm = document.getElementById('search_form');
@@ -94,17 +96,17 @@ window.onload=function(){
  										<table>
  										<thead>
  											<tr>
- 												<th style="width: 5%;"></th>
- 												<th style="width: 5%;">번호</th>
- 												<th style="width: 5%;"></th>
+ 												<th style="width: 1%;"></th>
+ 												<th style="width: 10%;">번호</th>
+ 												<th style="width: 1%;"></th>
   												<th>제목</th>
   												<th style="width: 5%;"></th>
-  												<th style="width: 10%;">작성자</th>
-  												<th style="width: 5%;"></th>
-   												<th style="width: 10%;">작성일</th>
-   												<th style="width: 5%;"></th>
-   												<th style="width: 5%;">조회</th>
-   												<th style="width: 5%;"></th>
+  												<th style="width: 15%;">작성자</th>
+  												<th style="width: 1%;"></th>
+   												<th style="width: 15%;">작성일</th>
+   												<th style="width: 1%;"></th>
+   												<th style="width: 10%;">조회</th>
+   												<th style="width: 1%;"></th>
    											</tr>
    										</thead>
    										<c:forEach var="comm" items="${list}">
@@ -138,5 +140,3 @@ window.onload=function(){
 </div>
 </body>
 </html>
-
-	

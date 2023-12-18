@@ -115,6 +115,40 @@ dt, dd {
     border-bottom: 1px solid #ddd;
     line-height: 50px;
 }
+/*-----------------사이드 메뉴*/
+#container > .inr {
+    width: 1200px;
+    margin: 50px auto 0;
+}
+#lnb.lnb {
+    width: 150px;
+    margin-right: 40px;
+    float: left;
+    overflow: hidden;
+}
+dl {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+#lnb.lnb dl > dt.type {
+    font-size: 24px;
+    letter-spacing: -2px;
+}
+#lnb.lnb dl > dt {
+    height: 57px;
+    font-size: 26px;
+    font-weight: 700;
+    border-bottom: 2px solid #111;
+    padding-bottom: 29px;
+    color: #111;
+}
+dt, dd {
+    line-height: 1;
+}
+#lnb.lnb ul.list_lnb > li {
+    border-bottom: 1px solid #ddd;
+    line-height: 50px;
+}
 /*-----------------글로벌 메뉴*/
 .global_menu_wrap {
     width: 1200px;
@@ -171,6 +205,9 @@ h1.logo {
     padding-top: 29px;
     position: relative;
     color: #333;
+}
+.local_menu_wrap .private_menu > ul > li > a.link_my:before {
+    background-image: url('https://image.hanatour.com/usr/static/img2/pc/com/ico-mymenu.png');
 }
 /*-----------------마이 메뉴 클릭시*/
 .my_menu_wrap {
@@ -253,7 +290,7 @@ h1.logo {
 /*-----------------gnb 메뉴 왼쪽*/
 gnb_wrap {
     height: 170px;
-    background: url(https://image.hanatour.com/usr/static/img2/pc/com/sp-gnb-line.png) repeat-x left -2px;
+    background: url(../images/sp-gnb-line.png) repeat-x left -2px;
 }
 
 #gnb_wrap > .inr {
@@ -411,7 +448,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 }
 .search_field .box_search.wide_type input[type=search] {
     width: 592px;
-    height: 60px;
+    height: 54px;
     border: 3px solid #333;
     border-radius: 0;
     margin-left: 0;
@@ -461,6 +498,14 @@ button, input, textarea {
     border-radius: 4px;
     border: solid 1px #c2c2c2;
     
+}
+#gnb_wrap {
+    height: 170px;
+    background: url(../images/sp-gnb-line.png) repeat-x left -2px;
+}
+
+#gnb_wrap > .inr {
+    position: relative;
 }
 button {
     background-color: transparent;
@@ -653,4 +698,42 @@ table td, table th{
 .ly_tbl {
     display: table;
     width: 100%;
+}
+
+#main-menu, #side-menu{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+
+#main-menu > li{
+	float:left;
+}
+#main-menu > li > a{
+	display:block;
+	color:000000;
+}
+#main-menu > li > a{
+	text-align:center;
+	text-decoration:none;
+}
+#sub-menu{
+	position:absolute;
+	opacity:0;
+	visibility:hidden;
+}
+
+#sub-menu > li{
+	padding: 0px 0px;
+		float:left;
+		margin-top:56px;
+		
+}
+#sub-menu > li > a{
+	text-decoration:none;
+	
+}
+#main-menu > li:hover #sub-menu {
+  opacity: 1;
+  visibility: visible;
 }

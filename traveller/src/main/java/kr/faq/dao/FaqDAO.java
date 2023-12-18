@@ -64,7 +64,7 @@ public class FaqDAO {
 					if(keyfield.equals("1")) sub_sql += "WHERE faq_title LIKE ?";
 					else if(keyfield.equals("2")) sub_sql += "WHERE faq_content LIKE ?";
 				}
-				sql = "SELECT COUNT(*) FROM faq" + sub_sql;
+				sql = "SELECT COUNT(*) FROM faq " + sub_sql;
 				
 				pstmt = conn.prepareStatement(sql);
 				if(keyword != null && !"".equals(keyword)) {
