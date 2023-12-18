@@ -2,12 +2,16 @@ package kr.cart.vo;
 
 import java.sql.Date;
 
+import kr.item.vo.ItemVO;
+
 public class CartVO {
 	private int cart_num;
 	private int mem_num;
 	private int item_num;
 	private Date cart_regdate;
 	private int cart_count;
+	
+	private ItemVO itemVO;
 	
 	public int getCart_num() {
 		return cart_num;
@@ -38,5 +42,11 @@ public class CartVO {
 	}
 	public void setCart_count(int cart_count) {
 		this.cart_count = cart_count;
+	}
+	public ItemVO getItemVO() {
+		return itemVO;
+	}
+	public void setItemVO(ItemVO itemVO) {
+		this.itemVO = itemVO;
 	}
 }
