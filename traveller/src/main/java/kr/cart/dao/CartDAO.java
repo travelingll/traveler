@@ -45,6 +45,34 @@ public class CartDAO {
 		}
 	}
 	
+	//찜 개수
+	public int getCountCart(int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT COUNT(*) FROM cart WHERE mem_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return count;
+	}
+	
 	//찜 목록
 	public List<CartVO> getListCart(int mem_num)throws Exception{
 		Connection conn = null;

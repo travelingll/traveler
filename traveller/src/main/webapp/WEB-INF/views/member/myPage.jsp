@@ -118,6 +118,7 @@ $(function(){
 	 												<li><a href="${pageContext.request.contextPath}/member/myQuestion.do">1:1 문의</a></li>
 	 												<li><a href="${pageContext.request.contextPath}/member/myMoney.do">적립금</a></li>
 	 												<li><a>동행 신청내역</a></li>
+													<li><a href="${pageContext.request.contextPath}/cart/list.do">장바구니</a></li>
 												</ul>
 											</dd>
 										</dl>
