@@ -21,15 +21,18 @@ public class ListAction implements Action{
 		}
 		
 		CartDAO dao = CartDAO.getInstance();
+		int all_total = dao.getTotalByMem_num(user_num);
+		
 		int count = dao.getCountCart(user_num);
 		
 		List<CartVO> list = null;
+		
 		if(count > 0) {
 			list = dao.getListCart(user_num);
 		}
 		
-		request.setAttribute("count", count);
 		request.setAttribute("list", list);
+		request.setAttribute("all_total", all_total);
 				
 		return "/WEB-INF/views/cart/list.jsp";
 	}

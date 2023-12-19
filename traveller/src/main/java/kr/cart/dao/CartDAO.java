@@ -106,6 +106,7 @@ public class CartDAO {
 				item.setItem_content(rs.getString("item_content"));
 				item.setDate_start(rs.getString("date_start"));
 				item.setDate_end(rs.getString("date_end"));
+				item.setQuantity(rs.getInt("quantity"));
 				
 				cart.setItemVO(item);
 				list.add(cart);

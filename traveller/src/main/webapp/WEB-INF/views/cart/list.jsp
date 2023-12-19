@@ -50,7 +50,7 @@
 											</div>
 											</c:if>
 											<c:if test="${!empty list}">
-											<form id="cart_order" action="${pageContext.request.contextPath}/order/orderForm.do" method="post">
+											<form id="cart_order" action="${pageContext.request.contextPath}/order/userOrderForm.do" method="post">
 												<table>
 													<tr>
 														<th>상품명</th>
@@ -70,14 +70,13 @@
 															<fmt:formatNumber value="${cart.itemVO.item_price}"/>원
 														</td>
 														<td>
-															<input type="number" name="order_quantity" min="1" max="${cart.itemVO.quantity}" value="${cart.order_quantity}" autocomplete="off">
+															<input type="number" name="order_quantity" min="1" max="${cart.itemVO.quantity}" value="${cart.order_quantity}" autocomplete="off">${cart.itemVO.quantity}
 															<input type="button" value="변경" class="cart-modify" data-cartnum="${cart.cart_num}" data-itemnum="${cart.item_num}">
 														</td>
 														<td>
-															<fmt:formatNumber value="${cart.sub_total}"/>원
+															<fmt:formatNumber value="${cart.itemVO.item_price * cart.order_quantity}"/>원
 														</td>
 														<td>
-															<input type="button" value="예약하기" onclick="location.href">
 															<input type="button" value="삭제" class="cart-del" data-cartnum="${cart.cart_num}">
 														</td>
 													</tr>
@@ -87,6 +86,9 @@
 													</tr>
 													</c:forEach>
 												</table>
+												<div class="align-center cart-submit">
+													<input type="submit" value="구매하기">
+												</div>
 											</form>
 											</c:if>
 										</div>
