@@ -119,14 +119,14 @@
 								
 								<a>
 									<input style="border:none;"type="number" name="order_quantity" min="1" max="${cart.itemVO.quantity}" value="${cart.order_quantity}" autocomplete="off">/${cart.itemVO.quantity}
-									<input class="btn" type="button" style="margin-left:3px;" value="변경" class="cart-modify" data-cartnum="${cart.cart_num}" data-itemnum="${cart.item_num}">
+									<input class="btn cart-modify" type="button" style="margin-left:3px;" value="변경" data-cartnum="${cart.cart_num}" data-itemnum="${cart.item_num}">
 								</a>
 								
 							</td>
                    		<!-- 5번 -->	
                    			<td><fmt:formatNumber value="${cart.itemVO.item_price * cart.order_quantity}"/>원</td> 
                    		<!-- 6번 -->	
-                   			<td><input class="btn" type="button" value="삭제" class="cart-del" data-cartnum="${cart.cart_num}"></td>
+                   			<td><input class="btn cart-del" type="button" value="삭제" data-cartnum="${cart.cart_num}"></td>
                    		</tr>
                    		
                    	</c:forEach>
@@ -152,7 +152,7 @@
               		</tbody>
                 </table>
                 <div class="align-center cart-submit">
-					<input class="btn" style="float:right; margin-top:10px;" type="submit" value="구매하기">
+					<input type="button" value="구매하기" onclick="location.href=''" class="btn" style="float:right; margin-top:10px;">
 				</div>
              </c:if>
             
