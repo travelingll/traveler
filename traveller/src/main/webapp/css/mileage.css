@@ -1,0 +1,260 @@
+@charset "UTF-8";
+
+#container > .inr {
+    width: 1200px;
+    margin: 50px auto 0;
+}
+
+.contents {
+    min-height: 350px;
+}
+.text_wrap.big.fix, .text_wrap.fix {
+    margin: 0;
+    height: 55px;
+}
+.text_wrap.big {
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+.text_wrap {
+    position: relative;
+    margin: 40px 0 0;
+    padding: 0;
+}
+.text_wrap.fix strong, .text_wrap.big strong.tit {
+    font-size: 22px;
+    font-weight: 600;
+    color: #111;
+}
+.text_wrap strong.tit {
+    display: inline-block;
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 400;
+    color: #111;
+}
+strong {
+    font-weight: 600;
+}
+.text_wrap:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+*:before, *:after {
+    box-sizing: initial;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+    -webkit-tap-highlight-color: transparent;
+    -moz-tap-highlight-color: transparent;
+}
+
+.mileage_wrap {
+    position: relative;
+    height: 154px;
+    width: 100%;
+    margin-bottom: 40px;
+    border: 2px solid #5e2bb8;
+    -webkit-box-shadow: 0px 5px 7px 0px rgba(0,0,0,.05);
+    box-shadow: 0px 5px 7px 0px rgba(0,0,0,.05);
+}
+
+
+.mileage_wrap .user_box {
+    width: 400px;
+    float: left;
+    font-size: 17px;
+    padding: 13px 0 25px 180px;
+}
+
+.user_box .icn.mileage70 {
+    position: static;
+}
+
+.icn.mileage70:before {
+    position: absolute;
+    left: 65px;
+    top: 50%;
+    width: 70px;
+    height: 70px;
+    margin-top: -35px;
+    background-position: -72px -45px;
+}
+.icn:before, .form_holder button.calandar:after, .air_time em:before, .visual_wrap.fnd .search_field .box_search .input_keyword:before, .mileage_profit li:before, .submain .zeus_news .banner_wrap .cont .btn:after, .prod_list_wrap .type .route_type .item_route:before, .prod_list_wrap .htl .login_guide:before, .submain .service_center li a:before, .submain .service_center li a:after, .submain .brochure_list + .btn_wrap .btn:after, .step_wrap .step li .num:before, .form_holder.calendar button {
+    display: inline-block;
+    content: '';
+    background-repeat: no-repeat;
+    background-image: url('../upload/spr_icn.png');
+}
+.mileage_wrap .user_box p {
+    color: #333;
+    line-height: 30px;
+}
+p {
+    line-height: 1.5;
+}
+
+.mileage_wrap .user_box em {
+    font-size: 32px;
+    letter-spacing: -.1px;
+    font-weight: 400;
+    display: inline-block;
+    vertical-align: sub;
+    position: relative;
+}
+
+em {
+    color: #5e2bb8;
+}
+
+.icn.mileage.mid {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 7px;
+}
+
+.icn.mileage {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: 3px;
+}
+
+
+.icn {
+    display: inline-block;
+    position: relative;
+}
+
+.icn.mileage.mid.em:before {
+    background-position: 0 -18px;
+}
+
+.icn.mileage.mid:before {
+    width: 20px;
+    height: 20px;
+}
+
+.icn.mileage.em:before {
+    background-position: -18px 0;
+}
+
+.icn.mileage:before {
+    width: 16px;
+    height: 16px;
+    background-position: 0 0;
+    vertical-align: top;
+}
+.mileage_wrap .user_box .total {
+    color: #888;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.mileage_wrap .user_box p {
+    color: #333;
+    line-height: 30px;
+}
+
+.mileage_wrap .user_box .total .icn.mileage {
+    top: 7px;
+}
+.icn.mileage {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: 3px;
+}
+
+.icn {
+    display: inline-block;
+    position: relative;
+}
+
+.gr {
+    color: #666!important;
+}
+.icn.mileage.gr:before {
+    background-position: -35px 0;
+}
+.icn.mileage:before {
+    width: 16px;
+    height: 16px;
+    background-position: 0 0;
+    vertical-align: top;
+}
+.mileage_wrap .box.right {
+    float: right;
+    padding: 34px 30px 34px 40px;
+    width: 340px;
+    height: 86px;
+    background-color: #f5f5f5;
+}
+.mileage_wrap .box.right p {
+    float: right;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.mileage_wrap .box.right span {
+    display: inline-block;
+    width: 150px;
+}
+.mileage_wrap .box.right em {
+    color: #333;
+    font-weight: 600;
+}
+em, address {
+    font-style: normal;
+}
+
+.mileage_wrap .box.right p a {
+    width: 120px;
+}
+
+
+.btn.sml, .text_wrap .right_cont>.btn, .option_wrap .right_cont>.btn, .option_wrap .left_cont>.btn {
+    min-width: 110px;
+    height: 36px;
+    line-height: 34px;
+    font-size: 13px;
+    padding: 0 20px;
+}
+
+.btn {
+    position: relative;
+    display: inline-block;
+    height: 25px;
+    line-height: 23px;
+    font-size: 12px;
+    padding: 0 10px;
+    margin: 0;
+    color: #666;
+    background-color: #fff;
+    font-weight: 400;
+    text-align: center;
+    border-radius: 4px;
+    border: solid 1px #c2c2c2;
+}
+
+.btn:after, .txt:after {
+    background-image: url('../upload/spr_btn.png');
+}
+
+
+
+
+
+
+
+
+
+
+.local_menu_wrap .searchform_com .btn_search:before, .gnb_menu_wrap .btn_menu_all:before, .local_menu_wrap .rolling_wrap a:before, .local_menu_wrap .rolling_wrap_all .tit:before, .gnb_menu_wrap .list_special li a.more:before, .local_menu_wrap .private_menu li a:before, .gnb_menu_wrap .list_gnb_menu li a:before, .gnb_menu_sub_wrap .list_depth2 li a:before, .gnb_menu_sub_wrap .btn_cls:before, .js_acc.filter_wrap .view a.more:before, .my_menu_wrap:before, .company_info_wrap .company_provision li:before, .company_info_wrap span:before, .service_info_wrap .fl dd .btn_more:before, .service_info_wrap .sns_list li a, .award_list_wrap .btn_next:before, .award_list_wrap .btn_prev:before, .gnb_menu_wrap .list_special_more .cls:after, .divider_dot:before, .divider_line:before, .gnb_menu_wrap .list_total_menu:after, .gnb_menu_wrap .list_total_menu .btn_cls:after, .company_info_wrap strong.customer_center>span:before, .btn:after, .txt:after {
+    display: inline-block;
+    content: '';
+    background-position: left top;
+    background-repeat: no-repeat;
+}

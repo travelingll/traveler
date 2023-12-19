@@ -33,7 +33,7 @@ public class UserRecommendAction implements Action{
 		RecommendDAO recDao = RecommendDAO.getInstance();
 		int count = recDao.getRecommendCount("2");
 		
-		PageUtil page = new PageUtil(null,null,Integer.parseInt(pageNum),count,20,10,"userRecommend.do");
+		PageUtil page = new PageUtil(null,null,Integer.parseInt(pageNum),count,5,5,"userRecommend.do");
 		List<ItemVO> list = null;
 		if(count > 0) {
 			list = recDao.getRecommendList(page.getStartRow(), page.getEndRow(), "2");

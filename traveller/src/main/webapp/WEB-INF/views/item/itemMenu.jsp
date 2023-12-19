@@ -37,7 +37,7 @@ a {
 </style>
 </head>
 <body>
-<div class="page-main">
+
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	
 	<div id="container">
@@ -65,22 +65,22 @@ a {
 	
 	
 	<div class="content-main">
-
+	
 		<div class="row">
 			<c:forEach var="item" items="${list}" varStatus="status">
-				<c:if test="${status.index < 3}">
+				<c:if test="${status.index < 3 && item.item_st1==list_num}">
 					<div class="col-md-4">
 						<div class="card" style="width:30rem;">
-							<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}" >
+							<a href="${pageContext.request.contextPath}/item/itemMiddle.do?item_case=${item.item_case}&list_num=${item.item_st1}" >
 								<img src="${pageContext.request.contextPath}/upload/${item.item_img1}" class="card-img-top">
 							</a>
 							<div class="card-body">
 								<h3 class="card-title">
-								<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}" >
+								<a href="${pageContext.request.contextPath}/item/itemMiddle.do?item_case=${item.item_case}&list_num=${item.item_st1}" >
 									<h3>${item.item_name}</h3>
 								</a></h3>
 								<p class="card-text">
-								<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}" >
+								<a href="${pageContext.request.contextPath}/item/itemMiddle.do?item_case=${item.item_case}&list_num=${item.item_st1}" >
 								${item.item_content}</a>
 								</p>
 							</div>
@@ -91,10 +91,10 @@ a {
 		</div>
 		
 			<div class="align-center">
-				${page}
+			
 			</div>
 	</div>
-</div>
+
 
 </body>
 </html> 

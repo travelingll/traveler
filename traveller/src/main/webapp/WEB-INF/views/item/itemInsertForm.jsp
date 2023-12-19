@@ -62,10 +62,18 @@ form ul li label{
 					<input type="radio" name="status" value="3" id="status3">종료
 				</li>
 				<li>
+					<label for="item_st1">여행지</label>
+					<input type="radio" id="item_st1" name="item_st1" value="1" class="insert_check">동남아
+					<input type="radio" id="item_st2" name="item_st1" value="2" class="insert_check">북미
+					<input type="radio" id="item_st3" name="item_st1" value="3" class="insert_check">호주
+					<input type="radio" id="item_st4" name="item_st1" value="4" class="insert_check">유럽
+					<input type="radio" id="item_st5" name="item_st1" value="5" class="insert_check">국내
+				</li>
+				<li>
 					<label>상품 유형</label>
 					<input type="radio" name="item_case" value="1" id="case1">1
-					<input type="radio" name="item_case" value="1" id="case1">2
-					<input type="radio" name="item_case" value="1" id="case1">3
+					<input type="radio" name="item_case" value="1" id="case2">2
+					<input type="radio" name="item_case" value="1" id="case3">3
 				</li>
 				<li>
 					<label for="name">상품명</label>
@@ -102,14 +110,6 @@ form ul li label{
 				<li>
 					<label for="pic6">상품사진5(선택입력)</label>
 					<input type="file" id="pic6" name="pic6" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="plus">
-				</li>
-				<li>
-					<label for="item_st1">여행지</label>
-					<input type="radio" id="item_st1" name="item_st1" value="1" class="insert_check">동남아
-					<input type="radio" id="item_st2" name="item_st1" value="2" class="insert_check">북미
-					<input type="radio" id="item_st3" name="item_st1" value="3" class="insert_check">호주
-					<input type="radio" id="item_st4" name="item_st1" value="4" class="insert_check">유럽
-					<input type="radio" id="item_st5" name="item_st1" value="5" class="insert_check">국내
 				</li>
 				<li>
 					<label for="item_st6">여행스타일1</label>

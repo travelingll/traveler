@@ -3,11 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- header 끝 -->
-<body class="chrome">
-	<div id="__nuxt">
-		<div id="__layout">
-			<div id="wrapper">
-				<div id="screenArea">  
+
 					<div id="wrap">
 						<div><!----> 
 							<div id="gnb_wrap" class="gnb_wrap">
@@ -58,20 +54,20 @@
 													</div>
 												</li> 
 												<li><a href="${pageContext.request.contextPath}" class="link_reservation">예약내역</a></li>
-												<li><a href="${pageContext.request.contextPath}" class="link_choice">장바구니</a></li>
+												<li><a href="${pageContext.request.contextPath}/cart/list.do" class="link_choice">장바구니</a></li>
 											</ul>
 										</div>
 									</div>
 									</c:if>
-							</div>
-						</div> 
-						<div class="inr">
-							<div class="gnb_menu_wrap">
-								<div class="cont_left">
-									<div>
-										<div class="cont_left"> 
-										</div>
-									</div> 
+								</div>
+							</div> 
+							<div class="inr">
+								<div class="gnb_menu_wrap">
+									<div class="cont_left">
+										<div>
+											<div class="cont_left"> 
+											</div>
+										</div> 
 									<div>
 										<ul id="main-menu" class="list_gnb_menu">
 											<li>
@@ -112,13 +108,7 @@
 					</div>
 				</div> 
 			</div>
-		</div> <!----> 
-		<div id="printArea">
-		</div> 
-		<div class="dialog-wrapper">
-	</div>
-</div>
-</div>
-</div>
+	
+
 </body>
 

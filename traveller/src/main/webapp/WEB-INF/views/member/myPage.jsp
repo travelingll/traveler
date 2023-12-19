@@ -162,8 +162,8 @@ $(function(){
 																	let choice = confirm('정말 탈퇴 하시겠습니까?');
 																		if(choice){
 																			location.replace('deleteUserForm.do');
-																					}
-																				};
+																		}
+																	};
 															</script>
 														</div>	
 															
@@ -243,10 +243,7 @@ $(function(){
     							</div>
     						</div>
     					</div> 
-    				</div> <!----> 
-    				<div id="printArea">
-    				</div> 
-    														
+    				</div> <!----> 										
     			</div>
     		</div>
     	</div>
@@ -255,7 +252,7 @@ $(function(){
 
 
 
-ㄴ
+
 
  
 

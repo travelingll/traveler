@@ -20,7 +20,7 @@ public class CartDAO {
 	
 	private CartDAO () {}
 	
-	//찜 등록
+	//장바구니 등록
 	public void insertCart(CartVO cart)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -45,7 +45,7 @@ public class CartDAO {
 		}
 	}
 	
-	//찜 개수
+	//장바구니 개수
 	public int getCountCart(int mem_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -73,7 +73,7 @@ public class CartDAO {
 		return count;
 	}
 	
-	//찜 목록
+	//장바구니 목록
 	public List<CartVO> getListCart(int mem_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -106,6 +106,7 @@ public class CartDAO {
 				item.setItem_content(rs.getString("item_content"));
 				item.setDate_start(rs.getString("date_start"));
 				item.setDate_end(rs.getString("date_end"));
+				item.setQuantity(rs.getInt("quantity"));
 				
 				cart.setItemVO(item);
 				list.add(cart);
@@ -120,7 +121,7 @@ public class CartDAO {
 		return list;
 	}
 	
-	//찜 삭제
+	//장바구니 삭제
 	public void deleteCart(int cart_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -188,7 +189,7 @@ public class CartDAO {
 			//커넥션풀로부터 커넥션객체 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "UPDATE zcart SET order_quantity=? WHERE cart_num=?";
+			sql = "UPDATE cart SET order_quantity=? WHERE cart_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -232,4 +233,37 @@ public class CartDAO {
 			}
 			
 		}
+		
+	//회원번호(mem_num)별 총 구매액
+	public int getTotalByMem_num(int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int total = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT SUM(sub_total) FROM (SELECT mem_num,"
+					+ "order_quantity*item_price sub_total FROM cart "
+					+ "JOIN item USING(item_num)) WHERE mem_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, mem_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				total = rs.getInt(1); //컬럼 인덱스1 = SUM(sub_total)
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return total;
+	}
 }

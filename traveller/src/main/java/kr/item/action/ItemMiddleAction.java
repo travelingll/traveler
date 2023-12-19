@@ -5,41 +5,40 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.item.dao.ItemDAO;
 import kr.item.vo.ItemVO;
 import kr.util.PageUtil;
 
-public class ItemMenuAction implements Action{
+public class ItemMiddleAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
-		Integer user_auth = (Integer)session.getAttribute("user_auth");
-		
-		request.setAttribute("user_num", user_num);
-		request.setAttribute("user_auth", user_auth);
-		
-		
-		
-		String list_num = request.getParameter("list_num");
-		
-		
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null) pageNum="1";
 		
-		String keyfield=request.getParameter("keyfield");
-		String keyword = request.getParameter("keyword");
-		
+		String list_num=request.getParameter("list_num");
 		ItemDAO dao = ItemDAO.getInstance();
-		int count = dao.getItemCount(keyfield, keyword, list_num);
+		int count = dao.getItemCount(null, null, list_num);
+		String item_case = request.getParameter("item_case");
 		
+		//페이지 처리
+		PageUtil page = new PageUtil(null,null,Integer.parseInt(pageNum),count,20,10,"/item/itemMiddle.do");
 		
-		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum),count, 3, 10, "itemMenuList.do");
+	
+		List<ItemVO> itemList = new ArrayList<ItemVO>();
+		
+		if(count >0) {
+			itemList = dao.getItemList(page.getStartRow(),page.getEndRow(), null, null, "2", list_num);
+		}
+		
+		request.setAttribute("count", count); 
+		request.setAttribute("itemList", itemList);
+		request.setAttribute("page", page.getPage());
+		request.setAttribute("item_case", item_case);
+		
 		List<ItemVO> list = new ArrayList<ItemVO>();
 		
 		list.add(dao.getItem(100062));
@@ -50,8 +49,8 @@ public class ItemMenuAction implements Action{
 		request.setAttribute("list", list);
 		request.setAttribute("list_num", list_num);
 		
+		return "/WEB-INF/views/item/itemMiddle.jsp"; 
 		
-		return "/WEB-INF/views/item/itemMenu.jsp";
 	}
 
 }

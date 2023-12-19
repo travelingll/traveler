@@ -212,7 +212,7 @@ private static ItemDAO instance = new ItemDAO();
 			
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM item  "  + sub_sql +sub_sql2 +sub_sql3
-					+ " ORDER BY item_num DESC)a) WHERE rnum>=? AND rnum<=?";
+					+ " ORDER BY item_num ASC)a) WHERE rnum>=? AND rnum<=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -309,6 +309,7 @@ private static ItemDAO instance = new ItemDAO();
 				vo.setReg_date(rs.getDate("reg_date"));
 				vo.setModifydate(rs.getDate("modify_date"));
 				vo.setQuantity(rs.getInt("quantity"));	
+				vo.setItem_case(rs.getString("item_case"));
 			}	
 		}catch(Exception e) {
 			throw new Exception(e);

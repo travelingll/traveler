@@ -47,6 +47,13 @@ public class WriteAction implements Action {
 			
 			if(db_cart==null) {
 				dao.insertCart(cart);
+				
+				response.addHeader("Refresh", "2;url="+request.getContextPath()+"/item/itemDetail.do?item_num="+item_num);
+				request.setAttribute("notice_msg", "성공적으로 예약되었습니다.");
+				request.setAttribute("notice_url", request.getContextPath()+"/item/itemDetail.do?item_num="+item_num);
+				
+				return "/WEB-INF/views/common/alert_singleView.jsp";
+
 			}else{
 				int ordertotal_quantity = cart.getOrder_quantity() + db_cart.getOrder_quantity();
 				if(ordertotal_quantity > quantity) {
@@ -60,19 +67,14 @@ public class WriteAction implements Action {
 					dao.updateCartByItem_num(cart);
 					
 					response.addHeader("Refresh", "2;url="+request.getContextPath()+"/item/itemDetail.do?item_num="+item_num);
-					request.setAttribute("notice_msg", "성공적으로 등록되었습니다.");
+					request.setAttribute("notice_msg", "성공적으로 예약되었습니다.");
 					request.setAttribute("notice_url", request.getContextPath()+"/item/itemDetail.do?item_num="+item_num);
 					
 					return "/WEB-INF/views/common/alert_singleView.jsp";
 
 				}
-			}
-			
-			
-		
-		
+			}	
 		}
-		return "/WEB-INF/views/common/alert_singleView.jsp";
 	}
 
 }
