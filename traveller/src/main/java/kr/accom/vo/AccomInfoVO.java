@@ -5,6 +5,9 @@ public class AccomInfoVO {
 	private int accom_num;
 	private int mem_num;
 	private int accom_yn;
+	
+	private AccomVO accomVO;
+	
 	public int getInfo_num() {
 		return info_num;
 	}
@@ -29,7 +32,11 @@ public class AccomInfoVO {
 	public void setAccom_yn(int accom_yn) {
 		this.accom_yn = accom_yn;
 	}
-	
-	
+	public AccomVO getAccomVO() {
+		return accomVO;
+	}
+	public void setAccomVO(AccomVO accomVO) {
+		this.accomVO = accomVO;
+	}
 	
 }

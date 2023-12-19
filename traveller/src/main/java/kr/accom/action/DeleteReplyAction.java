@@ -46,5 +46,6 @@ public class DeleteReplyAction implements Action {
 		
 		return "/WEB-INF/views/common/ajax_view.jsp";
 	}
+	
 
 }

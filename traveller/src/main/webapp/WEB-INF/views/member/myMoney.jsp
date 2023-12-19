@@ -63,7 +63,7 @@
     						<div class="box right">
     							<p>
     								<span>여행상품 <em></em></span>
-    								<a href="#" target="_blank" class="btn sml">보기</a>
+    								<a href="${pageContext.request.contextPath}/item/itemMain.do" target="_blank" class="btn sml">보기</a>
     							</p> 
     							<p>
     								<span>고객센터</span>

@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>동행구하기 게시판</title>
+<title>나의 동행 신청 내역</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <script type = "text/javascript">
 window.onload = function(){
-	let myForm = documentg.getElementById('search_form');
+	let myForm = document.getElementById('search_form');
 	//이벤트 연결
 	myForm.onsubmit=function(){
-		let keyword = documentg.getElementById('keyword');
+		let keyword = document.getElementById('keyword');
 		if(keyword.value.trim()==''){
 		alert('검색어를 입력하세요');
 		keyword.value='';
@@ -34,14 +34,13 @@ window.onload = function(){
 		</ul>
 	</div>
 	<div class = "content-main">
-		<h2>동행구하기 게시판</h2>
-		<form id = "search_form" action="list.do" method="get">
+		<h2>나의 동행 신청 내역</h2>
+		<form id = "search_form" action="applyAccomList.do" method="get">
 		<ul class="search">
 			<li>
 				<select name="keyfield">
 					<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
 					<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>작성자</option>
-					<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>내용</option>
 				</select>
 			</li>
 			<li>
@@ -53,11 +52,8 @@ window.onload = function(){
 		</ul>
 		</form>
 		<div class="list-space align-right">
-			<input type="button" value="글쓰기"
-				onclick="location.href='writeForm.do'"
-					<c:if test="${empty user_num}">disabled = "disabled"</c:if>
-					>
-					<input type="button" value="목록"	 onclick="location.href='list.do'">
+		
+					<input type="button" value="목록"	 onclick="location.href='applyAccomList.do'">
 					<input type="button" value="홈으로"
 			    onclick="location.href='${pageContext.request.contextPath}/main/main.do'">          
 		</div>
@@ -69,29 +65,16 @@ window.onload = function(){
 		<c:if test="${count > 0}">
 		<table>
 			<tr>
-				<th>글번호</th>
-				<th>글상태</th>
+				<th>번호</th>
 				<th>제목</th>
 				<th>작성자</th>
-				<th>작성일</th>
-				<th>현재인원/모집인원</th>
-				<th>조회수</th>
-				<th>추천수</th>
 			</tr>
-			<c:forEach var="accom" items="${list}">
+			<c:forEach var="accom_info" items="${list}">
 			<tr>
-				<td>${accom.accom_num}</td>
-				<td>
-					<c:if test="${accom.accom_status == 0}">진행중</c:if>
-				    <c:if test="${accom.accom_status == 1}">완료</c:if>
-				</td>
-				<td><a href="detail.do?accom_num=${accom.accom_num}">${accom.accom_title}</a></td>
-				<td>${accom.id}</td>
-				<td>${accom.accom_regdate}</td>
-				<td>${accom.present_cnt}/${accom.accom_quantity}</td>
-				<td>${accom.accom_hit}</td>
-				<td>${accom.cnt}</td>
-				<%-- 추천수 부분 --%>
+				<td>${accom_info.accom_num}</td>
+				<td><a href="detail.do?accom_num=${accom_info.accom_num}">${accom_info.accomVO.accom_title}</a></td>
+				<td>${accom_info.accomVO.id}</td>
+				<td></td>
 			</tr>
 			</c:forEach>
 		</table>

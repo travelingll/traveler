@@ -52,4 +52,5 @@ public class DeleteFileAction implements Action {
 		
 		return "/WEB-INF/views/common/ajax_view.jsp";
 	}
+	
 }

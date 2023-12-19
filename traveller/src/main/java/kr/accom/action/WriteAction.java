@@ -41,4 +41,5 @@ public class WriteAction implements Action {
 		return "/WEB-INF/views/accom/write.jsp";
 		
 	}
+	
 }

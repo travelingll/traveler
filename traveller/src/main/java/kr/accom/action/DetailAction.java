@@ -29,5 +29,6 @@ public class DetailAction implements Action {
 		
 		return "/WEB-INF/views/accom/detail.jsp";
 	}
+	
 
 }

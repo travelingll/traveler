@@ -37,4 +37,5 @@ public class DeleteAction implements Action {
 		return "redirect:/accom/list.do";
 	}
 
+	
 }
