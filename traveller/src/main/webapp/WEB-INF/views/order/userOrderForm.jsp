@@ -17,25 +17,25 @@
 			<form action="userOrder.do" method="post">
 				<ul>
 					<li>
-						<label for="name">이름</label>
-						<input type="text" placeholder="이름을 입력하세요" id="name" name="name">
+						<label for="order_name">이름</label>
+						<input type="text" placeholder="이름을 입력하세요" id="order_name" name="order_name">
 					</li>
 					<li>
-						<label for="email">이메일</label>
-						<input type="email" placeholder="이메일을 입력하세요" id="email" name="email">
+						<label for="order_email">이메일</label>
+						<input type="email" placeholder="이메일을 입력하세요" id="order_email" name="order_email">
 					</li>
 					<li>
-						<label for="phone">전화번호</label>
-						<input type="text" placeholder="전화번호를 입력하세요" id="phone" name="phone">
+						<label for="order_phone">전화번호</label>
+						<input type="text" placeholder="전화번호를 입력하세요" id="order_phone" name="order_phone">
 					</li>
 					<li>
-						<label for="birth">생년월일</label>
-						<input type="date" id="birth" name="birth">
+						<label for="order_birth">생년월일</label>
+						<input type="text" id="order_birth" name="order_birth" placeholder="ex) 19990909">
 					</li>
 					<li>
-						<label for="gender">성별</label>
-						<input type="radio" name="gender" class="gender" value="1">남자
-						<input type="radio" name="gender" class="gender" value="2">여자
+						<label for="order_gender">성별</label>
+						<input type="radio" name="order_gender" class="gender" value="1">남자
+						<input type="radio" name="order_gender" class="gender" value="2">여자
 					</li>
 				</ul>
 				<hr size="1" noshade="noshade" width="100%">

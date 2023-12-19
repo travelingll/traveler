@@ -57,7 +57,7 @@ CREATE sequence item_renum
 	
 CREATE TABLE order_item( --주문건
 order_num number(12) not null, --프라이머리키
-item_name number(12) not null, --대표 상품명
+item_name varchar2(4000) not null, --대표 상품명
 order_price number(10) not null, --주문 전체 금액
 order_custprice number(10) not null, --적립금 사용시 주문 전체 금액
 mem_num number not null, --예약자

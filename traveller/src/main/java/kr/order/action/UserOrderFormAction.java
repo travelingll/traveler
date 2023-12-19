@@ -13,7 +13,6 @@ import kr.item.dao.ItemDAO;
 import kr.item.vo.ItemVO;
 import kr.money.dao.MoneyDAO;
 import kr.order.dao.OrderDAO;
-import kr.order.vo.OrderVO;
 
 public class UserOrderFormAction implements Action {
 

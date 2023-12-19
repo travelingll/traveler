@@ -13,8 +13,45 @@ public class OrderVO {
 	private Date order_modate;
 	private String notice;
 	private int payment;
-	private int use_money;
+	private int use_money; //주문건별로 사용한 적립금 저장
+	private String order_name;
+	private String order_email;
+	private String order_phone;
+	private String order_birth;
+	private String order_gender;
+
 	
+	
+	public String getOrder_gender() {
+		return order_gender;
+	}
+	public void setOrder_gender(String order_gender) {
+		this.order_gender = order_gender;
+	}
+	public String getOrder_birth() {
+		return order_birth;
+	}
+	public void setOrder_birth(String order_birth) {
+		this.order_birth = order_birth;
+	}
+	public String getOrder_name() {
+		return order_name;
+	}
+	public void setOrder_name(String order_name) {
+		this.order_name = order_name;
+	}
+	public String getOrder_email() {
+		return order_email;
+	}
+	public void setOrder_email(String order_email) {
+		this.order_email = order_email;
+	}
+	public String getOrder_phone() {
+		return order_phone;
+	}
+	public void setOrder_phone(String order_phone) {
+		this.order_phone = order_phone;
+	}
 	public int getUse_money() {
 		return use_money;
 	}

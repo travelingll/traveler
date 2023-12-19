@@ -49,8 +49,9 @@ public class OrderDAO {
 			
 			/*-----주문 테이블 insert-----*/
 			sql = "INSERT INTO order_item (order_num,item_name,order_price,"
-					+ "order_custprice,mem_num,order_status,notice,payment) "
-					+ "VALUES (?,?,?,?,?,1,?,?)";
+					+ "order_custprice,mem_num,order_status,notice,payment,"
+					+ "order_name,order_email,order_phone,order_birth,order_gender) "
+					+ "VALUES (?,?,?,?,?,1,?,?,?,?,?,?,?)";
 			
 			pstmt2 = conn.prepareStatement(sql);
 			
@@ -59,8 +60,15 @@ public class OrderDAO {
 			pstmt2.setInt(3, order.getOrder_price());
 			pstmt2.setInt(4, order.getOrder_custprice());
 			pstmt2.setInt(5, order.getMem_num());
+			
 			pstmt2.setString(6, order.getNotice());
 			pstmt2.setInt(7, order.getPayment());
+			
+			pstmt2.setString(8, order.getOrder_name());
+			pstmt2.setString(9, order.getOrder_email());
+			pstmt2.setString(10, order.getOrder_phone());
+			pstmt2.setString(11, order.getOrder_birth());
+			pstmt2.setString(12, order.getOrder_gender());
 			
 			pstmt2.executeUpdate();
 			
