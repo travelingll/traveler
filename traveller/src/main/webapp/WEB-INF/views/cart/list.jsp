@@ -54,6 +54,7 @@
 														<th>상품명</th>
 														<th>상품가격</th>
 														<th>수량</th>
+														<th>합계</th>
 													</tr>
 													<c:forEach var="cart" items="${list}">
 													<tr>
@@ -70,10 +71,15 @@
 															<input type="number" name="order_quantity" min="1" max="${cart.itemVO.quantity}" value="${cart.order_quantity}" autocomplete="off" width="10">
 															<input type="button" value="변경">
 														</td>
+														<th></th>
 														<td>
 															<input type="button" value="예약하기" onclick="location.href">
 															<input type="button" value="삭제" class="cart-del" data-cartnum="${cart.cart_num}">
 														</td>
+													</tr>
+													<tr>
+														<td colspan="4" class="align-right"><b>총 구매금액</b></td>
+														<td class="align-center"><fmt:formatNumber value="${all_total}"/>원</td>
 													</tr>
 													</c:forEach>
 												</table>

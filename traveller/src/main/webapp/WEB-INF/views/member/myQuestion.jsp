@@ -55,7 +55,7 @@
 												</tr>
 												<c:forEach var="question" items="${questionList}">
 												<tr>
-													<td><a href="${pageContext.request.contextPath}/question/detail.do?comm_num=${question.question_num}">${question.question_title}</a></td>
+													<td><a href="${pageContext.request.contextPath}/question/questionDetail.do?question_num=${question.question_num}">${question.question_title}</a></td>
 													<td>${question.question_regdate}</td>
 												</tr>
 												</c:forEach>
