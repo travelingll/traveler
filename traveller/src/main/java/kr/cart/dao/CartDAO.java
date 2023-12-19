@@ -188,7 +188,7 @@ public class CartDAO {
 			//커넥션풀로부터 커넥션객체 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "UPDATE zcart SET order_quantity=? WHERE cart_num=?";
+			sql = "UPDATE cart SET order_quantity=? WHERE cart_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -246,7 +246,7 @@ public class CartDAO {
 				conn = DBUtil.getConnection();
 				//SQL문 작성
 				sql = "SELECT SUM(sub_total) FROM (SELECT mem_num,order_quantity*price sub_total "
-					+ "FROM zcart JOIN zitem USING(item_num)) WHERE mem_num=?";
+					+ "FROM cart JOIN item USING(item_num)) WHERE mem_num=?";
 				//PreparedStatement 객체 생성
 				pstmt = conn.prepareStatement(sql);
 				//?에 데이터 바인딩

@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>장바구니</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/shop.cart.js"></script>
 </head>
 <body class="chrome">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -68,10 +70,12 @@
 															<fmt:formatNumber value="${cart.itemVO.item_price}"/>원
 														</td>
 														<td>
-															<input type="number" name="order_quantity" min="1" max="${cart.itemVO.quantity}" value="${cart.order_quantity}" autocomplete="off" width="10">
-															<input type="button" value="변경">
+															<input type="number" name="order_quantity" min="1" max="${cart.itemVO.quantity}" value="${cart.order_quantity}" autocomplete="off">
+															<input type="button" value="변경" class="cart-modify" data-cartnum="${cart.cart_num}" data-itemnum="${cart.item_num}">
 														</td>
-														<th></th>
+														<td>
+															<fmt:formatNumber value="${cart.sub_total}"/>원
+														</td>
 														<td>
 															<input type="button" value="예약하기" onclick="location.href">
 															<input type="button" value="삭제" class="cart-del" data-cartnum="${cart.cart_num}">
