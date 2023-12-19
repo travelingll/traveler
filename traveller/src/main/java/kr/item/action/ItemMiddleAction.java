@@ -34,7 +34,7 @@ public class ItemMiddleAction implements Action{
 			itemList = dao.getItemList(page.getStartRow(),page.getEndRow(), null, null, "2", list_num);
 		}
 		
-		request.setAttribute("count", count);
+		request.setAttribute("count", count); 
 		request.setAttribute("itemList", itemList);
 		request.setAttribute("page", page.getPage());
 		request.setAttribute("item_case", item_case);
