@@ -48,9 +48,7 @@
     						<strong class="tit">내역조회</strong>
     					</div> 
     					<c:if test="${count == 0}">
-						<div class="result-display">
-								적립금이 없습니다.
-						</div>
+			
 						<div class="mileage_wrap">
     						<div class="user_box">
     							<span class="icn mileage70"></span> 
@@ -106,12 +104,13 @@
     		<c:if test="${count == 0}">
 				<table class="board_type">
 					<colgroup>
-					<col style="width: 15%;"> 
+					<col style="width: 5%;"> 
+					<col style="width: 10%;"> 
+					<col style="width: 10%;"> 
 					<col > 
-					<col style="width: 15%;"> 
-					<col > 
+					<col style="width: 20%;"> 
+					<col style="width: 10%;">
 					<col style="width: 15%;">
-					<col>
 					</colgroup>								 								
 				<thead>
 															<tr>
@@ -120,12 +119,18 @@
 																<th></th> 
 																<th>내역</th>
 																<th></th> 
+																<th></th> 
 																<th>적립일</th>
 															</tr>
 														</thead>
 														<tbody>
 															<tr>
-																<td style="float:right;"> 표시할 게시물이 없습니다.</td>
+																<td></td>
+																<td></td>
+																<td></td>
+																<td style="float:right;">적릭된 금액이 없습니다.</td>
+																<td></td>
+																<td></td>
 															</tr>
                    										</tbody>
                    									</table>
