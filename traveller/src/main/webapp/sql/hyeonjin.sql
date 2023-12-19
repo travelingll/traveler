@@ -55,19 +55,18 @@ CREATE sequence item_renum
 	MAXVALUE 100000000
 	NOCYCLE;
 	
-CREATE TABLE order_item(
-order_num number(12) not null,
-item_num number(12) not null,
-item_price number(10) not null,
-item_custprice number(10) not null,
-mem_num number not null,
-order_status number(1) not null,
-order_date date default SYSDATE,
-order_modate date,
-notice varchar2(4000),
-payment number(1) not null,
+CREATE TABLE order_item( --주문건
+order_num number(12) not null, --프라이머리키
+item_name number(12) not null, --대표 상품명
+order_price number(10) not null, --주문 전체 금액
+order_custprice number(10) not null, --적립금 사용시 주문 전체 금액
+mem_num number not null, --예약자
+order_status number(1) not null, --예약 상태(1-예약 2-예약 완료 3-노쇼 5-예약 취소)
+order_date date default SYSDATE, --예약 날짜
+order_modate date, --예약 수정 날짜
+notice varchar2(4000), --남기실 말씀
+payment number(1) not null, --결제 수단
 constraint order_num_pk primary key (order_num),
-constraint item_num_fk2 foreign key (item_num) references item(item_num),
 constraint mem_num_fk2 foreign key (mem_num) references member(mem_num)
 );
 
@@ -77,15 +76,16 @@ CREATE sequence order_num_seq
 	MAXVALUE 100000000
 	NOCYCLE;
 
-CREATE TABLE order_detail (
-detail_num number(12) not null,
-item_num number(12) not null,
-item_name varchar2(30) not null,
-item_price number(10) not null,
-order_num number(12) not null,
-order_quantity number(3) not null,
-constraint order_detail_pk primary key (detail_num),
-constraint order_detail_fk foreign key (order_num) references order_item (order_num)
+CREATE TABLE order_detail ( --주문 상세
+detail_num number(12) not null, --프라이머리키
+item_num number(12) not null, --개별 상품 프라이머리 키
+item_name varchar2(30) not null, --개별 상품 이름
+item_price number(10) not null, --개별 상품 가격
+order_num number(12) not null, --주문 프라이머리 키
+order_quantity number(3) not null, --개별 상품 주문 수량
+constraint order_detail_pk1 primary key (detail_num),
+constraint item_num_fk1 foreign key (item_num) references item(item_num),
+constraint order_detail_fk2 foreign key (order_num) references order_item (order_num)
 );
 
 
