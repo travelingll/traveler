@@ -38,4 +38,5 @@ public class AccomInfoVO {
 	public void setAccomVO(AccomVO accomVO) {
 		this.accomVO = accomVO;
 	}
+	
 }

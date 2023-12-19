@@ -52,5 +52,6 @@ public class GetFavAction implements Action {
 		
 		return "/WEB-INF/views/common/ajax_view.jsp";
 	}
+	
 
 }

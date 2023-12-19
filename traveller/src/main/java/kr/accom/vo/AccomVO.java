@@ -131,4 +131,5 @@ public class AccomVO {
 		this.present_cnt = present_cnt;
 	}
 	
+	
 }

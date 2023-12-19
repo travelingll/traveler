@@ -860,4 +860,5 @@ public class AccomDAO {
 	//동행 신청 내역 (작성자)
 	
 	
+	
 }
