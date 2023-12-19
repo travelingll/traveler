@@ -1,5 +1,6 @@
 package kr.item.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,13 +40,15 @@ public class ItemMenuAction implements Action{
 		
 		
 		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum),count, 3, 10, "itemMenuList.do");
-		List<ItemVO> list = dao.getItemList(page.getStartRow(), page.getEndRow(), keyword, keyfield, "2", list_num);
-		if(count>0) {
-			request.setAttribute("list", list);
-		}
-		request.setAttribute("page", page.getPage());
-		request.setAttribute("item_list", list_num);
+		List<ItemVO> list = new ArrayList<ItemVO>();
 		
+		list.add(dao.getItem(100062));
+		list.add(dao.getItem(100063));
+		list.add(dao.getItem(100065));
+		
+		request.setAttribute("page", page.getPage());
+		request.setAttribute("list", list);
+		request.setAttribute("list_num", list_num);
 		
 		
 		return "/WEB-INF/views/item/itemMenu.jsp";

@@ -37,6 +37,8 @@
 	
 	<div class="content-main">
 		<a href="#"><img src="${pageContext.request.contextPath}/upload/event_test1.jpg">캐러셀이미지</a>
+		
+	
 	</div>
 </body>
 </html>

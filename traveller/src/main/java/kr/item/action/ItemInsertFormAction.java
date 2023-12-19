@@ -52,6 +52,7 @@ public class ItemInsertFormAction implements Action{
 			item.setDate_end(multi.getParameter("end_date"));
 			item.setStatus(multi.getParameter("status"));
 			item.setQuantity(Integer.parseInt(multi.getParameter("quantity")));
+			item.setItem_case(multi.getParameter("item_case"));
 			
 			ItemDAO dao = ItemDAO.getInstance();
 			dao.insertItem(item);
