@@ -59,7 +59,7 @@ td{
 						<c:if test="${item.status==2}">판매중</c:if>
 						<c:if test="${item.status==3}">판매종료</c:if>
 					</td>
-					<td><a href="adminItemDetail.do?item_num=${item.item_num}">${item.item_name}</a></td>
+					<td><a href="itemDetail.do?item_num=${item.item_num}">${item.item_name}</a></td>
 					<td>${item.date_start}</td>
 					<td>${item.date_end}</td>
 					<td>${item.reg_date}</td>

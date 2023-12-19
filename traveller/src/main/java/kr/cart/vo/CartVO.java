@@ -10,6 +10,7 @@ public class CartVO {
 	private int item_num;
 	private Date cart_regdate;
 	private int order_quantity;
+	private int sub_total;
 	
 	private ItemVO itemVO;
 	
@@ -43,6 +44,12 @@ public class CartVO {
 	}
 	public void setOrder_quantity(int order_quantity) {
 		this.order_quantity = order_quantity;
+	}
+	public int getSub_total() {
+		return sub_total;
+	}
+	public void setSub_total(int sub_total) {
+		this.sub_total = sub_total;
 	}
 	public ItemVO getItemVO() {
 		return itemVO;

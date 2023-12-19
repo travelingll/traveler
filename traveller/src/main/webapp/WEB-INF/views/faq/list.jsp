@@ -66,7 +66,7 @@ function collapse(element) {
 						<ul class="list_lnb">
 							<li><a href="${pageContext.request.contextPath}/faq/list.do">자주찾는질문</a></li>
 							<li><a href="${pageContext.request.contextPath}/comm/list.do">1:1문의하기</a></li>
-							<li><a href="${pageContext.request.contextPath}/comm/list.do">1:1문의</a></li>
+							<li><a href="${pageContext.request.contextPath}/question/questionList.do">1:1문의</a></li>
 						</ul>
 					</dd>
 				</dl>
