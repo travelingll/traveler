@@ -88,7 +88,7 @@ function collapse(element) {
 							<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>내용</option>
 						</select>
 				
-						<input type="search" class="input_keyword" size="20" placeholder="검색어를 입력해 주세요" name="keyword" id="keyword" value="${param.keyword}">
+						<input type="search" class="input_keyword" style="height: 60px;" size="20" placeholder="검색어를 입력해 주세요" name="keyword" id="keyword" value="${param.keyword}">
 						<input type="submit" class="btn"  value="검색">
 						
 						</form>
@@ -104,38 +104,52 @@ function collapse(element) {
 							<div id="tabPkg" class="panel selected">
 								<div class="option_wrap">
 									<div class="list-space">
+									<c:if test="${!empty user_num && user_auth == 9}">
 										<input class="btn" type="button" value="글쓰기" onclick="location.href='writeForm.do'"
 			   								 <c:if test="${empty user_num}">disabled="disabled"</c:if>> 
 										<input class="btn" type="button" value="목록" onclick="location.href='list.do'"> 
 										<input class="btn" type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">                      
+									</c:if>
 									</div>		
 								</div> 
-								<div class="tbl">
-   						<c:if test="${count == 0}">
+								<div class="tbl" style="width: 75%;">
+   									<c:if test="${count == 0}">
 										<div class="result-display">표시할 게시물이 없습니다.</div>
-						</c:if>			
-   						<c:if test="${count > 0}">		
-   						<c:forEach var="faq" items="${list}">				
-   						<c:if test="${faq.faq_category == 1}">
-    						<button type="button" class="collapsible" onclick="collapse(this);">
-    							[상품예약.결제]
-    								${faq.faq_title}
-    						</button>
-    							<div class="content">
-    							    <a>${faq.faq_content}</a>
-   								 </div>
+									</c:if>			
+   									<c:if test="${count > 0}">		
+   										<c:forEach var="faq" items="${list}">				
+   											<c:if test="${faq.faq_category == 1}">
+   												<li class="inr">
+    												<button type="button" class="collapsible" onclick="collapse(this);">
+    													<em>[상품예약.결제]</em>
+    													<span>Q. ${faq.faq_title}</span>
+    												</button>
+    												<div class="content">
+    							   						 <a>${faq.faq_content}</a>
+   								 					</div>
+   						</li>
    						</c:if>
    						<c:if test="${faq.faq_category == 2}">
-    						<button type="button" class="collapsible" onclick="collapse(this);">[해외패키지] ${faq.faq_title}</button>
+    					<li class="inr">	
+    						<button type="button" class="collapsible" onclick="collapse(this);">
+    							<em>[해외패키지]</em>
+    							<span>Q. ${faq.faq_title}</span>
+    						</button>
     							<div class="content">
     							    <p>${faq.faq_content}</p>
    								 </div>
+   						</li>
    						</c:if>
    						<c:if test="${faq.faq_category == 3}">
-    						<button type="button" class="collapsible" onclick="collapse(this);">[개인정보변경] ${faq.faq_title}</button>
+   						<li class="inr">
+    						<button type="button" class="collapsible" onclick="collapse(this);">	
+    							<em>[개인정보변경]</em>
+    							<span>Q. ${faq.faq_title}</span>
+    						</button>
     							<div class="content">
     							    <p>${faq.faq_content}</p>
    								 </div>
+   						</li>
    						</c:if>
    						</c:forEach>
    						</c:if>

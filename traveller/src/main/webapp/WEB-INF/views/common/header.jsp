@@ -34,7 +34,11 @@
 								<div class="inr">
 									<div class="local_menu_wrap">
 										<div class="fl">
-											<h1 class="logo"><a href="${pageContext.request.contextPath}/main/main.do"><img src="../upload/logo.png" width="250px"></a></h1>
+											<h1 class="logo">
+												<a href="${pageContext.request.contextPath}/main/main.do">
+													<img src="../upload/logo.png" width="250px" style="margin-bottom:21px;">
+												</a>
+											</h1>
 										</div> 
 									<c:if test="${!empty user_num}">
 									<div class="fr">
