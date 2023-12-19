@@ -37,7 +37,7 @@ a {
 </style>
 </head>
 <body>
-<div class="page-main">
+
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	
 	<div id="container">
@@ -65,10 +65,10 @@ a {
 	
 	
 	<div class="content-main">
-
+	
 		<div class="row">
 			<c:forEach var="item" items="${list}" varStatus="status">
-				<c:if test="${status.index < 3}">
+				<c:if test="${status.index < 3 && item.item_st1==list_num}">
 					<div class="col-md-4">
 						<div class="card" style="width:30rem;">
 							<a href="${pageContext.request.contextPath}/item/itemMiddle.do?item_case=${item.item_case}&list_num=${item.item_st1}" >
@@ -91,10 +91,10 @@ a {
 		</div>
 		
 			<div class="align-center">
-				${page}
+			
 			</div>
 	</div>
-</div>
+
 
 </body>
 </html> 

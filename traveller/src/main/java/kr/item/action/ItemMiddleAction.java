@@ -22,6 +22,7 @@ public class ItemMiddleAction implements Action{
 		String list_num=request.getParameter("list_num");
 		ItemDAO dao = ItemDAO.getInstance();
 		int count = dao.getItemCount(null, null, list_num);
+		String item_case = request.getParameter("item_case");
 		
 		//페이지 처리
 		PageUtil page = new PageUtil(null,null,Integer.parseInt(pageNum),count,20,10,"/item/itemMiddle.do");
@@ -36,7 +37,17 @@ public class ItemMiddleAction implements Action{
 		request.setAttribute("count", count);
 		request.setAttribute("itemList", itemList);
 		request.setAttribute("page", page.getPage());
+		request.setAttribute("item_case", item_case);
 		
+		List<ItemVO> list = new ArrayList<ItemVO>();
+		
+		list.add(dao.getItem(100062));
+		list.add(dao.getItem(100063));
+		list.add(dao.getItem(100065));
+		
+		request.setAttribute("page", page.getPage());
+		request.setAttribute("list", list);
+		request.setAttribute("list_num", list_num);
 		
 		return "/WEB-INF/views/item/itemMiddle.jsp"; 
 		
