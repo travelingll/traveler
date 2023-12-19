@@ -7,6 +7,6 @@
 	<title>주문 완료 페이지</title>
 </head>
 <body>
-
+	완료
 </body>
 </html>

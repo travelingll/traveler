@@ -15,7 +15,7 @@
 		<h2>예약</h2>
 		<c:if test="${!empty user_num}"> <%--회원만 예약 가능--%>
 			<form action="userOrder.do" method="post">
-				<input type="hidden" value="${order_total-money}">
+				<input type="hidden" value="${order_total-money}" name="cust_price">
 				<ul>
 					<li>
 						<label for="name">이름</label>
@@ -64,6 +64,10 @@
 						<input type="radio" name="payment" class="payment" value="3">카카오페이
 						<input type="radio" name="payment" class="payment" value="4">네이버페이
 						<input type="radio" name="payment" class="payment" value="5">페이코
+					</li>
+					<li>
+						<label>남기실 말씀</label>
+						<textarea name="notice" rows="5" cols="40"></textarea>
 					</li>
 				</ul>
 				<input type="submit" value="예약하기">

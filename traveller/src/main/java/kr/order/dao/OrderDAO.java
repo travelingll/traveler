@@ -48,7 +48,7 @@ public class OrderDAO {
 			if(rs.next()) seq = rs.getInt(1);
 			
 			/*-----주문 테이블 insert-----*/
-			sql = "INSERT INTO (order_num,item_name,order_price,"
+			sql = "INSERT INTO order_item (order_num,item_name,order_price,"
 					+ "order_custprice,mem_num,order_status,notice,payment) "
 					+ "VALUES (?,?,?,?,?,1,?,?)";
 			
@@ -65,7 +65,7 @@ public class OrderDAO {
 			pstmt2.executeUpdate();
 			
 			/*-----주문 상세 테이블 insert-----*/
-			sql = "INSERT INTO (detail_num,item_num,item_name,item_price,order_num,"
+			sql = "INSERT INTO order_detail (detail_num,item_num,item_name,item_price,order_num,"
 					+ "order_quantity) VALUES (order_detail_seq.nextval,?,?,?,?,?)";
 			pstmt3 = conn.prepareStatement(sql);
 			for(int i=0 ; i<detailList.size() ; i++) {
