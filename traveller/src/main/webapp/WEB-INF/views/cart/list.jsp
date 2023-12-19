@@ -145,12 +145,10 @@
 						</tr>
 					</thead>
 					<tbody>
-					<c:forEach var="cart" items="${list}">	
              			<tr>
 							<td class="align-right"><b>총 구매금액</b></td>
 							<td style="float:right;"><fmt:formatNumber value="${all_total}"/>원</td>
 						</tr>
-             		</c:forEach>
               		</tbody>
                 </table>
                 <div class="align-center cart-submit">

@@ -71,7 +71,6 @@ public class WriteAction implements Action {
 					request.setAttribute("notice_url", request.getContextPath()+"/item/itemDetail.do?item_num="+item_num);
 					
 					return "/WEB-INF/views/common/alert_singleView.jsp";
-
 				}
 			}	
 		}

@@ -25,7 +25,7 @@ public class ItemMiddleAction implements Action{
 		String item_case = request.getParameter("item_case");
 		
 		//페이지 처리
-		PageUtil page = new PageUtil(null,null,Integer.parseInt(pageNum),count,20,10,"/item/itemMiddle.do");
+		PageUtil page = new PageUtil(null,null,Integer.parseInt(pageNum),count,50,10,"/item/itemMiddle.do");
 		
 	
 		List<ItemVO> itemList = new ArrayList<ItemVO>();
