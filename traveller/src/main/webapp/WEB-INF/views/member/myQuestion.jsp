@@ -66,6 +66,7 @@
 													</thead>
 													<tbody>
 															<tr>
+																<td></td>
 																<td style="float:right;"> 표시할 게시물이 없습니다.</td>
 															</tr>
                    									</tbody>

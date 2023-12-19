@@ -41,7 +41,7 @@
 										<table>
 											<tr>
 												<th colspan="2">여행상품</th>
-												<th>가격</th>
+												<th>가격<br></th>
 											</tr>
 											<c:forEach var="rec" items="${list}">
 												<tr>
@@ -55,6 +55,13 @@
 										<div class="printArea" style="text-align:center;">
 											${page}
 										</div>
+										    <!-- 각 요소를 개별적으로 출력 -->
+										    <h2>Style 1:</h2>
+										    <ul>
+										        <c:forEach var="style" items="${style1}">
+										            <li>${style}</li>
+										        </c:forEach>
+										    </ul>
 									</div>
 								</div>
 							</div>
