@@ -84,7 +84,6 @@ item_price number(10) not null, --개별 상품 가격
 order_num number(12) not null, --주문 프라이머리 키
 order_quantity number(3) not null, --개별 상품 주문 수량
 constraint order_detail_pk1 primary key (detail_num),
-constraint item_num_fk1 foreign key (item_num) references item(item_num),
 constraint order_detail_fk2 foreign key (order_num) references order_item (order_num)
 );
 
