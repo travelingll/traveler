@@ -71,16 +71,16 @@ a {
 				<c:if test="${status.index < 3}">
 					<div class="col-md-4">
 						<div class="card" style="width:30rem;">
-							<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}" >
+							<a href="${pageContext.request.contextPath}/item/itemMiddle.do?item_case=${item.item_case}&list_num=${item.item_st1}" >
 								<img src="${pageContext.request.contextPath}/upload/${item.item_img1}" class="card-img-top">
 							</a>
 							<div class="card-body">
 								<h3 class="card-title">
-								<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}" >
+								<a href="${pageContext.request.contextPath}/item/itemMiddle.do?item_case=${item.item_case}&list_num=${item.item_st1}" >
 									<h3>${item.item_name}</h3>
 								</a></h3>
 								<p class="card-text">
-								<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}" >
+								<a href="${pageContext.request.contextPath}/item/itemMiddle.do?item_case=${item.item_case}&list_num=${item.item_st1}" >
 								${item.item_content}</a>
 								</p>
 							</div>
