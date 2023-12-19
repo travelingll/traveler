@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>찜</title>
+<title>장바구니</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
@@ -43,9 +43,6 @@
 				</tr>
 				</c:forEach>
 			</table>
-			<div class="align-center cart-submit">
-				<input type="submit" value="구매하기">
-			</div>
 		</form>
 		</c:if>
 	</div>

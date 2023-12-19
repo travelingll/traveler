@@ -58,7 +58,7 @@
 													</div>
 												</li> 
 												<li><a href="${pageContext.request.contextPath}" class="link_reservation">예약내역</a></li>
-												<li><a href="${pageContext.request.contextPath}" class="link_choice">장바구니</a></li>
+												<li><a href="${pageContext.request.contextPath}/cart/list.do" class="link_choice">장바구니</a></li>
 											</ul>
 										</div>
 									</div>

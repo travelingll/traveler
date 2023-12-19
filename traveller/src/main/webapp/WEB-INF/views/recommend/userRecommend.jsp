@@ -52,7 +52,7 @@
 												</tr>
 											</c:forEach>
 										</table>
-										<div class="align-center">
+										<div class="printArea" style="text-align:center;">
 											${page}
 										</div>
 									</div>
