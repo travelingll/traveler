@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>1:1 문의</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/eunseo.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body class="chrome">
@@ -40,27 +41,72 @@
     							</div> 
     							<!-- 여기까지 사이드바 입니다.-->
     							<div id="contents" class="contents">
-    								<div class="text_wrap big fix"><strong class="tit">1:1 문의</strong></div> 
-										<div class="content-main">
-											<c:if test="${count == 0}">
-											<div class="result-display">
-												표시할 게시물이 없습니다.
+    								<div class="text_wrap big fix">
+    								<strong class="tit">1:1 문의</strong></div> 
+										<div class="panels">
+											<div id="tabPkg" class="panel selected">
+												<div class="tbl">
+												<c:if test="${count == 0}">
+													<table class="board_type">
+														<colgroup>
+															<col style="width: 5%;"> 
+															<col > 
+															<col style="width: 15%;"> 
+															<col style="width: 15%;">
+															<col style="width: 13%;">
+														</colgroup> 
+													<thead>
+														<tr>
+															<th></th> 
+															<th>제목</th> 
+															<th></th>
+															<th>작성일</th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody>
+															<tr>
+																<td style="float:right;"> 표시할 게시물이 없습니다.</td>
+															</tr>
+                   									</tbody>
+                   									</table>
+												</c:if>
+												<c:if test="${count > 0}">
+													<table class="board_type">
+														<colgroup>
+															<col style="width: 5%;"> 
+															<col > 
+															<col style="width: 15%;"> 
+															<col style="width: 15%;">
+															<col style="width: 13%;">
+														</colgroup> 
+													<thead>
+														<tr>
+															<th></th> 
+															<th>제목</th> 
+															<th></th>
+															<th>작성일</th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody>
+													<c:forEach var="question" items="${questionList}">
+														<tr>
+															<td></td>
+															<td>
+																<a href="${pageContext.request.contextPath}/question/questionDetail.do?question_num=${question.question_num}">${question.question_title}
+																</a>
+															</td>
+															<td></td>
+															<td>${question.question_regdate}</td>
+															<td></td>
+														</tr>
+													</c:forEach>
+													</tbody>
+												</table>
+											</c:if>
 											</div>
-											</c:if>
-											<c:if test="${count > 0}">
-											<table>
-												<tr>
-													<th>제목</th>
-													<th>작성일</th>
-												</tr>
-												<c:forEach var="question" items="${questionList}">
-												<tr>
-													<td><a href="${pageContext.request.contextPath}/question/questionDetail.do?question_num=${question.question_num}">${question.question_title}</a></td>
-													<td>${question.question_regdate}</td>
-												</tr>
-												</c:forEach>
-											</table>
-											</c:if>
+											</div>
 										</div>
 									</div>
 								</div>

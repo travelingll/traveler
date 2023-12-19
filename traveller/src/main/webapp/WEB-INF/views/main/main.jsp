@@ -31,7 +31,7 @@
 		<div class="carousel-inner" >
 			<!-- 0 이미지 시작 -->
 			<div class="carousel-item active">
-				<img src="../images/carousel-main02.jpg" class="d-block w-100" >
+				<img src="../images/carousel-main09.jpeg" class="d-block w-100" >
 				<div class="carousel-caption">
 				</div>
 			</div>
@@ -81,7 +81,7 @@
 			<!-- 6 이미지 끝 -->
 			<!-- 7 이미지 시작 -->
 			<div class="carousel-item">
-				<img src="../images/carousel-main09.jpeg" class="d-block w-100">
+				<img src="../images/carousel-main02.jpg" class="d-block w-100">
 				<div class="carousel-caption">
 				</div>
 			</div>

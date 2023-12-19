@@ -50,61 +50,60 @@
 		<form action="questionList.do" id="search_form" method="get"><%-- 검색바 --%>
 			<ul class="search" style="float:right;">
 				<li>
-				<select class="btn" name="keyfield">
-							<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
-							<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>내용</option>
-						</select>
-						<input class="btn" type="search" style="height: 25px;" size="16" name="keyword" id="keyword" value="${param.keyword}">
-						<input class="btn" type="submit" value="검색">
-					</li>
-				</ul>
-			</form>
-			<div class="list-space align-right">
-				<input class="btn" type="button" value="문의 작성" onclick="location.href='userQuestionWriteForm.do'">
-			</div>
-			
-			
-								<div class="js_tabs type1 v-tabs">
-									<ul class="tabs">
-										<li class="selected fx-cobrand-pkg" style="width: 33.3333%;">
-											<a href="question.do?question_category=1">상품</a>
-										</li> 
-										<li class="fx-cobrand-htl" style="width: 33.3333%;">
-											<a href="${pageContext.request.contextPath}/question/question.do?question_category=2">교환/환불</a>
-										</li> 
-										<li class="fx-cobrand-fnd" style="width: 32.3333%;">
-											<a href="${pageContext.request.contextPath}/question/question.do?question_category=3">기타</a>
-										</li>
-									</ul> 
-					
-								<div class="panels">
-									<div id="tabPkg" class="panel selected">
-										<div class="tbl">
-											<c:if test="${empty list}">
-											<table class="board_type">
-													<colgroup>
-													<col> 
-													<col style="width: 15%;"> 
-													<col style="width: 15%;"> 
-													<col style="width: 13%;"></colgroup> 
-														<thead>
-															<tr>
-																<th>제목</th> 
-																<th>작성일</th> 
-																<th>조회수</th> 
-																<th></th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																
-																<td style="float:right;"> 표시할 게시물이 없습니다.</td>
-															</tr>
-                   										</tbody>
-                   									</table>
-											</c:if>
-											<c:if test="${!empty list}">
-											<table class="board_type">
+					<select class="btn" name="keyfield">
+						<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
+						<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>내용</option>
+					</select>
+					<input class="btn" type="search" style="height: 25px;" size="16" name="keyword" id="keyword" value="${param.keyword}">
+					<input class="btn" type="submit" value="검색">
+				</li>
+			</ul>
+		</form>
+		<div class="list-space align-right">
+			<input class="btn" type="button" value="문의 작성" onclick="location.href='userQuestionWriteForm.do'">
+		</div>
+		<div class="js_tabs type1 v-tabs">
+			<ul class="tabs">
+				<li class="selected fx-cobrand-pkg" style="width: 33.3333%;">
+					<a href="question.do?question_category=1">상품</a>
+				</li> 
+				<li class="fx-cobrand-htl" style="width: 33.3333%;">
+					<a href="${pageContext.request.contextPath}/question/question.do?question_category=2">교환/환불</a>
+				</li> 
+				<li class="fx-cobrand-fnd" style="width: 32.3333%;">
+					<a href="${pageContext.request.contextPath}/question/question.do?question_category=3">기타</a>
+				</li>
+			</ul> 
+		<div class="panels">
+			<div id="tabPkg" class="panel selected">
+				<div class="tbl">
+					<c:if test="${empty list}">
+						<table class="board_type">
+							<colgroup>
+								<col style="width: 13%;"> 
+								<col> 
+								<col style="width: 15%;"> 
+								<col style="width: 15%;"> 
+								<col style="width: 13%;">
+							</colgroup> 
+								<thead>
+									<tr>
+										<th>카테고리</th>
+										<th>제목</th>
+										<th>작성자</th>
+										<th>작성일자</th>
+										<th>조회수</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td style="float:right;"> 표시할 게시물이 없습니다.</td>
+									</tr>
+                   				</tbody>
+                   		</table>
+					</c:if>
+					<c:if test="${!empty list}">
+						<table class="board_type">
 														<colgroup>
 													<col style="width: 13%;"> 
 													<col> 
