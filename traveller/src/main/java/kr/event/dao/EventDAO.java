@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.event.vo.EventReplyVO;
 import kr.event.vo.EventVO;
+import kr.money.vo.MoneyVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
 
@@ -408,7 +409,39 @@ public class EventDAO {
 		}
 	}
 	
-	//이벤트 횟수 차감
-	
+	//이벤트 참여 - 이벤트 횟수 차감, 적립금 지급
+	public void updateEventCount(int event_num, MoneyVO money) throws Exception {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			
+			/*----이벤트 횟수 차감-----*/
+			sql = "UPDATE event SET event_count=event_count-1 WHERE event_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, event_num);
+			pstmt.executeUpdate();
+			
+			/*----적립금 지급-----*/
+			sql = "INSERT INTO money (se_num,mem_num,saved_money,sm_content) VALUES (money_seq.nextval,?,?,?)";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, money.getMem_num());
+			pstmt2.setString(2, money.getSaved_money());
+			pstmt2.setString(3, money.getSm_content());
+			pstmt2.executeUpdate();
+			
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 }
