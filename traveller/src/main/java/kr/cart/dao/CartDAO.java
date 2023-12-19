@@ -233,35 +233,36 @@ public class CartDAO {
 			
 		}
 		
-		//회원번호(mem_num)별 총 구매액
-		public int getTotalByMem_num(int mem_num)throws Exception{
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			String sql = null;
-			int total = 0;
-			
-			try {
-				//커넥션풀로부터 커넥션 할당
-				conn = DBUtil.getConnection();
-				//SQL문 작성
-				sql = "SELECT SUM(sub_total) FROM (SELECT mem_num,order_quantity*price sub_total "
-					+ "FROM cart JOIN item USING(item_num)) WHERE mem_num=?";
-				//PreparedStatement 객체 생성
-				pstmt = conn.prepareStatement(sql);
-				//?에 데이터 바인딩
-				pstmt.setInt(1, mem_num);
-				//SQL문 실행
-				rs = pstmt.executeQuery();
-				if(rs.next()) {
-					total = rs.getInt(1); //컬럼 인덱스1 = SUM(sub_total)
-				}
-			}catch(Exception e) {
-				throw new Exception(e);
-			}finally {
-				DBUtil.executeClose(rs, pstmt, conn);
+	//회원번호(mem_num)별 총 구매액
+	public int getTotalByMem_num(int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int total = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT SUM(sub_total) FROM (SELECT mem_num,"
+					+ "order_quantity*item_price sub_total FROM cart "
+					+ "JOIN item USING(item_num)) WHERE mem_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, mem_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				total = rs.getInt(1); //컬럼 인덱스1 = SUM(sub_total)
 			}
-			
-			return total;
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
+		
+		return total;
+	}
 }
