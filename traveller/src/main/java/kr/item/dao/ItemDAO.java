@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.accom.vo.AccomInfoVO;
 import kr.item.vo.ItemVO;
 import kr.util.DBUtil;
 
@@ -316,15 +317,5 @@ private static ItemDAO instance = new ItemDAO();
 		}	
 		return vo;
 	}
-	//동행 신청 내역 본인
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//동행 신청 내역 본인	
 }

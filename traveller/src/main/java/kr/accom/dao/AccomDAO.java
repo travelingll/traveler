@@ -759,8 +759,104 @@ public class AccomDAO {
 		
 		return accominfo;
 	}
-	//동행 신청 내역 (신청자)
-	
+	//동행 신청 레코드수/검색 레코드 수
+	public int getAccomInfoCountByMem_num(String keyfield, String keyword, int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String sub_sql = "";
+		int count = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			
+			if(keyword!=null && !"".equals(keyword)) {
+				if (keyfield.equals("1")) sub_sql += "AND accom_title LIKE ?";	
+				else if(keyfield.equals("2")) sub_sql += "AND id LIKE ?";
+			}
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM accom_info a JOIN accom b ON a.accom_num=b.accom_num JOIN member m ON b.mem_num=m.mem_num WHERE a.mem_num=? " + sub_sql;
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, mem_num);
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(2, "%"+keyword+"%");
+			}
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) { 
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return count;
+	}
+	// 동행 신청자가 신청한 동행 신청 목록
+	public List<AccomInfoVO> getListAccomInfoByMem_num(int start, int end, String keyfield, String keyword, int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<AccomInfoVO> list = null;
+		String sub_sql = "";
+		String sql = null;
+		int cnt = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			if(keyword!=null && !"".equals(keyword)) {
+				if (keyfield.equals("1")) sub_sql += "AND accom_title LIKE ?";	
+				else if(keyfield.equals("2")) sub_sql += "AND id LIKE ?";
+			}
+			
+			//SQL문 작성
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+				+ "(SELECT * FROM accom_info a JOIN accom b ON a.accom_num=b.accom_num JOIN member m ON b.mem_num=m.mem_num WHERE a.mem_num =? " + sub_sql
+				+ " ORDER BY a.info_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+			//PreparedStatememt 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(++cnt, mem_num);
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(++cnt, "%"+keyword+"%");
+			}
+			pstmt.setInt(++cnt, start);
+			pstmt.setInt(++cnt, end);
+			
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			
+			list = new ArrayList<AccomInfoVO>();
+			while(rs.next()) {
+				AccomInfoVO accomInfo = new AccomInfoVO();
+				accomInfo.setInfo_num(rs.getInt("info_num"));
+				accomInfo.setAccom_num(rs.getInt("accom_num"));
+				
+				AccomVO accomVO = new AccomVO();
+				//HTML을 허용하지 않음
+				accomVO.setAccom_title(StringUtil.useNoHtml(rs.getString("accom_title")));
+				accomVO.setId(rs.getString("id"));
+				
+				accomInfo.setAccomVO(accomVO);
+				
+				list.add(accomInfo);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
 	//동행 신청 내역 (작성자)
 	
 	
