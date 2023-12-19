@@ -81,18 +81,15 @@ public class OrderDAO {
 			}
 			pstmt3.executeBatch();
 			
-			/*-----인원수 차감-----*/
-			sql = "UPDATE item SET quantity=quantity-? WHERE item_num=?";
-			pstmt4 =  conn.prepareStatement(sql);
-			for(int i=0 ; i<detailList.size() ; i++) {
-				OrderDetailVO detail = detailList.get(i);
-				pstmt3.setInt(1, detail.getOrder_quantity());
-				pstmt3.setInt(2, detail.getItem_num());
-				pstmt3.addBatch();
-				
-				if(i%1000 == 0) pstmt3.executeBatch();
-			}
-			pstmt4.executeBatch();
+			/*------ㅡmoney 테이블에 등록------*/
+			sql = "INSERT INTO money (sm_num,mem_num,saved_money,sm_content) "
+					+ "VALUES (money_seq.nextval,?,?,?)";
+			pstmt4 = conn.prepareStatement(sql);
+			pstmt4.setInt(1, order.getMem_num());
+			pstmt4.setInt(2, order.getUse_money()*(-1)); //마이너스 적립금
+			pstmt4.setString(3, "여행 예약");
+			
+			pstmt4.executeUpdate();
 			
 			/*-----장바구니 테이블 delete-----*/
 			sql = "DELETE FROM cart WHERE mem_num=?";

@@ -15,7 +15,6 @@
 		<h2>예약</h2>
 		<c:if test="${!empty user_num}"> <%--회원만 예약 가능--%>
 			<form action="userOrder.do" method="post">
-				<input type="hidden" value="${order_total-money}" name="cust_price">
 				<ul>
 					<li>
 						<label for="name">이름</label>

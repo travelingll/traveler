@@ -82,6 +82,7 @@
               	</table>
 			</c:if>
 			<c:if test="${!empty list}">
+			<form method="post" action="${pageContext.request.contextPath}/order/userOrderForm.do" >
 				<table class="board_type">
 					<colgroup>
 					<!-- 1번 --><col style="width: 10%;">
@@ -116,7 +117,7 @@
 							<td><fmt:formatNumber value="${cart.itemVO.item_price}"/>원</td>
 						<!-- 4번 -->	
 							<td>
-								
+					
 								<a>
 									<input style="border:none;"type="number" name="order_quantity" min="1" max="${cart.itemVO.quantity}" value="${cart.order_quantity}" autocomplete="off">/${cart.itemVO.quantity}
 									<input class="btn cart-modify" type="button" style="margin-left:3px;" value="변경" data-cartnum="${cart.cart_num}" data-itemnum="${cart.item_num}">
@@ -152,10 +153,10 @@
               		</tbody>
                 </table>
                 <div class="align-center cart-submit">
-					<input type="button" value="구매하기" onclick="location.href=''" class="btn" style="float:right; margin-top:10px;">
+					<input type="submit" value="구매하기" class="btn" style="float:right; margin-top:10px;">
 				</div>
              </c:if>
-            
+            </form>
             </c:if> 
     				</div>
    				</div>

@@ -79,7 +79,7 @@ public class UserOrderAction implements Action {
 		
 		//주문 정보 담기
 		OrderVO order = new OrderVO();
-		int cust_price = Integer.parseInt(request.getParameter("cust_price"));
+		int cust_price = all_total-Integer.parseInt(request.getParameter("use_money"));
 		
 		order.setItem_name(item_name);
 		order.setOrder_price(all_total);
@@ -87,6 +87,7 @@ public class UserOrderAction implements Action {
 		order.setMem_num(user_num);
 		order.setNotice(request.getParameter("notice"));
 		order.setPayment(Integer.parseInt(request.getParameter("payment")));
+		order.setUse_money(Integer.parseInt(request.getParameter("use_money")));
 		
 		orderDAO.insertOrder(order, orderDetailList);
 		

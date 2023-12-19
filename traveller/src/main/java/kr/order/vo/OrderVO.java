@@ -13,7 +13,14 @@ public class OrderVO {
 	private Date order_modate;
 	private String notice;
 	private int payment;
+	private int use_money;
 	
+	public int getUse_money() {
+		return use_money;
+	}
+	public void setUse_money(int use_money) {
+		this.use_money = use_money;
+	}
 	public String getItem_name() {
 		return item_name;
 	}
