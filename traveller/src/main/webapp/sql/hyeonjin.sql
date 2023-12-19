@@ -79,7 +79,7 @@ CREATE sequence order_num_seq
 CREATE TABLE order_detail ( --주문 상세
 detail_num number(12) not null, --프라이머리키
 item_num number(12) not null, --개별 상품 프라이머리 키
-item_name varchar2(30) not null, --개별 상품 이름
+item_name varchar2(4000) not null, --개별 상품 이름
 item_price number(10) not null, --개별 상품 가격
 order_num number(12) not null, --주문 프라이머리 키
 order_quantity number(3) not null, --개별 상품 주문 수량
