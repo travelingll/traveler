@@ -325,6 +325,18 @@ public class MemberDAO {
 				member.setPasswd(rs.getString("passwd"));
 				member.setPhone(rs.getString("phone"));
 				member.setEmail(rs.getString("email"));
+				member.setBirth(rs.getString("birth"));
+				member.setGender(rs.getString("gender"));
+				member.setZipcode(rs.getString("zipcode"));
+				member.setAddress1(rs.getString("address1"));
+				member.setAddress2(rs.getString("address2"));
+				member.setStyle1(rs.getString("style1"));
+				member.setStyle2(rs.getString("style2"));
+				member.setStyle3(rs.getString("style3"));
+				member.setPush(rs.getString("push"));
+				member.setPhoto(rs.getString("photo"));
+				member.setReg_date(rs.getDate("reg_date")); //가입일
+				member.setModify_date(rs.getDate("modify_date")); //수정일
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
