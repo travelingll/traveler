@@ -143,12 +143,14 @@ public class OrderDAO {
 	}
 	
 	//목록 갯수
-	public int getOrderCount(String keyword, String keyfield) throws Exception {
+	public int getOrderCount(String keyword, String keyfield, int mem_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		String sub_sql = "";
+		String sub_sql2 = "";
+		int cnt = 0;
 		int count = 0;
 		
 		try {
@@ -158,13 +160,15 @@ public class OrderDAO {
 				//검색어 sql 문장 작성 필요
 				if(keyfield.equals("1")) sub_sql += "";
 			}
-			sql = "SELECT COUNT(*) FROM order_item " +sub_sql;
+			if(mem_num!=0) sub_sql2 += "WHERE mem_num=?";
+			sql = "SELECT COUNT(*) FROM order_item " + sub_sql + sub_sql2;
 			
 			pstmt = conn.prepareStatement(sql);
 			
 			if(keyword!=null && !"".equals(keyword)) {
 				//검색어 데이터 바인딩 필요
 			}
+			if(mem_num!=0) pstmt.setInt(++cnt, mem_num);
 			
 			rs = pstmt.executeQuery();
 			
