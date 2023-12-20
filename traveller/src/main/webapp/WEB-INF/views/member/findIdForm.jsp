@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 찾기</title>
+<title>아이디 찾기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/find.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	//비밀번호 찾기 유효성 체크
+	//아이디 찾기 유효성 체크
 	$('#find_form').submit(function(){
 		let items = document.querySelectorAll('.input-check');
 		for(let i=0;i<items.length;i++){
@@ -26,7 +26,6 @@ $(function(){
 });
 </script>
 </head>
-<body>
 <body>
 <div id="__nuxt">
     	<!---->
@@ -64,7 +63,7 @@ $(function(){
   								<li>
   									<div class="field_group">
   										<div class="input_text">
-		  									<input id="email" type="email" title="이메일" placeholder="" class="input-check" autocomplete="off">
+		  									<input id="email" name="email" type="email" title="이메일" placeholder="" class="input-check" autocomplete="off">
 		  									<label for="email">이메일</label>
   										</div>
   									</div>

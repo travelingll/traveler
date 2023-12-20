@@ -27,7 +27,6 @@ $(function(){
 </script>
 </head>
 <body>
-<body>
 <div id="__nuxt">
     	<!---->
     		<div id="__layout">
@@ -72,7 +71,7 @@ $(function(){
   								<li>
   									<div class="field_group">
   										<div class="input_text">
-		  									<input id="email" type="email" title="이메일" placeholder="" class="input-check" autocomplete="off">
+		  									<input id="email" name="email" type="email" title="이메일" placeholder="" class="input-check" autocomplete="off">
 		  									<label for="email">이메일</label>
   										</div>
   									</div>
@@ -90,4 +89,3 @@ $(function(){
 	</div> 
 </body>
 </html>
-
