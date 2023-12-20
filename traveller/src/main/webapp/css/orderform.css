@@ -17,7 +17,7 @@
 	margin: 10px;
 }
 .order-ul > li label{
-	font-size: 15pt;
+	font-size: 13pt;
 	font-weight: bold;
 	margin-right: 50pt;
 	white-space: nowrap;
@@ -66,6 +66,7 @@ input[type=radio]{
 }
 .order-ul > li > span {
 	text-align: right;
+	padding-right: 50px;
 }
 .order-money{
 	margin-left:100px;
