@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +44,7 @@
 												<th colspan="2">여행상품</th>
 												<th>가격<br></th>
 											</tr>
-											<c:forEach var="rec" items="${list}">
+											<c:forEach var="rec" items="${item}">
 												<tr>
 													<td><img src="${pageContext.request.contextPath}/upload/${rec.item_img1}" width="150px"></td>
 													<td><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${rec.item_num}"><b>${rec.item_name}</b>
@@ -62,6 +63,9 @@
 										            <li style="display:inline-block;">${style}</li>
 										        </c:forEach>
 										    </ul>
+										    <div>
+										    	${count}
+										    </div>
 									</div>
 								</div>
 							</div>

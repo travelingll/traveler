@@ -31,17 +31,12 @@ public class UserRecommendAction implements Action{
 		if(pageNum == null) pageNum = "1";
 		
 		RecommendDAO recDao = RecommendDAO.getInstance();
-		int count = recDao.getRecommendCount("2","2","2");
+	    int count = recDao.getRecommendCount(user_num);
 		
 		PageUtil page = new PageUtil(null,null,Integer.parseInt(pageNum),count,5,5,"userRecommend.do");
-		List<ItemVO> list = null;
-		if(count > 0) {
-			list = recDao.getRecommendList(page.getStartRow(), page.getEndRow(), "2", "2", "2");
-		}
 		
 		request.setAttribute("member", member);
 		request.setAttribute("count", count);
-		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());
 		
 		String[] style1 = recDao.getStyleArray("style1", user_num);
@@ -51,6 +46,10 @@ public class UserRecommendAction implements Action{
 		request.setAttribute("style1", style1);
 		request.setAttribute("style2", style2);
 		request.setAttribute("style3", style3);
+		
+		List<ItemVO> item = recDao.getRecommendedItems(page.getStartRow(), page.getEndRow(), user_num);
+		
+		request.setAttribute("item", item);
 		
 		return "/WEB-INF/views/recommend/userRecommend.jsp";
 	}

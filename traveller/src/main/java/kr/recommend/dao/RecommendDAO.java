@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.item.vo.ItemVO;
-import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
 
 public class RecommendDAO {
@@ -18,6 +17,63 @@ private static RecommendDAO instance = new RecommendDAO();
 	}
 	
 	private RecommendDAO(){};
+	
+	//개수
+	public int getRecommendCount(int mem_num) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    String sql = null;
+	    int count = 0;
+
+	    try {
+	        conn = DBUtil.getConnection();
+
+	        // Get style values from the member_detail table
+	        String[] style1 = getStyleArray("style1", mem_num);
+	        String[] style2 = getStyleArray("style2", mem_num);
+	        String[] style3 = getStyleArray("style3", mem_num);
+
+	        // Construct SQL query to get recommended items count
+	        sql = "SELECT COUNT(*) FROM item WHERE ";
+	        
+	        for (int i = 0; i < style1.length; i++) {
+	            sql += "item_st1 = ? OR ";
+	        }
+	        for (int i = 0; i < style2.length; i++) {
+	            sql += "item_st2 = ? OR ";
+	        }
+	        for (int i = 0; i < style3.length - 1; i++) {
+	        	sql += "item_st3 = ? OR ";
+	        }
+	        sql += "item_st3 = ?";
+
+	        pstmt = conn.prepareStatement(sql);
+	        
+	        int cnt = 0;
+	        for (String style : style1) {
+	            pstmt.setString(++cnt, style);
+	        }
+	        for (String style : style2) {
+	            pstmt.setString(++cnt, style);
+	        }
+	        for (String style : style3) {
+	            pstmt.setString(++cnt, style);
+	        }
+
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            count = rs.getInt(1);
+	        }
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+
+	    return count;
+	}
+
 	
 	public int getRecommendCount(String item_st1,String item_st2,String item_st3)throws Exception{
 		Connection conn = null;
@@ -131,5 +187,75 @@ private static RecommendDAO instance = new RecommendDAO();
 		}
 		
 		return styles;
+	}
+	
+	//아이템 추천 메서드
+	public List<ItemVO> getRecommendedItems(int start, int end, int mem_num) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    String sql = null;
+	    List<ItemVO> list = null;
+
+	    try {
+	        conn = DBUtil.getConnection();
+
+	        String[] style1 = getStyleArray("style1", mem_num);
+	        String[] style2 = getStyleArray("style2", mem_num);
+	        String[] style3 = getStyleArray("style3", mem_num);
+
+	        sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+	            + "(SELECT * FROM item WHERE ";
+
+	        for (int i = 0; i < style1.length; i++) {
+	            sql += "item_st1 = ? OR ";
+	        }
+	        for (int i = 0; i < style2.length; i++) {
+	            sql += "item_st2 = ? OR ";
+	        }
+	        for (int i = 0; i < style3.length - 1; i++) {
+	            sql += "item_st3 = ? OR ";
+	        }
+	        sql += "item_st3 = ? ORDER BY item_num ASC)a) WHERE rnum>=? AND rnum <=?";
+
+	        pstmt = conn.prepareStatement(sql);
+
+	        int cnt = 0;
+	        for (String style : style1) {
+	            pstmt.setString(++cnt, style);
+	        }
+	        for (String style : style2) {
+	            pstmt.setString(++cnt, style);
+	        }
+	        for (String style : style3) {
+	            pstmt.setString(++cnt, style);
+	        }
+	        pstmt.setInt(++cnt, start);
+	        pstmt.setInt(++cnt, end);
+
+	        rs = pstmt.executeQuery();
+	        list = new ArrayList<>();
+
+	        while (rs.next()) {
+	            ItemVO item = new ItemVO();
+	            item.setItem_num(rs.getInt("item_num"));
+				item.setItem_name(rs.getString("item_name"));
+				item.setItem_content(rs.getString("item_content"));
+				item.setItem_price(rs.getInt("item_price"));
+				item.setItem_img1(rs.getString("item_img1"));
+				item.setDate_start(rs.getString("date_start"));
+				item.setDate_end(rs.getString("date_end"));
+				item.setReg_date(rs.getDate("reg_date"));
+				item.setQuantity(rs.getInt("quantity"));
+
+	            list.add(item);
+	        }
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+
+	    return list;
 	}
 }
