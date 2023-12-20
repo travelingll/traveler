@@ -1,15 +1,33 @@
 @charset "UTF-8";
 .detail-sidemenu{
-	margin-left:200px;
-	margin-top: 80px;
+	margin-left:230px;
+	margin-top: 50px;
 }
 .detail-page{
 	width: 1000px;
 	position: absolute;
 	margin-left:400px;
 }
-
-
+.detail-content{
+	margin-left:50px;
+}
+.detail-content h2{
+	margin-top:50px;
+}
+.detail-detailcontent p{
+	padding: 30px;
+}
+.detail-detailcontent p{
+	padding: 30px;
+}
+.detail-center{
+	text-align:center;
+}
+.detail-content > ul > li{
+	text-align:right;
+	margin-right:30px;
+	padding:30px;
+}
 
 
 
