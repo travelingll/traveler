@@ -228,7 +228,7 @@ public class OrderDAO {
 				order.setMem_num(rs.getInt("mem_num"));
 				order.setOrder_status(rs.getInt("order_status"));
 				order.setOrder_date(rs.getDate("order_date"));
-				order.setOrder_date(rs.getDate("order_modate"));
+				order.setOrder_modate(rs.getDate("order_modate"));
 				order.setOrder_num(rs.getInt("order_num"));
 				order.setNotice(rs.getString("notice"));
 				order.setPayment(rs.getInt("payment"));
