@@ -10,6 +10,11 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/yena.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/orderform.css">
+	<script type="text/javascript">
+		window.onload = function(){
+			
+		};
+	</script>
 </head>
 <body class="chrome">
 	<div id="__nuxt"><div id="__layout"><div id="wrapper"><div id="screenArea">  
@@ -61,7 +66,7 @@
 						</li>
 						<li>
 							<label>결제 예정 금액</label>
-							<span><fmt:formatNumber value="${order_total-money}"/>원</span>
+							<span id="expect_money">원</span>
 						</li>
 						<li class="order-radio"><%-- 보내는 데이터 --%>
 							<label for="payment">결제 수단</label>

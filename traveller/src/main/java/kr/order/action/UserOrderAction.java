@@ -97,9 +97,9 @@ public class UserOrderAction implements Action {
 		
 		orderDAO.insertOrder(order, orderDetailList);
 		
-		//주문 완료 폼에서 사용할 정보 담기 - 상세 작성해서 보내기
+		request.setAttribute("notice_msg", "여행 상품 예약을 완료했습니다! 예약 정보로 넘어갑니다");
+		request.setAttribute("notice_url", request.getContextPath()+"/member/myPage.do"); //마이페이지
 		
-		
-		return "/WEB-INF/views/order/userOrderSuccess.jsp";
+		return "/WEB-INF/views/common/alert_singleView.jsp";
 	}
 }
