@@ -29,7 +29,6 @@
 			<div id="wrapper">
 				<div id="screenArea">  
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<<<<<<< HEAD
 	<div id="container">
 		<div class="inr">
 		
@@ -42,21 +41,15 @@
 					</dl>
     			</div>
     		</div>
-=======
-	<div id="container"><div class="inr">
-		<div id="lnb" class="lnb"><div class="inr"><dl>
-			<dt class="tit_con_title">		
-				<a href="/traveller/member/myPage.do">이벤트</a>
-			</dt>
-		</dl></div></div>
->>>>>>> branch 'main' of https://github.com/travelingll/traveler.git
 			<div class="content_block" id="content">
 	<c:if test="${category==0}">
 			<form name="search_form" id="search_form" action="eventList.do" method="get">
+			
+		
 			<ul class="tab_page_cont" id="tab_page_cont">
 				<li class="on"><a href="${pageContext.request.contextPath}/event/eventList.do">진행중</a></li>
-				<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=1">회원</a></li>
-				<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=2">비회원</a></li>
+				<li><a href="#">회원</a></li>
+				<li><a href="#">비회원</a></li>
 			</ul>
 			
 			<div class="brd_search">
