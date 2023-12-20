@@ -180,23 +180,26 @@ public class OrderDAO {
 	}
 	
 	//예약 list
-	public List<OrderVO> getOrderList(int start, int end, String keyword, String keyfield) throws Exception{
+	public List<OrderVO> getOrderList(int start, int end, String keyword, String keyfield, int mem_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<OrderVO> list = null;
 		String sql = null;
 		String sub_sql = "";
+		String sub_sql2 = "";
 		int cnt = 0;
 		
 		try {
 			conn = DBUtil.getConnection();
 			
-			if(keyword!=null && !"".equals(keyword)) {
+			if(keyword!=null && !"".equals(keyword)) { //검색어 입력 시
 				//검색어 sql 문장 작성 필요
 			}
+			if(mem_num!=0) sub_sql2 += " WHERE mem_num=? "; //mem_num 입력 시
+			
 			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM order_item "
-					+ sub_sql
+					+ sub_sql + sub_sql2
 					+ " ORDER BY order_num DESC)a) WHERE rnum>=? AND rnum<=?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -204,6 +207,7 @@ public class OrderDAO {
 			if(keyword!=null && !"".equals(keyword)) {
 				//검색어 데이터 바인딩 필요
 			}
+			if(mem_num!=0) pstmt.setInt(++cnt, mem_num); //mem_num 입력 시
 			pstmt.setInt(++cnt, start);
 			pstmt.setInt(++cnt, end);
 			
@@ -253,13 +257,13 @@ public class OrderDAO {
 			conn = DBUtil.getConnection();
 			
 			if(order_num!=0) sub_sql += "order_num=?"; //관리자 페이지에서 사용
-			else sub_sql += "mem_num=?"; //관리자 페이지에서 사용
+			else sub_sql += "mem_num=?"; //마이페이지에서 사용
 			sql = "SELECT * FROM order_item WHERE " + sub_sql;
 			
 			pstmt = conn.prepareStatement(sql);
 			
 			if(order_num!=0) pstmt.setInt(1, order_num); //관리자 페이지에서 사용
-			else pstmt.setInt(1, mem_num); //관리자 페이지에서 사용
+			else pstmt.setInt(1, mem_num); //마이페이지에서 사용
 			
 			rs = pstmt.executeQuery();
 			order = new OrderVO();
@@ -303,10 +307,13 @@ public class OrderDAO {
 			conn = DBUtil.getConnection();
 			
 			if(order_num!=0) sub_sql += "order_num=?"; //관리자 페이지에서 사용
-			else sub_sql += "mem_num=?"; //관리자 페이지에서 사용
+			else sub_sql += "mem_num=?"; //마이페이지에서 사용
 			sql = "SELECT * FROM order_detail WHERE " + sub_sql;
 			
 			pstmt = conn.prepareStatement(sql);
+			
+			if(order_num!=0) pstmt.setInt(1, order_num); //관리자 페이지에서 사용
+			else pstmt.setInt(1, mem_num); //마이페이지에서 사용			
 			
 			rs = pstmt.executeQuery();
 			orderDetail = new OrderDetailVO();
