@@ -5,12 +5,12 @@
 	<div class="inr">
 		<dl>
 			<dt class="type">
-				<a href="#">트래블러 클럽</a>
+				<a href="${pageContext.request.contextPath}/event/eventList.do">이벤트</a>
 			</dt>
 			<dd>
 				<ul class="list_lnb">
-					<li><a href="${pageContext.request.contextPath}/accom/list.do">동행구하기</a></li>
-					<li><a href="${pageContext.request.contextPath}/comm/list.do">커뮤니티</a></li>
+					<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=1">회원</a></li>
+					<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=2">비회원</a></li>
 				</ul>
 			</dd>
 		</dl>

@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 찾기</title>
+<title>아이디 찾기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/find.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	//비밀번호 찾기 유효성 체크
+	//아이디 찾기 유효성 체크
 	$('#find_form').submit(function(){
 		let items = document.querySelectorAll('.input-check');
 		for(let i=0;i<items.length;i++){
@@ -38,7 +38,7 @@ $(function(){
     							
     								<span>이전페이지</span>
     							</a> 
-    							<h1 class="title">비밀번호 찾기</h1> 
+    							<h1 class="title">아이디 찾기</h1> 
     						<!---->
     					</div>
     				</div> 
@@ -50,16 +50,8 @@ $(function(){
     						</div> 
   						</div>
   						<div class="tab_cont on">
-  						<form id="find_form" action="findPassword.do" method="post">
+  						<form id="find_form" action="findId.do" method="post">
   							<ul class="inner_cont form_wrap">
-  								<li>
-  									<div class="field_group">
-  										<div class="input_text">
-		  									<input id="id" name="id" type="text" title="아이디" placeholder="" class="input-check" autocomplete="off">
-		  									<label for="id">아이디</label>
-  										</div>
-  									</div>
-  								</li>
   								<li>
   									<div class="field_group">
   										<div class="input_text">
@@ -78,7 +70,7 @@ $(function(){
   								</li>
   							</ul>
   							<div class="btn_wrap mt12">
-    							<input type="submit" class="btn em big disable" value="비밀번호 찾기">
+    							<input type="submit" class="btn em big disable" value="아이디 찾기">
     						</div> 
   						</form>
   						</div>
@@ -89,3 +81,4 @@ $(function(){
 	</div> 
 </body>
 </html>
+

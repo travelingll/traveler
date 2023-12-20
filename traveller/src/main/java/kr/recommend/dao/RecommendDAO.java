@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.item.vo.ItemVO;
+import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
 
 public class RecommendDAO {
@@ -18,7 +19,7 @@ private static RecommendDAO instance = new RecommendDAO();
 	
 	private RecommendDAO(){};
 	
-	public int getRecommendCount(String item_st1)throws Exception{
+	public int getRecommendCount(String item_st1,String item_st2,String item_st3)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -28,10 +29,12 @@ private static RecommendDAO instance = new RecommendDAO();
 		try {
 			conn = DBUtil.getConnection();
 			
-			sql = "SELECT COUNT(*) FROM item WHERE item_st1=?";
+			sql = "SELECT COUNT(*) FROM item WHERE item_st1=? or item_st2=? or item_st3=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, item_st1);
+			pstmt.setString(2, item_st2);
+			pstmt.setString(3, item_st3);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				count = rs.getInt(1);
@@ -45,7 +48,7 @@ private static RecommendDAO instance = new RecommendDAO();
 		return count;
 	}
 	
-	public List<ItemVO> getRecommendList(int start,int end,String item_st1)throws Exception{
+	public List<ItemVO> getRecommendList(int start,int end,String item_st1,String item_st2,String item_st3)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -56,13 +59,15 @@ private static RecommendDAO instance = new RecommendDAO();
 			conn = DBUtil.getConnection();
 			
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-				+ "(SELECT * FROM item WHERE item_st1=? "
+				+ "(SELECT * FROM item WHERE item_st1=? or item_st2=? or item_st3=? "
 				+ "ORDER BY item_num ASC)a) WHERE rnum>=? AND rnum <=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, item_st1);
-			pstmt.setInt(2, start);
-			pstmt.setInt(3, end);
+			pstmt.setString(2, item_st2);
+			pstmt.setString(3, item_st3);
+			pstmt.setInt(4, start);
+			pstmt.setInt(5, end);
 			rs = pstmt.executeQuery();
 			list = new ArrayList<ItemVO>();
 			while(rs.next()) {
@@ -96,5 +101,35 @@ private static RecommendDAO instance = new RecommendDAO();
 		}
 		
 		return list;
+	}
+	
+	public String[] getStyleArray(String styleColumn,int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String[] styles = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT " + styleColumn + " FROM member_detail WHERE mem_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String styleValues = rs.getString(styleColumn);
+				if(styleValues != null && !styleValues.isEmpty()) {
+					styles = styleValues.split(",");
+				}
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return styles;
 	}
 }

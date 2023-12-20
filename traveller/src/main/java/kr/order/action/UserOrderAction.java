@@ -60,7 +60,7 @@ public class UserOrderAction implements Action {
 			ItemVO item = itemDAO.getItem(cart.getItem_num());
 			
 			//상품 인원 조건 체크
-			if(item.getQuantity() < orderDAO.getOrderCount(cart.getItem_num())) {
+			if(item.getQuantity() < orderDAO.getOrderItemCount(cart.getItem_num())) {
 				request.setAttribute("notice_msg","["+item.getItem_name()+"] 상품은 예약이 마감되었습니다!");
 				request.setAttribute("notice_url", request.getContextPath()+"/cart/list.do");
 				return "/WEB-INF/views/common/alert_singleView.jsp";
@@ -79,7 +79,7 @@ public class UserOrderAction implements Action {
 		
 		//주문 정보 담기
 		OrderVO order = new OrderVO();
-		int cust_price = Integer.parseInt(request.getParameter("cust_price"));
+		int cust_price = all_total-Integer.parseInt(request.getParameter("use_money"));
 		
 		order.setItem_name(item_name);
 		order.setOrder_price(all_total);
@@ -87,12 +87,19 @@ public class UserOrderAction implements Action {
 		order.setMem_num(user_num);
 		order.setNotice(request.getParameter("notice"));
 		order.setPayment(Integer.parseInt(request.getParameter("payment")));
+		order.setUse_money(Integer.parseInt(request.getParameter("use_money")));
+		
+		order.setOrder_name(request.getParameter("order_name"));
+		order.setOrder_email(request.getParameter("order_email"));
+		order.setOrder_phone(request.getParameter("order_phone"));
+		order.setOrder_birth(request.getParameter("order_birth"));
+		order.setOrder_gender(request.getParameter("order_gender"));
 		
 		orderDAO.insertOrder(order, orderDetailList);
 		
-		//주문 완료 폼에서 사용할 정보 담기 - 상세 작성해서 보내기
+		request.setAttribute("notice_msg", "여행 상품 예약을 완료했습니다! 예약 정보로 넘어갑니다");
+		request.setAttribute("notice_url", request.getContextPath()+"/member/myPage.do"); //마이페이지
 		
-		
-		return "/WEB-INF/views/order/userOrderSuccess.jsp";
+		return "/WEB-INF/views/common/alert_singleView.jsp";
 	}
 }

@@ -23,9 +23,9 @@ public class MemberVO {
 	private Date reg_date;
 	private Date modify_date;
 	
-	//비밀번호 일치 여부 체크
+	//비밀번호 일치 & 탈퇴 여부 체크
 	public boolean isCheckedPassword(String userPasswd) {
-		if(passwd.equals(userPasswd)) {
+		if(auth > 0 && passwd.equals(userPasswd)) {
 			return true;
 		}
 		return false;
