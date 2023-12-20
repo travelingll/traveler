@@ -55,26 +55,29 @@
     	<c:if test="${empty list}">
 				<table class="board_type">
 					<colgroup>
-					<col>
-					<col style="width: 10%;"> 
-					<col> 
-					<col style="width: 10%;"> 
-					<col style="width: 10%;"> 
+					<col style="width: 8%;">
+					<col style="width: 47%;"> 
+					<col style="width: 12%">  
+					<col style="width: 11%;"> 
+					<col style="width: 12%;"> 
+					<col style="width: 10%;">
 					</colgroup>								 								
 					<thead>
 						<tr>
+							<th></th>
 							<th>상품명</th>
 							<th>상품가격</th>
 							<th>수량</th>
 							<th>합계</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td></td>
-							<td></td>
-							<td></td>
 							<td style="float:right;">장바구니에 담은 상품이 없습니다.</td>
+							<td> </td>
+							<td></td>
 							<td></td>
 							<td></td>
 							</tr>
@@ -85,20 +88,20 @@
 			<form method="post" action="${pageContext.request.contextPath}/order/userOrderForm.do" >
 				<table class="board_type">
 					<colgroup>
-					<!-- 1번 --><col style="width: 10%;">
-					<!-- 2번 --><col > 
-					<!-- 3번 --><col style="width: 15%;"> 
-					<!-- 4번 --><col style="width: 15%;"> 
-					<!-- 5번 --><col style="width: 15%;">
-					<!-- 6번 --><col style="width: 10%;">
+					<col style="width: 8%;">
+					<col style="width: 47%;"> 
+					<col style="width: 12%">  
+					<col style="width: 11%;"> 
+					<col style="width: 12%;"> 
+					<col style="width: 10%;"> 
 					</colgroup> 
 					<thead>
 						<tr>
-							<th></th> 
+							<th></th>
 							<th>상품명</th>
-							<th>상품가격</th> 
+							<th>상품가격</th>
 							<th>수량</th>
-							<th>합계</th> 
+							<th>합계</th>
 							<th></th>
 						</tr>
 					</thead>

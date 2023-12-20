@@ -35,7 +35,7 @@
 		<div id="lnb" class="lnb">
     			<div class="inr">
     				<dl>
-						<dt class="tit_con_title">		
+						<dt class="tit_con_title" style="border-bottom:none;">		
 							<a href="/traveller/member/myPage.do">이벤트</a>
 						</dt>
 					</dl>
@@ -68,7 +68,7 @@
 	
 	<c:if test="${count==0}">
 		<div class="promotion_block">
-		<div class="result-display">표시할 이벤트가 없습니다</div>
+		<div class="result-display" style="float:center center;">표시할 이벤트가 없습니다</div>
 		</div>
 	</c:if>
 	
@@ -81,7 +81,7 @@
 					<a href='eventDetail.do?event_num=${event.event_num}'>
 						<img style=" display: block; width: 283px; height: 195px;" src="${pageContext.request.contextPath}/upload/${event.event_photo1}">
 							<div class="list_block_info">
-								<h5 class="tit_list_block">${event.event_title}</h5>
+								<h5 class="tit_list_block" >${event.event_title}</h5>
 								<span class="list_date">${event.event_start} ~ ${event.event_end}</span>
 							</div>
 					</a>

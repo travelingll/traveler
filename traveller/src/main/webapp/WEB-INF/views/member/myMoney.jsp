@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>내가 쓴 글</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/mileage.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/eunseo.css">
+
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
@@ -18,10 +18,10 @@
 		<div id="__layout">
 			<div id="wrapper">
 				<div id="screenArea">  
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+					<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <!-- 여기서 부터 사이드바 입니다.-->
-   <div id="container">
-   		<div class="inr">			
+   						<div id="container">
+   							<div class="inr">			
     		<div id="lnb" class="lnb">
     			<div class="inr">
     				<dl>
@@ -88,11 +88,11 @@
     					<div class="box right">
     						<p>
     							<span>여행상품<em></em></span>
-    							<a href="#" target="_blank" class="btn sml">보기</a>
+    							<a href="#" target="_blank" class="btn sml" style="float:right;">보기</a>
     						</p> 
     						<p>
     							<span>고객센터</span>
-    							<a href="#" class="btn sml">문의하기</a>
+    							<a href="#" class="btn sml" style="float:right;">문의하기</a>
     						</p>
     					</div>
     				</div>
