@@ -10,7 +10,6 @@
 }
 .detail-content{
 	margin-left:50px;
-	border: 1px solid;
 }
 .detail-content h2{
 	margin-top:50px;
@@ -41,13 +40,24 @@
 	margin: 20px;
 }
 [type="submit"], .detail-output [type="button"]{
+	font-weight: bold;
 	box-shadow: none;
-	border:none;
+	border:1px solid;
 	margin-top: 10px;
-	background-color: #a1a1a1;
-	color: white;
+	background-color: white;
+	color: gray;
 	font-size: 8pt;
-	padding: 5px 3px 5px 3px;
+	padding: 5px 10px 5px 10px;
+	border-radius: 10px 10px 10px 10px;
+}
+.item{
+	padding:5px;
+}
+.item h4{
+	font-size: 15pt;
+}
+.item .sub-item{
+	padding: 10px 10px 10px 30px;
 }
 .detail-center{
 	text-align:center;
