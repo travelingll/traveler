@@ -14,9 +14,8 @@
 .detail-content h2{
 	margin-top:50px;
 }
-.detail-content > ul > li{
+.detail-content > ul{
 	text-align:right;
-	margin-right:30px;
 	padding:30px;
 }
 .detail-detailcontent p{
@@ -25,21 +24,10 @@
 .detail-detailcontent p{
 	padding: 30px;
 }
-.detail-detailcontent [type="button"]{
-	box-shadow: none;
-	margin-bottom: 30px;
-	border:none;
-	font-weight: bold;
-	background-color: #575656;
-	color: white;
-	font-size: 11pt;
-	padding: 15px 20px 15px 20px;
-	border-radius: 10px 10px 10px 10px;
-}
 .detail-reply{
 	margin: 20px;
 }
-[type="submit"], .detail-output [type="button"]{
+[type="submit"], .detail-output [type="button"], .detail-content [type="button"] {
 	font-weight: bold;
 	box-shadow: none;
 	border:1px solid;
@@ -48,6 +36,17 @@
 	color: gray;
 	font-size: 8pt;
 	padding: 5px 10px 5px 10px;
+	border-radius: 10px 10px 10px 10px;
+}
+.detail-detailcontent [type="button"]{
+	box-shadow: none;
+	margin-bottom: 30px;
+	padding: 15px 20px 15px 20px;
+	border:none;
+	font-weight: bold;
+	background-color: #575656;
+	color: white;
+	font-size: 11pt;
 	border-radius: 10px 10px 10px 10px;
 }
 .item{
@@ -65,10 +64,15 @@
 .detail-right{
 	text-align:right;
 }
-
-
-
-
+.detail-answer{
+	margin:30px;
+}
+.detail-passwd{
+	padding-top: 100px;
+}
+.detail-content > h1{
+	padding: 50px 0px 30px 0px;
+}
 
 
 

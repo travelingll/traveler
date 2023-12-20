@@ -6,7 +6,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>일대일 문의 수정</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssss.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/detailStyle.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
 		$(function(){

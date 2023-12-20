@@ -57,6 +57,7 @@
 					}
 				};
 			</script>
+			<input type="button" value="동행신청내역" onclick="location.href='requestAccomList.do?accom_num=${accom.accom_num}'">
 			</c:if>
 		<c:if test="${accom.present_cnt < accom.accom_quantity}">
 		<input type="button" value="동행신청" id="apply_btn">

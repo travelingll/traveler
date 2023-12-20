@@ -1,0 +1,171 @@
+@charset "UTF-8";
+
+#gnb_wrap > .inr {
+    position: relative;
+}
+
+.gnb_menu_wrap {
+    width: 1200px;
+    height: 57px;
+    margin: 0 auto;
+}
+.gnb_menu_wrap .btn_menu_all.on {
+    border: 1px solid #111;
+    border-bottom: 1px solid #fff;
+}
+
+.gnb_menu_wrap .btn_menu_all {
+    float: left;
+    display: block;
+    width: 138px;
+    height: 57px;
+    line-height: 57px;
+    /* border: 1px solid #ddd; */
+    border-bottom: 1px solid #111;
+    font-size: 15px;
+    position: relative;
+    padding-left: 57px;
+    color: #111;
+}
+
+.local_menu_wrap .searchform_com .btn_search:before, .gnb_menu_wrap .btn_menu_all:before, .local_menu_wrap .rolling_wrap a:before, .local_menu_wrap .rolling_wrap_all .tit:before, .gnb_menu_wrap .list_special li a.more:before, .local_menu_wrap .private_menu li a:before, .gnb_menu_wrap .list_gnb_menu li a:before, .gnb_menu_sub_wrap .list_depth2 li a:before, .gnb_menu_sub_wrap .btn_cls:before, .js_acc.filter_wrap .view a.more:before, .my_menu_wrap:before, .company_info_wrap .company_provision li:before, .company_info_wrap span:before, .service_info_wrap .fl dd .btn_more:before, .service_info_wrap .sns_list li a, .award_list_wrap .btn_next:before, .award_list_wrap .btn_prev:before, .gnb_menu_wrap .list_special_more .cls:after, .divider_dot:before, .divider_line:before, .gnb_menu_wrap .list_total_menu:after, .gnb_menu_wrap .list_total_menu .btn_cls:after, .company_info_wrap strong.customer_center>span:before, .btn:after, .txt:after {
+    display: inline-block;
+    content: '';
+    background-position: left top;
+    background-repeat: no-repeat;
+}
+
+.gnb_menu_wrap .btn_menu_all:before {
+    width: 16px;
+    height: 12px;
+    position: absolute;
+    top: 23px;
+    left: 28px;
+    background: url(https://image.hanatour.com/usr/static/img2/pc/com/ico-hamburgermenu.png) no-repeat left top;
+    font-size: 0;
+}
+
+*:before, *:after {
+    box-sizing: initial;
+}
+
+.gnb_menu_wrap .list_total_menu.on {
+    display: block;
+}
+.gnb_menu_wrap .list_total_menu {
+    display: none;
+    position: absolute;
+    top: 57px;
+    left: 0;
+    right: 0;
+    border-bottom: solid 1px #979797;
+    padding: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(197, 197, 197, 0.5);
+    z-index: 20;
+}
+.gnb_menu_wrap .list_total_menu > .inr {
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+.gnb_menu_wrap .list_total_menu .btn_cls {
+    display: block;
+    position: absolute;
+    top: -7px;
+    right: 0;
+    width: 39px;
+    height: 39px;
+    font-size: 0;
+    z-index: 10;
+}
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+.gnb_menu_wrap .list_total_menu .btn_cls:after {
+    background-image: url(https://image.hanatour.com/usr/static/img2/pc/com/ico-alllmenu_close.png);
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    width: 25px;
+    height: 25px;
+}
+
+.ly_wrap {
+    width: 100%;
+}
+.gnb_menu_wrap .list_total_menu.n_total .inr.bundle {
+    display: flex;
+    width: 100%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.gnb_menu_wrap .list_total_menu .ly_wrap > .inr {
+    padding-right: 38px;
+}
+
+.ly_wrap .inr {
+    width: 100%;
+    float: left;
+}
+
+.gnb_menu_wrap .list_total_menu.n_total .group_list {
+    flex: 1;
+    width: 200px;
+}
+
+.gnb_menu_wrap .list_total_menu.n_total .group_list dl {
+    margin-right: 45px;
+}
+.gnb_menu_wrap .list_total_menu.n_total .ly_wrap .inr dl dt {
+    height: 42px;
+}
+.gnb_menu_wrap .list_total_menu.n_total .ly_wrap .inr dl > dt {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 30px;
+    color: #111;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #111;
+    font-weight: 600;
+}
+dt, dd {
+    line-height: 1;
+}
+
+.gnb_menu_wrap .list_total_menu.n_total .ly_wrap .inr dl > dd {
+    overflow: hidden;
+    padding-top: 10px;
+}
+
+.gnb_menu_wrap .list_total_menu.n_total dl dd {
+    margin-bottom: 25px;
+}
+.gnb_menu_wrap .list_total_menu.n_total .ly_wrap .inr dl > dd li {
+    height: 23px;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+
+.gnb_menu_wrap .list_total_menu.n_total .ly_wrap .inr dl > dd li a {
+    font-size: 13px;
+    line-height: 23px;
+    color: #333;
+}
+.ly_wrap:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+.local_menu_wrap .searchform_com .btn_search:before, .gnb_menu_wrap .btn_menu_all:before, .local_menu_wrap .rolling_wrap a:before, .local_menu_wrap .rolling_wrap_all .tit:before, .gnb_menu_wrap .list_special li a.more:before, .local_menu_wrap .private_menu li a:before, .gnb_menu_wrap .list_gnb_menu li a:before, .gnb_menu_sub_wrap .list_depth2 li a:before, .gnb_menu_sub_wrap .btn_cls:before, .js_acc.filter_wrap .view a.more:before, .my_menu_wrap:before, .company_info_wrap .company_provision li:before, .company_info_wrap span:before, .service_info_wrap .fl dd .btn_more:before, .service_info_wrap .sns_list li a, .award_list_wrap .btn_next:before, .award_list_wrap .btn_prev:before, .gnb_menu_wrap .list_special_more .cls:after, .divider_dot:before, .divider_line:before, .gnb_menu_wrap .list_total_menu:after, .gnb_menu_wrap .list_total_menu .btn_cls:after, .company_info_wrap strong.customer_center>span:before, .btn:after, .txt:after {
+    display: inline-block;
+    content: '';
+    background-position: left top;
+    background-repeat: no-repeat;
+}

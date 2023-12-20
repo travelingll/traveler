@@ -29,19 +29,27 @@
 			<div id="wrapper">
 				<div id="screenArea">  
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div id="container"><div class="inr">
-		<div id="lnb" class="lnb"><div class="inr"><dl>
-			<dt class="tit_con_title">		
-				<a href="/traveller/member/myPage.do">이벤트</a>
-			</dt>
-		</dl></div></div>
+	<div id="container">
+		<div class="inr">
+		
+		<div id="lnb" class="lnb">
+    			<div class="inr">
+    				<dl>
+						<dt class="tit_con_title" style="border-bottom:none;">		
+							<a href="/traveller/member/myPage.do">이벤트</a>
+						</dt>
+					</dl>
+    			</div>
+    		</div>
 			<div class="content_block" id="content">
 	<c:if test="${category==0}">
 			<form name="search_form" id="search_form" action="eventList.do" method="get">
+			
+		
 			<ul class="tab_page_cont" id="tab_page_cont">
 				<li class="on"><a href="${pageContext.request.contextPath}/event/eventList.do">진행중</a></li>
-				<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=1">회원</a></li>
-				<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=2">비회원</a></li>
+				<li><a href="#">회원</a></li>
+				<li><a href="#">비회원</a></li>
 			</ul>
 			
 			<div class="brd_search">
@@ -60,7 +68,7 @@
 	
 	<c:if test="${count==0}">
 		<div class="promotion_block">
-		<div class="result-display">표시할 이벤트가 없습니다</div>
+		<div class="result-display" style="float:center center;">표시할 이벤트가 없습니다</div>
 		</div>
 	</c:if>
 	
@@ -73,7 +81,7 @@
 					<a href='eventDetail.do?event_num=${event.event_num}'>
 						<img style=" display: block; width: 283px; height: 195px;" src="${pageContext.request.contextPath}/upload/${event.event_photo1}">
 							<div class="list_block_info">
-								<h5 class="tit_list_block">${event.event_title}</h5>
+								<h5 class="tit_list_block" >${event.event_title}</h5>
 								<span class="list_date">${event.event_start} ~ ${event.event_end}</span>
 							</div>
 					</a>

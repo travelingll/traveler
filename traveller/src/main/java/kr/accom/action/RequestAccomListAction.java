@@ -8,11 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import kr.accom.dao.AccomDAO;
 import kr.accom.vo.AccomInfoVO;
-import kr.accom.vo.AccomVO;
 import kr.controller.Action;
 import kr.util.PageUtil;
 
-public class ApplyAccomListAction implements Action {
+public class RequestAccomListAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -32,7 +31,7 @@ public class ApplyAccomListAction implements Action {
 		int count = dao.getAccomInfoCountByMem_num(keyfield, keyword, user_num);
 		
 		//페이지 처리
-		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum),count,20,10,"applyAccomList.do");
+		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum),count,20,10,"requestAccomList.do");
 		
 		List<AccomInfoVO> list = null;
 		if(count > 0) {
@@ -43,7 +42,7 @@ public class ApplyAccomListAction implements Action {
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());
 		
-		return "/WEB-INF/views/accom/applyAccomList.jsp";
+		return "/WEB-INF/views/accom/requestAccomList.jsp";
 	}
 
 	

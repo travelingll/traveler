@@ -62,7 +62,7 @@ strong {
 
 
 .mileage_wrap .user_box {
-    width: 400px;
+    width: 500px;
     float: left;
     font-size: 17px;
     padding: 13px 0 25px 180px;
@@ -189,7 +189,7 @@ em {
     float: right;
     padding: 34px 30px 34px 40px;
     width: 340px;
-    height: 86px;
+    height: 150px;
     background-color: #f5f5f5;
 }
 .mileage_wrap .box.right p {

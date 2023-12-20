@@ -8,12 +8,18 @@
 <title>메인</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/totalMenu.css">
 
 </head>
 
  <body class="chrome">
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+ <div id="__nuxt">
+		<div id="__layout">
+			<div id="wrapper">
+				<div id="screenArea">  
+					<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
    <!-- 중앙 캐러셀 시작 -->
 	<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
@@ -98,7 +104,7 @@
 		</button>                               
 	</div>
 	<!-- 중앙 캐러셀 끝 -->
-
+</div></div></div></div>
 
 
 
