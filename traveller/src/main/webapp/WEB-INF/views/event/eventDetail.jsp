@@ -53,7 +53,7 @@
 				</li>
 				<c:if test="${user_auth==9}"> <%-- 관리자만 보임 --%>
 					<li>
-						<input type="button" value="이벤트 수정" onclick="location.href='eventUpdateForm.do?event_num=${event.event_num}'">
+						<input class="admin-btn" type="button" value="이벤트 수정" onclick="location.href='eventUpdateForm.do?event_num=${event.event_num}'">
 					</li>
 				</c:if>
 			</ul>

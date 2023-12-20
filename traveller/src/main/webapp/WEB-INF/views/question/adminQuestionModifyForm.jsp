@@ -6,7 +6,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>[관리자] 일대일 문의 작성</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssss.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/detailStyle.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 	<script type="text/javascript">
 		window.onload = function(){
 			let modifyForm = document.getElementById('question_modifyForm');
@@ -26,10 +27,10 @@
 	</script>
 </head>
 <body>
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div class="detail-sidemenu"><jsp:include page="question_sidemenu.jsp"/></div>
 	<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<jsp:include page="question_sidemenu.jsp"/>
-		<div class="content-main">
+		<div class="detail-content">
 			<h2>[관리자] 일대일 문의 답변 등록</h2>
 			<form id="question_modifyForm" action="adminQuestionModify.do" method="post">
 				<input type="hidden" value="${question.question_num}" name="question_num"> <%--원글 번호--%>
