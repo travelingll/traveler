@@ -7,6 +7,7 @@
 	<meta charset="UTF-8">
 	<title>이벤트 상세</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/detailStyle.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/eventReply.js"></script>
 	<script type="text/javascript">
@@ -38,10 +39,10 @@
 	</script>
 </head>
 <body>
-	<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<jsp:include page="event_sidemenu.jsp"/>
-		<div class="content-main">
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div class="detail-sidemenu"><jsp:include page="event_sidemenu.jsp"/></div>
+	<div class="detail-page">
+		<div class="detail-content">
 			<div class="align-center">
 				<h2>${event.event_title}</h2>
 				<ul class="align-right">
