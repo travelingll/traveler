@@ -11,8 +11,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eunseo.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/shop.cart.js"></script>
-<script type="text/javascript">
-</script>
 </head>
 <body class="chrome">
 	<div id="__nuxt">
@@ -37,6 +35,7 @@
 	 							<li><a href="${pageContext.request.contextPath}/member/myMoney.do">적립금</a></li>
 	 							<li><a href="${pageContext.request.contextPath}/accom/applyAccomList.do">동행 신청내역</a></li>
 	 							<li><a href="${pageContext.request.contextPath}/cart/list.do">장바구니</a></li>
+								<li><a href="${pageContext.request.contextPath}/order/myOrderList.do">예약내역</a></li>
 							</ul>
 						</dd>
 					</dl>
