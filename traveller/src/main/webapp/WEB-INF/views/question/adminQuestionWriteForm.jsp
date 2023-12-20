@@ -31,7 +31,7 @@
 	<div class="detail-sidemenu"><jsp:include page="question_sidemenu.jsp"/></div>
 	<div class="detail-page">
 		<div class="detail-content">
-			<h2 class="detail-center">[관리자] 일대일 문의 답변 등록</h2>
+			<h2 class="detail-center form-title">[관리자] 일대일 문의 답변 등록</h2>
 			<form class="detail-form" id="question_writeForm" action="adminQuestionWrite.do" method="post">
 				<input type="hidden" value="${question.question_num}" name="question_num" id="question_num">
 				<ul class="input-form">
@@ -44,7 +44,7 @@
 						<textarea rows="5" cols="50" id="question_content" name="question_content" class="input"></textarea>
 					</li>
 				</ul>
-				<div class="detail-center">
+				<div class="file-right">
 					<input type="submit" value="답변 등록">
 				</div>
 			</form>

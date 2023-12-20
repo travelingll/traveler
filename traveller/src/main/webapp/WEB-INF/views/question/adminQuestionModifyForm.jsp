@@ -45,8 +45,8 @@
 						<textarea rows="5" cols="50" id="question_content" name="requestion_content" class="input">${re_question.question_content}</textarea>
 					</li>
 				</ul>
-				<div class="detail-center">
-					<input type="submit" value="답변 등록">
+				<div class="file-right">
+					<input type="submit" value="답변 수정">
 				</div>
 			</form>
 		</div>

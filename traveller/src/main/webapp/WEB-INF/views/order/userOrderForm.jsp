@@ -64,7 +64,7 @@
 <body class="chrome">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="order-form">
-		<h1 class="order-title order-center">여행 상품 주문서 작성</h1>
+		<h1 class="order-title order-center">주문서 작성</h1>
 		<c:if test="${!empty user_num}"> <%--회원만 예약 가능--%>
 			<form id="order_form" action="userOrder.do" method="post" class="input-form">
 				<ul class="order-ul">
@@ -114,11 +114,13 @@
 					</li>
 					<li class="order-radio"><%-- 보내는 데이터 --%>
 						<label for="payment">결제 수단</label>
-						<input type="radio" name="payment" class="radio-select" value="1"> 카드 결제
-						<input type="radio" name="payment" class="radio-select" value="2"> 무통장 입금
+						<div class="radio-right">
+							<input type="radio" name="payment" class="radio-select" value="1"> 카드 결제
+							<input type="radio" name="payment" class="radio-select" value="2"> 무통장 입금
+						</div>
 					</li>
 				</ul>
-				<div class="order-center">
+				<div class="order-right">
 					<input type="submit" value="여행상품 예약하기">
 				</div>
 			</form>

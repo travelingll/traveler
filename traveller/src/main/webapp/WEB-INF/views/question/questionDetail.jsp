@@ -41,7 +41,7 @@
 						</c:if>
 					</li>
 				</ul>
-				<hr size="1" width="80%" noshade="noshade">
+				<hr size="1" width="90%" noshade="noshade">
 				<div class="detail-detailcontent">
 					<c:if test="${!empty detail.question_photo}">
 						<img src="${pageContext.request.contextPath}/upload/${detail.question_photo}" width="500">
@@ -55,6 +55,7 @@
 					<c:if test="${user_auth==9}"><%-- 관리자만 보임 --%>
 						<div class="detail-right"><input type="button" value="수정" onclick="location.href='adminQuestionModifyForm.do?question_num=${detail.question_num}'"></div>
 					</c:if>
+					<hr size="1" width="90%" noshade="noshade">
 					<div class="detail-answer">${answer.question_content}</div>
 				</div>
 			</c:if>

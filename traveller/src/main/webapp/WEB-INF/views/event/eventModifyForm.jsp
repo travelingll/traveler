@@ -32,11 +32,11 @@
 	<div class="detail-page">
 		<div class="detail-content">
 			<c:if test="${empty user_num || user_auth!=9}">
-				<h2 class="detail-center">잘못된 접근입니다.</h2>
+				<h1 class="detail-center">잘못된 접근입니다.</h1>
 			</c:if>
 			<c:if test="${!empty user_num && user_auth==9}"> <%-- 관리자만 진입 가능 --%>
-				<h2 class="detail-center">관리자 - 이벤트 수정</h2><br>
-				<h4 class="detail-center">${event.event_title}</h4>
+				<h1 class="detail-center">관리자 - 이벤트 수정</h1>
+				<h4 class="detail-center form-title">${event.event_title}</h4>
 				<form class="detail-form" id="event_updateForm" action="eventUpdate.do" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="event_num" value="${event.event_num}">
 					<ul class="input-form">
@@ -51,14 +51,14 @@
 						<li>
 							<label for="event_photo1">이벤트 썸네일</label>
 							<input type="file" name="event_photo1" id="event_photo1" accept="image/gif,image/png,image/jpeg">									
-							<c:if test="${!empty event.event_photo1}"><div class="reply-right" id="file_detail">(${event.event_photo1} 파일이 등록되어 있습니다.)</div></c:if>
+							<c:if test="${!empty event.event_photo1}"><div class="file-right" id="file_detail">(${event.event_photo1} 파일이 등록되어 있습니다.)</div></c:if>
 						</li>
 						<li>
 							<label for="event_content">이벤트 내용</label>
 							<textarea name="event_content" id="event_content" rows="10" cols="70" class="input">${event.event_content}</textarea>
 						</li>
 					</ul>
-					<div class="detail-center">
+					<div class="file-right">
 						<input type="submit" value="이벤트 수정하기">
 					</div>
 				</form>
