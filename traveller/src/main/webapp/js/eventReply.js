@@ -29,8 +29,8 @@ $(function(){
 					output += '<h4>'+item.id+'</h4>';
 					output += '<div class="sub-item"><p>'+item.event_recontent+'</p>';
 					
-					if(item.event_modifydate) output += '<span class="event_modifydate">최근 수정일 : '+item.event_modifydate+'</span>';
-					else output += '<span>등록일 : '+item.event_redate+'</span>';
+					if(item.event_modifydate) output += '<span class="event_modifydate"> <img src="${pageContext.request.contextPath}/images/eventdetail_replydate.png" width="15">'+item.event_modifydate+'</span>';
+					else output += '<span> <img src="${pageContext.request.contextPath}/images/eventdetail_replydate.png" width="15">'+item.event_redate+'</span>';
 					
 					if(param.user_num == item.mem_num){
 						output += ' <input type="button" value="수정" class="modify-btn" data-renum="'+item.event_renum+'">';

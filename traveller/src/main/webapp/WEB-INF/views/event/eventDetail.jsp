@@ -63,18 +63,18 @@
 				<jsp:include page="/WEB-INF/views/eventInclude/${event.event_num}.jsp"/><%-- 개별 이벤트 include --%>
 			</div>
 			<hr size="1" noshade="noshade" width="100%">
-			<div id="reply_div">
+			<div id="reply_div" class="detail-reply">
 				<form id="re_form">
 					<input type="hidden" name="event_num" id="event_num" value="${event.event_num}">
-					<textarea rows="3" cols="50" name="event_recontent" id="event_recontent" class="rep-content" <c:if test="${empty user_num}">disabled</c:if>><c:if test="${empty user_num}">로그인 시 작성 가능</c:if></textarea>
+					<textarea rows="3" cols="106" name="event_recontent" id="event_recontent" class="rep-content" <c:if test="${empty user_num}">disabled</c:if>><c:if test="${empty user_num}">로그인 시 작성 가능</c:if></textarea>
 					<div id="re_first"></div>
-					<div id="re_second" class="align-right">
+					<div id="re_second" class="detail-right">
 						<input type="submit" value="댓글 등록">
 					</div>
 				</form>
+				<div id="output" class="detail-output"></div>
+				<input type="button" value="다음 댓글 보기" id="paging_btn" style="display:none;">
 			</div>
-			<div id="output"></div>
-			<input type="button" value="다음 댓글 보기" id="paging_btn" style="display:none;">
 		</div>
 	</div>
 </body>
