@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>[관리자] 일대일 문의 작성</title>
+	<title>[관리자] 일대일 문의 수정</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/detailStyle.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 	<script type="text/javascript">
@@ -29,13 +29,13 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="detail-sidemenu"><jsp:include page="question_sidemenu.jsp"/></div>
-	<div class="page-main">
+	<div class="detail-page">
 		<div class="detail-content">
-			<h2>[관리자] 일대일 문의 답변 등록</h2>
-			<form id="question_modifyForm" action="adminQuestionModify.do" method="post">
+			<h2 class="detail-center">[관리자] 일대일 문의 답변 수정</h2>
+			<form  class="detail-form" id="question_modifyForm" action="adminQuestionModify.do" method="post">
 				<input type="hidden" value="${question.question_num}" name="question_num"> <%--원글 번호--%>
 				<input type="hidden" value="${re_question.question_num}" name="requestion_num"> <%--답변글 번호--%>
-				<ul>
+				<ul class="input-form">
 					<li>
 						<label for="question_title">제목</label>
 						<input type="text" id="question_title" name="requestion_title" value="${re_question.question_title}">
@@ -45,7 +45,7 @@
 						<textarea rows="5" cols="50" id="question_content" name="requestion_content" class="input">${re_question.question_content}</textarea>
 					</li>
 				</ul>
-				<div class="align-center">
+				<div class="detail-center">
 					<input type="submit" value="답변 등록">
 				</div>
 			</form>

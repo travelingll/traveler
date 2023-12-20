@@ -46,7 +46,7 @@
 	<div class="detail-page">
 		<div class="detail-content">
 			<h2 class="detail-center">${event.event_title}</h2>
-			<ul>
+			<ul class="detail-right">
 				<li>
 					<img src="${pageContext.request.contextPath}/images/eventdetail_clock.png" width="10"> ${event.event_start} - ${event.event_end}
 					<img src="${pageContext.request.contextPath}/images/eventdetail_check.png" width="15">${event.event_hit}
@@ -66,9 +66,9 @@
 			<div id="reply_div" class="detail-reply">
 				<form id="re_form">
 					<input type="hidden" name="event_num" id="event_num" value="${event.event_num}">
-					<textarea rows="3" cols="106" placeholder="댓글을 입력해주세요!" name="event_recontent" id="event_recontent" class="rep-content" <c:if test="${empty user_num}">disabled</c:if>><c:if test="${empty user_num}">로그인 시 작성 가능</c:if></textarea>
+					<textarea placeholder="댓글을 입력해주세요!" name="event_recontent" id="event_recontent" class="rep-content" <c:if test="${empty user_num}">disabled</c:if>><c:if test="${empty user_num}">로그인 시 작성 가능</c:if></textarea>
 					<div id="re_first"></div>
-					<div id="re_second" class="detail-right">
+					<div id="re_second" class="reply-right">
 						<input type="submit" value="댓글 등록">
 					</div>
 				</form>
@@ -78,4 +78,3 @@
 		</div>
 	</div>
 </body>
-</html>

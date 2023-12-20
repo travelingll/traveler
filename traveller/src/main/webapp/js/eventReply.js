@@ -29,11 +29,11 @@ $(function(){
 					output += '<h4>'+item.id+'</h4>';
 					output += '<div class="sub-item"><p>'+item.event_recontent+'</p>';
 					
-					if(item.event_modifydate) output += '<div class="event_modifydate detail-right">'+item.event_modifydate+'</div>';
-					else output += '<div class="detail-right">'+item.event_redate+'</div>';
+					if(item.event_modifydate) output += '<div class="event_modifydate reply-right">'+item.event_modifydate+'</div>';
+					else output += '<div class="reply-right">'+item.event_redate+'</div>';
 					
 					if(param.user_num == item.mem_num){
-						output += '<div class="detail-right"><input type="button" value="수정" class="modify-btn" data-renum="'+item.event_renum+'">';
+						output += '<div class="reply-right"><input type="button" value="수정" class="modify-btn" data-renum="'+item.event_renum+'">';
 						output += ' <input type="button" value="삭제" class="delete-btn" data-renum="'+item.event_renum+'"></div>';
 					}
 					
