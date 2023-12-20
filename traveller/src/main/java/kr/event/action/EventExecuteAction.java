@@ -12,6 +12,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import kr.controller.Action;
 import kr.event.dao.EventDAO;
 import kr.event.vo.EventVO;
+import kr.money.dao.MoneyDAO;
 import kr.money.vo.MoneyVO;
 
 public class EventExecuteAction implements Action {
@@ -26,21 +27,22 @@ public class EventExecuteAction implements Action {
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		int event_num = Integer.parseInt(request.getParameter("event_num"));
 		
+		request.setCharacterEncoding("utf-8");
+		
 		Map<String,String> mapAjax = new HashMap<String, String>();
 		EventDAO dao = EventDAO.getInstance();
 		EventVO event = dao.getEventDetail(event_num);
-		MoneyVO db_moneyVo = new MoneyVO();
-		
-		//이벤트 종류 체크 - 변수
-		//이미 이벤트를 참여한 고객의 경우 막기 - 머니dao에 디테일 메서드 추가 > sm_content가 "랜덤 적립금 이벤트 참여", mem_num이 있으면 참여 불가
+
+		MoneyDAO moneyDAO = MoneyDAO.getInstance();
+		boolean check = moneyDAO.checkEvent(user_num, "랜덤 적립금 이벤트 참여");
 		
 		if(user_num==null) {//로그인 조건체크
 			mapAjax.put("result","logout");
 		} else if(event.getEvent_count()<=0) {
 			mapAjax.put("result","end");
+		} else if(check==true) { //이미 참여한 이벤트의 경우
+			mapAjax.put("result","done");
 		} else {
-			request.setCharacterEncoding("utf-8");
-			
 			MoneyVO moneyVo = new MoneyVO();
 			
 			String money = Integer.toString((int)(Math.random()*10000)/10*10);
