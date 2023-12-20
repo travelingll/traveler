@@ -1,0 +1,80 @@
+@charset "UTF-8";
+.order-form{
+	margin: 20px auto;
+	padding: 20px;
+	width: 700px;
+	border: 1px solid;
+	border-radius: 10px 10px 10px 10px;
+}
+.order-title{
+	padding-bottom: 30px;
+}
+.order-form .input-form{
+	border: none;
+}
+.order-ul > li{
+	padding: 10px;
+	margin: 10px;
+}
+.order-ul > li label{
+	font-size: 15pt;
+	font-weight: bold;
+	margin-right: 50pt;
+	white-space: nowrap;
+	display: block;
+	height: 40px;
+	line-height: 40px;
+}
+input[type=text],input[type=email],input[type=number],input[type=number] {
+	width: 300px;
+	height: 15px;
+	border-color: lightgray;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+}
+input[type=radio]{
+	appearance: none;
+	border: max(2px, 0.1em) solid gray;
+	border-radius: 50%;
+	width: 1.25em;
+	height: 1.25em;
+	transition: border 0.5s ease-in-out;
+}
+[type="radio"]:checked {
+	border: 0.4em solid black;
+}
+.order-radio{
+	font-size: 13pt;
+	white-space: nowrap;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+}
+.order-ul > li > span {
+	font-size: 13pt;
+	white-space: nowrap;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+}
+.order-center{
+	text-align: center;
+}
+.order-right{
+	text-align: right;
+}
+.order-ul > li > span {
+	text-align: right;
+}
+.order-money{
+	margin-left:100px;
+}
+[type="submit"]{
+	font-weight: bold;
+	background-color: #575656;
+	color: white;
+	font-size: 11pt;
+	padding: 15px 20px 15px 20px;
+	border-radius: 10px 10px 10px 10px;
+}
