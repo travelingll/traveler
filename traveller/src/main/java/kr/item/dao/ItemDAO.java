@@ -148,7 +148,7 @@ private static ItemDAO instance = new ItemDAO();
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			if(keyword!=null && "".equals(keyword)) {
+			if(keyword!=null && !"".equals(keyword)) {
 				pstmt.setString(++cnt, "%" + keyword + "%");
 				if(list_num!=null && !"".equals(list_num)) {
 					pstmt.setString(++cnt, list_num);
@@ -175,7 +175,7 @@ private static ItemDAO instance = new ItemDAO();
 	}
 	
 	//관리자/사용자 - 전체 상품 목록/검색 상품 목록
-	public List<ItemVO> getItemList(int start, int end, String keyword, String keyfield, String status, String list_num) throws Exception{
+	public List<ItemVO> getItemList(int start, int end, String keyfield, String keyword, String status, String list_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -319,4 +319,31 @@ private static ItemDAO instance = new ItemDAO();
 		return vo;
 	}
 	//동행 신청 내역 본인	
+	//상품 표시상태 변경
+	public void modifyItemStatus(String status,int item_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 객체 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE item SET status=? WHERE item_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			if(status.equals("1") || status.equals("2") || status.equals("3")) {
+				pstmt.setString(1, status);
+			}
+			pstmt.setInt(2, item_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+
+	}
 }

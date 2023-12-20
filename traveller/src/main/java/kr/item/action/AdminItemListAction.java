@@ -30,6 +30,9 @@ public class AdminItemListAction implements Action{
 			return "redirect:/";
 		}
 		
+		//전송된 데이터 인코딩 처리
+		request.setCharacterEncoding("utf-8");
+		
 		//여행상품의 상태
 		String status = request.getParameter("status");
 		
@@ -39,22 +42,24 @@ public class AdminItemListAction implements Action{
 		
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
+		String st1 = request.getParameter("name");
 		
 		ItemDAO dao = ItemDAO.getInstance();
 		int count = dao.getItemCount(keyfield, keyword, null);
 		
 		//페이지 처리
-		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum),count,20,10,"/item/list.do");
+		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum),count,20,10,request.getContextPath()+"/admin/adminItemList.do");
 	
 		List<ItemVO> itemList = new ArrayList<ItemVO>();
 		
 		if(count >0) {
-			itemList = dao.getItemList(page.getStartRow(),page.getEndRow(), keyfield, keyword, status, null);
+			itemList = dao.getItemList(page.getStartRow(),page.getEndRow(), keyfield, keyword, status, st1);
 		}
 		
 		request.setAttribute("count", count);
 		request.setAttribute("itemList", itemList);
 		request.setAttribute("page", page.getPage());
+		request.setAttribute("st1", st1);
 		
 		
 		return "/WEB-INF/views/item/adminItemList.jsp"; 
