@@ -60,7 +60,7 @@ public class UserOrderAction implements Action {
 			ItemVO item = itemDAO.getItem(cart.getItem_num());
 			
 			//상품 인원 조건 체크
-			if(item.getQuantity() < orderDAO.getOrderCount(cart.getItem_num())) {
+			if(item.getQuantity() < orderDAO.getOrderItemCount(cart.getItem_num())) {
 				request.setAttribute("notice_msg","["+item.getItem_name()+"] 상품은 예약이 마감되었습니다!");
 				request.setAttribute("notice_url", request.getContextPath()+"/cart/list.do");
 				return "/WEB-INF/views/common/alert_singleView.jsp";

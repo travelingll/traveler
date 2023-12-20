@@ -118,8 +118,8 @@ public class OrderDAO {
 		}
 	}
 	
-	//예약 횟수
-	public int getOrderCount(int item_num) throws Exception {
+	//개별 아이템의 예약 횟수 - 예약한 인원 수
+	public int getOrderItemCount(int item_num) throws Exception {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -195,7 +195,7 @@ public class OrderDAO {
 			if(keyword!=null && !"".equals(keyword)) {
 				//검색어 sql 문장 작성 필요
 			}
-			sql = "SELECT * FROM (SELECT a.*,rownum rnum FORM (SELECT * FROM order_item "
+			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM order_item "
 					+ sub_sql
 					+ " ORDER BY order_num DESC)a) WHERE rnum>=? AND rnum<=?";
 			
