@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .order-form{
-	margin: 20px auto;
+	margin: 50px auto;
 	padding: 20px;
 	width: 700px;
 	border: 1px solid;
@@ -25,7 +25,7 @@
 	height: 40px;
 	line-height: 40px;
 }
-input[type=text],input[type=email],input[type=number],input[type=number] {
+input[type=text],input[type=email],input[type=number],input[type=number],textarea {
 	width: 300px;
 	height: 15px;
 	border-color: lightgray;
@@ -78,4 +78,9 @@ input[type=radio]{
 	font-size: 11pt;
 	padding: 15px 20px 15px 20px;
 	border-radius: 10px 10px 10px 10px;
+	box-shadow: none;
+	border: none;
+}
+[type="submit"]:hover{
+	transform: scale(1.2);
 }

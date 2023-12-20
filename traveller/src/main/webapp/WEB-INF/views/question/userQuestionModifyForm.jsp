@@ -39,19 +39,19 @@
 	</script>
 </head>
 <body>
-	<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<jsp:include page="question_sidemenu.jsp"/>
-		<div class="content-main">
-			<h2>일대일 문의 등록</h2>
-			<form id="question_modifyForm" action="userQuestionModify.do" method="post" enctype="multipart/form-data">
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div class="detail-sidemenu"><jsp:include page="question_sidemenu.jsp"/></div>
+	<div class="detail-page">
+		<div class="detail-content">
+			<h2 class="detail-center">일대일 문의 수정</h2>
+			<form class="detail-form" id="question_modifyForm" action="userQuestionModify.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="question_num" value="${detail.question_num}">
-				<ul>
+				<ul class="input-form">
 					<li>
 						<label>카테고리</label>
-						<input type="radio" name="question_category" class="question_category" value="1" <c:if test="${detail.question_category==1}">checked</c:if>>상품
-						<input type="radio" name="question_category" class="question_category" value="2" <c:if test="${detail.question_category==2}">checked</c:if>>교환/환불
-						<input type="radio" name="question_category" class="question_category" value="3" <c:if test="${detail.question_category==3}">checked</c:if>>기타
+						<input type="radio" name="question_category" class="question_category" value="1" <c:if test="${detail.question_category==1}">checked</c:if>> 상품
+						<input type="radio" name="question_category" class="question_category" value="2" <c:if test="${detail.question_category==2}">checked</c:if>> 교환/환불
+						<input type="radio" name="question_category" class="question_category" value="3" <c:if test="${detail.question_category==3}">checked</c:if>> 기타
 					</li>
 					<li>
 						<label for="question_title">제목</label>
@@ -97,11 +97,11 @@
 					</li>
 					<li>
 						<label for="question_lock">잠금 유무</label>
-						<c:if test="${detail.question_lock==1}"><input type="radio" name="question_lock" class="question_lock" value="1" checked>공개글</c:if>
-						<c:if test="${detail.question_lock==2}"><input type="radio" name="question_lock" class="question_lock" value="2" checked>비밀글</c:if>
+						<c:if test="${detail.question_lock==1}"><input type="radio" name="question_lock" class="question_lock" value="1" checked> 공개글</c:if>
+						<c:if test="${detail.question_lock==2}"><input type="radio" name="question_lock" class="question_lock" value="2" checked> 비밀글</c:if>
 					</li>
 				</ul>
-				<div class="align-center">
+				<div class="detail-center">
 					<input type="submit" value="문의 수정">
 				</div>
 			</form>

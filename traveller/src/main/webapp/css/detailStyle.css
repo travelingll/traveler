@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 .detail-sidemenu{
 	margin-left:230px;
 	margin-top: 50px;
@@ -14,7 +15,7 @@
 .detail-content h2{
 	margin-top:50px;
 }
-.detail-content > ul{
+.question-user > ul{
 	text-align:right;
 	padding:30px;
 }
@@ -50,19 +51,23 @@
 	border-radius: 10px 10px 10px 10px;
 }
 .item{
-	padding:5px;
+	padding:2px;
 }
 .item h4{
-	font-size: 15pt;
+	font-size: 12pt;
 }
 .item .sub-item{
-	padding: 10px 10px 10px 30px;
+	padding: 5px 5px 5px 10px;
+}
+.reply-right{
+	text-align:right;
 }
 .detail-center{
 	text-align:center;
 }
 .detail-right{
 	text-align:right;
+	padding:30px;
 }
 .detail-answer{
 	margin:30px;
@@ -73,7 +78,43 @@
 .detail-content > h1{
 	padding: 50px 0px 30px 0px;
 }
+.question-answer, .question-user{
+	padding-left:20px;
+	border: 1px solid;
+}
+.rep-content{
+	width:700px;
+	height:50px
+}
 
-
-
-
+/*-------수정폼-------*/
+.input-form li{
+	margin: 20px;
+}
+li label{
+	font-weight: bold;
+	font-size: 17px;
+	display:inline-block;
+	text-align:left;
+	width:150px;
+}
+[type="text"], [type="number"],[type="password"]{
+	width:500px;
+}
+[type="radio"]:checked {
+	border: 0.4em solid black;
+}
+[type="date"]{
+	width:250px;
+}
+textarea{
+	width:500px;
+}
+input[type=radio]{
+	appearance: none;
+	border: max(2px, 0.1em) solid gray;
+	border-radius: 50%;
+	width: 1.25em;
+	height: 1.25em;
+	transition: border 0.5s ease-in-out;
+}

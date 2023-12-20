@@ -48,19 +48,19 @@
 	</script>
 </head>
 <body>
-	<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<jsp:include page="question_sidemenu.jsp"/>
-		<div class="content-main">
-			<h2>일대일 문의 등록</h2>
-			<form id="question_writeForm" action="userQuestionWrite.do?question_num=${question_num}" method="post" enctype="multipart/form-data">
+	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div class="detail-sidemenu"><jsp:include page="question_sidemenu.jsp"/></div>
+	<div class="detail-page">
+		<div class="detail-content">
+			<h2 class="detail-center">일대일 문의 등록</h2>
+			<form  class="detail-form" id="question_writeForm" action="userQuestionWrite.do?question_num=${question_num}" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="user_num" value="${user_num}">
-				<ul>
+				<ul class="input-form">
 					<li>
 						<label>카테고리</label>
-						<input type="radio" name="question_category" class="question_category" value="1">상품
-						<input type="radio" name="question_category" class="question_category" value="2">교환/환불
-						<input type="radio" name="question_category" class="question_category" value="3">기타
+						<input type="radio" name="question_category" class="question_category" value="1"> 상품
+						<input type="radio" name="question_category" class="question_category" value="2"> 교환/환불
+						<input type="radio" name="question_category" class="question_category" value="3"> 기타
 					</li>
 					<li>
 						<label for="question_title">제목</label>
@@ -82,11 +82,11 @@
 					</c:if>
 					<li>
 						<label for="question_lock">잠금 유무</label>
-						<input type="radio" name="question_lock" class="question_lock" value="1">공개글
-						<input type="radio" name="question_lock" class="question_lock" value="2">비밀글
+						<input type="radio" name="question_lock" class="question_lock" value="1"> 공개글
+						<input type="radio" name="question_lock" class="question_lock" value="2"> 비밀글
 					</li>
 				</ul>
-				<div class="align-center">
+				<div class="detail-center">
 					<input type="submit" value="문의 등록">
 				</div>
 			</form>
