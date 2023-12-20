@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import kr.member.vo.MemberVO;
 import kr.money.vo.MoneyVO;
 import kr.util.DBUtil;
@@ -121,7 +123,6 @@ public class MemberDAO {
 				member.setPhoto(rs.getString("photo"));
 				member.setEmail(rs.getString("email")); //회원탈퇴시 활용
 			}
-			
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
@@ -296,6 +297,42 @@ public class MemberDAO {
 		}finally {
 			DBUtil.executeClose(null, pstmt2, conn);
 		}
+	}
+	
+	//아이디 찾기
+	public MemberVO findID(String name,String email)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberVO member = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT * FROM member JOIN member_detail USING(mem_num) WHERE name=? AND email=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				member = new MemberVO();
+				member.setMem_num(rs.getInt("mem_num"));
+				member.setAuth(rs.getInt("auth"));
+				member.setId(rs.getString("id"));
+				member.setName(rs.getString("name"));
+				member.setPasswd(rs.getString("passwd"));
+				member.setPhone(rs.getString("phone"));
+				member.setEmail(rs.getString("email"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return member;
 	}
 	
 	//비밀번호 찾기

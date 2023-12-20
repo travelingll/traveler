@@ -69,6 +69,9 @@ $(function(){
   							</form>
   							<div class="btn_wrap align_wrap mt24">
   								<div class="leftbox">
+  									<button type="button" class="btn txt" onclick="location.href='${pageContext.request.contextPath}/member/findIdForm.do'">
+  										아이디 찾기
+  									</button>&nbsp;&nbsp;
   									<button type="button" class="btn txt" onclick="location.href='${pageContext.request.contextPath}/member/findPasswordForm.do'">
   										비밀번호 찾기
   									</button>
@@ -96,10 +99,3 @@ $(function(){
   
 </body>
 </html>
-
-
-
-    
-
- 
-
