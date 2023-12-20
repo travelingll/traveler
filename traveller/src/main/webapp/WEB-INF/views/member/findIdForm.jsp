@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아이디 찾기</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<title>비밀번호 찾기</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/find.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -26,27 +27,59 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="content-main">
-		<h2>아이디 찾기</h2>
-		<form action="findId.do" method="post" id="find_form">
-			<ul>
-				<li>
-					<label for="name">이름</label>
-					<input type="text" name="name" id="name" maxlength="10" class="input-check">
-				</li>
-				<li>
-					<label for="email">이메일</label>
-					<input type="email" name="email" id="email" maxlength="50" class="input-check">
-				</li>
-			</ul>
-			<div class="align-center">
-				<input type="submit" value="아이디 찾기">
-				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+<body>
+<div id="__nuxt">
+    	<!---->
+    		<div id="__layout">
+    			<div id="wrapper">
+    				<div id="wrap">
+    					<div id="headerWrap" class="header_wrap">
+    						<div id="header">
+    							<a href="${pageContext.request.contextPath}/member/loginForm.do" class="js_act btn_prev">
+    							
+    								<span>이전페이지</span>
+    							</a> 
+    							<h1 class="title">아이디 찾기</h1> 
+    						<!---->
+    					</div>
+    				</div> 
+    				
+    				<div id="container">
+    					<div class="contents_wrap login_wrap">
+    						<div class="logo_wrap">
+    							<span class="logo">트래블러</span>
+    						</div> 
+  						</div>
+  						<div class="tab_cont on">
+  						<form id="find_form" action="findId.do" method="post">
+  							<ul class="inner_cont form_wrap">
+  								<li>
+  									<div class="field_group">
+  										<div class="input_text">
+		  									<input id="name" name="name" type="text" title="이름" placeholder="" class="input-check" autocomplete="off">
+		  									<label for="name">이름</label>
+  										</div>
+  									</div>
+  								</li>
+  								<li>
+  									<div class="field_group">
+  										<div class="input_text">
+		  									<input id="email" type="email" title="이메일" placeholder="" class="input-check" autocomplete="off">
+		  									<label for="email">이메일</label>
+  										</div>
+  									</div>
+  								</li>
+  							</ul>
+  							<div class="btn_wrap mt12">
+    							<input type="submit" class="btn em big disable" value="아이디 찾기">
+    						</div> 
+  						</form>
+  						</div>
+  					</div>
+  				</div> 
 			</div>
-		</form>
-	</div>
-</div>
+		</div>
+	</div> 
 </body>
 </html>
+
