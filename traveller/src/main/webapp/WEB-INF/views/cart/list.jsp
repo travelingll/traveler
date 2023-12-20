@@ -11,8 +11,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eunseo.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/shop.cart.js"></script>
-<script type="text/javascript">
-</script>
 </head>
 <body class="chrome">
 	<div id="__nuxt">
@@ -37,6 +35,7 @@
 	 							<li><a href="${pageContext.request.contextPath}/member/myMoney.do">적립금</a></li>
 	 							<li><a href="${pageContext.request.contextPath}/accom/applyAccomList.do">동행 신청내역</a></li>
 	 							<li><a href="${pageContext.request.contextPath}/cart/list.do">장바구니</a></li>
+								<li><a href="${pageContext.request.contextPath}/order/myOrderList.do">예약내역</a></li>
 							</ul>
 						</dd>
 					</dl>
@@ -55,6 +54,7 @@
     	<c:if test="${empty list}">
 				<table class="board_type">
 					<colgroup>
+<<<<<<< HEAD
 					<col style="width: 8%;">
 					<col style="width: 47%;"> 
 					<col style="width: 12%">  
@@ -62,13 +62,30 @@
 					<col style="width: 12%;"> 
 					<col style="width: 10%;">
 					</colgroup>								 								
+=======
+					<!-- 1번 --><col style="width: 10%;">
+					<!-- 2번 --><col > 
+					<!-- 3번 --><col style="width: 15%;"> 
+					<!-- 4번 --><col style="width: 15%;"> 
+					<!-- 5번 --><col style="width: 15%;">
+					<!-- 6번 --><col style="width: 10%;">
+					</colgroup> 
+>>>>>>> branch 'main' of https://github.com/travelingll/traveler.git
 					<thead>
 						<tr>
+<<<<<<< HEAD
 							<th></th>
+=======
+							<th></th> 
+>>>>>>> branch 'main' of https://github.com/travelingll/traveler.git
 							<th>상품명</th>
-							<th>상품가격</th>
+							<th>상품가격</th> 
 							<th>수량</th>
+<<<<<<< HEAD
 							<th>합계</th>
+=======
+							<th>합계</th> 
+>>>>>>> branch 'main' of https://github.com/travelingll/traveler.git
 							<th></th>
 						</tr>
 					</thead>

@@ -59,7 +59,7 @@
 										    <h2>Style 1:</h2>
 										    <ul>
 										        <c:forEach var="style" items="${style1}">
-										            <li>${style}</li>
+										            <li style="display:inline-block;">${style}</li>
 										        </c:forEach>
 										    </ul>
 									</div>

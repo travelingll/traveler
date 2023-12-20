@@ -1,0 +1,16 @@
+@charset "UTF-8";
+.tab_cont .on {
+	display:block;
+}
+.tab_cont{
+	margin-top: 2.4rem;
+}
+.form_wrap+.form_wrap, .form_wrap li+li {
+    margin-top: 1.6rem;
+}
+.inner_cont {
+    padding: 0 2.6rem!important;
+}
+ul {
+    list-style: none;
+}

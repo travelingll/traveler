@@ -857,8 +857,134 @@ public class AccomDAO {
 		
 		return list;
 	}
-	//동행 신청 내역 (작성자)
 	
+	//받은 동행 신청 내역
+	public List<AccomVO> getRequestAccom(int mem_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<AccomVO> list = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			
+			//SQL문 작성
+			sql = "SELECT accom_num FROM accom WHERE mem_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, mem_num);
+			
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<AccomVO>();
+			while(rs.next()) {
+				AccomVO accom = new AccomVO();
+				accom.setAccom_num(rs.getInt("accom_num"));
+				//HTML을 허용하지 않음
+				accom.setAccom_title(StringUtil.useNoHtml(rs.getString("accom_title")));
+				accom.setId(rs.getString("id"));
+				
+				list.add(accom);
+				
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	//레코드 수/검색 레코드 수
+	public int getRequestAccomInfoCount (int start, int end, String keyfield, String keyword, int accom_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String sub_sql = "";
+		int count = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			
+			if(keyword!=null && !"".equals(keyword)) {
+				if (keyfield.equals("1")) sub_sql += "AND accom_title LIKE ?";	
+				else if(keyfield.equals("2")) sub_sql += "AND id LIKE ?";
+			}
+			
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM accom_info WHERE accom_num =?" + sub_sql;
+			//PreparedStatement 객체 상태
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, accom_num);
+			if(keyword != null && !"".equals(keyword)){
+				pstmt.setString(2, "%"+keyword+"%");
+			}
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+	}
 	
-	
+	public List<AccomInfoVO> getRequestAccomInfo(int start, int end, String keyfield, String keyword, int accom_num) throws Exception{
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<AccomInfoVO> list = null;
+		String sub_sql = "";
+		String sql = null;
+		int cnt = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			
+			if(keyword!=null && !"".equals(keyword)) {
+				if (keyfield.equals("1")) sub_sql += "AND accom_title LIKE ?";	
+				else if(keyfield.equals("2")) sub_sql += "AND id LIKE ?";
+			}
+			
+			//SQL문 작성
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
+				+ "(SELECT * FROM accom_info WHERE accom_num = ? " + sub_sql
+				+ " ORDER BY accom_num DESC)a) WHERE rnum >= ? AND rnum <=";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(++cnt, accom_num);
+			if(keyword != null && !"".equals(keyword)) {
+				pstmt.setString(++cnt, "%"+keyword+"%");
+			}
+			pstmt.setInt(++cnt, start);
+			pstmt.setInt(++cnt, end);
+			
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<AccomInfoVO>();
+			while(rs.next()) {
+				AccomInfoVO accom_info = new AccomInfoVO();
+				accom_info.setAccom_num(rs.getInt("accom_num"));
+				
+				list.add(accom_info);
+				
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import kr.money.dao.MoneyDAO;
 import kr.money.vo.MoneyVO;
 import kr.util.DBUtil;
+import oracle.net.aso.l;
 
 public class MoneyDAO {
 	//싱글턴 패턴
@@ -104,6 +105,33 @@ public class MoneyDAO {
 		}
 		
 		return total;
+	}
+	
+	//이벤트 참여 체크 메서드
+	public boolean checkEvent(int mem_num, String sm_content) throws Exception {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		boolean check = false; //이벤트 미참여시 false
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM money WHERE mem_num=? AND sm_content=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			pstmt.setString(2, sm_content);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) check=true; //이벤트를 참여했을 경우 true
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return check;
 	}
 
 }

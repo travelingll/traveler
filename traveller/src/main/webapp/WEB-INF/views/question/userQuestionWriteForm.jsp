@@ -6,7 +6,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>일대일 문의 작성</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ssss.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/detailStyle.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 	<script type="text/javascript">
 		window.onload = function(){
 			let writeForm = document.getElementById('question_writeForm');

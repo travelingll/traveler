@@ -1,0 +1,79 @@
+@charset "UTF-8";
+.detail-sidemenu{
+	margin-left:230px;
+	margin-top: 50px;
+}
+.detail-page{
+	width: 800px;
+	position: absolute;
+	margin-left:400px;
+}
+.detail-content{
+	margin-left:50px;
+}
+.detail-content h2{
+	margin-top:50px;
+}
+.detail-content > ul{
+	text-align:right;
+	padding:30px;
+}
+.detail-detailcontent p{
+	padding: 30px;
+}
+.detail-detailcontent p{
+	padding: 30px;
+}
+.detail-reply{
+	margin: 20px;
+}
+[type="submit"], .detail-output [type="button"], .detail-content [type="button"] {
+	font-weight: bold;
+	box-shadow: none;
+	border:1px solid;
+	margin-top: 10px;
+	background-color: white;
+	color: gray;
+	font-size: 8pt;
+	padding: 5px 10px 5px 10px;
+	border-radius: 10px 10px 10px 10px;
+}
+.detail-detailcontent [type="button"]{
+	box-shadow: none;
+	margin-bottom: 30px;
+	padding: 15px 20px 15px 20px;
+	border:none;
+	font-weight: bold;
+	background-color: #575656;
+	color: white;
+	font-size: 11pt;
+	border-radius: 10px 10px 10px 10px;
+}
+.item{
+	padding:5px;
+}
+.item h4{
+	font-size: 15pt;
+}
+.item .sub-item{
+	padding: 10px 10px 10px 30px;
+}
+.detail-center{
+	text-align:center;
+}
+.detail-right{
+	text-align:right;
+}
+.detail-answer{
+	margin:30px;
+}
+.detail-passwd{
+	padding-top: 100px;
+}
+.detail-content > h1{
+	padding: 50px 0px 30px 0px;
+}
+
+
+
+
