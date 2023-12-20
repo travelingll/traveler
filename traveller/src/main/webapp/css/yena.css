@@ -482,14 +482,13 @@ input[type="number"].quantity-width{
 .sold-out{
 	color:red;
 }
-/* 장바구니
+
+/* 이벤트
 ------------------------------*/
-form[id="cart_order"]{
-	border:none;
+.y-pagemain{
+	margin: 50px 10px 10px 10px;
+	border: 20px;
 }
-
-
-
 
 
 
