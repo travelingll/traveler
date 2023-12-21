@@ -905,9 +905,13 @@ public class AccomDAO {
 			conn = DBUtil.getConnection();
 			
 			sub_sql += "(";
-			for(int i=0;i<accom_nums.size();i++) {
-				if(i>0) sub_sql += ",";
-				sub_sql += accom_nums.get(i);
+			if(accom_nums.size()>0) {
+				for(int i=0;i<accom_nums.size();i++) {
+					if(i>0) sub_sql += ",";
+					sub_sql += accom_nums.get(i);
+				}
+			}else {
+				sub_sql += "0";
 			}
 			sub_sql += ")";
 			
@@ -952,9 +956,13 @@ public class AccomDAO {
 			conn = DBUtil.getConnection();
 			
 			sub_sql += "(";
-			for(int i=0;i<accom_nums.size();i++) {
-				if(i>0) sub_sql += ",";
-				sub_sql += accom_nums.get(i);
+			if(accom_nums.size()>0) {
+				for(int i=0;i<accom_nums.size();i++) {
+					if(i>0) sub_sql += ",";
+					sub_sql += accom_nums.get(i);
+				}
+			}else {
+				sub_sql += "0";
 			}
 			sub_sql += ")";
 			
