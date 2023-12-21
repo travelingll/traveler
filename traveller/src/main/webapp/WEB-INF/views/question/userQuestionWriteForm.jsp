@@ -49,10 +49,10 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="detail-sidemenu"><jsp:include page="question_sidemenu.jsp"/></div>
-	<div class="detail-page">
-		<div class="detail-content">
-			<h2 class="detail-center">일대일 문의 등록</h2>
+	<div id="container"><div class="inr"><jsp:include page="question_sidemenu.jsp"/></div></div>
+	<div id="containerr" style="display: flex;">
+	    <div id="sidebar" style="width: 80%;">
+			<h2 class="detail-center form-title">일대일 문의 등록</h2>
 			<form  class="detail-form" id="question_writeForm" action="userQuestionWrite.do?question_num=${question_num}" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="user_num" value="${user_num}">
 				<ul class="input-form">
@@ -86,7 +86,7 @@
 						<input type="radio" name="question_lock" class="question_lock" value="2"> 비밀글
 					</li>
 				</ul>
-				<div class="detail-center">
+				<div class="file-right">
 					<input type="submit" value="문의 등록">
 				</div>
 			</form>

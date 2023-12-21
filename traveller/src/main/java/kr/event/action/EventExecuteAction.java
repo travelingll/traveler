@@ -45,6 +45,8 @@ public class EventExecuteAction implements Action {
 		} else {
 			MoneyVO moneyVo = new MoneyVO();
 			
+			System.out.println("참여 성공");
+			
 			String money = Integer.toString((int)(Math.random()*10000)/10*10);
 			
 			moneyVo.setMem_num(user_num);

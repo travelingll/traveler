@@ -10,42 +10,27 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/detailStyle.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/eventReply.js"></script>
-	<c:if test="${event.event_num==1}">
-		<script type="text/javascript">
-			$(function(){
-				$('#event_btn').click(function() {
-					let event_num = $('#event_btn').attr('data-eventnum');		
-					$.ajax({
-						url:'eventExecute.do',
-						type:'post',
-						data: {event_num:event_num},
-						dataType:'json',
-						success:function(param){
-							if(param.result=='success'){
-								alert(param.money+'원이 지급되었습니다!');
-							} else if(param.result=='end'){
-								alert('이벤트가 종료되었습니다!');
-							} else if(param.result=='done'){
-								alert('이미 참여한 이벤트입니다!');
-							} else{
-								alert('이벤트 오류');
-							}
-						},
-						error:function(){
-							alert('네트워크 통신 오류');
-						}
-					});//end of ajax
-				});//end of click
-			});//end of function
-		</script>
-	</c:if>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/event${event.event_num}.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="detail-sidemenu"><jsp:include page="event_sidemenu.jsp"/></div>
-	<div class="detail-page">
-		<div class="detail-content">
-			<h2 class="detail-center">${event.event_title}</h2>
+	<div id="container"> 
+	<div class="inr"><div id="lnb" class="lnb"><div class="inr">
+		<dl>
+			<dt class="type">
+				<a href="#">이벤트</a>
+			</dt>
+			<dd>
+				<ul class="list_lnb">
+					<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=1">회원</a></li>
+					<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=2">비회원</a></li>
+				</ul>
+			</dd>
+		</dl>
+	</div></div></div></div>
+	<div id="containerr" style="display: flex;">
+	    <div id="sidebar" style="width: 80%;">
+	        <h2 class="detail-center">${event.event_title}</h2>
 			<ul class="detail-right">
 				<li>
 					<img src="${pageContext.request.contextPath}/images/eventdetail_clock.png" width="10"> ${event.event_start} - ${event.event_end}

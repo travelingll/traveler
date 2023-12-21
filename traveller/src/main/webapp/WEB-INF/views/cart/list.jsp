@@ -54,38 +54,20 @@
     	<c:if test="${empty list}">
 				<table class="board_type">
 					<colgroup>
-<<<<<<< HEAD
 					<col style="width: 8%;">
 					<col style="width: 47%;"> 
 					<col style="width: 12%">  
 					<col style="width: 11%;"> 
 					<col style="width: 12%;"> 
 					<col style="width: 10%;">
-					</colgroup>								 								
-=======
-					<!-- 1번 --><col style="width: 10%;">
-					<!-- 2번 --><col > 
-					<!-- 3번 --><col style="width: 15%;"> 
-					<!-- 4번 --><col style="width: 15%;"> 
-					<!-- 5번 --><col style="width: 15%;">
-					<!-- 6번 --><col style="width: 10%;">
-					</colgroup> 
->>>>>>> branch 'main' of https://github.com/travelingll/traveler.git
+					</colgroup>
 					<thead>
 						<tr>
-<<<<<<< HEAD
-							<th></th>
-=======
 							<th></th> 
->>>>>>> branch 'main' of https://github.com/travelingll/traveler.git
 							<th>상품명</th>
 							<th>상품가격</th> 
 							<th>수량</th>
-<<<<<<< HEAD
 							<th>합계</th>
-=======
-							<th>합계</th> 
->>>>>>> branch 'main' of https://github.com/travelingll/traveler.git
 							<th></th>
 						</tr>
 					</thead>

@@ -5,9 +5,12 @@
 	width: 700px;
 	border: 1px solid;
 	border-radius: 10px 10px 10px 10px;
+	border-color: lightgray;
 }
 .order-title{
 	padding-bottom: 30px;
+	color: #545454;
+	font-size: 18px;
 }
 .order-form .input-form{
 	border: none;
@@ -17,46 +20,54 @@
 	margin: 10px;
 }
 .order-ul > li label{
-	font-size: 13pt;
+	font-size: 11pt;
 	font-weight: bold;
-	margin-right: 50pt;
 	white-space: nowrap;
 	display: block;
 	height: 40px;
 	line-height: 40px;
+	color:#545454;
+	margin: 0 50px 0 60px;
 }
 input[type=text],input[type=email],input[type=number],input[type=number],textarea {
 	width: 300px;
-	height: 15px;
+	height: 40px;
 	border-color: lightgray;
 	display: block;
-	height: 30px;
 	line-height: 30px;
+	border-width: 0 0 1px 0;
 }
 input[type=radio]{
 	appearance: none;
 	border: max(2px, 0.1em) solid gray;
 	border-radius: 50%;
-	width: 1.25em;
-	height: 1.25em;
+	width: 1.3em;
+	height: 1.3em;
 	transition: border 0.5s ease-in-out;
+	vertical-align:middle;
 }
 [type="radio"]:checked {
-	border: 0.4em solid black;
+	border: 0.4em solid lightgray;
 }
 .order-radio{
-	font-size: 13pt;
+	font-size: 11pt;
 	white-space: nowrap;
 	display: block;
 	height: 30px;
 	line-height: 30px;
 }
-.order-ul > li > span {
-	font-size: 13pt;
+.radio-right{
+	text-align:right;
+	margin-right:30px;
+}
+.order-ul > li > span{
+	font-size: 11pt;
 	white-space: nowrap;
 	display: block;
 	height: 30px;
 	line-height: 30px;
+	text-align: right;
+	padding-right: 30px;
 }
 .order-center{
 	text-align: center;
@@ -64,16 +75,13 @@ input[type=radio]{
 .order-right{
 	text-align: right;
 }
-.order-ul > li > span {
-	text-align: right;
-	padding-right: 50px;
-}
 .order-money{
 	margin-left:100px;
 }
 [type="submit"]{
+	margin: 30px 0 10px 0;
 	font-weight: bold;
-	background-color: #575656;
+	background-color: #9c9c9c;
 	color: white;
 	font-size: 11pt;
 	padding: 15px 20px 15px 20px;
@@ -82,5 +90,5 @@ input[type=radio]{
 	border: none;
 }
 [type="submit"]:hover{
-	transform: scale(1.2);
+	transform: scale(1.1);
 }

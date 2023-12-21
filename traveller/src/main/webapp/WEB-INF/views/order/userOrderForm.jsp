@@ -45,6 +45,7 @@
 					alert('결제수단을 선택해주세요!');
 					return false;
 				}
+				//적립금 사용 체크
 			};
 			//동적으로 결제금액 태그 생성하기
 			let money_input = document.getElementById('use_money');
@@ -53,6 +54,12 @@
 				if(${user_money}<money_input.value){
 					alert('적립금보다 많은 금액은 사용할 수 없습니다!');
 					money_input.value = '';
+					return;
+				}
+				if(money_input.value<1){
+					alert('음수는 입력할 수 없습니다!');
+					money_input.value = '';
+					return;
 				}
 				let use_money = this.value;
 				let expect_money = document.getElementById('expect_money');
@@ -64,7 +71,7 @@
 <body class="chrome">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="order-form">
-		<h1 class="order-title order-center">여행 상품 주문서 작성</h1>
+		<h1 class="order-title order-center">주문서 작성</h1>
 		<c:if test="${!empty user_num}"> <%--회원만 예약 가능--%>
 			<form id="order_form" action="userOrder.do" method="post" class="input-form">
 				<ul class="order-ul">
@@ -106,7 +113,7 @@
 					</li>
 					<li><%-- 보내는 데이터 --%>
 						<label for="use_money">사용할 적립금</label>
-						<div class="order-money"><input type="number" placeholder="<fmt:formatNumber value="${user_money}"/>원까지 사용 가능" max="${user_money}" id="use_money" name="use_money" style="text-align:right;"></div>
+						<div class="order-money"><input type="number" placeholder="<fmt:formatNumber value="${user_money}"/>원까지 사용 가능" min="1" max="${user_money}" id="use_money" name="use_money" style="text-align:right;"></div>
 					</li>
 					<li>
 						<label>결제 예정 금액</label>
@@ -114,11 +121,13 @@
 					</li>
 					<li class="order-radio"><%-- 보내는 데이터 --%>
 						<label for="payment">결제 수단</label>
-						<input type="radio" name="payment" class="radio-select" value="1"> 카드 결제
-						<input type="radio" name="payment" class="radio-select" value="2"> 무통장 입금
+						<div class="radio-right">
+							<input type="radio" name="payment" class="radio-select" value="1"> 카드 결제
+							<input type="radio" name="payment" class="radio-select" value="2"> 무통장 입금
+						</div>
 					</li>
 				</ul>
-				<div class="order-center">
+				<div class="order-right">
 					<input type="submit" value="여행상품 예약하기">
 				</div>
 			</form>

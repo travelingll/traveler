@@ -28,9 +28,9 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="detail-sidemenu"><jsp:include page="question_sidemenu.jsp"/></div>
-	<div class="detail-page">
-		<div class="detail-content">
+	<div id="container"><div class="inr"><jsp:include page="question_sidemenu.jsp"/></div></div>
+	<div id="containerr" style="display: flex;">
+	    <div id="sidebar" style="width: 80%;">
 			<h2 class="detail-center">[관리자] 일대일 문의 답변 수정</h2>
 			<form  class="detail-form" id="question_modifyForm" action="adminQuestionModify.do" method="post">
 				<input type="hidden" value="${question.question_num}" name="question_num"> <%--원글 번호--%>
@@ -45,8 +45,8 @@
 						<textarea rows="5" cols="50" id="question_content" name="requestion_content" class="input">${re_question.question_content}</textarea>
 					</li>
 				</ul>
-				<div class="detail-center">
-					<input type="submit" value="답변 등록">
+				<div class="file-right">
+					<input type="submit" value="답변 수정">
 				</div>
 			</form>
 		</div>
