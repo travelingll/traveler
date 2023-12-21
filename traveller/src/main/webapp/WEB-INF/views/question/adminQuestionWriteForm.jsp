@@ -34,6 +34,7 @@
 			<h2 class="detail-center form-title">[관리자] 일대일 문의 답변 등록</h2>
 			<form class="detail-form" id="question_writeForm" action="adminQuestionWrite.do" method="post">
 				<input type="hidden" value="${question.question_num}" name="question_num" id="question_num">
+				<input type="hidden" value="${question.question_category}" name="question_category" id="question_category">
 				<ul class="input-form">
 					<li>
 						<label for="question_title">제목</label>

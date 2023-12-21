@@ -28,7 +28,7 @@ public class UserQuestionWriteAction implements Action {
 		}
 		
 		question.setQuestion_ip(request.getRemoteAddr());
-		question.setQuestion_category(multi.getParameter("question_category"));
+		question.setQuestion_category(Integer.parseInt(multi.getParameter("question_category")));
 		question.setQuestion_title(multi.getParameter("question_title"));
 		question.setQuestion_lock(Integer.parseInt(multi.getParameter("question_lock"))); //관리자 답변의 경우 원글 설정과 동일하게
 		

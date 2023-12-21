@@ -30,7 +30,6 @@ public class AdminQuestionModifyAction implements Action {
 		QuestionVO requestion = new QuestionVO(); //답변글 정보 저장용
 		
 		requestion.setQuestion_num(requestion_num);
-		requestion.setQuestion_category("0"); //dao에서 관리자 답변 식별용
 		requestion.setQuestion_ip(request.getRemoteAddr());
 		requestion.setQuestion_title(request.getParameter("requestion_title"));
 		requestion.setQuestion_content(request.getParameter("requestion_content"));

@@ -7,7 +7,7 @@ public class QuestionVO {
 	private int question_num;
 	private int mem_num;
 	private String question_ip;
-	private String question_category;
+	private int question_category;
 	private String question_title;
 	private int question_lock;
 	private String question_passwd;
@@ -20,8 +20,13 @@ public class QuestionVO {
 	private String name;
 	private int question_renum;
 	
-	
 
+	public int getQuestion_category() {
+		return question_category;
+	}
+	public void setQuestion_category(int question_category) {
+		this.question_category = question_category;
+	}
 	public int getQuestion_renum() {
 		return question_renum;
 	}
@@ -58,12 +63,7 @@ public class QuestionVO {
 	public void setQuestion_ip(String question_ip) {
 		this.question_ip = question_ip;
 	}
-	public String getQuestion_category() {
-		return question_category;
-	}
-	public void setQuestion_category(String question_category) {
-		this.question_category = question_category;
-	}
+
 	public String getQuestion_title() {
 		return question_title;
 	}

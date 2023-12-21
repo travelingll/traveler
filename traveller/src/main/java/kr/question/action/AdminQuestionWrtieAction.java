@@ -24,6 +24,7 @@ public class AdminQuestionWrtieAction implements Action {
 		
 		request.setCharacterEncoding("utf-8");
 		int question_num = Integer.parseInt(request.getParameter("question_num"));
+		int question_category = Integer.parseInt(request.getParameter("question_category"));
 		
 		QuestionDAO dao = QuestionDAO.getInstance();
 		QuestionVO user_question = dao.getQuestionDetail(question_num); //원글 정보
@@ -32,11 +33,11 @@ public class AdminQuestionWrtieAction implements Action {
 		//데이터 받기
 		question.setMem_num(user_num);
 		question.setQuestion_ip(request.getRemoteAddr());
-		question.setQuestion_category("0"); //관리자 답변글의 경우 카테고리 0
+		question.setQuestion_category(question_category); //관리자 답변글의 경우 문의글 카테고리와 같게 설정
 		question.setQuestion_title(request.getParameter("question_title"));
 		question.setQuestion_lock(user_question.getQuestion_lock()); //잠금 유무는 원글 설정에 따름
 		question.setQuestion_content(request.getParameter("question_content"));
-		question.setQuestion_level(2);
+		question.setQuestion_level(2); //관리자 답변의 경우 답변 깊이 2
 		question.setQuestion_renum(question_num); //원글 번호 저장
 		
 		//데이터 넘겨주기

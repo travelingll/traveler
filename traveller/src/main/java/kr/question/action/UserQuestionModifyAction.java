@@ -39,7 +39,7 @@ public class UserQuestionModifyAction implements Action {
 		QuestionVO question = new QuestionVO();
 		
 		question.setQuestion_ip(request.getRemoteAddr());
-		question.setQuestion_category(multi.getParameter("question_category"));
+		question.setQuestion_category(Integer.parseInt(multi.getParameter("question_category")));
 		question.setQuestion_title(multi.getParameter("question_title"));
 		question.setQuestion_photo(multi.getFilesystemName("question_photo"));
 		question.setQuestion_content(multi.getParameter("question_content"));
