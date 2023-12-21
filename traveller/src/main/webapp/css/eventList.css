@@ -1020,6 +1020,9 @@ colgroup {
 .contents {
     min-height: 350px;
 }
+.align-center{
+	text-align:center;
+}
 table td, table th{
 	text-align: center;
 	padding:10px;
