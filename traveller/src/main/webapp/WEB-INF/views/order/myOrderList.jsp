@@ -66,7 +66,7 @@
 														<tbody>
 															<tr>
 																<td></td>
-																<td>예약내역이 없습니다.</td>
+																<td style="text-align:center;">예약내역이 없습니다.</td>
 																<td></td>
 															</tr>
 									                	</tbody>
