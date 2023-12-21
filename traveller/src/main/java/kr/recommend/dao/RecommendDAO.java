@@ -318,3 +318,5 @@ private static RecommendDAO instance = new RecommendDAO();
 	}
 
 }
+
+
