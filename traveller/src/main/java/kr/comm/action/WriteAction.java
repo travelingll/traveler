@@ -23,10 +23,14 @@ public class WriteAction implements Action{
 		//로그인 된 경우
 		MultipartRequest multi = FileUtil.createFile(request);
 		CommVO comm = new CommVO();
-		comm.setComm_title(multi.getParameter("title"));
-		comm.setComm_content(multi.getParameter("content"));
+		comm.setComm_title(multi.getParameter("comm_title"));
+		comm.setComm_content(multi.getParameter("comm_content"));
 		comm.setIp(request.getRemoteAddr());
-		comm.setFilename(multi.getFilesystemName("filename"));
+		comm.setFilename1(multi.getFilesystemName("filename1"));
+		comm.setFilename2(multi.getFilesystemName("filename2"));
+		comm.setFilename3(multi.getFilesystemName("filename3"));
+		comm.setCategory(Integer.parseInt(multi.getParameter("category")));
+		comm.setTag(processComma(multi.getParameterValues("tag")));
 		comm.setMem_num(user_num);
 		
 		CommDAO dao = CommDAO.getInstance();
@@ -34,6 +38,14 @@ public class WriteAction implements Action{
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/comm/write.jsp";
+	}
+	private String processComma(String[] str) {
+		String temp = "";
+		for(int i=0;i<str.length;i++) {
+			if(i>0) temp += ",";
+			temp += str[i];
+		}
+		return temp;
 	}
 
 }

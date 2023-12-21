@@ -9,10 +9,27 @@ public class CommVO {
 	private String comm_content;
 	private int comm_hit;
 	private Date modify_date;
-	private String filename;
+	private String filename1;
+	private String filename2;
+	private String filename3;
 	private String ip;
 	private int mem_num;
-	private String id;	
+	private String id;
+	private int category;
+	private String tag;
+	
+	public int getCategory() {
+		return category;
+	}
+	public void setCategory(int category) {
+		this.category = category;
+	}
+	public String getTag() {
+		return tag;
+	}
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
 	private String photo;		//회원 프로필 사진(조인해야함)
 	
 	public String getId() {
@@ -57,11 +74,24 @@ public class CommVO {
 	public void setModify_date(Date modify_date) {
 		this.modify_date = modify_date;
 	}
-	public String getFilename() {
-		return filename;
+	
+	public String getFilename1() {
+		return filename1;
 	}
-	public void setFilename(String filename) {
-		this.filename = filename;
+	public void setFilename1(String filename1) {
+		this.filename1 = filename1;
+	}
+	public String getFilename2() {
+		return filename2;
+	}
+	public void setFilename2(String filename2) {
+		this.filename2 = filename2;
+	}
+	public String getFilename3() {
+		return filename3;
+	}
+	public void setFilename3(String filename3) {
+		this.filename3 = filename3;
 	}
 	public String getIp() {
 		return ip;

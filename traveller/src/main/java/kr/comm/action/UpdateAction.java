@@ -23,13 +23,17 @@ public class UpdateAction implements Action{
 		
 		MultipartRequest multi = FileUtil.createFile(request);
 		int comm_num = Integer.parseInt(multi.getParameter("comm_num"));
-		String filename = multi.getFilesystemName("filename");
+		String filename1 = multi.getFilesystemName("filename1");
+		String filename2 = multi.getFilesystemName("filename2");
+		String filename3 = multi.getFilesystemName("filename3");
 		
 		CommDAO dao = CommDAO.getInstance(); 
 		//수정전 데이터 반환
 		CommVO db_comm = dao.getComm(comm_num);
 		if(user_num != db_comm.getMem_num()) {//로그인한 회원번호와 작성자 회원번호가 불일치
-			FileUtil.removeFile(request, filename);
+			FileUtil.removeFile(request, filename1);
+			FileUtil.removeFile(request, filename2);
+			FileUtil.removeFile(request, filename3);
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		//로그인한 회원번호와 작성자 회원번호가 일치
@@ -38,16 +42,33 @@ public class UpdateAction implements Action{
 		comm.setComm_title(multi.getParameter("comm_title"));
 		comm.setComm_content(multi.getParameter("comm_content"));
 		comm.setIp(request.getRemoteAddr());
-		comm.setFilename(filename);
-		
+		comm.setFilename1(filename1);
+		comm.setFilename2(filename2);
+		comm.setFilename3(filename3);
+		comm.setCategory(Integer.parseInt(multi.getParameter("category")));
+		comm.setTag(processComma(multi.getParameterValues("tag")));
 		//글 수정
 		dao.updateComm(comm);
 		
-		if(filename!=null) {//새 파일로 교체할 때 원래 파일 제거
-			FileUtil.removeFile(request, db_comm.getFilename());
+		if(filename1!=null) {//새 파일로 교체할 때 원래 파일 제거
+			FileUtil.removeFile(request, db_comm.getFilename1());
+		}
+		if(filename2!=null) {//새 파일로 교체할 때 원래 파일 제거
+			FileUtil.removeFile(request, db_comm.getFilename2());
+		}
+		if(filename3!=null) {//새 파일로 교체할 때 원래 파일 제거
+			FileUtil.removeFile(request, db_comm.getFilename3());
 		}
 
 		return "redirect:/comm/detail.do?comm_num="+comm_num;
 	}  
+	private String processComma(String[] str) {
+		String temp = "";
+		for(int i=0;i<str.length;i++) {
+			if(i>0) temp += ",";
+			temp += str[i];
+		}
+		return temp;
+	}
 
 }

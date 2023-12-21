@@ -32,7 +32,9 @@ public class DeleteAction implements Action{
 		//로그인한 회원번호와 작성자 회원번호가 일치
 		dao.deleteComm(comm_num);
 		//파일 삭제
-		FileUtil.removeFile(request, db_comm.getFilename());
+		FileUtil.removeFile(request, db_comm.getFilename1());
+		FileUtil.removeFile(request, db_comm.getFilename2());
+		FileUtil.removeFile(request, db_comm.getFilename3());
 		
 		return "redirect:/comm/list.do";
 	}
