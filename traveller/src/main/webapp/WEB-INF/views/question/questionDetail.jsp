@@ -60,9 +60,9 @@
 							<div class="detail-right"><input type="button" value="수정" onclick="location.href='adminQuestionModifyForm.do?question_num=${detail.question_num}'"></div>
 						</c:if>
 						<hr size="1" width="90%" noshade="noshade">
-						<div class="detail-answer">${answer.question_content}</div>
+						${answer.question_content}
 					</div>
-					</div>
+				</div>
 			</c:if>
 		</div>
 	</div>
