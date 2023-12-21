@@ -102,7 +102,7 @@
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach var="comm" items="${commList}">
+															<c:forEach var="accom" items="${accomList}">
 															<tr>
 																<td class="txl">
 																	
@@ -127,7 +127,7 @@
                    												</td> 
                    												<td>
                    													<div class="btn_wrap">
-                   														<a href="${pageContext.request.contextPath}/comm/detail.do?comm_num=${comm.comm_num}" class="btn sml">
+                   														<a href="${pageContext.request.contextPath}/accom/detail.do?accom_num=${accom.accom_num}" class="btn sml">
                    															보기
                    														</a>
                    													</div>
