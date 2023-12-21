@@ -1,5 +1,6 @@
 package kr.recommend.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,8 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.item.vo.ItemVO;
-import kr.member.dao.MemberDAO;
-import kr.member.vo.MemberVO;
 import kr.recommend.dao.RecommendDAO;
 import kr.util.PageUtil;
 
@@ -23,35 +22,43 @@ public class UserRecommendAction implements Action{
 			return "redirect:/member/loginForm.do";
 		}
 		
-		//로그인이 된 경우
-		MemberDAO dao = MemberDAO.getInstance();
-		MemberVO member = dao.getMember(user_num);
-		
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) pageNum = "1";
 		
 		RecommendDAO recDao = RecommendDAO.getInstance();
-	    int count = recDao.getRecommendCount(user_num);
 		
-		PageUtil page = new PageUtil(null,null,Integer.parseInt(pageNum),count,5,5,"userRecommend.do");
+	    String[] style1Values = recDao.getStyleArray("style1", user_num);
+		String[] style2Values = recDao.getStyleArray("style2", user_num);
+		String[] style3Values = recDao.getStyleArray("style3", user_num);
 		
-		request.setAttribute("member", member);
-		request.setAttribute("count", count);
+		// 추천 상품 리스트 초기화
+		List<ItemVO> itemList = new ArrayList<>();
+
+		// 대표 상품 가져오기 (최근 날짜 순으로 정렬)
+		ItemVO representativeItem1 = recDao.getRepresentativeItemByStyle(style1Values);
+		ItemVO representativeItem2 = recDao.getRepresentativeItemByStyle(style2Values);
+		ItemVO representativeItem3 = recDao.getRepresentativeItemByStyle(style3Values);
+
+		// 대표 상품을 리스트에 추가
+		if (representativeItem1 != null) {
+		    itemList.add(representativeItem1);
+		}
+		if (representativeItem2 != null) {
+		    itemList.add(representativeItem2);
+		}
+		if (representativeItem3 != null) {
+		    itemList.add(representativeItem3);
+		}
+		
+		PageUtil page = new PageUtil(null, null, Integer.parseInt(pageNum), itemList.size(), 10, 10, "userRecommend.do");
+		
+		request.setAttribute("itemList", itemList);
 		request.setAttribute("page", page.getPage());
-		
-		String[] style1 = recDao.getStyleArray("style1", user_num);
-		String[] style2 = recDao.getStyleArray("style2", user_num);
-		String[] style3 = recDao.getStyleArray("style3", user_num);
-		
-		request.setAttribute("style1", style1);
-		request.setAttribute("style2", style2);
-		request.setAttribute("style3", style3);
-		
-		List<ItemVO> item = recDao.getRecommendedItems(page.getStartRow(), page.getEndRow(), user_num);
-		
-		request.setAttribute("item", item);
-		
+
 		return "/WEB-INF/views/recommend/userRecommend.jsp";
 	}
 
 }
+		
+		
+		

@@ -25,6 +25,7 @@ private static RecommendDAO instance = new RecommendDAO();
 	    ResultSet rs = null;
 	    String sql = null;
 	    int count = 0;
+	    int cnt = 0;
 
 	    try {
 	        conn = DBUtil.getConnection();
@@ -38,19 +39,18 @@ private static RecommendDAO instance = new RecommendDAO();
 	        sql = "SELECT COUNT(*) FROM item WHERE ";
 	        
 	        for (int i = 0; i < style1.length; i++) {
-	            sql += "item_st1 = ? OR ";
+	            sql += "item_st1=? OR ";
 	        }
 	        for (int i = 0; i < style2.length; i++) {
-	            sql += "item_st2 = ? OR ";
+	            sql += "item_st2=? OR ";
 	        }
 	        for (int i = 0; i < style3.length - 1; i++) {
-	        	sql += "item_st3 = ? OR ";
+	        	sql += "item_st3=? OR ";
 	        }
-	        sql += "item_st3 = ?";
+	        sql += "item_st3=?";
 
 	        pstmt = conn.prepareStatement(sql);
 	        
-	        int cnt = 0;
 	        for (String style : style1) {
 	            pstmt.setString(++cnt, style);
 	        }
@@ -85,7 +85,7 @@ private static RecommendDAO instance = new RecommendDAO();
 		try {
 			conn = DBUtil.getConnection();
 			
-			sql = "SELECT COUNT(*) FROM item WHERE item_st1=? or item_st2=? or item_st3=?";
+			sql = "SELECT COUNT(*) FROM item WHERE item_st1=? OR item_st2=? OR item_st3=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, item_st1);
@@ -196,6 +196,7 @@ private static RecommendDAO instance = new RecommendDAO();
 	    ResultSet rs = null;
 	    String sql = null;
 	    List<ItemVO> list = null;
+	    int cnt = 0;
 
 	    try {
 	        conn = DBUtil.getConnection();
@@ -208,19 +209,18 @@ private static RecommendDAO instance = new RecommendDAO();
 	            + "(SELECT * FROM item WHERE ";
 
 	        for (int i = 0; i < style1.length; i++) {
-	            sql += "item_st1 = ? OR ";
+	            sql += "item_st1=? OR ";
 	        }
 	        for (int i = 0; i < style2.length; i++) {
-	            sql += "item_st2 = ? OR ";
+	            sql += "item_st2=? OR ";
 	        }
 	        for (int i = 0; i < style3.length - 1; i++) {
-	            sql += "item_st3 = ? OR ";
+	            sql += "item_st3=? OR ";
 	        }
-	        sql += "item_st3 = ? ORDER BY item_num ASC)a) WHERE rnum>=? AND rnum <=?";
+	        sql += "item_st3=? ORDER BY item_num ASC)a) WHERE rnum>=? AND rnum <=?";
 
 	        pstmt = conn.prepareStatement(sql);
-
-	        int cnt = 0;
+	        
 	        for (String style : style1) {
 	            pstmt.setString(++cnt, style);
 	        }
@@ -247,6 +247,9 @@ private static RecommendDAO instance = new RecommendDAO();
 				item.setDate_end(rs.getString("date_end"));
 				item.setReg_date(rs.getDate("reg_date"));
 				item.setQuantity(rs.getInt("quantity"));
+				item.setItem_st1(rs.getString("item_st1"));
+				item.setItem_st2(rs.getString("item_st2"));
+				item.setItem_st3(rs.getString("item_st3"));
 
 	            list.add(item);
 	        }
@@ -258,4 +261,60 @@ private static RecommendDAO instance = new RecommendDAO();
 
 	    return list;
 	}
+	
+	// RecommendDAO 클래스에 메서드 추가
+	public ItemVO getRepresentativeItemByStyle(String[] styleValues) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    String sql = null;
+	    ItemVO item = null;
+	    int cnt = 0;
+
+	    try {
+	        conn = DBUtil.getConnection();
+
+	    	sql = "SELECT * FROM item WHERE (";
+	    	
+	        for (int i = 0; i < styleValues.length; i++) {
+	            sql += "item_st1 LIKE ? OR item_st2 LIKE ? OR item_st3 LIKE ?";
+	            if (i < styleValues.length - 1) {
+	              sql += " OR ";
+	            }
+	        }
+	      	sql += ") ORDER BY item_price DESC";
+	      	
+	        pstmt = conn.prepareStatement(sql);
+
+	        for (String style : styleValues) {
+	            pstmt.setString(++cnt, "%" + style + "%");
+	            pstmt.setString(++cnt, "%" + style + "%");
+	            pstmt.setString(++cnt, "%" + style + "%");
+	        }
+
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            item = new ItemVO();
+	            item.setItem_num(rs.getInt("item_num"));
+				item.setItem_name(rs.getString("item_name"));
+				item.setItem_content(rs.getString("item_content"));
+				item.setItem_price(rs.getInt("item_price"));
+				item.setItem_img1(rs.getString("item_img1"));
+				item.setDate_start(rs.getString("date_start"));
+				item.setDate_end(rs.getString("date_end"));
+				item.setReg_date(rs.getDate("reg_date"));
+				item.setQuantity(rs.getInt("quantity"));
+				item.setItem_st1(rs.getString("item_st1"));
+				item.setItem_st2(rs.getString("item_st2"));
+				item.setItem_st3(rs.getString("item_st3"));
+	        }
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+
+	    return item;
+	}
+
 }

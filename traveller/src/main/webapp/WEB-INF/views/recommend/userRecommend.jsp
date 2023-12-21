@@ -37,35 +37,25 @@
     							</div> 
     							<!-- 여기까지 사이드바 입니다.-->
     							<div id="contents" class="contents">
-    								<div class="text_wrap big fix"><strong class="tit">사용자맞춤추천 여행상품</strong></div> 
+    								<div class="text_wrap big fix"><strong class="tit">사용자 맞춤 추천</strong></div> 
 									<div class="content-main">
 										<table>
 											<tr>
 												<th colspan="2">여행상품</th>
 												<th>가격<br></th>
 											</tr>
-											<c:forEach var="rec" items="${item}">
+											<c:forEach var="item" items="${itemList}">
 												<tr>
-													<td><img src="${pageContext.request.contextPath}/upload/${rec.item_img1}" width="150px"></td>
-													<td><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${rec.item_num}"><b>${rec.item_name}</b>
-														<br>${rec.item_content}<br>${rec.date_start} ~ ${rec.date_end}</a></td>
-													<td><fmt:formatNumber value="${rec.item_price}"/>원<br></td>
+													<td><img src="${pageContext.request.contextPath}/upload/${item.item_img1}" width="150px"></td>
+													<td><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}"><b>${item.item_name}</b>
+														<br>${item.item_content}<br>${item.date_start} ~ ${item.date_end}</a></td>
+													<td><fmt:formatNumber value="${item.item_price}"/>원<br></td>
 												</tr>
 											</c:forEach>
 										</table>
 										<div class="printArea" style="text-align:center;">
 											${page}
 										</div>
-										    <!-- 각 요소를 개별적으로 출력 -->
-										    <h2>Style 1:</h2>
-										    <ul>
-										        <c:forEach var="style" items="${style1}">
-										            <li style="display:inline-block;">${style}</li>
-										        </c:forEach>
-										    </ul>
-										    <div>
-										    	${count}
-										    </div>
 									</div>
 								</div>
 							</div>
