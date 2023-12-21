@@ -1,5 +1,19 @@
 @charset "UTF-8";
 
+.event-detailcontent > h2{
+	font-size: 17px;
+	margin: 30px 30px 5px 30px;
+	background: #f5f5f5;
+	padding:20px;
+	border-top: solid 1px lightgray;
+	border-right: solid 1px lightgray;
+	border-left: solid 1px lightgray;
+	border-bottom: solid 1px black;
+}
+.event-detailright{
+	text-align:right;
+	margin: 0 40px 30px 0;
+}
 .detail-content h2{
 	margin-top:50px;
 }
@@ -8,24 +22,23 @@
 	padding:30px;
 }
 .detail-detailcontent p{
-	padding: 30px;
+	margin: 40px 0 40px 0;
+	line-height: 25px;
 }
 #event_btn{
-	font-weight: bold;
 	box-shadow: none;
-	border:1px solid;
-	margin: 10px 0 20px 0;
-	background-color: light-gray;
+	border:solid 1px lightgray;
+	margin: 0 0 40px 0;
+	background-color: #f5f5f5;
 	color: black;
 	font-size: 12pt;
-	padding: 5px 10px 5px 10px;
+	padding: 10px 20px 10px 20px;
 	border-radius: 10px 10px 10px 10px;
 }
 .detail-reply{ 
 	margin: 20px;
 }
 [type="submit"], [type="button"] {
-	font-weight: bold;
 	box-shadow: none;
 	border:1px solid;
 	margin-top: 10px;

@@ -56,7 +56,7 @@
 					money_input.value = '';
 					return;
 				}
-				if(money_input.value<1){
+				if(money_input.value<0){
 					alert('음수는 입력할 수 없습니다!');
 					money_input.value = '';
 					return;
