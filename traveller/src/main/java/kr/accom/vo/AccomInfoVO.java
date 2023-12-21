@@ -1,5 +1,7 @@
 package kr.accom.vo;
 
+import kr.member.vo.MemberVO;
+
 public class AccomInfoVO {
 	private int info_num;
 	private int accom_num;
@@ -7,6 +9,7 @@ public class AccomInfoVO {
 	private int accom_yn;
 	
 	private AccomVO accomVO;
+	private MemberVO memberVO;
 	
 	public int getInfo_num() {
 		return info_num;
@@ -38,5 +41,10 @@ public class AccomInfoVO {
 	public void setAccomVO(AccomVO accomVO) {
 		this.accomVO = accomVO;
 	}
-	
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
+	}	
 }

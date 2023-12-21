@@ -33,6 +33,7 @@
 	 												<li><a href="${pageContext.request.contextPath}/member/myQuestion.do">1:1 문의</a></li>
 	 												<li><a href="${pageContext.request.contextPath}/member/myMoney.do">적립금</a></li>
 	 												<li><a href="${pageContext.request.contextPath}/accom/applyAccomList.do">동행 신청내역</a></li>
+	 												<li><a href="${pageContext.request.contextPath}/accom/requestAccomList.do">받은 동행 신청내역</a></li>
 	 												<li><a href="${pageContext.request.contextPath}/cart/list.do">장바구니</a></li>
 													<li><a href="${pageContext.request.contextPath}/order/myOrderList.do">예약내역</a></li>
 												</ul>
@@ -101,7 +102,7 @@
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach var="comm" items="${commList}">
+															<c:forEach var="accom" items="${accomList}">
 															<tr>
 																<td class="txl">
 																	
@@ -126,7 +127,7 @@
                    												</td> 
                    												<td>
                    													<div class="btn_wrap">
-                   														<a href="${pageContext.request.contextPath}/comm/detail.do?comm_num=${comm.comm_num}" class="btn sml">
+                   														<a href="${pageContext.request.contextPath}/accom/detail.do?accom_num=${accom.accom_num}" class="btn sml">
                    															보기
                    														</a>
                    													</div>

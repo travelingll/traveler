@@ -54,7 +54,7 @@ public class UpdateAction implements Action{
 
 		return "redirect:/accom/detail.do?accom_num="+accom_num;
 	}
-	
-
 }
+
+
 

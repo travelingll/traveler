@@ -29,6 +29,7 @@
 					<dd>
 						<ul class="list_lnb">
 				  			<li><a href="${pageContext.request.contextPath}/admin/adminItemList.do">관리자 상품 게시판</a></li>
+				 			<li><a href="${pageContext.request.contextPath}/admin/adminOrderList.do">관리자 예약관리 게시판</a></li>
 				 			<li><a href="${pageContext.request.contextPath}/admin/itemInsert.do">관리자 상품등록</a></li>
 				 			<li><a href="${pageContext.request.contextPath}/admin/userList.do">회원관리</a></li>
 						</ul>

@@ -98,7 +98,6 @@ window.onload = function(){
 		<div class="align-center">${page}</div>
 		</c:if>
 	</div>
-	
 </div>
 </body>
 </html>

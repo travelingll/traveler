@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.item.dao.ItemDAO;
 import kr.item.vo.ItemVO;
+import kr.order.dao.OrderDAO;
 import kr.util.PageUtil;
 
 public class AdminItemListAction implements Action{
@@ -30,6 +31,9 @@ public class AdminItemListAction implements Action{
 			return "redirect:/";
 		}
 		
+		//전송된 데이터 인코딩 처리
+		request.setCharacterEncoding("utf-8");
+		
 		//여행상품의 상태
 		String status = request.getParameter("status");
 		
@@ -39,22 +43,28 @@ public class AdminItemListAction implements Action{
 		
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
+		String st1 = request.getParameter("st1");
 		
 		ItemDAO dao = ItemDAO.getInstance();
-		int count = dao.getItemCount(keyfield, keyword, null);
+		int count = dao.getItemCount(keyfield, keyword, st1);
 		
 		//페이지 처리
-		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum),count,20,10,"/item/list.do");
+		PageUtil page = new PageUtil(keyfield,keyword,Integer.parseInt(pageNum),count,20,10,request.getContextPath()+"/admin/adminItemList.do");
 	
-		List<ItemVO> itemList = new ArrayList<ItemVO>();
+		List<ItemVO> itemList = null;
+		
 		
 		if(count >0) {
-			itemList = dao.getItemList(page.getStartRow(),page.getEndRow(), keyfield, keyword, status, null);
+			itemList = dao.getItemList(page.getStartRow(),page.getEndRow(), keyfield, keyword, status, st1);
 		}
+		
+		OrderDAO orderDao = OrderDAO.getInstance();
+		
 		
 		request.setAttribute("count", count);
 		request.setAttribute("itemList", itemList);
 		request.setAttribute("page", page.getPage());
+		request.setAttribute("st1", st1);
 		
 		
 		return "/WEB-INF/views/item/adminItemList.jsp"; 

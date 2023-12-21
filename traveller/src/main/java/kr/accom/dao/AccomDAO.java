@@ -10,6 +10,7 @@ import kr.accom.vo.AccomFavVO;
 import kr.accom.vo.AccomInfoVO;
 import kr.accom.vo.AccomReplyVO;
 import kr.accom.vo.AccomVO;
+import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
 import kr.util.DurationFromNow;
 import kr.util.StringUtil;
@@ -859,11 +860,11 @@ public class AccomDAO {
 	}
 	
 	//받은 동행 신청 내역
-	public List<AccomVO> getRequestAccom(int mem_num) throws Exception{
+	public List<Integer> getRequestAccom(int mem_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<AccomVO> list = null;
+		List<Integer> list = null;
 		String sql = null;
 		
 		try {
@@ -879,16 +880,9 @@ public class AccomDAO {
 			
 			//SQL문 실행
 			rs = pstmt.executeQuery();
-			list = new ArrayList<AccomVO>();
+			list = new ArrayList<Integer>();
 			while(rs.next()) {
-				AccomVO accom = new AccomVO();
-				accom.setAccom_num(rs.getInt("accom_num"));
-				//HTML을 허용하지 않음
-				accom.setAccom_title(StringUtil.useNoHtml(rs.getString("accom_title")));
-				accom.setId(rs.getString("id"));
-				
-				list.add(accom);
-				
+				list.add(rs.getInt("accom_num"));		
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -898,7 +892,7 @@ public class AccomDAO {
 		return list;
 	}
 	//레코드 수/검색 레코드 수
-	public int getRequestAccomInfoCount (int start, int end, String keyfield, String keyword, int accom_num)throws Exception{
+	public int getRequestAccomInfoCount (String keyfield, String keyword, List<Integer> accom_nums)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -910,19 +904,25 @@ public class AccomDAO {
 			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			
+			sub_sql += "(";
+			for(int i=0;i<accom_nums.size();i++) {
+				if(i>0) sub_sql += ",";
+				sub_sql += accom_nums.get(i);
+			}
+			sub_sql += ")";
+			
 			if(keyword!=null && !"".equals(keyword)) {
-				if (keyfield.equals("1")) sub_sql += "AND accom_title LIKE ?";	
+				if(keyfield.equals("1")) sub_sql += "AND accom_title LIKE ?";
 				else if(keyfield.equals("2")) sub_sql += "AND id LIKE ?";
 			}
 			
 			//SQL문 작성
-			sql = "SELECT COUNT(*) FROM accom_info WHERE accom_num =?" + sub_sql;
+			sql = "SELECT COUNT(*) FROM accom_info WHERE accom_num IN "  + sub_sql;
 			//PreparedStatement 객체 상태
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			pstmt.setInt(1, accom_num);
 			if(keyword != null && !"".equals(keyword)){
-				pstmt.setString(2, "%"+keyword+"%");
+				pstmt.setString(1, "%"+keyword+"%");
 			}
 			//SQL문 실행
 			rs = pstmt.executeQuery();
@@ -937,7 +937,7 @@ public class AccomDAO {
 		return count;
 	}
 	
-	public List<AccomInfoVO> getRequestAccomInfo(int start, int end, String keyfield, String keyword, int accom_num) throws Exception{
+	public List<AccomInfoVO> getRequestAccomInfo(int start, int end, String keyfield, String keyword, List<Integer> accom_nums) throws Exception{
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -951,19 +951,26 @@ public class AccomDAO {
 			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			
+			sub_sql += "(";
+			for(int i=0;i<accom_nums.size();i++) {
+				if(i>0) sub_sql += ",";
+				sub_sql += accom_nums.get(i);
+			}
+			sub_sql += ")";
+			
 			if(keyword!=null && !"".equals(keyword)) {
-				if (keyfield.equals("1")) sub_sql += "AND accom_title LIKE ?";	
+				if(keyfield.equals("1")) sub_sql += "AND accom_title LIKE ?";
 				else if(keyfield.equals("2")) sub_sql += "AND id LIKE ?";
 			}
 			
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
-				+ "(SELECT * FROM accom_info WHERE accom_num = ? " + sub_sql
-				+ " ORDER BY accom_num DESC)a) WHERE rnum >= ? AND rnum <=";
+				+ "(SELECT * FROM accom_info JOIN member USING(mem_num) JOIN accom USING(accom_num) WHERE accom_num IN " + sub_sql
+				+ " ORDER BY accom_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+						
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			pstmt.setInt(++cnt, accom_num);
 			if(keyword != null && !"".equals(keyword)) {
 				pstmt.setString(++cnt, "%"+keyword+"%");
 			}
@@ -977,6 +984,15 @@ public class AccomDAO {
 				AccomInfoVO accom_info = new AccomInfoVO();
 				accom_info.setAccom_num(rs.getInt("accom_num"));
 				
+				MemberVO memberVO = new MemberVO();
+				memberVO.setId(rs.getString("id"));
+				
+				AccomVO accomVO = new AccomVO();
+				accomVO.setAccom_title(rs.getString("accom_title"));
+				
+				accom_info.setMemberVO(memberVO);
+				accom_info.setAccomVO(accomVO);
+				
 				list.add(accom_info);
 				
 			}
@@ -986,5 +1002,5 @@ public class AccomDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return list;
-	}
+	}	
 }

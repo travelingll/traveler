@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>여행상품 게시판(관리자)</title>
  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
- <link rel="stylesheet" href="/resources/demos/style.css">
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
@@ -28,15 +27,15 @@
 			<div class="inr">
 				<dl>
 					<dt class="type">
-						<a href="#">여행상품</a>
+						<a href="${pageContext.request.contextPath}/item/itemMain.do">여행상품</a>
 					</dt>
 					<dd>
 						<ul class="list_lnb">
 							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1">동남아</a></li>
 							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=2">북미</a></li>
-							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1">호주</a></li>
-							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1">유럽</a></li>
-							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1">국내</a></li>
+							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=3">호주</a></li>
+							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=4">유럽</a></li>
+							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=5">국내</a></li>
 						</ul>
 					</dd>
 				</dl>
@@ -47,6 +46,8 @@
 		
 		
 	<div id="containerr" style="display: flex;">
+    <div id="sidebarr" style="width: 20%;">
+    </div>
     <div id="sidebar" style="width: 80%;">
         <!-- 왼쪽 사이드바 내용 -->
       
@@ -86,8 +87,9 @@
 				<c:if test="${item.item_case==item_case}">
 				<tr>
 					<td id="start"><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}">${item.date_start}</a></td>
+					<td id="start"><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}">${item.date_start}</a></td>
 					<td id="end"><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}">${item.date_end}</a></td>
-					<td><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}"><span class="total_order"></span>/ ${item.quantity} 명</a></td>
+					<td><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}"><span class="total_order">${item.orderCount}</span>/ ${item.quantity} 명</a></td>
 					<td><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}"><fmt:formatNumber value="${item.item_price}"/>원</a></td>
 				</tr>
 				</c:if>

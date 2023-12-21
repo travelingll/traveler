@@ -40,6 +40,5 @@ public class WriteAction implements Action {
 		//JSP 경로 반환
 		return "/WEB-INF/views/accom/write.jsp";
 		
-	}
-	
+	}	
 }

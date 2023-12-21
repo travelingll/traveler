@@ -54,15 +54,13 @@
 			</c:if>
 			<c:if test="${!empty answer}"> <%-- 답변 완료 시 글 보임 --%>
 				<div class="question-answer">
-					<div class="question-answer">
-						<h2>A. ${answer.question_title}</h2>
-						<c:if test="${user_auth==9}"><%-- 관리자만 보임 --%>
-							<div class="detail-right"><input type="button" value="수정" onclick="location.href='adminQuestionModifyForm.do?question_num=${detail.question_num}'"></div>
-						</c:if>
-						<hr size="1" width="90%" noshade="noshade">
-						<div class="detail-answer">${answer.question_content}</div>
-					</div>
-					</div>
+					<h2>A. ${answer.question_title}</h2>
+					<c:if test="${user_auth==9}"><%-- 관리자만 보임 --%>
+						<div class="detail-right"><input type="button" value="수정" onclick="location.href='adminQuestionModifyForm.do?question_num=${detail.question_num}'"></div>
+					</c:if>
+					<hr size="1" width="90%" noshade="noshade">
+					${answer.question_content}
+				</div>
 			</c:if>
 		</div>
 	</div>

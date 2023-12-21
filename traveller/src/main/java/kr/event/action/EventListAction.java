@@ -27,7 +27,7 @@ public class EventListAction implements Action {
 		
 		//카테고리 처리
 		String event_category = request.getParameter("event_category");
-		int category = 0;
+		int category = 0; //전체 카테고리
 		if(event_category!=null) category = Integer.parseInt(event_category);
 
 		int count = dao.getEventCount(keyfield, keyword, category);

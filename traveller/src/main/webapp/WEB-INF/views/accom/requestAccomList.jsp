@@ -35,7 +35,7 @@ window.onload = function(){
 	</div>
 	<div class = "content-main">
 		<h2>받은 동행 신청 내역</h2>
-		<form id = "search_form" action="applyAccomList.do" method="get">
+		<form id = "search_form" action="requestAccomList.do" method="get">
 		<ul class="search">
 			<li>
 				<select name="keyfield">
@@ -53,7 +53,7 @@ window.onload = function(){
 		</form>
 		<div class="list-space align-right">
 		
-					<input type="button" value="목록"	 onclick="location.href='applyAccomList.do'">
+					<input type="button" value="목록"	 onclick="location.href='list.do'">
 					<input type="button" value="홈으로"
 			    onclick="location.href='${pageContext.request.contextPath}/main/main.do'">          
 		</div>
@@ -73,15 +73,14 @@ window.onload = function(){
 			<tr>
 				<td>${accom_info.accom_num}</td>
 				<td><a href="detail.do?accom_num=${accom_info.accom_num}">${accom_info.accomVO.accom_title}</a></td>
-				<td>${accom_info.accomVO.id}</td>
+				<td>${accom_info.memberVO.id}</td>
 				<td></td>
 			</tr>
 			</c:forEach>
 		</table>
 		<div class="align-center">${page}</div>
 		</c:if>
-	</div>
-	
+	</div>	
 </div>
 </body>
 </html>

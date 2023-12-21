@@ -49,7 +49,7 @@ public class WriteAction implements Action {
 				dao.insertCart(cart);
 				
 				response.addHeader("Refresh", "2;url="+request.getContextPath()+"/item/itemDetail.do?item_num="+item_num);
-				request.setAttribute("notice_msg", "성공적으로 예약되었습니다.");
+				request.setAttribute("notice_msg", "장바구니에 담았습니다.");
 				request.setAttribute("notice_url", request.getContextPath()+"/item/itemDetail.do?item_num="+item_num);
 				
 				return "/WEB-INF/views/common/alert_singleView.jsp";
@@ -67,11 +67,10 @@ public class WriteAction implements Action {
 					dao.updateCartByItem_num(cart);
 					
 					response.addHeader("Refresh", "2;url="+request.getContextPath()+"/item/itemDetail.do?item_num="+item_num);
-					request.setAttribute("notice_msg", "성공적으로 예약되었습니다.");
+					request.setAttribute("notice_msg", "장바구니에 담았습니다.");
 					request.setAttribute("notice_url", request.getContextPath()+"/item/itemDetail.do?item_num="+item_num);
 					
 					return "/WEB-INF/views/common/alert_singleView.jsp";
-
 				}
 			}	
 		}

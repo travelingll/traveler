@@ -128,7 +128,7 @@ img{
 						<input type="hidden" name="item_num" value="${item.item_num}" >
 						<input type="hidden" name="item_price" value="${item.item_price}" >
 						<input type="hidden" name="quantity" value="${item.quantity}">
-	 					<input type="submit" value="예약하기" id="button">
+	 					<input type="submit" value="장바구니에 담기" id="button">
 						</form>
 					</div>
 			</div>
@@ -146,7 +146,7 @@ img{
 		<br><br><br>
 		<h3>여행 도시 : ${item.item_content}</h3>
 		<br><br><br>
-		<h3>모집 인원 : <span id="apply"></span>/${item.quantity}</h3>
+		<h3>모집 인원 : <span id="apply">${item.orderCount}</span>/${item.quantity}명</h3>
 		<br><br><br>
 		</div>
 		<!-- 여행 주요일정 끝 -->

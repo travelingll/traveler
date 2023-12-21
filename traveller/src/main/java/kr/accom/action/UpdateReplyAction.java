@@ -54,6 +54,4 @@ public class UpdateReplyAction implements Action {
 		
 		return "/WEB-INF/views/common/ajax_view.jsp";
 	}
-	
-
 }

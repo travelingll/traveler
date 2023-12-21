@@ -103,7 +103,7 @@
 														<div class="group_list">
 																	<dl>
 																		<dt>
-																			<a href="#none" onclick="">여행상품</a>
+																			<a href="${pageContext.request.contextPath}/item/itemMain.do" onclick="">여행상품</a>
 																		</dt>
 																		<dd>
 																			<ul>

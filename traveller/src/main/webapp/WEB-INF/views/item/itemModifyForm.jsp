@@ -75,6 +75,60 @@ $(function(){
 			$(this).parent().siblings('.photo_btn').show();
 		
 		});
+		const status = $('#closing').attr('data-num');
+		const item_num=$('#closing').attr('data-itemnum');
+		$('#closing').click(function(){
+			var choice = confirm('본 상품을 마감하시겠습니까?');
+			if(choice){
+				$('#closing-cancel').show();
+				$('#closing').hide();
+				
+			$.ajax({
+				url:'adminItemModifyStatus.do',
+				type:'post',
+				data:{status:status,item_num:item_num},
+				dataType:'json',
+				success:function(param){
+					if(param.result=='logout'){
+						alert('로그인 후 사용하세요');
+					}else if(param.result=='success'){
+						alert('본 상품을 마감처리하였습니다. 상세페이지에서 확인해주세요');
+					}else{
+						alert('마감처리 오류 발생');
+					}
+				},
+				error:function(){
+						alert('네트워크 통신 오류');
+					}
+				})
+			}
+		})
+		
+		$('#closing-cancel').click(function(){
+			$('#closing').show();
+			$('#closing-cancel').hide();
+			var status=2;
+			$.ajax({
+				url:'adminItemModifyStatus.do',
+				type:'post',
+				data:{status:status,item_num:item_num},
+				dataType:'json',
+				success:function(param){
+					if(param.result=='logout'){
+						alert('로그인 후 사용하세요');
+					}else if(param.result=='success'){
+						alert('본 상품을 마감취소처리하였습니다. 상세페이지에서 확인해주세요');
+					}else{
+						alert('마감처리 오류 발생');
+					}
+				},
+				error:function(){
+						alert('네트워크 통신 오류');
+					}
+				})
+			
+		})
+		
 		
 });		
 </script>
@@ -100,20 +154,23 @@ form ul li label{
 					<input type="radio" name="status" value="3" id="status3" <c:if test="${item.status==3}"> checked="checked"</c:if> >종료
 				</li>
 				<li>
-					<label>유형 : $item.item_case}</label>
-					
+					<label>유형 : ${item.item_case}</label>
+					<br><br>
 				</li>
 				<li>
 					<label for="name">상품명</label>
-					<input type="text" id="name" name="name" maxlength="100" size="20" value="${item.item_name}" class="insert_check">
+					<textarea id="name" name="name" cols="50" rows="10" class="insert_check" >${item.item_name}</textarea><br>
+					<br><br>
 				</li>
 				<li>
 					<label for="city">방문도시</label>
-					<input type="text" id="city" name="city" maxlength="100" size="20" value="${item.item_content}" class="insert_check">
+					<textarea id="city" name="city" cols="50" rows="10" class="insert_check">${item.item_content}</textarea>
+					<br><br>
 				</li>
 				<li>
 					<label for="price">상품가격</label>
 					<input type="number" id="price" name="price" maxlength="30" size="20" value="${item.item_price}" class="insert_check">원
+					<br><br>
 				</li>
 				<li>
 					<br>
@@ -235,8 +292,9 @@ form ul li label{
 				</li>
 				<li>
 					<label for="quantity">모집인원</label>
-					<input type="number" id="quantity" name="quantity" min="1" size="3" value="${item.quantity}" class="insert_check">
-					<input type="button" id="quantity" value="마감">
+					<input type="number" id="quantity" name="quantity" min="1" size="3" value="${item.quantity}" class="insert_check status">
+					<input type="button" id="closing" data-num="3" data-itemnum="${item.item_num}" value="마감">
+					<input type="button" id="closing-cancel" value="마감취소" data-num="2" data-itemnum="${item.item_num}" style="display:none;">
 				</li>
 			</ul>
 			<div class="align-center">

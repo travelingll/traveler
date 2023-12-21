@@ -2,6 +2,8 @@ package kr.item.vo;
 
 import java.sql.Date;
 
+import kr.order.dao.OrderDAO;
+
 public class ItemVO {
 	
 	private int item_num;
@@ -24,7 +26,15 @@ public class ItemVO {
 	private Date modifydate;
 	private int quantity;
 	private String item_case;
+	private int orderCount=0;
 	
+	
+	public int getOrderCount() {
+		return orderCount;
+	}
+	public void setOrderCount(int orderCount) {
+		this.orderCount = orderCount;
+	}
 	public String getItem_case() {
 		return item_case;
 	}

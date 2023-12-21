@@ -48,7 +48,7 @@ td{
 	<div id="containerr" style="display: flex;">
     <div id="sidebar" style="width: 100%;">
 		<h2>
-			관리자 여행상품 게시판
+			관리자 예약관리 게시판
 		</h2><br>
 		<div class="choice">
 			<h3>지역선택</h3>
@@ -81,37 +81,16 @@ td{
 			</div>
 		<table>
 			<tr>
-				<th>여행상품번호</th>
-				<th>상태</th>
-				<th>여행지</th>
-				<th><a href="itemDetail.do">여행상품명</a></th>
-				<th>출발일</th>
-				<th>도착일</th>
-				<th>등록일</th>
-				<th>모집인원</th>
+				<th>예약번호</th>
+				<th>상품이름</th>
+				<th>예약상태</th>
 			</tr>
-			<c:forEach var="item" items="${itemList}">
-			<c:if test="${item.item_st1==st1}">
+			<c:forEach var="order" items="${list}">
 				<tr>
-					<td>${item.item_num}</td>
-					<td><c:if test="${item.status==1}">미표시</c:if>
-						<c:if test="${item.status==2}">판매중</c:if>
-						<c:if test="${item.status==3}">판매종료</c:if>
-					</td>
-					<td>
-						<c:if test="${item.item_st1==1}">동남아</c:if>
-						<c:if test="${item.item_st1==2}">북미</c:if>
-						<c:if test="${item.item_st1==3}">호주</c:if>
-						<c:if test="${item.item_st1==4}">유럽</c:if>
-						<c:if test="${item.item_st1==5}">국내</c:if>
-					</td>
-					<td><a href="adminItemDetail.do?item_num=${item.item_num}">${item.item_name}</a></td>
-					<td>${item.date_start}</td>
-					<td>${item.date_end}</td>
-					<td>${item.reg_date}</td>
-					<td><span class="total_order">${item.orderCount}</span>/ ${item.quantity} 명</td>
+					<td>${order.order_num}</td>
+					<td>${order.item_name}</td>
+					<td>${order.order_status}</td>
 				</tr>
-			</c:if>
 			</c:forEach>
 		</table>
 			<div class="align-center">
