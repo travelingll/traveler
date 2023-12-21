@@ -12,10 +12,10 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="detail-sidemenu"><jsp:include page="question_sidemenu.jsp"/></div>
-	<div class="detail-page">
-		<div class="detail-content">
-			<div class="question-user">
+	<div id="container"><div class="inr"><jsp:include page="question_sidemenu.jsp"/></div></div>
+	<div id="containerr" style="display: flex;">
+	    <div id="sidebar" style="width: 80%;">
+	    	<div  class="question-user">
 				<h2>Q. ${detail.question_title}</h2>
 				<ul>
 					<li>
@@ -49,18 +49,20 @@
 					<p>${detail.question_content}</p>
 				</div>
 			</div>
-			<c:if test="${!empty answer}"> <%-- 답변 완료 시 글 보임 --%>
-				<div class="question-answer">
-					<h2>A. ${answer.question_title}</h2>
-					<c:if test="${user_auth==9}"><%-- 관리자만 보임 --%>
-						<div class="detail-right"><input type="button" value="수정" onclick="location.href='adminQuestionModifyForm.do?question_num=${detail.question_num}'"></div>
-					</c:if>
-					<hr size="1" width="90%" noshade="noshade">
-					<div class="detail-answer">${answer.question_content}</div>
-				</div>
-			</c:if>
 			<c:if test="${empty answer && user_auth==9}"> <%-- 관리자만 보임 --%>
 				<div class="detail-right"><input type="button" value="답변 작성하기" onclick="location.href='adminQuestionWriteForm.do?question_num=${detail.question_num}'"></div>
+			</c:if>
+			<c:if test="${!empty answer}"> <%-- 답변 완료 시 글 보임 --%>
+				<div class="question-answer">
+					<div class="question-answer">
+						<h2>A. ${answer.question_title}</h2>
+						<c:if test="${user_auth==9}"><%-- 관리자만 보임 --%>
+							<div class="detail-right"><input type="button" value="수정" onclick="location.href='adminQuestionModifyForm.do?question_num=${detail.question_num}'"></div>
+						</c:if>
+						<hr size="1" width="90%" noshade="noshade">
+						<div class="detail-answer">${answer.question_content}</div>
+					</div>
+					</div>
 			</c:if>
 		</div>
 	</div>

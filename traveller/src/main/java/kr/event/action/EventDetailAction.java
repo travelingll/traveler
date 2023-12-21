@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.controller.Action;
 import kr.event.dao.EventDAO;
 import kr.event.vo.EventVO;
+import kr.money.dao.MoneyDAO;
 import kr.util.StringUtil;
 
 public class EventDetailAction implements Action {
@@ -19,6 +20,10 @@ public class EventDetailAction implements Action {
 		EventDAO dao = EventDAO.getInstance();
 		dao.updateEventHit(event_num);
 		EventVO event = dao.getEventDetail(event_num);
+		
+		MoneyDAO moneyDAO = MoneyDAO.getInstance();
+		String sm_coment = "랜덤 적립금 이벤트 참여"; //이벤트 참여 시 관리자가 적는 멘트 > 이벤트 참여 체크용으로 사용하기
+		boolean check = moneyDAO.checkEvent(event_num, sm_coment);
 		
 		event.setEvent_title(StringUtil.useBrNoHtml(event.getEvent_title()));
 		event.setEvent_content(StringUtil.useBrNoHtml(event.getEvent_content()));

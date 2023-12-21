@@ -40,9 +40,9 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="detail-sidemenu"><jsp:include page="question_sidemenu.jsp"/></div>
-	<div class="detail-page">
-		<div class="detail-content">
+	<div id="container"><div class="inr"><jsp:include page="question_sidemenu.jsp"/></div></div>
+	<div id="containerr" style="display: flex;">
+	    <div id="sidebar" style="width: 80%;">
 			<h2 class="detail-center form-title">일대일 문의 수정</h2>
 			<form class="detail-form" id="question_modifyForm" action="userQuestionModify.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="question_num" value="${detail.question_num}">

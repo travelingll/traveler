@@ -24,19 +24,21 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="detail-sidemenu"><jsp:include page="question_sidemenu.jsp"/></div>
-	<div class="detail-content detail-center">
-		<h1>비밀번호를 입력해주세요</h1>
-		<form id="passwd_form" action="userQuestionPasswdCheck.do" method="post">
-			<input type="hidden" value="${question_num}" id="question_num" name="question_num">
-			<input type="hidden" value="${check}" id="check" name="check">
-			<ul>
-				<li>
-					<input type="password" id="question_passwd" name="question_passwd">
-				</li>
-			</ul>
-			<input type="submit" value="확인">
-		</form>
+	<div id="container"><div class="inr"><jsp:include page="question_sidemenu.jsp"/></div></div>
+	<div id="containerr" style="display: flex;">
+	    <div id="sidebar" style="width: 80%;">
+			<h1>비밀번호를 입력해주세요</h1>
+			<form id="passwd_form" action="userQuestionPasswdCheck.do" method="post">
+				<input type="hidden" value="${question_num}" id="question_num" name="question_num">
+				<input type="hidden" value="${check}" id="check" name="check">
+				<ul>
+					<li>
+						<input type="password" id="question_passwd" name="question_passwd">
+					</li>
+				</ul>
+				<input type="submit" value="확인">
+			</form>
+		</div>
 	</div>
 </body>
 </html>

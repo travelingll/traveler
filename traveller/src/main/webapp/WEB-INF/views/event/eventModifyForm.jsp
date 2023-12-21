@@ -28,9 +28,9 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="detail-sidemenu"><jsp:include page="event_sidemenu.jsp"/></div>
-	<div class="detail-page">
-		<div class="detail-content">
+	<div id="container"><div class="inr"><jsp:include page="event_sidemenu.jsp"/></div></div>
+	<div id="containerr" style="display: flex;">
+	    <div id="sidebar" style="width: 80%;">
 			<c:if test="${empty user_num || user_auth!=9}">
 				<h1 class="detail-center">잘못된 접근입니다.</h1>
 			</c:if>

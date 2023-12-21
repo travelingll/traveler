@@ -53,6 +53,12 @@
 				if(${user_money}<money_input.value){
 					alert('적립금보다 많은 금액은 사용할 수 없습니다!');
 					money_input.value = '';
+					return;
+				}
+				if(money_input.value<1){
+					alert('음수는 입력할 수 없습니다!');
+					money_input.value = '';
+					return;
 				}
 				let use_money = this.value;
 				let expect_money = document.getElementById('expect_money');
@@ -106,7 +112,7 @@
 					</li>
 					<li><%-- 보내는 데이터 --%>
 						<label for="use_money">사용할 적립금</label>
-						<div class="order-money"><input type="number" placeholder="<fmt:formatNumber value="${user_money}"/>원까지 사용 가능" max="${user_money}" id="use_money" name="use_money" style="text-align:right;"></div>
+						<div class="order-money"><input type="number" placeholder="<fmt:formatNumber value="${user_money}"/>원까지 사용 가능" min="1" max="${user_money}" id="use_money" name="use_money" style="text-align:right;"></div>
 					</li>
 					<li>
 						<label>결제 예정 금액</label>

@@ -28,9 +28,9 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="detail-sidemenu"><jsp:include page="question_sidemenu.jsp"/></div>
-	<div class="detail-page">
-		<div class="detail-content">
+	<div id="container"><div class="inr"><jsp:include page="question_sidemenu.jsp"/></div></div>
+	<div id="containerr" style="display: flex;">
+	    <div id="sidebar" style="width: 80%;">
 			<h2 class="detail-center form-title">[관리자] 일대일 문의 답변 등록</h2>
 			<form class="detail-form" id="question_writeForm" action="adminQuestionWrite.do" method="post">
 				<input type="hidden" value="${question.question_num}" name="question_num" id="question_num">

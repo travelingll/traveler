@@ -1,17 +1,5 @@
 @charset "UTF-8";
 
-.detail-sidemenu{
-	margin-left:230px;
-	margin-top: 50px;
-}
-.detail-page{
-	width: 800px;
-	position: absolute;
-	margin-left: 400px;
-}
-.detail-content{
-	margin-left:50px;
-}
 .detail-content h2{
 	margin-top:50px;
 }
@@ -22,13 +10,21 @@
 .detail-detailcontent p{
 	padding: 30px;
 }
-.detail-detailcontent p{
-	padding: 30px;
+#event_btn{
+	font-weight: bold;
+	box-shadow: none;
+	border:1px solid;
+	margin: 10px 0 20px 0;
+	background-color: light-gray;
+	color: black;
+	font-size: 12pt;
+	padding: 5px 10px 5px 10px;
+	border-radius: 10px 10px 10px 10px;
 }
-.detail-reply{
+.detail-reply{ 
 	margin: 20px;
 }
-[type="submit"], .detail-output [type="button"], .detail-content [type="button"] {
+[type="submit"], [type="button"] {
 	font-weight: bold;
 	box-shadow: none;
 	border:1px solid;
@@ -39,17 +35,7 @@
 	padding: 5px 10px 5px 10px;
 	border-radius: 10px 10px 10px 10px;
 }
-.detail-detailcontent [type="button"]{
-	box-shadow: none;
-	margin-bottom: 30px;
-	padding: 15px 20px 15px 20px;
-	border:none;
-	font-weight: bold;
-	background-color: #575656;
-	color: white;
-	font-size: 11pt;
-	border-radius: 10px 10px 10px 10px;
-}
+
 .item{
 	padding:2px;
 }
@@ -78,9 +64,9 @@
 .detail-content > h1{
 	padding: 50px 0px 30px 0px;
 }
-.question-answer, .question-user{
-	padding-left:20px;
+.question-user, .question-answer{
 	border: 1px solid;
+	padding: 40px;
 }
 .rep-content{
 	width:700px;
@@ -105,21 +91,21 @@ li label{
 }
 .file-right{
 	text-align: right;
-	margin-right: 40px;
+	margin-right: 100px;
 }
 [type="text"], [type="number"],[type="password"]{
-	width:500px;
+	width:600px;
 	border-width: 0 0 1px 0;
 }
 [type="radio"]:checked {
 	border: 0.4em solid black;
 }
 [type="date"]{
-	width:250px;
+	width:290px;
 	border-width: 0 0 1px 0;
 }
 textarea{
-	width:500px;
+	width:600px;
 	height:300px;
 }
 input[type=radio]{
