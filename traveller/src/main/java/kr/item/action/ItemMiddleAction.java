@@ -28,7 +28,7 @@ public class ItemMiddleAction implements Action{
 		PageUtil page = new PageUtil(null,null,Integer.parseInt(pageNum),count,50,10,"/item/itemMiddle.do");
 		
 	
-		List<ItemVO> itemList = new ArrayList<ItemVO>();
+		List<ItemVO> itemList = null;
 		
 		if(count >0) {
 			itemList = dao.getItemList(page.getStartRow(),page.getEndRow(), null, null, "2", list_num);

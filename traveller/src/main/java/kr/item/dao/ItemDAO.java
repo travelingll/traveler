@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.accom.vo.AccomInfoVO;
 import kr.item.vo.ItemVO;
+import kr.order.dao.OrderDAO;
 import kr.util.DBUtil;
 
 public class ItemDAO {
@@ -256,7 +256,13 @@ private static ItemDAO instance = new ItemDAO();
 				item.setReg_date(rs.getDate("reg_date"));
 				item.setQuantity(rs.getInt("quantity"));
 				item.setItem_case(rs.getString("item_case"));
+				
+				OrderDAO dao = OrderDAO.getInstance();
+				item.setOrderCount(dao.getOrderItemCount(rs.getInt("item_num")));
+				
+				
 				list.add(item);
+				
 			}
 			
 		}catch(Exception e) {
@@ -310,6 +316,10 @@ private static ItemDAO instance = new ItemDAO();
 				vo.setModifydate(rs.getDate("modify_date"));
 				vo.setQuantity(rs.getInt("quantity"));	
 				vo.setItem_case(rs.getString("item_case"));
+				
+				OrderDAO dao = OrderDAO.getInstance();
+				vo.setOrderCount(dao.getOrderItemCount(rs.getInt("item_num")));
+				
 			}	
 		}catch(Exception e) {
 			throw new Exception(e);

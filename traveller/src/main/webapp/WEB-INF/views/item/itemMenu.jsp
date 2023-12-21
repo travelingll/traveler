@@ -46,7 +46,7 @@ a {
 			<div class="inr">
 				<dl>
 					<dt class="type">
-						<a href="#">여행상품</a>
+						<a href="${pageContext.request.contextPath}/item/itemMain.do">여행상품</a>
 					</dt>
 					<dd>
 						<ul class="list_lnb">

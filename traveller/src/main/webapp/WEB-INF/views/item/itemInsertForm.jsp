@@ -40,17 +40,51 @@ $(function(){
 		
 	});
 });
+
 </script>
 <style>
 form ul li label{
 	width:200px;
 	float:left;
 }
+.page-main{
+	background:#FFFFFF;
+	margin:40px 0;
+	border-radius:5px;
+	box-shadow:0 2px 6px rgba(100,100,100,0.3);
+	min-height:650px;
+}
+.content-main{
+	padding:10px 20px;
+}
 </style>
 </head> 
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<div id="container">
+	<div class="inr">
+		<div id="lnb" class="lnb">
+			<div class="inr">
+				<dl>
+					<dt class="type">
+						<a href="${pageContext.request.contextPath}/admin/main.do">관리자 페이지</a>
+					</dt>
+					<dd>
+						<ul class="list_lnb">
+				  			<li><a href="${pageContext.request.contextPath}/admin/adminItemList.do">관리자 상품 게시판</a></li>
+				 			<li><a href="${pageContext.request.contextPath}/admin/adminOrderList.do">관리자 예약관리 게시판</a></li>
+				 			<li><a href="${pageContext.request.contextPath}/admin/itemInsert.do">관리자 상품등록</a></li>
+				 			<li><a href="${pageContext.request.contextPath}/admin/userList.do">회원관리</a></li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+		</div> 
+		</div>
+		</div>
+	<div id="containerr" style="display: flex;">
+    <div id="sidebar" style="width: 100%;">
 	<div class="content-main">
 		<h2>상품 등록</h2>
 		<form action="itemInsertForm.do" method="post" id="insert_form" enctype="multipart/form-data">
@@ -142,6 +176,8 @@ form ul li label{
 			<!--<input type="button" value="홈으로" onclick=request.getContextPath()+"/main/main.do">  -->
 			</div>
 		</form>
+	</div>
+	</div>
 	</div>
 </div>
 </body>

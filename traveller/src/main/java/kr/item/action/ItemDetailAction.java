@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import kr.controller.Action;
 import kr.item.dao.ItemDAO;
 import kr.item.vo.ItemVO;
+import kr.order.dao.OrderDAO;
 
 public class ItemDetailAction implements Action{
 
@@ -22,11 +23,11 @@ public class ItemDetailAction implements Action{
 		ItemDAO dao = ItemDAO.getInstance();
 		ItemVO item = dao.getItem(item_num);
 		
+		
 		request.setAttribute("item", item);
 		request.setAttribute("user_num", user_num);
 		request.setAttribute("user_auth", user_auth);
 		
-		System.out.println(item.getItem_img5());
 		
 		
 		return "/WEB-INF/views/item/itemDetail.jsp";
