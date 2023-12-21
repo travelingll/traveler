@@ -45,6 +45,8 @@ public class ApplyAccomListAction implements Action {
 		
 		return "/WEB-INF/views/accom/applyAccomList.jsp";
 		
-	}	
+	}
+
+	
 }
 
