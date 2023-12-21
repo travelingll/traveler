@@ -273,7 +273,7 @@ public class OrderDAO {
 			order = new OrderVO();
 			
 			if(rs.next()) {
-				order.setOrder_num(rs.getInt(order_num));
+				order.setOrder_num(order_num);
 				order.setItem_name(rs.getString("item_name"));
 				order.setOrder_price(rs.getInt("order_price"));
 				order.setOrder_custprice(rs.getInt("order_custprice"));
@@ -291,7 +291,7 @@ public class OrderDAO {
 				order.setOrder_gender(rs.getString("order_gender"));
 			}
 		} catch (Exception e) {
-			throw new Exception();
+			throw new Exception(e);
 		} finally {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}

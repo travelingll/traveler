@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,12 +10,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-$(function(){
-	$('.st1').click(function(){
-		let st1 = $(this).attr('data-num');
-		location.href='adminItemList.do?st1='+st1;
-	})
-})
 </script>
 <style type="text/css">
 td{
@@ -23,7 +18,6 @@ td{
 </style>
 </head>
 <body>
-<div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <div id="container">
 	<div class="inr">
@@ -44,34 +38,39 @@ td{
 				</dl>
 			</div>
 		</div> 
+	</div>
+</div>
 		
 	<div id="containerr" style="display: flex;">
     <div id="sidebar" style="width: 100%;">
 		<h2>
-			관리자 예약관리 게시판
+			<b>관리자 예약관리 게시판 (예약상세)</b>
 		</h2><br>
-	
-		<table>
-			<tr>
-				<th>예약번호</th>
-				<th>상품이름</th>
-				<th>예약상태</th>
-			</tr>
-			<c:forEach var="order" items="${list}">
-				<tr>
-					<td><a href="orderDetail.do?order_num=${order.order_num}">${order.order_num}</a></td>
-					<td><a href="orderDetail.do?order_num=${order.order_num}">${order.item_name}</a></td>
-					<td><a href="orderDetail.do?order_num=${order.order_num}">${order.order_status}</a></td>
-				</tr>
-			</c:forEach>
-		</table>
-			<div class="align-center">
-				${page}
-			</div>
-	</div>
-	</div>
-</div>
-</div>
+		<div>
+			<ul>
+				<li><h4>이름 : ${order.order_name}   </h4></li>
+				<li><h4>이메일 : ${order.order_email} </h4></li>
+				<li><h4>전화번호 : ${order.order_phone} </h4></li>
+				<li><h4>생년월일 : ${order.order_birth} </h4></li>
+				<li><h4>성별 : 
+								<c:if test="${order.order_gender==1}">남자</c:if>
+								<c:if test="${order.order_gender==2}">여자</c:if></h4></li>
+				<li><h4>메세지 : ${order.notice} </h4></li>
+				<li><h4>총 상품 금액 : <fmt:formatNumber value="${order.order_total}" />원</h4></li>
+				<li><h4>사용한 적립금
+								<fmt:formatNumber value="${order.order_price}-${order.order_custprice}"/>원</h4></li>
+				<li><h4>결제 금액
+								<fmt:formatNumber value="${order.order_price}"/>원</h4></li>
+				<li><h4>결제수단
+								<c:if test="${order.payment==1}">카드 결제</c:if>
+								<c:if test="${order.payment==2}">무통장 입금</c:if></h4></li>
+			</ul>
 		</div>
+		<div class="align-right">
+							<input type="button" value="예약정보 수정" onclick="location.href='adminModifyOrderForm.do'">
+							<input type="button" value="목록" onclick="location.href=''">
+		</div>
+		</div>
+	</div>
 </body>
 </html> 
