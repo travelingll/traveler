@@ -12,6 +12,7 @@ import kr.cart.vo.CartVO;
 import kr.controller.Action;
 import kr.item.dao.ItemDAO;
 import kr.item.vo.ItemVO;
+import kr.money.dao.MoneyDAO;
 import kr.order.dao.OrderDAO;
 import kr.order.vo.OrderDetailVO;
 import kr.order.vo.OrderVO;
@@ -27,7 +28,7 @@ public class UserOrderAction implements Action {
 		if(user_num==null) return "redirect:/member/loginForm.do";
 			
 		//접근방식 조건체크
-		if(request.getMethod().toUpperCase().equals("GET")) return "redirect:/item/itemList.do";
+		if(request.getMethod().toUpperCase().equals("GET")) return "redirect:/item/itemMain.do";
 		
 		request.setCharacterEncoding("utf-8");
 		CartDAO dao = CartDAO.getInstance();
@@ -51,6 +52,16 @@ public class UserOrderAction implements Action {
 			item_name = cartList.get(0).getItemVO().getItem_name()+" 외 "+ (cartList.size()-1)+"건";
 		}
 		
+		MoneyDAO moneyDAO = MoneyDAO.getInstance();
+		int use_money = Integer.parseInt(request.getParameter("use_money"));
+		
+		//적립금 사용 가능 여부 조건 체크
+		if(moneyDAO.getTotalByMem_num(user_num)<use_money) {
+			request.setAttribute("notice_msg","소지한 적립금보다 많이 사용할 수 없습니다!");
+			request.setAttribute("notice_url",request.getContextPath()+"/item/itemMain.do");
+			return "/WEB-INF/views/common/alert_singleView.jsp";
+		}
+		
 		//개별 상품 정보 담기
 		List<OrderDetailVO> orderDetailList = new ArrayList<OrderDetailVO>();
 		ItemDAO itemDAO = ItemDAO.getInstance();
@@ -59,13 +70,14 @@ public class UserOrderAction implements Action {
 		for(CartVO cart : cartList) {
 			ItemVO item = itemDAO.getItem(cart.getItem_num());
 			
+			
 			//상품 인원 조건 체크
 			if(item.getQuantity() < orderDAO.getOrderItemCount(cart.getItem_num())) {
 				request.setAttribute("notice_msg","["+item.getItem_name()+"] 상품은 예약이 마감되었습니다!");
 				request.setAttribute("notice_url", request.getContextPath()+"/cart/list.do");
 				return "/WEB-INF/views/common/alert_singleView.jsp";
 			}
-			
+
 			OrderDetailVO orderDetail = new OrderDetailVO();
 			
 			//개별 상품 정보 저장
@@ -87,7 +99,7 @@ public class UserOrderAction implements Action {
 		order.setMem_num(user_num);
 		order.setNotice(request.getParameter("notice"));
 		order.setPayment(Integer.parseInt(request.getParameter("payment")));
-		order.setUse_money(Integer.parseInt(request.getParameter("use_money")));
+		order.setUse_money(use_money);
 		
 		order.setOrder_name(request.getParameter("order_name"));
 		order.setOrder_email(request.getParameter("order_email"));

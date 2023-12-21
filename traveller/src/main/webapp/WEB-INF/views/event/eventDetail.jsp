@@ -15,24 +15,19 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div id="container"> 
-	<div class="inr">
-		<div id="lnb" class="lnb">
-			<div class="inr">
-				<dl>
-					<dt class="type">
-						<a href="#">이벤트</a>
-					</dt>
-					<dd>
-						<ul class="list_lnb">
-							<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=1">회원</a></li>
-							<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=2">비회원</a></li>
-						</ul>
-					</dd>
-				</dl>
-			</div>
-		</div>
-		</div>
-	</div>
+	<div class="inr"><div id="lnb" class="lnb"><div class="inr">
+		<dl>
+			<dt class="type">
+				<a href="#">이벤트</a>
+			</dt>
+			<dd>
+				<ul class="list_lnb">
+					<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=1">회원</a></li>
+					<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=2">비회원</a></li>
+				</ul>
+			</dd>
+		</dl>
+	</div></div></div></div>
 	<div id="containerr" style="display: flex;">
 	    <div id="sidebar" style="width: 80%;">
 	        <h2 class="detail-center">${event.event_title}</h2>

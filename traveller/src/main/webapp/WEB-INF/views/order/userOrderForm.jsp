@@ -45,6 +45,7 @@
 					alert('결제수단을 선택해주세요!');
 					return false;
 				}
+				//적립금 사용 체크
 			};
 			//동적으로 결제금액 태그 생성하기
 			let money_input = document.getElementById('use_money');
