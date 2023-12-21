@@ -33,16 +33,21 @@ public class CommDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "INSERT INTO comm (comm_num, comm_title, comm_content, filename, ip, mem_num) "
-					+ "VALUES (comm_seq.nextval,?,?,?,?,?)";
+			sql = "INSERT INTO comm (comm_num, comm_title, comm_content, filename1, filename2, filename3, ip, mem_num, "
+					+ "category, tag) "
+					+ "VALUES (comm_seq.nextval,?,?,?,?,?,?,?,?,?)";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			pstmt.setString(1, comm.getComm_title());
 			pstmt.setString(2, comm.getComm_content());
-			pstmt.setString(3, comm.getFilename());
-			pstmt.setString(4, comm.getIp());
-			pstmt.setInt(5, comm.getMem_num());
+			pstmt.setString(3, comm.getFilename1());
+			pstmt.setString(4, comm.getFilename2());
+			pstmt.setString(5, comm.getFilename3());
+			pstmt.setString(6, comm.getIp());
+			pstmt.setInt(7, comm.getMem_num());
+			pstmt.setInt(8, comm.getCategory());
+			pstmt.setString(9, comm.getTag());
 			
 			//SQL문 실행
 			pstmt.executeUpdate();
@@ -53,7 +58,7 @@ public class CommDAO {
 		}finally {
 			DBUtil.getConnection();
 		}
-	}
+	}  
 	//전체 레코드수/검색 레코드수
 	public int getCommCount(String keyfield, String keyword,int mem_num)throws Exception{
 		
@@ -195,10 +200,14 @@ public class CommDAO {
 				comm.setComm_hit(rs.getInt("comm_hit"));
 				comm.setReg_date(rs.getDate("reg_date"));
 				comm.setModify_date(rs.getDate("modify_date"));
-				comm.setFilename(rs.getString("filename"));
+				comm.setFilename1(rs.getString("filename1"));
+				comm.setFilename2(rs.getString("filename2"));
+				comm.setFilename3(rs.getString("filename3"));
 				comm.setMem_num(rs.getInt("mem_num"));
 				comm.setId(rs.getString("id"));
 				comm.setPhoto(rs.getString("photo"));
+				comm.setCategory(rs.getInt("category"));
+				comm.setTag(rs.getString("tag"));
 			}
 			
 		}catch(Exception e) {
@@ -265,26 +274,43 @@ public class CommDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
-		String sub_sql = "";
+		String sub_sql1 = "";
+		String sub_sql2 = "";
+		String sub_sql3 = "";
 		int cnt = 0;
 		
 		try {
 			//커넥션풀로부터 커넥션 객체 할당
 			conn = DBUtil.getConnection();
 			
-			if(comm.getFilename()!=null) {
-				sub_sql += ", filename=?";
+			if(comm.getFilename1()!=null) {
+				sub_sql1 += ", filename1=?";
+			}
+			if(comm.getFilename2()!=null) {
+				sub_sql2 += ", filename2=?";
+			}
+			if(comm.getFilename3()!=null) {
+				sub_sql3 += ", filename3=?";
 			}
 			//SQL문 작성
-			sql = "UPDATE comm SET comm_title=?,comm_content=?,modify_date=SYSDATE,ip=? "+sub_sql+" WHERE comm_num=?";
+			sql = "UPDATE comm SET comm_title=?,comm_content=?,modify_date=SYSDATE,ip=?,category=?,tag=? "+sub_sql1+sub_sql2+sub_sql3+" WHERE comm_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			pstmt.setString(++cnt, comm.getComm_title());
 			pstmt.setString(++cnt, comm.getComm_content());
 			pstmt.setString(++cnt, comm.getIp());
-			if(comm.getFilename()!=null) {
-				pstmt.setString(++cnt, comm.getFilename());
+			pstmt.setInt(++cnt, comm.getCategory());
+			pstmt.setString(++cnt, comm.getTag());
+			
+			if(comm.getFilename1()!=null) {
+				pstmt.setString(++cnt, comm.getFilename1());
+			}
+			if(comm.getFilename2()!=null) {
+				pstmt.setString(++cnt, comm.getFilename2());
+			}
+			if(comm.getFilename3()!=null) {
+				pstmt.setString(++cnt, comm.getFilename3());
 			}
 			pstmt.setInt(++cnt, comm.getComm_num());
 			//SQL문 실행

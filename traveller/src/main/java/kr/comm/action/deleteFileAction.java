@@ -38,7 +38,9 @@ public class deleteFileAction implements Action{
 				dao.deleteFile(comm_num);
 				
 				//파일 삭제
-				FileUtil.removeFile(request, db_comm.getFilename());
+				FileUtil.removeFile(request, db_comm.getFilename1());
+				FileUtil.removeFile(request, db_comm.getFilename2());
+				FileUtil.removeFile(request, db_comm.getFilename3());
 				
 				mapAjax.put("result", "success");
 			}

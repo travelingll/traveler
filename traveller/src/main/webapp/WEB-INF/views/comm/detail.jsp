@@ -30,13 +30,26 @@
 			<li>
 				${comm.id}<br>
 				조회 : ${comm.comm_hit}
+				카테고리 : ${comm.category}
+				태그 : ${comm.tag}
 			</li>
+									    
 		</ul>
 		<hr size="1" noshade="noshade" width="100%" >
-		<c:if test="${!empty comm.filename}">
+		<c:if test="${!empty comm.filename1}">
 		<div class="align-center">
-			<img src="${pageContext.request.contextPath}/upload/${comm.filename}" class="detail-img">
-		</div>	
+			<img src="${pageContext.request.contextPath}/upload/${comm.filename1}" class="detail-img">
+		</div>
+		</c:if>
+		<c:if test="${!empty comm.filename2}">
+		<div class="align-center">
+			<img src="${pageContext.request.contextPath}/upload/${comm.filename2}" class="detail-img">
+		</div>
+		</c:if>
+		<c:if test="${!empty comm.filename3}">
+		<div class="align-center">
+			<img src="${pageContext.request.contextPath}/upload/${comm.filename3}" class="detail-img">
+		</div>
 		</c:if>
 		<p>
 			${comm.comm_content}
@@ -69,6 +82,9 @@
 					}
 				};
 			</script>
+			
+			
+			
 			</c:if>
 		</ul>
 		<!-- 댓글 시작 -->
