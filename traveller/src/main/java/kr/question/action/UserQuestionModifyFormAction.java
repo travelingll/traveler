@@ -21,21 +21,17 @@ public class UserQuestionModifyFormAction implements Action {
 		QuestionVO detail = dao.getQuestionDetail(question_num);
 		
 		if( detail.getMem_num()==0 ) { //비회원 글 - 비밀번호
-			
 			request.setAttribute("question_num", question_num);
 			request.setAttribute("check", "modify");
-			
 			return "/WEB-INF/views/question/userQuestionPasswd.jsp"; //비밀번호 확인페이지로
-			
 		} else if(user_num != detail.getMem_num()) { //회원글 - 작성자 체크
-			
 			request.setAttribute("notice_msg", "회원글의 경우 작성자만 수정 가능합니다!");
 			request.setAttribute("notice_url", "questionDetail.do?question_num="+question_num);
-			
 			return "/WEB-INF/views/common/alert_singleView.jsp";
 		}
 		
 		//조건 체크 통과 시 수정 가능
+		session.removeAttribute("passwdCheck");
 		request.setAttribute("detail", detail);
 			
 		return "/WEB-INF/views/question/userQuestionModifyForm.jsp";

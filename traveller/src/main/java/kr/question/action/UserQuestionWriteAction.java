@@ -27,22 +27,21 @@ public class UserQuestionWriteAction implements Action {
 			question.setMem_num(0);
 		}
 		
+		session.removeAttribute("passwdCheck");
+		
 		question.setQuestion_ip(request.getRemoteAddr());
 		question.setQuestion_category(Integer.parseInt(multi.getParameter("question_category")));
 		question.setQuestion_title(multi.getParameter("question_title"));
-		question.setQuestion_lock(Integer.parseInt(multi.getParameter("question_lock"))); //관리자 답변의 경우 원글 설정과 동일하게
-		
-		if(multi.getParameter("question_passwd") != null) { //비회원 글 작성 시 비밀번호 설정
-			question.setQuestion_passwd(multi.getParameter("question_passwd"));
-		}
-		
+		question.setQuestion_lock(Integer.parseInt(multi.getParameter("question_lock")));
 		question.setQuestion_photo(multi.getFilesystemName("question_photo"));
 		question.setQuestion_content(multi.getParameter("question_content"));
-		
-		question.setQuestion_level(1); //답변 레벨 1
+		question.setQuestion_level(1); //고객 문의글의 경우 답변 레벨 1
+		if(multi.getParameter("question_passwd") != null) question.setQuestion_passwd(multi.getParameter("question_passwd")); //비회원 글 작성 시 비밀번호 설정
 		
 		QuestionDAO dao = QuestionDAO.getInstance();
 		dao.writeQuestion(question);
+		
+		
 		
 		request.setAttribute("notice_msg", "문의글이 등록되었습니다!");
 		request.setAttribute("notice_url", "questionList.do");

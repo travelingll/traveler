@@ -54,7 +54,6 @@
 	    <div id="sidebar" style="width: 80%;">
 			<h2 class="detail-center form-title">일대일 문의 등록</h2>
 			<form  class="detail-form" id="question_writeForm" action="userQuestionWrite.do?question_num=${question_num}" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="user_num" value="${user_num}">
 				<ul class="input-form">
 					<li>
 						<label>카테고리</label>

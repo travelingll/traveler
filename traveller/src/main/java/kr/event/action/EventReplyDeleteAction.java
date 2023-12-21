@@ -31,8 +31,8 @@ public class EventReplyDeleteAction implements Action{
 		EventReplyVO db_reply = dao.getEventReplyDetail(event_renum);
 		
 		if(user_num==null) { //미로그인 시
-			mapAjax.put("result", "logout"); //로그인 && 작성자 일치
-		} else if(user_num!=null && user_num==db_reply.getMem_num()) {
+			mapAjax.put("result", "logout");
+		} else if(user_num!=null && user_num==db_reply.getMem_num()) { //로그인 && 작성자 일치
 			dao.deleteEventReply(event_renum);
 			mapAjax.put("result", "success");
 		} else { //작성자 불일치

@@ -25,15 +25,14 @@ public class EventReplyUpdateAction implements Action {
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		
-		//작성자 체크용
+		//작성자 체크
 		int event_renum = Integer.parseInt(request.getParameter("event_renum"));
 		EventDAO dao = EventDAO.getInstance();
 		EventReplyVO db_reply = dao.getEventReplyDetail(event_renum);
 		
-		if(user_num==null) { //미로그인시
+		if(user_num==null) { //미로그인 시
 			mapAjax.put("result", "logout");
 		} else if(user_num!=null && db_reply.getMem_num()==user_num ) { //작성자 일치
-		
 			EventReplyVO reply = new EventReplyVO();
 			
 			reply.setEvent_reip(request.getRemoteAddr());
@@ -51,7 +50,6 @@ public class EventReplyUpdateAction implements Action {
 		String ajaxData = mapper.writeValueAsString(mapAjax);
 		request.setAttribute("ajaxData", ajaxData);
 
-		
 		return "/WEB-INF/views/common/ajax_view.jsp";
 	}
 }

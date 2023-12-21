@@ -30,18 +30,14 @@ public class DeletePhotoAction implements Action {
 		
 		//회원 글
 		if(db_question.getMem_num()!=0) {
-			if(user_num==null) { //미로그인시
-				mapData.put("result", "logout");
-			} else if(db_question.getMem_num()!=user_num) { //작성자 불일치
-				mapData.put("result", "worngAccess");
-			}
-		} 
+			if(user_num==null) mapData.put("result", "logout"); //미로그인 시
+			else if(db_question.getMem_num()!=user_num) mapData.put("result", "worngAccess"); //작성자 불일치
+		}
 		
-		//비회원 글, 회원글은 작성자 본인인 경우 파일 삭제 진행
 		dao.deleteQuestionPhoto(question_num);
 		FileUtil.removeFile(request, db_question.getQuestion_photo());
 		mapData.put("result", "success");
-		
+
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxData = mapper.writeValueAsString(mapData);
 		request.setAttribute("ajaxData", ajaxData);

@@ -18,9 +18,7 @@ public class AdminQuestionWrtieAction implements Action {
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		
-		if(user_num==null && user_auth!=9) { //관리자 외 출입 금지
-			return "redirect:/question/questionList.do";
-		}
+		if(user_num==null || user_auth!=9) return "redirect:/question/questionList.do";
 		
 		request.setCharacterEncoding("utf-8");
 		int question_num = Integer.parseInt(request.getParameter("question_num"));
@@ -40,8 +38,7 @@ public class AdminQuestionWrtieAction implements Action {
 		question.setQuestion_level(2); //관리자 답변의 경우 답변 깊이 2
 		question.setQuestion_renum(question_num); //원글 번호 저장
 		
-		//데이터 넘겨주기
-		dao.writeQuestion(question);
+		dao.writeQuestion(question); //테이블에 insert
 		
 		request.setAttribute("notice_msg", "답변 작성 완료");
 		request.setAttribute("notice_url", "questionDetail.do?question_num="+question_num); //완료 후 상세로 보내기

@@ -10,6 +10,7 @@ import kr.member.dao.MemberDAO;
 import kr.question.vo.QuestionVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
+import oracle.net.aso.q;
 
 public class QuestionDAO {
 	
@@ -23,7 +24,6 @@ public class QuestionDAO {
 	
 	//글 등록
 	public void writeQuestion(QuestionVO question) throws Exception {
-		
 		Connection conn = null;
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
@@ -36,7 +36,6 @@ public class QuestionDAO {
 		int question_num = 0;
 		
 		try {
-			
 			conn = DBUtil.getConnection();
 			conn.setAutoCommit(false);
 			
@@ -51,11 +50,11 @@ public class QuestionDAO {
 				sub_sql += "mem_num,";
 				sub_sql2 += ",?";
 			}
-			
 			sql = "INSERT INTO question (question_num,question_ip,"+ sub_sql
 					+ "question_category,question_title,question_lock,question_passwd,"
 					+ "question_photo,question_content,question_level) "
 					+ "VALUES (?,?,?,?,?,?,?,?,?" + sub_sql2 + ")";
+			
 			pstmt2 = conn.prepareStatement(sql);
 			
 			pstmt2.setInt(++cnt, question_num);
@@ -83,7 +82,6 @@ public class QuestionDAO {
 			}
 			
 			conn.commit();
-			
 		} catch (Exception e) {
 			conn.rollback();
 			throw new Exception(e);
@@ -96,7 +94,6 @@ public class QuestionDAO {
 	
 	//글 갯수
 	public int getQuestionCount(String keyword, String keyfield, int mem_num, String category) throws Exception {
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -149,7 +146,6 @@ public class QuestionDAO {
 
 	//글 목록
 	public List<QuestionVO> getQuestionList(String keyword, String keyfield, int start, int end, int mem_num, String category) throws Exception {
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -220,7 +216,6 @@ public class QuestionDAO {
 
 	//글 상세
 	public QuestionVO getQuestionDetail(int question_num) throws Exception {
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -266,7 +261,6 @@ public class QuestionDAO {
 	
 	//조회수 증가
 	public void updateHit(int question_num) throws Exception {
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -316,11 +310,10 @@ public class QuestionDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			if(question.getQuestion_level()==2) { //고객 문의글 수정의 경우
-				sub_sql += ",question_category=?,question_photo=?";
-			}
+			
+			if(question.getQuestion_photo()!=null) sub_sql += ",question_photo=?";
 			sql = "UPDATE question SET question_ip=?,question_title=?,"
-					+ "question_content=?,question_modifydate=SYSDATE"
+					+ "question_content=?,question_modifydate=SYSDATE,question_category=?"
 					+sub_sql + " WHERE question_num=?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -328,7 +321,8 @@ public class QuestionDAO {
 			pstmt.setString(++cnt, question.getQuestion_ip());
 			pstmt.setString(++cnt, question.getQuestion_title());
 			pstmt.setString(++cnt, question.getQuestion_content());
-			if(question.getQuestion_category()==2) {
+			pstmt.setInt(++cnt, question.getQuestion_category());
+			if(question.getQuestion_photo()!=null) {
 				pstmt.setString(++cnt, question.getQuestion_photo());
 			}
 			pstmt.setInt(++cnt, question.getQuestion_num());

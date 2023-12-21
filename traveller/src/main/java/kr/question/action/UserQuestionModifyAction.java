@@ -26,7 +26,7 @@ public class UserQuestionModifyAction implements Action {
 		QuestionVO db_question = dao.getQuestionDetail(question_num); //원글 정보 읽어오기
 		
 		//회원글 조건 체크
-		if( db_question.getMem_num()!=0 && user_num==null) { //미 로그인시
+		if( db_question.getMem_num()!=0 && user_num==null) { //미로그인 시
 			request.setAttribute("notice_msg", "로그인이 필요합니다!");
 			request.setAttribute("notice_url", request.getContextPath()+"/member/loginForm.jsp");
 			return "/WEB-INF/views/common/alert_singleView.jsp";
@@ -34,7 +34,14 @@ public class UserQuestionModifyAction implements Action {
 			request.setAttribute("notice_msg", "회원글은 작성자만 수정 가능합니다!");
 			request.setAttribute("notice_url", "/WEB-INF/question/questionDetail.do?question_num="+question_num);
 			return "/WEB-INF/views/common/alert_singleView.jsp";
-		}	
+		}
+		
+		//비회원 글의 경우 비밀번호 미체크 시 체크 페이지로
+		String passwdCheck = (String)session.getAttribute("passwdCheck");
+		if(passwdCheck==null) {
+			request.setAttribute("question_num", question_num); //확인을 위해 문의글 primary key 저장
+			return "/WEB-INF/views/question/userQuestionPasswd.jsp"; //비밀번호 확인페이지로
+		}
 		
 		QuestionVO question = new QuestionVO();
 		
@@ -47,11 +54,11 @@ public class UserQuestionModifyAction implements Action {
 		
 		dao.modifyQuestion(question);
 		
-		if(multi.getFilesystemName("question_photo")!=null)
-			FileUtil.removeFile(request, db_question.getQuestion_photo());
+		if(multi.getFilesystemName("question_photo")!=null) FileUtil.removeFile(request, db_question.getQuestion_photo());
 		
 		request.setAttribute("notice_msg", "글 수정이 완료되었습니다!");
 		request.setAttribute("notice_url", "questionDetail.do?question_num="+question_num);
+		session.setAttribute("passwdCheck", "success");
 		
 		return "/WEB-INF/views/common/alert_singleView.jsp";
 	}

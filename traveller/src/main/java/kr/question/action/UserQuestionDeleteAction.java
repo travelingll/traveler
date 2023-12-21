@@ -14,9 +14,9 @@ public class UserQuestionDeleteAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		HttpSession session = request.getSession();
 		request.setCharacterEncoding("utf-8");
 		
+		HttpSession session = request.getSession();
 		int question_num = Integer.parseInt(request.getParameter("question_num"));
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		
@@ -35,11 +35,12 @@ public class UserQuestionDeleteAction implements Action {
 			}
 		} else { //비회원글 - 비밀번호 체크
 			request.setAttribute("question_num", question_num);
-			request.setAttribute("check", "delete");
+			request.setAttribute("check", "delete"); //delete하기 위함임을 알림
 			return "/WEB-INF/views/question/userQuestionPasswd.jsp";
 		}
 		
 		//조건체크 통과 시 삭제 가능
+		session.removeAttribute("passwdCheck");
 		dao.deleteQuestion(question_num);
 		FileUtil.removeFile(request, db_question.getQuestion_photo());
 		

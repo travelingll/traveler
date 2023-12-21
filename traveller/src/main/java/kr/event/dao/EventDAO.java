@@ -25,8 +25,7 @@ public class EventDAO {
 	
 	
 	//이벤트 전체/검색 레코드 수
-	public int getEventCount(String keyfield, String keyword, int category) throws Exception {
-		
+	public int getEventCount(String keyfield, String keyword, String category) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -37,37 +36,26 @@ public class EventDAO {
 		int cnt = 0;
 		
 		try {
-			
 			conn = DBUtil.getConnection();
 			
 			if(keyword!=null && !"".equals(keyword)) { //검색 시
-				if(keyfield.equals("1")) sub_sql += " WHERE event_title LIKE ? OR event_content LIKE ? ";
-				else if(keyfield.equals("2")) sub_sql += " WHERE event_title LIKE ? ";
-				else if(keyfield.equals("3")) sub_sql += " WHERE event_content LIKE ? ";
+				if(keyfield.equals("1")) sub_sql += " WHERE event_title LIKE ? ";
+				else if(keyfield.equals("2")) sub_sql += " WHERE event_content LIKE ? ";
 				
-				if(category==1 || category==2) sub_sql2 += "AND event_category=?";
-				
+				if(category!=null && !"".equals(category)) sub_sql2 += "AND event_category=?";
 			} else {
-				if(category==1 || category==2) sub_sql2 += "WHERE event_category=?";
+				if(category!=null && !"".equals(category)) sub_sql2 += "WHERE event_category=?";
 			}
-			
 			sql = "SELECT COUNT(*) FROM event " + sub_sql + sub_sql2;
+			
 			pstmt = conn.prepareStatement(sql);
 			
-			if(keyword!=null && !"".equals(keyword)) {
-				if(keyfield.equals("1")) {
-					pstmt.setString(++cnt, "%"+keyword+"%");
-					pstmt.setString(++cnt, "%"+keyword+"%");
-				} else if(keyfield.equals("2") || keyfield.equals("3")) 
-					pstmt.setString(++cnt, "%"+keyword+"%");
-			}
-			if(category==1||category==2) {
-				pstmt.setInt(++cnt, category);
-			}
+			if(keyword!=null && !"".equals(keyword)) pstmt.setString(++cnt, "%"+keyword+"%");
+			if(category!=null && !"".equals(category)) pstmt.setInt(++cnt, Integer.parseInt(category));
 			
 			rs = pstmt.executeQuery();
-			if(rs.next()) count = rs.getInt(1);
 			
+			if(rs.next()) count = rs.getInt(1);
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
@@ -77,7 +65,7 @@ public class EventDAO {
 	}
 	
 	//이벤트 전체/검색 목록
-	public List<EventVO> getEventList(int start, int end, String keyfield, String keyword, int category)throws Exception {
+	public List<EventVO> getEventList(int start, int end, String keyfield, String keyword, String category)throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -91,33 +79,20 @@ public class EventDAO {
 			conn = DBUtil.getConnection();
 			
 			if(keyword!=null && !"".equals(keyword)) {
-				if(keyfield.equals("1")) sub_sql += "WHERE event_title LIKE ? OR event_content LIKE ?";
-				else if(keyfield.equals("2")) sub_sql += "WHERE event_title LIKE ?";
-				else if(keyfield.equals("3")) sub_sql += "WHERE event_content LIKE ?";
+				if(keyfield.equals("1")) sub_sql += "WHERE event_title LIKE ?";
+				else if(keyfield.equals("2")) sub_sql += "WHERE event_content LIKE ?";
 				
-				if(category==1 || category==2) sub_sql2 += "AND event_category=?";
-				
+				if(category!=null && !"".equals(category)) sub_sql2 += "AND event_category=?";
 			} else {
-				if(category==1 || category==2) sub_sql2 += "WHERE event_category=?";				
+				if(category!=null && !"".equals(category)) sub_sql2 += "WHERE event_category=?";				
 			}
-			
 			sql = "SELECT * FROM ( SELECT a.*,rownum rnum FROM ( SELECT * FROM event "
-					+ sub_sql + sub_sql2
-					+ " ORDER BY event_end DESC)a) WHERE rnum>=? AND rnum<=?";
+					+ sub_sql + sub_sql2 + " ORDER BY event_end DESC)a) WHERE rnum>=? AND rnum<=?";
+			
 			pstmt = conn.prepareStatement(sql);
 			
-			if(keyword!=null && !"".equals(keyword)) {
-				if(keyfield.equals("1")) {
-					pstmt.setString(++cnt, "%"+keyword+"%");
-					pstmt.setString(++cnt, "%"+keyword+"%");
-				} else if(keyfield.equals("2") || keyfield.equals("3")) 
-					pstmt.setString(++cnt, "%"+keyword+"%");
-			}
-			
-			if(category==1||category==2) {
-				pstmt.setInt(++cnt,category);
-			}
-			
+			if(keyword!=null && !"".equals(keyword)) pstmt.setString(++cnt, "%"+keyword+"%");
+			if(category!=null && !"".equals(category)) pstmt.setInt(++cnt,Integer.parseInt(category));
 			pstmt.setInt(++cnt,start);
 			pstmt.setInt(++cnt,end);
 			
@@ -146,7 +121,6 @@ public class EventDAO {
 	
 	//이벤트 상세정보
 	public EventVO getEventDetail(int event_num) throws Exception {
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -155,7 +129,9 @@ public class EventDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
+			
 			sql = "SELECT * FROM event WHERE event_num=?";
+			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, event_num);
@@ -191,18 +167,19 @@ public class EventDAO {
 	
 	//이벤트 글 조회수 증가
 	public void updateEventHit(int event_num) throws Exception {
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		
 		try {
 			conn = DBUtil.getConnection();
+			
 			sql = "UPDATE event SET event_hit=event_hit+1 WHERE event_num=?";
+			
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setInt(1, event_num);
 			pstmt.executeUpdate();
-			
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
@@ -212,16 +189,17 @@ public class EventDAO {
 	
 	//관) 이벤트 수정 - 종료 처리는 날짜로 설정하게
 	public void eventUpdate(EventVO event) throws Exception {
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		
 		try {
 			conn = DBUtil.getConnection();
+			
 			sql = "UPDATE event SET event_start=?,event_end=?,event_photo1=?,"
 					+ "event_content=?,event_modifydate=sysdate,event_count=? "
 					+ "WHERE event_num=?";
+			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, event.getEvent_start());
@@ -232,7 +210,6 @@ public class EventDAO {
 			pstmt.setInt(6, event.getEvent_num());
 			
 			pstmt.executeUpdate();
-			
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
@@ -242,15 +219,16 @@ public class EventDAO {
 	
 	//댓글 등록
 	public void insertEventReply(EventReplyVO eventReply) throws Exception {
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		
 		try {
 			conn = DBUtil.getConnection();
+			
 			sql = "INSERT INTO event_reply (event_renum,event_recontent,event_reip,event_num,mem_num) "
 					+ "VALUES (event_re_seq.nextval,?,?,?,?)";
+			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, eventReply.getEvent_recontent());
@@ -259,7 +237,6 @@ public class EventDAO {
 			pstmt.setInt(4, eventReply.getMem_num());
 			
 			pstmt.executeUpdate();
-			
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
@@ -278,9 +255,13 @@ public class EventDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
+			
 			sql = "SELECT COUNT(*) FROM event_reply WHERE event_num=?";
+			
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setInt(1, event_num);
+			
 			rs = pstmt.executeQuery();
 			if(rs.next()) count=rs.getInt(1);
 			
@@ -303,13 +284,16 @@ public class EventDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
+			
 			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM event_reply JOIN member USING(mem_num) WHERE event_num=? ORDER BY event_renum DESC)a) WHERE rnum>=? AND rnum<=?";
+			
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setInt(1, event_num);
 			pstmt.setInt(2, start);
 			pstmt.setInt(3, end);
-			rs = pstmt.executeQuery();
 			
+			rs = pstmt.executeQuery();
 			list = new ArrayList<EventReplyVO>();
 			
 			while(rs.next()) {
@@ -336,7 +320,6 @@ public class EventDAO {
 	
 	//댓글 상세 - 수정, 삭제 시 작성자 체크 용도
 	public EventReplyVO getEventReplyDetail(int event_renum) throws Exception{
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -366,14 +349,15 @@ public class EventDAO {
 	
 	//댓글 수정
 	public void updateEventReply(EventReplyVO reply) throws Exception {
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		
 		try {
 			conn = DBUtil.getConnection();
+			
 			sql = "UPDATE event_reply SET event_recontent=?,event_modifyDate=sysdate,event_reip=? WHERE event_renum=?";
+			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, reply.getEvent_recontent());
@@ -381,7 +365,6 @@ public class EventDAO {
 			pstmt.setInt(3, reply.getEvent_renum());
 			
 			pstmt.executeUpdate();
-			
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
@@ -391,16 +374,19 @@ public class EventDAO {
 	
 	//댓글 삭제
 	public void deleteEventReply(int event_renum) throws Exception{
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		
 		try {
 			conn = DBUtil.getConnection();
+			
 			sql = "DELETE FROM event_reply WHERE event_renum=?";
+			
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setInt(1, event_renum);
+			
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			throw new Exception(e);
@@ -411,7 +397,6 @@ public class EventDAO {
 	
 	//이벤트 참여 - 이벤트 횟수 차감, 적립금 지급
 	public void updateEventCount(int event_num, MoneyVO money) throws Exception {
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
@@ -443,5 +428,4 @@ public class EventDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	
 }

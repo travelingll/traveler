@@ -22,9 +22,8 @@ public class QuestionListAction implements Action {
 		
 		String keyword = request.getParameter("keyword");
 		String keyfield = request.getParameter("keyfield");
-		String question_category = request.getParameter("question_category"); //카테고리를 받음 
+		String question_category = request.getParameter("question_category");
 
-		
 		QuestionDAO dao = QuestionDAO.getInstance();
 		int count = dao.getQuestionCount(keyword, keyfield, 0, question_category);
 		
@@ -32,9 +31,7 @@ public class QuestionListAction implements Action {
 		
 		List<QuestionVO> list = null;
 		
-		if(count>0) {
-			list = dao.getQuestionList(keyword, keyfield, page.getStartRow(), page.getEndRow(),0, question_category); //키워드,키필드,시작,끝
-		}
+		if(count>0) list = dao.getQuestionList(keyword, keyfield, page.getStartRow(), page.getEndRow(),0, question_category);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);

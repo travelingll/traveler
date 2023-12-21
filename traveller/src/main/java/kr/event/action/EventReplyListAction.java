@@ -23,6 +23,7 @@ public class EventReplyListAction implements Action {
 		
 		request.setCharacterEncoding("utf-8");
 		
+		/*---페이지 처리---*/
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null) pageNum="1";
 		
@@ -35,17 +36,14 @@ public class EventReplyListAction implements Action {
 		
 		PageUtil page = new PageUtil(Integer.parseInt(pageNum), count, Integer.parseInt(rowCount));
 		
+		/*---댓글 목록---*/
 		List<EventReplyVO> list = null;
 		
-		if(count>0) {
-			list = dao.getEventReplyList(page.getStartRow(), page.getEndRow(), event_num);
-		} else {
-			list = Collections.emptyList();
-		}
+		if(count>0) list = dao.getEventReplyList(page.getStartRow(), page.getEndRow(), event_num);
+		else list = Collections.emptyList();
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		
 		Map<String, Object> mapAjax = new HashMap<String, Object>();
 		
 		mapAjax.put("list", list);

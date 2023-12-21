@@ -22,8 +22,8 @@ public class EventDetailAction implements Action {
 		EventVO event = dao.getEventDetail(event_num);
 		
 		MoneyDAO moneyDAO = MoneyDAO.getInstance();
-		String sm_coment = "랜덤 적립금 이벤트 참여"; //이벤트 참여 시 관리자가 적는 멘트 > 이벤트 참여 체크용으로 사용하기
-		boolean check = moneyDAO.checkEvent(event_num, sm_coment);
+		String sm_coment = "랜덤 적립금 이벤트 참여"; //이벤트 참여 여부 체크
+		boolean check = moneyDAO.checkEvent(event_num, sm_coment); //이벤트 참여 여부 체크
 		
 		event.setEvent_title(StringUtil.useBrNoHtml(event.getEvent_title()));
 		event.setEvent_content(StringUtil.useBrNoHtml(event.getEvent_content()));

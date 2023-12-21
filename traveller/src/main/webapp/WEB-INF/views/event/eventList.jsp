@@ -26,41 +26,34 @@
 	<div id="__nuxt"><div id="__layout"><div id="wrapper"><div id="screenArea">  
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div id="container"><div class="inr"><div id="lnb" class="lnb"><div class="inr">
-		<dl>
-			<dt class="tit_con_title" style="border-bottom:none;">		
-				<a href="eventList.do">이벤트</a>
-			</dt>
-		</dl>
+		<dl><dt class="tit_con_title" style="border-bottom:none;">		
+			<a href="eventList.do">이벤트</a>
+		</dt></dl>
 	</div></div>
 		<div class="content_block" id="content">
 			<ul class="tab_page_cont" id="tab_page_cont">
-				<li class="on"><a href="${pageContext.request.contextPath}/event/eventList.do">진행중</a></li>
+				<li><a href="${pageContext.request.contextPath}/event/eventList.do">진행중</a></li>
 				<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=1">회원</a></li>
 				<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=2">비회원</a></li>
 			</ul>
-			<c:if test="${category==0}">
-				<form name="search_form" id="search_form" action="eventList.do" method="get">
-					<div class="brd_search">
-						<select name="keyfield" class="keyfield">
-							<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목+내용</option>
-							<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>제목</option>
-							<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>내용</option>
-						</select>								
-						<input type="text" name="keyword" id="keyword" value="${param.keyword}" class="txt_brd_search" placeholder="검색어 입력">
-						<input type="submit" class="btn_nor" value="검색" id="search_btn">
-					</div>
-				</form>
-			</c:if>
-			<p class="tbl_count"></p>
-			<c:if test="${count==0}">
-				<div class="promotion_block">
-				<div class="result-display" style="float:center center;">표시할 이벤트가 없습니다</div>
+			<form name="search_form" id="search_form" action="eventList.do" method="post">
+				<div class="brd_search">
+					<select name="keyfield" class="keyfield">
+						<option value="2" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
+						<option value="3" <c:if test="${param.keyfield==2}">selected</c:if>>내용</option>
+					</select>								
+					<input type="text" name="keyword" id="keyword" value="${param.keyword}" class="txt_brd_search" placeholder="검색어 입력">
+					<input type="submit" class="btn_nor" value="검색" id="search_btn">
 				</div>
-			</c:if>
-			<c:if test="${count>0}">
-				<div class="promotion_block">
+			</form>
+			<p class="tbl_count"></p>
+			<div class="promotion_block">
+				<c:if test="${count==0}">
+					<div class="result-display" style="float:center center;">표시할 이벤트가 없습니다</div>
+				</c:if>
+				<c:if test="${count>0}">
 					<ul class="promotion_list">
-						<c:forEach var="event" items="${list}">
+						<c:forEach var="event" items="${list}"><c:if test="${event.event_category==category || category==null}">
 							<li>
 								<a href='eventDetail.do?event_num=${event.event_num}'>
 									<img style=" display: block; width: 283px; height: 195px;" src="${pageContext.request.contextPath}/upload/${event.event_photo1}">
@@ -70,10 +63,10 @@
 									</div>
 								</a>
 							</li>
-						</c:forEach>	
+						</c:if></c:forEach>	
 					</ul>
-				</div>
-			</c:if>
+				</c:if>
+			</div>
 			<div class="align-center">${page}</div>
 			</div>
 		</div></div>

@@ -38,11 +38,12 @@ public class EventExecuteAction implements Action {
 		
 		if(user_num==null) {//로그인 조건체크
 			mapAjax.put("result","logout");
-		} else if(event.getEvent_count()<=0) {
+		} else if(event.getEvent_count()<=0) { //종료된 이벤트
 			mapAjax.put("result","end");
-		} else if(check==true) { //이미 참여한 이벤트의 경우
+		} else if(check==true) { //이미 참여한 이벤트
 			mapAjax.put("result","done");
 		} else {
+			/*-----랜덤 적립금 이벤트-----*/
 			MoneyVO moneyVo = new MoneyVO();
 			
 			System.out.println("참여 성공");

@@ -15,9 +15,9 @@ public class AdminQuestionModifyFormAction implements Action {
 		
 		HttpSession session = request.getSession();
 		int user_auth = (Integer)session.getAttribute("user_auth");
+		Integer user_num = (Integer)session.getAttribute("user_num");
 		
-		if(user_auth!=9) //관리자 외 출입금지
-			return "redirect:/question/questionList.do";
+		if(user_num==null && user_auth!=9) return "redirect:/question/questionList.do";
 		
 		QuestionDAO dao = QuestionDAO.getInstance();
 		

@@ -13,11 +13,12 @@ public class AdminQuestionWirteFormAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		//로그인, 관리자 체크
 		HttpSession session = request.getSession();
-		int user_auth = (Integer)session.getAttribute("user_auth");
+		Integer user_num = (Integer)session.getAttribute("user_num");
+		Integer user_auth = (Integer)session.getAttribute("user_auth");
 		
-		if(user_auth!=9) 
-			return "redirect:/question/questionList.do";
+		if(user_num==null || user_auth!=9) return "redirect:/question/questionList.do";
 		
 		//원글 내용 불러오기
 		QuestionDAO dao = QuestionDAO.getInstance();

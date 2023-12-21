@@ -12,10 +12,7 @@ public class UserQuestionWriteFormAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		HttpSession session = request.getSession();
-		Integer user_num = (Integer)session.getAttribute("user_num");
-		
-		if(user_num!=null) 
-			request.setAttribute("user_num", user_num);
+		session.removeAttribute("passwdCheck");
 		
 		return "/WEB-INF/views/question/userQuestionWriteForm.jsp";
 	}
