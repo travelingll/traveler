@@ -210,6 +210,8 @@ private static ItemDAO instance = new ItemDAO();
 				}
 			}
 			
+			
+			
 			//SQL문 작성
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM item  "  + sub_sql +sub_sql2 +sub_sql3
 					+ " ORDER BY item_num ASC)a) WHERE rnum>=? AND rnum<=?";

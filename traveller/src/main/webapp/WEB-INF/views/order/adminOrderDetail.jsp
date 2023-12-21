@@ -15,6 +15,9 @@
 td{
 	text-align:center;
 }
+.content-main{
+	padding:10px 20px;
+}
 </style>
 </head>
 <body>
@@ -41,36 +44,39 @@ td{
 	</div>
 </div>
 		
-	<div id="containerr" style="display: flex;">
+	<div id="container" style="display: flex;">
     <div id="sidebar" style="width: 100%;">
+    
 		<h2>
 			<b>관리자 예약관리 게시판 (예약상세)</b>
 		</h2><br>
+		
 		<div>
 			<ul>
-				<li><h4>이름 : ${order.order_name}   </h4></li>
-				<li><h4>이메일 : ${order.order_email} </h4></li>
-				<li><h4>전화번호 : ${order.order_phone} </h4></li>
-				<li><h4>생년월일 : ${order.order_birth} </h4></li>
-				<li><h4>성별 : 
-								<c:if test="${order.order_gender==1}">남자</c:if>
-								<c:if test="${order.order_gender==2}">여자</c:if></h4></li>
-				<li><h4>메세지 : ${order.notice} </h4></li>
-				<li><h4>총 상품 금액 : <fmt:formatNumber value="${order.order_total}" />원</h4></li>
-				<li><h4>사용한 적립금
-								<fmt:formatNumber value="${order.order_price}-${order.order_custprice}"/>원</h4></li>
-				<li><h4>결제 금액
-								<fmt:formatNumber value="${order.order_price}"/>원</h4></li>
-				<li><h4>결제수단
+				<li> 이름 : ${order.order_name}   </li>
+				<li> 이메일 : ${order.order_email} </li>
+				<li> 전화번호 : ${order.order_phone} </li>
+				<li> 생년월일 : ${order.order_birth} </li>
+				<li> 성별 : 
+								<c:if test="${order.order_gender==1}">남성</c:if>
+								<c:if test="${order.order_gender==2}">여성</c:if> </li>
+				<li>메세지 : ${order.notice} </li>
+				<li>총 상품 금액 : <fmt:formatNumber value="${order.order_price}"/>원</li>
+				<li>사용한 적립금
+						<fmt:formatNumber value="${order.order_price}-${order.order_custprice}"/>원</li>
+				<li>결제 금액
+						<fmt:formatNumber value="${order.order_custprice}"/>원</li>
+				<li>결제수단
 								<c:if test="${order.payment==1}">카드 결제</c:if>
-								<c:if test="${order.payment==2}">무통장 입금</c:if></h4></li>
+								<c:if test="${order.payment==2}">무통장 입금</c:if></li>
 			</ul>
 		</div>
 		<div class="align-right">
 							<input type="button" value="예약정보 수정" onclick="location.href='adminModifyOrderForm.do'">
 							<input type="button" value="목록" onclick="location.href=''">
 		</div>
+	    </div>
 		</div>
-	</div>
+	
 </body>
 </html> 

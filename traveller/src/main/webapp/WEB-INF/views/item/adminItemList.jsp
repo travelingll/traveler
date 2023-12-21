@@ -91,7 +91,7 @@ td{
 				<th>모집인원</th>
 			</tr>
 			<c:forEach var="item" items="${itemList}">
-			<c:if test="${item.item_st1==st1}">
+			<c:if test="${item.item_st1==st1 || st1==null }">
 				<tr>
 					<td>${item.item_num}</td>
 					<td><c:if test="${item.status==1}">미표시</c:if>
@@ -112,6 +112,7 @@ td{
 					<td><span class="total_order">${item.orderCount}</span>/ ${item.quantity} 명</td>
 				</tr>
 			</c:if>
+			
 			</c:forEach>
 		</table>
 			<div class="align-center">

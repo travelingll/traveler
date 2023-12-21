@@ -1,11 +1,14 @@
 package kr.order.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.order.dao.OrderDAO;
+import kr.order.vo.OrderDetailVO;
 import kr.order.vo.OrderVO;
 
 public class AdminOrderDetailAction implements Action{
@@ -30,9 +33,13 @@ public class AdminOrderDetailAction implements Action{
 		OrderDAO dao = OrderDAO.getInstance();
 		OrderVO order = dao.getOrder(order_num, 0);
 		
+		List<OrderDetailVO> list = dao.getListOrderDetailVO(order_num);
+		
+		
+		request.setAttribute("detailList", list);
 		request.setAttribute("order", order);
 		
-		return "/WEB-INF/views/order/adminOrderDetail.jsp";
+		return "/WEB-INF/views/order/adminOrderDetailSample.jsp";
 	}
 
 }

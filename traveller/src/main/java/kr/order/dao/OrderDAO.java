@@ -340,5 +340,72 @@ public class OrderDAO {
 	
 	
 	/*-----관리자-----*/
+	public List<OrderDetailVO> getListOrderDetailVO(int order_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		List<OrderDetailVO> list = null;
+		ResultSet rs = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 객체 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM order_detail WHERE order_num=? ORDER BY item_num DESC";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, order_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			
+			list = new ArrayList<OrderDetailVO>();
+			while(rs.next()) {
+				OrderDetailVO vo = new OrderDetailVO();
+				vo.setDetail_num(rs.getInt("detail_num"));	
+				vo.setItem_num(rs.getInt("item_num"));
+				vo.setItem_name(rs.getString("item_name"));
+				vo.setItem_price(rs.getInt("item_price"));
+				vo.setOrder_num(order_num);
+				vo.setOrder_quantity(rs.getInt("order_quantity"));
+				
+				list.add(vo);
+				
+			}
+			
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		
+		return list;
+	}
+	/*관리자 예약상태 변경*/
+	public void modifyOrderStatus(int order_status, int order_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 객체 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE order_item SET order_status=? WHERE order_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, order_status);
+			pstmt.setInt(2, order_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	
 }
