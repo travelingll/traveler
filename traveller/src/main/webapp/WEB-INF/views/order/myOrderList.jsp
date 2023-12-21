@@ -52,25 +52,22 @@
 									    	<c:if test="${empty list}">
 													<table class="board_type">
 														<colgroup>
-														<!-- 1번 --><col style="width: 10%;">
-														<!-- 2번 --><col > 
-														<!-- 3번 --><col style="width: 15%;"> 
-														<!-- 4번 --><col style="width: 15%;"> 
-														<!-- 5번 --><col style="width: 15%;">
-														<!-- 6번 --><col style="width: 10%;">
+														<!-- 1번 --><col style="width: 15%;">
+														<!-- 2번 --><col style="width: 60%;"> 
+														<!-- 3번 --><col style="width: 25%;"> 
 														</colgroup> 
 														<thead>
 															<tr>
 																<th>예약번호</th> 
-																<th colspan="3" style="text-align:center;">상품명</th> 
-																<th colspan="2" style="text-align:center;">예약일</th>
+																<th style="text-align:center;">상품명</th> 
+																<th style="text-align:center;">예약일</th>
 															</tr>
 														</thead>
 														<tbody>
 															<tr>
 																<td></td>
-																<td colspan="3" style="text-align:center;">예약내역이 없습니다.</td>
-																<td colspan="2"></td>
+																<td>예약내역이 없습니다.</td>
+																<td></td>
 															</tr>
 									                	</tbody>
 									              	</table>
@@ -78,18 +75,15 @@
 												<c:if test="${!empty list}">
 													<table class="board_type">
 														<colgroup>
-														<!-- 1번 --><col style="width: 10%;">
-														<!-- 2번 --><col > 
-														<!-- 3번 --><col style="width: 15%;"> 
-														<!-- 4번 --><col style="width: 15%;"> 
-														<!-- 5번 --><col style="width: 15%;">
-														<!-- 6번 --><col style="width: 10%;">
+														<!-- 1번 --><col style="width: 15%;">
+														<!-- 2번 --><col style="width: 60%;"> 
+														<!-- 3번 --><col style="width: 25%;">
 														</colgroup> 
 														<thead>
 															<tr>
 																<th>예약번호</th> 
-																<th colspan="3" style="text-align:center;">상품명</th> 
-																<th colspan="2" style="text-align:center;">예약일</th>
+																<th style="text-align:center;">상품명</th> 
+																<th style="text-align:center;">예약일</th>
 															</tr>
 														</thead>
 														<tbody>
@@ -100,11 +94,11 @@
 																	${order.order_num}
 																</td>
 															<!-- 2,3,4번 -->
-																<td colspan="3" class="txl" style="text-align:center;">
+																<td class="txl">
 																	<a><strong class="title">${order.item_name}</strong></a>
 																</td> 
 									                   		<!-- 5,6번 -->	
-									                   			<td colspan="2" style="text-align:center;">
+									                   			<td style="text-align:center;">
 									                   				${order.order_date}
 									                   			</td> 
 									                   		</tr>

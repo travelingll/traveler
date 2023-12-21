@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -110,12 +110,12 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="page-main">
+<div class="chrome">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="content-main">
-		<h2>회원가입</h2>
-		<form id="register_form" action="registerUser.do" method="post">
-			<ul>
+	<div class="order-form">
+		<h1 class="order-title order-center">회원가입</h1>
+		<form id="register_form" action="registerUser.do" method="post" class="input-form">
+			<ul class="order-ul">
 				<li>
 					<label for="id">아이디</label>
 					<input type="text" name="id" id="id" maxlength="12" autocomplete="off" placeholder="아이디 입력" class="input-check">
@@ -149,7 +149,7 @@ $(function(){
 				<li>
 					<label for="zipcode">우편번호</label>
 					<input type="text" name="zipcode" id="zipcode" maxlength="5" autocomplete="off" class="input-check" placeholder="우편번호">
-					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">
+					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" id="zipcode_check">
 				</li>
 				<li>
 					<label for="address1" >주소</label>
@@ -166,7 +166,7 @@ $(function(){
 				</li>
 				<li>
 					<label>선호하는 여행지</label>
-					<input type="checkbox" name="style1" value="1">동남아
+					<input type="checkbox" name="style1" value="1"">동남아
 					<input type="checkbox" name="style1" value="2">북미
 					<input type="checkbox" name="style1" value="3">유럽
 					<input type="checkbox" name="style1" value="4">호주
@@ -192,7 +192,7 @@ $(function(){
 			</ul>
 			<div class="align-center">
 				<input type="submit" value="등록">
-				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'" id="home">
 			</div>
 		</form>
 	</div>

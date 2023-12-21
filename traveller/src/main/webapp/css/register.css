@@ -1,0 +1,189 @@
+@charset "UTF-8";
+@charset "UTF-8";
+.order-form{
+	margin: 50px auto;
+	padding: 20px;
+	width: 700px;
+	border: 1px solid;
+	border-radius: 10px 10px 10px 10px;
+	border-color: lightgray;
+}
+.order-title{
+	padding-bottom: 30px;
+	color: #545454;
+	font-size: 18px;
+}
+.order-form .input-form{
+	border: none;
+}
+.order-ul > li{
+	padding: 10px;
+	margin: 10px;
+}
+.order-ul > li label{
+	font-size: 11pt;
+	font-weight: bold;
+	white-space: nowrap;
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	color:#545454;
+	margin: 0 50px 0 60px;
+}
+input[type=radio]{
+	appearance: none;
+	border: max(2px, 0.1em) solid gray;
+	border-radius: 50%;
+	width: 1.3em;
+	height: 1.3em;
+	transition: border 0.1s ease-in-out;
+	vertical-align:middle;
+}
+[type="radio"]:checked {
+	border: 0.4em solid lightgray;
+}
+.order-radio{
+	font-size: 11pt;
+	white-space: nowrap;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+}
+.radio-right{
+	text-align:right;
+	margin-right:30px;
+}
+.order-ul > li > span{
+	font-size: 11pt;
+	white-space: nowrap;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	text-align: right;
+	padding-right: 30px;
+}
+.order-center{
+	text-align: center;
+}
+.order-right{
+	text-align: right;
+}
+.order-money{
+	margin-left:100px;
+}
+input[type=text],input[type=email],input[type=number],input[type=number],input[type=password],textarea {
+	width: 300px;
+	height: 40px;
+	border-color: lightgray;
+	display: block;
+	line-height: 30px;
+	border-width: 0 0 1px 0;
+}
+[type="submit"]{
+	margin: 30px 0 10px 0;
+	font-weight: bold;
+	background-color: #9c9c9c;
+	color: white;
+	font-size: 11pt;
+	padding: 12px 18px 12px 18px;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: none;
+	border: none;
+}
+[type="submit"]:hover{
+	transform: scale(1.1);
+}
+
+
+/* 공통 등록, 수정 폼
+------------------------------*/
+form{
+	width:600px;
+	margin:0 auto;
+	border:1px solid #000;
+	padding:10px 10px 10px 30px;
+}
+form ul li{
+	clear:both;
+}
+form ul li label{
+	width:130px;
+	float:left;
+}
+ul{
+	list-style:none;
+}
+input{
+	margin-top:4px;
+}
+input[type="text"],input[type="password"],input[type="email"]{
+	width:310px;
+}
+#register_form input[id="id"]{
+	width:223px;
+	height: 40px;
+	border-color: lightgray;
+	display: block;
+	line-height: 30px;
+	border-width: 0 0 1px 0;
+	display:inline;
+}
+input[id="zipcode"]{
+	width:205px;
+	display:inline;
+}
+input[type="number"]{
+	width:100px;
+}
+.form-notice{
+	margin-left:130px;
+}
+input[id="zipcode_check"]{
+    width: 100px;
+    height:40px;
+   	background-color: lightgray;
+    border:none;
+    background-color: white;
+    font-size:1em;
+    color:#042AaC;
+    outline:none;
+    display:inline;
+    box-sizing: border-box;
+}
+input[id="id_check"]{
+    width: 80px;
+    height:40px;
+   	background-color: lightgray;
+    border:none;
+    background-color: white;
+    font-size:1em;
+    color:#042AaC;
+    outline:none;
+    display:inline;
+    box-sizing: border-box;
+}
+input[type=button]:hover{
+    background-color: lightgray;
+}
+input[id="home"]{
+	margin: 30px 0 10px 0;
+	font-weight: bold;
+	background-color: #9c9c9c;
+	color: white;
+	font-size: 11pt;
+	padding: 12px 18px 12px 18px;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: none;
+	border: none;
+}
+input[id="home"]:hover{
+	transform: scale(1.1);
+}
+input[type="checkbox"]{
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border:3px solid #707070;
+    position: relative;
+    accent-color: #bbd6f0;
+}
