@@ -25,20 +25,16 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div id="container"><div class="inr"><div id="lnb" class="lnb"><div class="inr">
-		<dl>
-			<dt class="type">
-				<a href="${pageContext.request.contextPath}/faq/list.do">고객센터</a>
-			</dt>
-			<dd>
-				<ul class="list_lnb">
+	<div id="container"><div class="inr"><div id="lnb" class="lnb"><div class="inr"><dl>
+		<dt class="type"><a href="${pageContext.request.contextPath}/faq/list.do">고객센터</a></dt>
+		<dd>
+			<ul class="list_lnb">
 				<li><a href="${pageContext.request.contextPath}/faq/list.do">자주찾는질문</a></li>
-					<li><a href="${pageContext.request.contextPath}/question/userQuestionWriteForm.do">1:1문의하기</a></li>
-					<li><a href="${pageContext.request.contextPath}/question/questionList.do">1:1문의</a></li>
-				</ul>
-			</dd>
-		</dl>
-	</div></div> 
+				<li><a href="${pageContext.request.contextPath}/question/userQuestionWriteForm.do">1:1문의하기</a></li>
+				<li><a href="${pageContext.request.contextPath}/question/questionList.do">1:1문의</a></li>
+			</ul>
+		</dd>
+	</dl></div></div> 
 	<div id="contents" class="contents">
 		<div class="text_wrap big fix"><strong class="tit">1:1 문의</strong></div> 
 		<form action="questionList.do" id="search_form" method="post"><%-- 검색바 --%>
@@ -59,7 +55,7 @@
 		<div class="js_tabs type1 v-tabs">
 			<ul class="tabs">
 				<li class="fx-cobrand-pkg" style="width: 25%;">
-					<a href="questionList.do?question_category=0">전체</a>
+					<a href="questionList.do">전체</a>
 				</li> 
 				<li class="fx-cobrand-pkg" style="width: 25%;">
 					<a href="questionList.do?question_category=1">상품</a>
@@ -72,86 +68,62 @@
 				</li>
 			</ul> 
 			<div class="panels"><div id="tabPkg" class="panel selected"><div class="tbl">
-				<c:if test="${empty list}">
-					<table class="board_type">
-						<colgroup>
-							<col style="width: 13%;"> 
-							<col> 
-							<col style="width: 15%;"> 
-							<col style="width: 15%;"> 
-							<col style="width: 13%;">
-						</colgroup> 
-						<thead>
+				<table class="board_type">
+					<colgroup>
+						<col style="width: 13%;"> 
+						<col> 
+						<col style="width: 15%;"> 
+						<col style="width: 15%;"> 
+						<col style="width: 13%;">
+					</colgroup> 
+					<thead>
+						<tr>
+							<th>카테고리</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>작성일자</th>
+							<th>조회수</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:if test="${empty list}">
+							<tr><td style="float:right;"> 표시할 게시물이 없습니다.</td></tr>
+						</c:if>
+						<c:forEach var="question" items="${list}"><c:if test="${question.question_category==category || category==null}">
 							<tr>
-								<th>카테고리</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일자</th>
-								<th>조회수</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td style="float:right;"> 표시할 게시물이 없습니다.</td>
-							</tr>
-                 		</tbody>
-                  	</table>
-				</c:if>
-				<c:if test="${!empty list}">
-					<table class="board_type">
-						<colgroup>
-							<col style="width: 13%;"> 
-							<col> 
-							<col style="width: 15%;"> 
-							<col style="width: 15%;"> 
-							<col style="width: 13%;">
-						</colgroup> 
-						<thead>
-							<tr>
-								<th>카테고리</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일자</th>
-								<th>조회수</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="question" items="${list}">
-								<tr>
-									<td>
-										<c:if test="${question.question_category==1}">상품</c:if>
-										<c:if test="${question.question_category==2}">교환/환불</c:if>
-										<c:if test="${question.question_category==3}">기타</c:if>
-									</td>
-									<td class="txl">
-										<c:if test="${question.question_lock==2}">
-											<img src="${pageContext.request.contextPath}/upload/question_lock.png" width="8">
-										</c:if>
-											<a href="questionDetail.do?question_num=${question.question_num}">${question.question_title}</a>
-										<c:if test="${question.question_renum!=0}">
-											<br>
-											<a href="questionDetail.do?question_num=${question.question_num}">
+								<td>
+									<c:if test="${question.question_category==1}">상품</c:if>
+									<c:if test="${question.question_category==2}">교환/환불</c:if>
+									<c:if test="${question.question_category==3}">기타</c:if>
+								</td>
+								<td class="txl">
+									<c:if test="${question.question_lock==2}">
+										<img src="${pageContext.request.contextPath}/upload/question_lock.png" width="8">
+									</c:if>
+										<a href="questionDetail.do?question_num=${question.question_num}">${question.question_title}</a>
+									<c:if test="${question.question_renum!=0}">
+										<br>
+										<a href="questionDetail.do?question_num=${question.question_num}">
 											&nbsp;&nbsp;&nbsp;[답변 완료]&nbsp;<img src="${pageContext.request.contextPath}/upload/question_answer.png" width="12">
-											</a>
-										</c:if>
-									</td> 
-									<td>
-     									<div class="name">
-            								<c:if test="${empty question.name}">비회원</c:if>
-											<c:if test="${!empty question.name}">${question.name}</c:if>
-            							</div>
-            						</td>
-									<td>
-										<p class="date">${question.question_regdate}</p> 
-									</td> 
-									<td>
-										<span class="hit">&nbsp;&nbsp;&nbsp;&nbsp;${question.question_hit}</span>
-          							</td> 
-								</tr>
-           					</c:forEach>
-   						</tbody>
-					</table>
-				</c:if>
+										</a>
+									</c:if>
+								</td> 
+								<td>
+    								<div class="name">
+	           							<c:if test="${empty question.name}">비회원</c:if>
+										<c:if test="${!empty question.name}">${question.name}</c:if>
+	           						</div>
+	           					</td>
+								<td>
+									<p class="date">${question.question_regdate}</p> 
+								</td> 
+								<td>
+									<span class="hit">&nbsp;&nbsp;&nbsp;&nbsp;${question.question_hit}</span>
+	         					</td> 
+							</tr>
+	          			</c:if></c:forEach>
+					</tbody>
+				</table>
 			</div></div></div>
 		</div>
 	</div>

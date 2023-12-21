@@ -95,7 +95,7 @@ public class QuestionDAO {
 	}
 	
 	//글 갯수
-	public int getQuestionCount(String keyword, String keyfield, int mem_num, int category) throws Exception {
+	public int getQuestionCount(String keyword, String keyfield, int mem_num, String category) throws Exception {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -114,10 +114,10 @@ public class QuestionDAO {
 				if(keyfield.equals("1")) sub_sql += " WHERE question_title LIKE ? "; //제목
 				else if(keyfield.equals("2")) sub_sql += " WHERE question_content LIKE ? "; //내용
 				
-				if(category!=0) sub_sql2 += " AND question_category=? "; //검색+카테고리
+				if(category!=null && !"".equals(category)) sub_sql2 += " AND question_category=? "; //검색+카테고리
 				if(mem_num > 0) sub_sql3 += " AND mem_num=? "; //검색+mem_num or 검색+카테고리+mem_num
 			} else {
-				if(category!=0) { //미검색+카테고리
+				if(category!=null && !"".equals(category)) { //미검색+카테고리
 					sub_sql2 += " WHERE question_category=? ";
 					if(mem_num > 0) sub_sql3 += " AND mem_num=? "; //미검색+카테고리+mem_num
 				} else {
@@ -130,12 +130,14 @@ public class QuestionDAO {
 			pstmt = conn.prepareStatement(sql);
 			
 			if(keyword!=null && !"".equals(keyword)) pstmt.setString(++cnt, "%"+keyword+"%");
-			if(category==1 || category==2 || category==3) pstmt.setInt(++cnt, category);
+			if(category!=null) pstmt.setInt(++cnt, Integer.parseInt(category));
 			if(mem_num > 0) pstmt.setInt(++cnt, mem_num);
 			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) count = rs.getInt(1);
+			
+			System.out.println(count+sql);
 			
 		} catch (Exception e) {
 			throw new Exception();
@@ -146,7 +148,7 @@ public class QuestionDAO {
 	}
 
 	//글 목록
-	public List<QuestionVO> getQuestionList(String keyword, String keyfield, int start, int end, int mem_num, int category) throws Exception {
+	public List<QuestionVO> getQuestionList(String keyword, String keyfield, int start, int end, int mem_num, String category) throws Exception {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -165,10 +167,10 @@ public class QuestionDAO {
 				if(keyfield.equals("1")) sub_sql += " WHERE question_title LIKE ? "; //제목
 				else if(keyfield.equals("2")) sub_sql += " WHERE question_content LIKE ? "; //내용
 				
-				if(category==1 || category==2 || category==3) sub_sql2 += " AND question_category=? "; //검색+카테고리
+				if(category!=null && !"".equals(category)) sub_sql2 += " AND question_category=? "; //검색+카테고리
 				if(mem_num > 0) sub_sql3 += " AND mem_num=? "; //검색+mem_num or 검색+카테고리+mem_num
 			} else {
-				if(category==1 || category==2 || category==3) { //미검색+카테고리
+				if(category!=null && !"".equals(category)) { //미검색+카테고리
 					sub_sql2 += " WHERE question_category=? ";
 					if(mem_num > 0) sub_sql3 += " AND mem_num=? "; //미검색+카테고리+mem_num
 				} else {
@@ -178,11 +180,11 @@ public class QuestionDAO {
 			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM question "
 					+ sub_sql + sub_sql2 + sub_sql3
 					+ " ORDER BY question_num DESC)a) WHERE rnum>=? AND rnum<=?";
-			
+			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			
 			if(keyword!=null && !"".equals(keyword)) pstmt.setString(++cnt, "%"+keyword+"%");
-			if(category==1 || category==2 || category==3) pstmt.setInt(++cnt, category);
+			if(category!=null) pstmt.setInt(++cnt, Integer.parseInt(category));
 			if(mem_num > 0) pstmt.setInt(++cnt, mem_num);
 			pstmt.setInt(++cnt, start);
 			pstmt.setInt(++cnt, end);
