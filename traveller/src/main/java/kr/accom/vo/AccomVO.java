@@ -129,7 +129,5 @@ public class AccomVO {
 	}
 	public void setPresent_cnt(int present_cnt) {
 		this.present_cnt = present_cnt;
-	}
-	
-	
+	}	
 }

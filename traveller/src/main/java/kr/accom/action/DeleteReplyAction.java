@@ -45,7 +45,5 @@ public class DeleteReplyAction implements Action {
 		request.setAttribute("ajaxData", ajaxData);
 		
 		return "/WEB-INF/views/common/ajax_view.jsp";
-	}
-	
-
+	}	
 }

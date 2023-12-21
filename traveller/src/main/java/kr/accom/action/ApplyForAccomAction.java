@@ -30,7 +30,6 @@ public class ApplyForAccomAction implements Action {
 		dao.applyForAccom(accom_num, user_num);
 		
 		return "/WEB-INF/views/accom/applyAccomList.jsp";
+		
 	}
-
-	
 }

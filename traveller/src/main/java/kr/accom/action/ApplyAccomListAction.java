@@ -44,7 +44,7 @@ public class ApplyAccomListAction implements Action {
 		request.setAttribute("page", page.getPage());
 		
 		return "/WEB-INF/views/accom/applyAccomList.jsp";
-	}
-
-	
+		
+	}	
 }
+

@@ -35,7 +35,6 @@ public class DeleteAction implements Action {
 		FileUtil.removeFile(request, db_accom.getAccom_filename());
 		
 		return "redirect:/accom/list.do";
-	}
-
-	
+	}	
 }
+

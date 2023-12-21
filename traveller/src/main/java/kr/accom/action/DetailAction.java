@@ -28,7 +28,5 @@ public class DetailAction implements Action {
 		request.setAttribute("accom", accom);
 		
 		return "/WEB-INF/views/accom/detail.jsp";
-	}
-	
-
+	}	
 }

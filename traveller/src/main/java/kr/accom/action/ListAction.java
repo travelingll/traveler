@@ -37,7 +37,5 @@ public class ListAction implements Action {
 		
 		//JSP 경로 반환
 		return "/WEB-INF/views/accom/list.jsp";
-	}
-	
-
+	}	
 }  

@@ -28,14 +28,16 @@ public class RequestAccomListAction implements Action {
 		String keyword = request.getParameter("keyword");
 		
 		AccomDAO dao = AccomDAO.getInstance();
-		int count = dao.getAccomInfoCountByMem_num(keyfield, keyword, user_num);
+		List<Integer> accom_nums = dao.getRequestAccom(user_num);
+		
+		int count = dao.getRequestAccomInfoCount(keyfield, keyword, accom_nums);
 		
 		//페이지 처리
 		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum),count,20,10,"requestAccomList.do");
 		
 		List<AccomInfoVO> list = null;
 		if(count > 0) {
-			list = dao.getListAccomInfoByMem_num(page.getStartRow(), page.getEndRow(), keyfield, keyword, user_num);
+			list = dao.getRequestAccomInfo(page.getStartRow(), page.getEndRow(), keyfield, keyword, accom_nums);
 		}
 		
 		request.setAttribute("count", count);
@@ -43,7 +45,5 @@ public class RequestAccomListAction implements Action {
 		request.setAttribute("page", page.getPage());
 		
 		return "/WEB-INF/views/accom/requestAccomList.jsp";
-	}
-
-	
+	}	
 }
