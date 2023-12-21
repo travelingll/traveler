@@ -52,24 +52,26 @@
 					<p>${question.question_content}</p>
 				</div>
 			</div>
-			<h2 class="detail-center form-title">[관리자] 일대일 문의 답변 등록</h2>
-			<form class="detail-form" id="question_writeForm" action="adminQuestionWrite.do" method="post">
-				<input type="hidden" value="${question.question_num}" name="question_num" id="question_num">
-				<input type="hidden" value="${question.question_category}" name="question_category" id="question_category">
-				<ul class="input-form">
-					<li>
-						<label for="question_title">제목</label>
-						<input type="text" id="question_title" name="question_title" value="고객님 문의 답변드립니다 :)">
-					</li>
-					<li>
-						<label for="question_content">답변</label>
-						<textarea rows="5" cols="50" id="question_content" name="question_content" class="input"></textarea>
-					</li>
-				</ul>
-				<div class="file-right">
-					<input type="submit" value="답변 등록">
-				</div>
-			</form>
+			<div class="admin-answer">
+				<h2 class="detail-center form-title">[관리자] 일대일 문의 답변 등록</h2>
+				<form class="detail-form" id="question_writeForm" action="adminQuestionWrite.do" method="post">
+					<input type="hidden" value="${question.question_num}" name="question_num" id="question_num">
+					<input type="hidden" value="${question.question_category}" name="question_category" id="question_category">
+					<ul class="input-form">
+						<li>
+							<label for="question_title">제목</label>
+							<input type="text" id="question_title" name="question_title" value="고객님 문의 답변드립니다 :)">
+						</li>
+						<li>
+							<label for="question_content">답변</label>
+							<textarea rows="5" cols="50" id="question_content" name="question_content" class="input"></textarea>
+						</li>
+					</ul>
+					<div class="file-right">
+						<input type="submit" value="답변 등록">
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 </body>

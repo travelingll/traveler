@@ -90,7 +90,7 @@
 .form-title{
 	font-size: 15pt;
 	font-weight: bold;
-	margin: 0 0 20px 0;
+	margin: 50px 0 20px 0;
 }
 .input-form li{
 	margin: 20px;
@@ -128,4 +128,7 @@ input[type=radio]{
 	width: 1.25em;
 	height: 1.25em;
 	transition: border 0.5s ease-in-out;
+}
+.admin-answer{
+	margin-bottom: 50px;
 }
