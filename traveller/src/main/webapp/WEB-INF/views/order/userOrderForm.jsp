@@ -113,7 +113,7 @@
 					</li>
 					<li><%-- 보내는 데이터 --%>
 						<label for="use_money">사용할 적립금</label>
-						<div class="order-money"><input type="number" placeholder="<fmt:formatNumber value="${user_money}"/>원까지 사용 가능" min="1" max="${user_money}" id="use_money" name="use_money" style="text-align:right;"></div>
+						<div class="order-money"><input type="number" placeholder="<fmt:formatNumber value="${user_money}"/>원까지 사용 가능" min="0" max="${user_money}" id="use_money" name="use_money" style="text-align:right;"></div>
 					</li>
 					<li>
 						<label>결제 예정 금액</label>
