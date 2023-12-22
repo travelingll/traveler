@@ -369,6 +369,8 @@ public class OrderDAO {
 				vo.setOrder_num(order_num);
 				vo.setOrder_quantity(rs.getInt("order_quantity"));
 				
+				
+				
 				list.add(vo);
 			}
 		}catch(Exception e) {
