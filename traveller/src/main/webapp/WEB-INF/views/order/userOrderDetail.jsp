@@ -35,8 +35,10 @@
 		    		<strong class="tit">예약 번호 [${order.order_num}] 상세 내역</strong>
 		    	</div>
 		    	<%-- 주문 상태별로 버튼 출력 유무 결정할 수 있또록  --%>
-		    	<input type="button" value="예약 내역 수정" onclick="location.href='userOrderModifyForm.do'">
-		    	<input type="button" value="예약 내역 취소" onclick="location.href=''">
+		    	<div class="ordertable-right">
+			    	<input type="button" value="예약자 정보 수정" onclick="location.href='userOrderModifyForm.do?order_num=${order.order_num}'">
+			    	<input type="button" value="예약 내역 취소" onclick="location.href=''">
+				</div>	
   			<div class="panels"><div id="tabPkg" class="panel selected"><div class="tbl">
 				<table class="board_type">
 					<colgroup>
@@ -72,6 +74,7 @@
 							<tr>
 								<th>예약 상세 번호</th> 
 								<th>상품명</th> 
+								<th>기간</th>
 								<th>상품가격</th>
 								<th>상품갯수</th>
 							</tr>
@@ -82,6 +85,7 @@
 									<td>${detail.detail_num}</td>
 									<td class="txl"><a href="userOrderDetail.do?order_num=${order.order_num}"><strong class="title">${detail.item_name}</strong></a></td> 
 		                   			<td>${detail.item_price}</td> 
+		                   			<td>${detail.item_price}</td> 
 		                   			<td>${detail.order_quantity}</td>
 								</tr>
 							</c:forEach>
@@ -91,8 +95,8 @@
    				<div class="panels"><div id="tabPkg" class="panel selected"><div class="tbl">
 					<table class="board_type">
 						<colgroup>
-							<col style="width: 50%;">
-							<col style="width: 50%;"> 
+							<col style="width: 40%;">
+							<col style="width: 60%;"> 
 						</colgroup> 
 						<thead>
 							<tr>
@@ -111,6 +115,17 @@
 							<tr>
 								<th>결제 금액</th>
 								<td><fmt:formatNumber value="${order.order_custprice}"/>원</td>
+							</tr>
+							<tr>
+								<th>결제 수단</th>
+								<td>
+									<c:if test="${order.payment==1}">카드 결제</c:if>
+									<c:if test="${order.payment==2}">무통장 입금</c:if>
+								</td>
+							</tr>
+							<tr>
+								<th>남기신 말씀</th>
+								<td>${order.notice}</td>
 							</tr>
 	                	</tbody>
 	              	</table>
@@ -152,14 +167,12 @@
 							</tr>
 	                	</tbody>
 	              	</table>
+	              	
    				</div>
    			</div></div>
    			<div class="panels">
    			</div>
-		</div>
-		
-		</div>
-	
+		</div></div></div>
 	</div></div>
 </body>
 </html>

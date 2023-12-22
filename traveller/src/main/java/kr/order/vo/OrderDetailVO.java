@@ -1,5 +1,7 @@
 package kr.order.vo;
 
+import kr.item.vo.ItemVO;
+
 public class OrderDetailVO {
 	private int detail_num;
 	private int item_num;
@@ -7,8 +9,14 @@ public class OrderDetailVO {
 	private int item_price;
 	private int order_num;
 	private int order_quantity;
+	private ItemVO itemVO;
 	
-	
+	public ItemVO getItemVO() {
+		return itemVO;
+	}
+	public void setItemVO(ItemVO itemVO) {
+		this.itemVO = itemVO;
+	}
 	public int getDetail_num() {
 		return detail_num;
 	}

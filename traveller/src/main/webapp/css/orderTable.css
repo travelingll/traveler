@@ -280,28 +280,7 @@ h1.logo {
     border-radius: 4px;
     border: solid 1px #c2c2c2;
 }
-.inr input[type="file"] {
-	position: relative;
-    display: inline-block;
-    height: 25px;
-    line-height: 23px;
-    font-size: 12px;
-    padding: 0 10px;
-    margin: 0;
-    color: #666;
-    background-color: #fff;
-    font-weight: 400;
-    text-align: center;
-    border-radius: 4px;
-    border: solid 1px #c2c2c2;
-    margin-top:10px;
-}
 
-.inr input[type="file"] {
-    padding: 0;
-    
-    border: 0;
-}
 /*-----------------gnb 메뉴 왼쪽*/
 gnb_wrap {
     height: 170px;
@@ -462,25 +441,6 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 .search_field .box_search.wide_type {
     overflow: hidden;
 }
-.search_field .box_search.wide_type input[type=search] {
-    width: 592px;
-    height: 54px;
-    border: 3px solid #333;
-    border-radius: 0;
-    margin-left: 0;
-}
-.search_field input[type=search] {
-    width: 200px;
-    margin-left: 8px;
-    float: left;
-}
-input[type=search]{
-    height: 42px;
-    padding: 0 15px;
-    border: 1px solid #cdcdcd;
-    background-color: #fff;
-    border-radius: 2px;
-}
 button, input, textarea {
     -webkit-border-radius: 0;
     border-radius: 0;
@@ -523,24 +483,22 @@ button, input, textarea {
 #gnb_wrap > .inr {
     position: relative;
 }
-button {
+input[type="submit"], input[type="button"]{
     background-color: transparent;
-    cursor: pointer;
+    border: solid 1px #c2c2c2;
+    padding: 10px 20px 10px 20px;
 }
-button, input, textarea {
-    -webkit-border-radius: 0;
+input[type="text"], input[type="email"]{
     border-radius: 0;
-}
-input, select, textarea, button {
-    font-size: 14px;
-    vertical-align: top;
-}
-button, input, select {
-    overflow: visible;
-}
-button, input, select, textarea {
+    border: solid 1px #c2c2c2;
+    height: 40px;
+    width: 400px;
     font: inherit;
-    margin: 0;
+}
+textarea{
+	height: 80px;
+    width: 400px;
+    border: solid 1px #c2c2c2;
 }
 .search_field .keyfield{
 	  font: inherit;
@@ -752,6 +710,10 @@ table td, table th{
 #main-menu > li:hover #sub-menu {
   opacity: 1;
   visibility: visible;
+}
+
+.ordertable-right{
+	text-align:right;
 }
 
 /*-------마이페이지*/

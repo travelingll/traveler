@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.item.vo.ItemVO;
 import kr.order.vo.OrderDetailVO;
 import kr.order.vo.OrderVO;
 import kr.util.DBUtil;
@@ -357,7 +358,10 @@ public class OrderDAO {
 			
 			list = new ArrayList<OrderDetailVO>();
 			while(rs.next()) {
+				
 				OrderDetailVO vo = new OrderDetailVO();
+				ItemVO item = new ItemVO();
+				
 				vo.setDetail_num(rs.getInt("detail_num"));	
 				vo.setItem_num(rs.getInt("item_num"));
 				vo.setItem_name(rs.getString("item_name"));
@@ -366,10 +370,7 @@ public class OrderDAO {
 				vo.setOrder_quantity(rs.getInt("order_quantity"));
 				
 				list.add(vo);
-				
 			}
-			
-			
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
@@ -404,4 +405,60 @@ public class OrderDAO {
 		}
 	}
 	
+	//예약자 정보 수정
+	public void userOrderModify(OrderVO order) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "UPDATE order_item SET order_name=?,order_email=?,order_gender=?,"
+					+ "order_phone=?,order_birth=?,notice=? WHERE order_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, order.getOrder_name());
+			pstmt.setString(2, order.getOrder_email());
+			pstmt.setString(3, order.getOrder_gender());
+			pstmt.setString(4, order.getOrder_phone());
+			pstmt.setString(5, order.getOrder_birth());
+			pstmt.setString(6, order.getNotice());
+			pstmt.setInt(7, order.getOrder_num());
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+	}
+	
+	//예약 취소
+	public void userOrderCancel(int order_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "";
+			//
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+	}
 }
