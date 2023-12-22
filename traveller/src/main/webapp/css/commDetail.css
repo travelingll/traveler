@@ -1,0 +1,397 @@
+@charset "UTF-8";
+
+.rating_list .option_wrap {
+    padding: 40px 0 20px;
+}
+.option_wrap {
+    position: relative;
+    padding: 0;
+}
+.rating_list .option_wrap > span {
+    float: left;
+}
+em {
+    color: #5e2bb8;
+}
+em, address {
+    font-style: normal;
+}
+.rating_list .option_wrap ul {
+    display: flex;
+    justify-content: flex-end;
+}
+.rating_list .option_wrap ul li {
+    margin-left: 15px;
+}
+.rating_list .option_wrap ul li.on a {
+    color: #5e2bb8;
+}
+.option_wrap:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+*:before, *:after {
+    box-sizing: initial;
+}
+ol, ul, li {
+    list-style: none;
+}
+.rating_list .list_review_v2 > li:first-child {
+    padding-top: 0;
+}
+.rating_list .list_review_v2 > li {
+    padding: 60px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+.rating_list .list_review_v2 li .rating_info {
+    display: flex;
+    position: relative;
+    margin: 0 0 10px;
+}
+.rating_list .list_review_v2 li .rating_info .point {
+    display: flex;
+    align-items: center;
+    color: #5e2bb8;
+    font-size: 16px;
+    background: url(https://image.hanatour.com/usr/static/img2/pc/com/rating_star_on.png) no-repeat 0 1px / 16px;
+    padding-left: 18px;
+    min-width: 45px;
+}
+strong {
+    font-weight: 600;
+}
+.rating_list .list_review_v2 li .rating_info .point + div {
+    margin: 0 0 0 10px;
+}
+.rating_list .list_review_v2 li .rating_info > div {
+    display: flex;
+    margin: 0 0 0 -14px;
+    align-items: center;
+}
+.rating_list .list_review_v2 li .rating_info > div span {
+    height: 20px;
+    padding: 0 0 0 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: #666;
+    margin: 0 0 0 4px;
+    font-size: 13px;
+}
+.rating_list .list_review_v2 li .rating_info > div span img {
+    border: 1px solid #ddd;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    border-radius: 10px;
+    background: url(https://image.hanatour.com/usr/static/img2/mobile/icon/profile-64@2x.png) no-repeat 50% / 100% !important;
+}
+img.noimg, .noimg {
+    background: #c3c3c3 url('https://image.hanatour.com/usr/static/img2/pc/com/noimage.png') no-repeat center center;
+    display: block;
+    height: 100%;
+}
+img {
+    max-width: 100%;
+    height: 100%;
+    vertical-align: top;
+}
+img, fieldset, iframe {
+    border: 0;
+}
+.rating_list .rating_list .list_review_v2 li .rating_info > div span:nth-child(2) {
+    padding: 0;
+}
+
+.rating_list .list_review_v2 li .rating_info a.report {
+    font-size: 13px;
+    color: #666;
+    position: absolute;
+    right: 0;
+    top: 2px;
+}
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+}
+.rating_list .list_review_v2 li .product_info ul {
+    margin: 10px 0 20px;
+}
+.rating_list .list_review_v2 li .product_info ul li:last-child {
+    margin: 0;
+}
+.rating_list .list_review_v2 li .product_info ul li {
+    display: flex;
+    margin: 0 0 10px;
+}
+.rating_list .list_review_v2 li .product_info ul li strong {
+    color: #999;
+    font-size: 13px;
+    min-width: 70px;
+    letter-spacing: -0.65px;
+    line-height: 18px;
+}
+strong {
+    font-weight: 600;
+}
+.rating_list .list_review_v2 li .product_info ul li span {
+    margin: 0 8px 0 0;
+    color: #111;
+    font-size: 13px;
+    letter-spacing: -0.65px;
+    line-height: 18px;
+}
+.rating_list .rating_list .list_review_v2 .review_cont.con.on {
+    margin-top: -26px;
+}
+.rating_list .list_review_v2 .review_cont.con.on {
+    white-space: pre-line;
+    -webkit-line-clamp: unset;
+}
+.rating_list .list_review_v2 .review_cont.con {
+    font-size: 15px;
+    color: #111;
+    letter-spacing: -.6px;
+    line-height: 26px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.rating_list .list_review_v2 .review_cate {
+    display: flex;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+.rating_list .list_review_v2 .review_cate span {
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    height: 26px;
+    margin: 0 8px 8px 0;
+    padding: 0 10px;
+    border-radius: 4px;
+    color: #666;
+    font-size: 13px;
+    letter-spacing: -.52px;
+}
+.topic_icon {
+    z-index: 12;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0 0 0 20px;
+    font-size: 13px;
+    color: #111;
+    font-weight: 600;
+}
+span.topic_icon::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    background-size: 100%;
+    margin: 0 10px 0 0;
+}
+.topic_icon.topic-12 + label:before, span.topic-12::before {
+    background-image: url(https://image.hanatour.com/usr/static/img2/mobile/icon/emoji_framed@2x.png);
+}
+.topic_icon.topic-13 + label:before, span.topic-13::before {
+    background-image: url(https://image.hanatour.com/usr/static/img2/mobile/icon/emoji_camera@2x.png);
+}
+.topic_icon.topic-16 + label:before, span.topic-16::before {
+    background-image: url(https://image.hanatour.com/usr/static/img2/mobile/icon/emoji_foodface@2x.png);
+}
+.topic_icon.topic-24 + label:before, span.topic-24::before {
+    background-image: url(https://image.hanatour.com/usr/static/img2/mobile/icon/emoji-beating@2x.png);
+}
+.topic_icon.topic-20 + label:before, span.topic-20::before {
+    background-image: url(https://image.hanatour.com/usr/static/img2/mobile/icon/emoji_money@2x.png);
+}
+
+.rating_list .list_review_v2 .review_img_list ul {
+    display: flex;
+    margin: 24px 0 20px;
+}
+.rating_list .list_review_v2 .review_img_list ul li {
+    margin: 0 10px 0 0;
+}
+a {
+    color: #333;
+    text-decoration: none;
+}
+.rating_list .list_review_v2 .review_img_list ul li a img {
+    width: 120px;
+    height: 120px;
+}
+img {
+    max-width: 100%;
+    height: 100%;
+    vertical-align: top;
+}
+.rating_list .list_review_v2 .toggle_box {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.rating_list .list_review_v2 .toggle_box button.vote {
+    height: 34px;
+    border: 1px solid #e5e5e5;
+    padding: 10px 15px 10px 30px;
+    border-radius: 17px;
+    float: left;
+    font-size: 12px;
+    background: url(https://image.hanatour.com/usr/static/img2/pc/com/ic_vote_good_black.png) no-repeat 10px 50% / 15px;
+    margin: 2px 7px 0 0;
+    color: #111;
+    font-weight: 600;
+}
+
+.rating_list .list_review_v2 .detail-sub button.vote {
+    height: 34px;
+    border: 1px solid #e5e5e5;
+    padding: 10px 15px 10px 30px;
+    border-radius: 17px;
+    float: left;
+    font-size: 12px;
+    background: url(https://image.hanatour.com/usr/static/img2/pc/com/ic_vote_good_black.png) no-repeat 10px 50% / 15px;
+    margin: 2px 7px 0 0;
+    color: #111;
+    font-weight: 600;
+}
+.rating_list .list_review_v2 .detail-sub button.vote.selected {
+    background: url(https://image.hanatour.com/usr/static/img2/pc/com/ic_vote_good_selected.png) no-repeat 10px 50% / 15px;
+}
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+}
+
+button {
+    background-color: transparent;
+    cursor: pointer;
+}
+input, select, textarea, button {
+    font-size: 14px;
+    vertical-align: top;
+}
+button, input, select {
+    overflow: visible;
+}
+.rating_list .list_review_v2 .toggle_box button.btn {
+    color: #5e2bb8;
+    background-color: #fff;
+    width: auto;
+    line-height: 40px;
+    border: none;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+.btn.more {
+    height: 42px;
+
+    line-height: 40px;
+  
+    border: none;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+.rating_list .list_review_v2 .toggle_box button.btn {
+    color: #5e2bb8;
+    background-color: #fff;
+    width: auto;
+    line-height: 40px;
+    border: none;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+.rating_list .list_review_v2 .toggle_box button.btn.close::after {
+    transform: rotate( 180deg );
+}
+.rating_list .list_review_v2 .toggle_box button.btn::after {
+    background: url(https://image.hanatour.com/usr/static/svg/ico_arrow_purple.svg) no-repeat 0 0;
+    width: 9px;
+    height: 8px;
+    margin: 0px 0 1px 4px;
+}
+.btn:after, .txt:after {
+    background-image: url('https://image.hanatour.com/usr/static/img2/pc/com/spr_btn.png');
+}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+}
+
+
+
+.re-title > img {
+    border: 1px solid #ddd;
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
+    border-radius: 50px;
+    background: url(https://image.hanatour.com/usr/static/img2/mobile/icon/profile-64@2x.png) no-repeat 50% / 100% !important;
+}
+
+.modify-btn {
+    position: relative;
+    display: inline-block;
+    height: 25px;
+    line-height: 23px;
+    font-size: 12px;
+    padding: 0 10px;
+    margin: 0;
+    color: #666;
+    background-color: #fff;
+    font-weight: 400;
+    text-align: center;
+    border-radius: 4px;
+    border: solid 1px #c2c2c2;
+}
+.delete-btn {
+    position: relative;
+    display: inline-block;
+    height: 25px;
+    line-height: 23px;
+    font-size: 12px;
+    padding: 0 10px;
+    margin: 0;
+    color: #666;
+    background-color: #fff;
+    font-weight: 400;
+    text-align: center;
+    border-radius: 4px;
+    border: solid 1px #c2c2c2;
+}
+.re-reset{
+	  position: relative;
+    display: inline-block;
+    height: 25px;
+    line-height: 23px;
+    font-size: 12px;
+    padding: 0 10px;
+    margin: 0;
+    color: #666;
+    background-color: #fff;
+    font-weight: 400;
+    text-align: center;
+    border-radius: 4px;
+    border: solid 1px #c2c2c2;
+}
+
+.submit-btn{
+	  position: relative;
+    display: inline-block;
+    height: 25px;
+    line-height: 23px;
+    font-size: 12px;
+    padding: 0 10px;
+    margin: 0;
+    color: #666;
+    background-color: #fff;
+    font-weight: 400;
+    text-align: center;
+    border-radius: 4px;
+    border: solid 1px #c2c2c2;
+}
