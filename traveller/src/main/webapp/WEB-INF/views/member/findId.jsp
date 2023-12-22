@@ -35,19 +35,21 @@
 	  						<div class="inner_cont grey_box big">
 	  							<ul class="list_line">
 			  						<li>
-			  							${member.name}님의 아이디는 ${member.id}입니다.
+			  							${member.name}님의 아이디는 <b>${member.id}</b> 입니다.
 			      					</li>
 			      				</ul>
 			      			</div>
+  							<div class="bottom_wrap">
+  								<div class="btn_wrap">
+  									<button type="button" class="btn em big" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">홈으로</button>
+  								</div>
+  							</div>
   						</div>
-  						<div class="tab_cont on">
-							<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-  						</div>
-  					</div>
-  				</div> 
+  					</div> 
+				</div>
 			</div>
 		</div>
-	</div> 
+	</div>
 </body>
 </html>
 
