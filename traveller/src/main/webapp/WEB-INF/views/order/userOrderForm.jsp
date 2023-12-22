@@ -46,6 +46,9 @@
 					return false;
 				}
 				//적립금 사용 체크
+				if(document.getElementById('use_money').value.trim()==''){
+					document.getElementById('use_money').value = '0';
+				}
 			};
 			//동적으로 결제금액 태그 생성하기
 			let money_input = document.getElementById('use_money');
@@ -117,7 +120,7 @@
 					</li>
 					<li>
 						<label>결제 예정 금액</label>
-						<span id="expect_money">0원</span>
+						<span id="expect_money">${order_total}원</span>
 					</li>
 					<li class="order-radio"><%-- 보내는 데이터 --%>
 						<label for="payment">결제 수단</label>
