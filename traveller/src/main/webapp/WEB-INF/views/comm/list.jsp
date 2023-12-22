@@ -96,47 +96,69 @@ window.onload=function(){
 										<input class="btn" type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">                      
 									</div>		
 								</div> 
-								<div class="tbl">
- 										<c:if test="${count == 0}">
-										<div class="result-display">표시할 게시물이 없습니다.</div>
-										</c:if>
-										<c:if test="${count > 0}">
- 										<table>
- 										<thead>
- 											<tr>
- 												<th style="width: 1%;"></th>
- 												<th style="width: 10%;">번호</th>
- 												<th style="width: 1%;"></th>
-  												<th>제목</th>
-  												<th style="width: 5%;"></th>
-  												<th style="width: 15%;">작성자</th>
-  												<th style="width: 1%;"></th>
-   												<th style="width: 15%;">작성일</th>
-   												<th style="width: 1%;"></th>
-   												<th style="width: 10%;">조회</th>
-   												<th style="width: 1%;"></th>
-   											</tr>
-   										</thead>
-   										<c:forEach var="comm" items="${list}">
-   										<tbody>
-   											<tr>
-   												<td></td>
-												<td >${comm.comm_num}</td>
-												<td></td>
-												<td><a href="detail.do?comm_num=${comm.comm_num}">${comm.comm_title}</a></td>
-												<td></td>
-												<td>${comm.id}</td>
-												<td></td>
-												<td>${comm.reg_date}</td>
-												<td></td>
-												<td>${comm.comm_hit}</td>
-												<td></td>
-											</tr>
-										</tbody>	
-										</c:forEach>
-   										</table> 
-   										</c:if>
-   								</div> 
+								<div class="tbl" style="width:100%">
+    		<c:if test="${count == 0}">
+				<table class="board_type">
+					<colgroup>
+					<col style="width: 7%;"> 
+					<col > 
+					<col style="width: 10%;"> 
+					<col style="width: 12%;"> 
+					<col style="width: 7%;"> 
+					</colgroup>								 								
+					<thead>
+						<tr>
+							<th>번호</th> 
+							<th>제목</th> 
+							<th>작성자</th>
+							<th>작성일</th> 
+							<th>조회</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td></td>
+							<td style="float:right;">적릭된 금액이 없습니다.</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+                	</tbody>
+            	</table>
+			</c:if>
+			<c:if test="${count > 0}">
+				<table class="board_type">
+				<colgroup>
+					<col style="width: 7%;"> 
+					<col > 
+					<col style="width: 10%;"> 
+					<col style="width: 12%;"> 
+					<col style="width: 7%;"> 
+				</colgroup> 
+ 					<thead>
+ 						<tr>						
+ 							<th style="text-align: center;">번호</th>
+  							<th>제목</th>
+  							<th style="text-align: center;">작성자</th>
+   							<th style="text-align: center;">작성일</th>
+   							<th style="text-align: center;">조회</th>
+   						</tr>
+   					</thead>
+   					<c:forEach var="comm" items="${list}">
+   					<tbody>
+   						<tr>
+							<td style="text-align: center;">${comm.comm_num}</td>
+							<td><a href="detail.do?comm_num=${comm.comm_num}">${comm.comm_title}</a></td>
+							<td style="text-align: center;">${comm.id}</td>
+							<td style="text-align: center;">${comm.reg_date}</td>
+							<td style="text-align: center;">${comm.comm_hit}</td>
+						</tr>
+					</tbody>	
+					</c:forEach>									
+                   	</table>								
+            </c:if>
+    	</div>	
+
      						</div>
   						</div>
   					</div>
@@ -152,3 +174,5 @@ window.onload=function(){
 </div>
 </body>
 </html>
+
+
