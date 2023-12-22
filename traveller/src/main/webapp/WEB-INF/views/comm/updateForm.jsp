@@ -21,8 +21,8 @@ $(function(){
 				return false;
 			}
 		}
-		if($('input[name="category"]:checkbox:checked').length<1){
-			alert('카테고리를 체크해주세요');
+		if($('input[class="category"]:radio:checked').length<1){
+			alert('여행 스타일을 체크해주세요');
 			return false;
 		}
 		if($('input[name="tag"]:checkbox:checked').length<1){
@@ -168,12 +168,12 @@ $(function(){
 				</li>
 				<li>
 					<label>여행스타일</label>
-					<input type="checkbox" name="category" id="category" value="1">커플여행
-					<input type="checkbox" name="category" id="category" value="2">가족여행
-					<input type="checkbox" name="category" id="category" value="3">아동동반여행
-					<input type="checkbox" name="category" id="category" value="4">친구모임
-					<input type="checkbox" name="category" id="category" value="5">나홀로여행
-					<input type="checkbox" name="category" id="category" value="6">기타
+					<input type="radio" name="category" class="category" value="1">커플여행
+					<input type="radio" name="category" class="category" value="2">가족여행
+					<input type="radio" name="category" class="category" value="3">아동동반여행
+					<input type="radio" name="category" class="category" value="4">친구모임
+					<input type="radio" name="category" class="category" value="5">나홀로여행
+					<input type="radio" name="category" class="category" value="6">기타
 				</li>
 				<li>
 					<label>태그</label>

@@ -10,6 +10,7 @@
 <script type="text/javascript">
 $(function(){
 	$('#write_form').submit(function(){
+		
 		let items = document.querySelectorAll('.insert_check');
 		for(let i=0; i<items.length; i++){
 			let label = document.querySelector('label[for="'+items[i].id+'"]');
@@ -20,8 +21,9 @@ $(function(){
 				return false;
 			}
 		}
-		if($('input[name="category"]:radio:checked').length<1){
-			alert('카테고리를 체크해주세요');
+		
+		if($('input[name="category"]:checkbox:checked').length<1){
+			alert('여행 스타일을 체크해주세요');
 			return false;
 		}
 		if($('input[name="tag"]:checkbox:checked').length<1){
@@ -35,6 +37,7 @@ $(function(){
 
 
 <body class="chrome">
+
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div id="__nuxt">
     	<div id="__layout">
@@ -61,14 +64,14 @@ $(function(){
     							</div> 
     							<!-- 여기까지 사이드바 입니다.-->
     							<div id="contents" class="contents">
-    								<div class="text_wrap big fix"><strong class="tit">개인정보</strong></div> 
+    								<div class="text_wrap big fix"><strong class="tit">글쓰기</strong></div> 
     								<div class="js_tabs link type1 v-tabs">
     									<ul class="tabs"></ul> 
     										<div class="panels">
     											<div id="tabCon01" class="panel selected">
     												<div class="tbl">  
 													<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
-    													<table class="type2">
+ 														<table class="type2">
     														<colgroup>
     															<col style="width: 20%;"><col>
     														</colgroup> 
@@ -103,12 +106,13 @@ $(function(){
     															<tr>
     																<th><label>여행스타일</label></th> 
     																<td>
-    																	<input type="radio" name="category" value="1">커플여행
-																		<input type="radio" name="category" value="2">가족여행
-																		<input type="radio" name="category" value="3">아동동반여행
-																		<input type="radio" name="category" value="4">친구모임
-																		<input type="radio" name="category" value="5">나홀로여행
-																		<input type="radio" name="category" value="6">기타
+    																	<label>여행스타일</label>
+																		<input type="radio" name="category" class="category" value="1">커플여행
+																		<input type="radio" name="category" class="category" value="2">가족여행
+																		<input type="radio" name="category" class="category" value="3">아동동반여행
+																		<input type="radio" name="category" class="category" value="4">친구모임
+																		<input type="radio" name="category" class="category" value="5">나홀로여행
+																		<input type="radio" name="category" class="category" value="6">기타
     																</td>
     															</tr>
     															<tr>

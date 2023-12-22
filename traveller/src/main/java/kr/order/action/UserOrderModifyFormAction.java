@@ -10,6 +10,8 @@ public class UserOrderModifyFormAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		//get방식으로 order_num 받기?
+		
 		//로그인 체크
 		
 		
