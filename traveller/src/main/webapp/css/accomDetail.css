@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+/* 기본 브라우저 스타일 초기화 */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif; /* 필요에 따라 폰트 패밀리 변경 */
+}
+
+/* 페이지 메인 스타일 */
+.page-main {
+  width: 80%; /* 필요에 따라 조정 */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 헤더 스타일 */
+.content-main h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* 상세 정보 스타일 */
+.detail-info {
+  list-style: none;
+  padding: 0;
+}
+
+.detail-info li {
+  margin-bottom: 5px;
+}
+
+/* 콘텐츠 스타일 */
+.content-main p {
+  line-height: 1.6;
+}
+
+/* 버튼 스타일 */
+input[type='button'],
+#resecond input[type='submit'] {
+  padding: 6px 12px; /* 크기 조정 */
+  margin: 3px;
+  cursor: pointer;
+  background-color: #808080; /* 회색 버튼 */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
+
+/* 댓글 폼 스타일 */
+.rep-content {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+/* 푸터 스타일 */
+.detail-sub {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+/* 이미지 스타일 */
+.my-photo {
+  border-radius: 50%;
+}
+
+.detail-img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 페이지네이션 스타일 */
+.paging-button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* 이미지 크기 제한 */
+.detail-img {
+  border-radius: 10px; /* 모서리를 라운드 처리합니다 */
+  max-width: 100%;
+  max-height: 350px; /* 필요에 따라 높이 조정 */
+  height: auto
+}
+
+/* 필요에 따른 추가적인 스타일 */
+/* ... */
+
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media (max-width: 768px) {
+  /* 작은 화면에 맞게 스타일 조정 */
+  .page-main {
+    width: 90%;
+  }
+}
+/* accomdetail.css */
+
+/* 좋아요와 최근 수정일 간격 조정 */
+.detail-sub {
+  margin-top: 20px; /* 여백 조정, 필요에 따라 변경 가능 */
+}
+
+/* 댓글 달기와 입력칸 사이 간격 조정 */
+#reply_div {
+  margin-top: 20px; /* 여백 조정, 필요에 따라 변경 가능 */
+}
+
+/* 댓글 입력 칸 간격 조정 */
+#re_form {
+  margin-top: 10px; /* 여백 조정, 필요에 따라 변경 가능 */
+}
+/* 좋아요, 최근 수정일 ~ 간격 조정 */
+.detail-sub li {
+  margin-bottom: 10px; /* 항목 사이 간격 조정 */
+}
+
+/* rep-content 스타일 조정 */
+.rep-content {
+  display: flex;
+  align-items: center;
+}
+
+#re_form textarea {
+  flex: 1; /* 가능한 최대 너비 설정 */
+  max-width: calc(40% - 5px); /* 원하는 최대 너비 설정 */
+}
+
+#re_first,
+#resecond {
+  display: inline-block;
+  margin-left: 10px; /* 원하는 간격으로 조정해보세요 */
+  vertical-align: middle; /* 요소들을 세로로 중앙 정렬합니다 */
+}
+
+
+

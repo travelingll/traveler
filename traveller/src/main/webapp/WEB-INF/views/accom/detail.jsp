@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>게시판 상세 정보</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/accomDetail.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/accom.fav.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/accom.reply.js"></script>
@@ -81,6 +82,7 @@
 				좋아요
 				<span id="output_fcount"></span>
 			</li>
+			
 			<li>
 				<c:if test="${!empty accom.accom_modifydate}">
 					최근 수정일 : ${accom.accom_modifydate}
@@ -92,6 +94,7 @@
 		<!-- 댓글 시작 -->
   	<div id="reply_div">
 			<span class="re-title">댓글 달기</span>
+			<br>
 			<form id="re_form">
 				<input type="hidden" name="accom_num" value="${accom.accom_num}" id="accom_num">
 				<textarea rows="3" cols="50" name="accom_recontent" id="accom_recontent" class="rep-content"
