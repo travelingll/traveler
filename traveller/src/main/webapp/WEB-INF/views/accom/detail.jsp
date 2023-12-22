@@ -11,6 +11,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/accom.fav.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/accom.reply.js"></script>
+
 </head>
 <body>
 <div class="page-main">
@@ -59,7 +60,7 @@
 			</script>
 			<input type="button" value="동행신청내역" onclick="location.href='requestAccomList.do?accom_num=${accom.accom_num}'">
 			</c:if>
-		<c:if test="${accom.present_cnt < accom.accom_quantity}">
+		<c:if test="${!empty user_num && accom.present_cnt < accom.accom_quantity && user_num != accom.mem_num && accom.accom_status!=1}">
 		<input type="button" value="동행신청" id="apply_btn">
 		</c:if>
 		<script>

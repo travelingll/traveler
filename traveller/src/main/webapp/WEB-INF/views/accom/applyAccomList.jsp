@@ -6,21 +6,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>동행 신청내역</title>
+<title>나의 동행 신청내역</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eunseo.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/sungho_search.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type = "text/javascript">
-window.onload = function(){
-	let myForm = documentg.getElementById('search_form');
+<script type="text/javascript">
+window.onload=function(){
+	let myForm = document.getElementById('search_form');
 	//이벤트 연결
 	myForm.onsubmit=function(){
-		let keyword = documentg.getElementById('keyword');
+		let keyword = document.getElementById('keyword');
 		if(keyword.value.trim()==''){
-		alert('검색어를 입력하세요');
-		keyword.value='';
-		keyword.focus();
-		return false;
+			alert('검색어를 입력하세요!');
+			keyword.value = '';
+			keyword.focus();
+			return false;
 		}
 	};
 };
@@ -60,24 +61,24 @@ window.onload = function(){
 				    				<!--  -->
 				    		<div id="contents" class="contents" style="min-height:70%;">
 				    			<div class="text_wrap big fix">
-				    						<strong class="tit">동행 신청 내역</strong>
+				    						<strong class="tit">나의 동행 신청내역</strong>
 				    			</div>
-				    							    			<form id = "search_form" action="requestAccomList.do" method="get">
-		<ul class="search">
-			<li>
-				<select name="keyfield">
-					<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
-					<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>작성자</option>
-				</select>
-			</li>
-			<li>
-				<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
-			</li>
-			<li>
-				<input type="submit" value="검색">
-			</li>
-		</ul>
-		</form>
+				    		<form id = "search_form" action="applyAccomList.do" method="get">
+							<ul class="search">
+							<li>
+							<select name="keyfield">
+							<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
+							<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>작성자</option>
+							</select>
+							</li>
+							<li>
+							<input type="search" size="16" name="keyword" id="keyword" value="${param.keyword}">
+							</li>
+								<li>
+								<input type="submit" value="검색">
+								</li>
+								</ul>
+								</form>
 				    			<div class="panels">
 									<div id="tabPkg" class="panel selected">
 										<div class="tbl">
@@ -98,7 +99,7 @@ window.onload = function(){
 														<tbody>
 															<tr>
 																<td></td>
-																<td style="text-align:center;">동행 신청내역이 없습니다.</td>
+																<td style="text-align:center;">동행 신청한 내역이 없습니다.</td>
 																<td></td>
 															</tr>
 									                	</tbody>

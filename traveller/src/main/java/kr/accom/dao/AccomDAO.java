@@ -921,7 +921,7 @@ public class AccomDAO {
 			}
 			
 			//SQL문 작성
-			sql = "SELECT COUNT(*) FROM accom_info WHERE accom_num IN "  + sub_sql;
+			sql = "SELECT COUNT(*) FROM accom_info JOIN member USING(mem_num) JOIN accom USING(accom_num) WHERE accom_num IN "  + sub_sql;
 			//PreparedStatement 객체 상태
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
