@@ -65,11 +65,11 @@
     						<div class="box right">
     							<p>
     								<span>여행상품 <em></em></span>
-    								<a href="${pageContext.request.contextPath}/item/itemMain.do" target="_blank" class="btn sml">보기</a>
+    								<a href="${pageContext.request.contextPath}/item/itemMain.do" target="_blank" class="btn sml" style="float:right;">보기</a>
     							</p> 
     							<p>
     								<span>고객센터</span>
-    								<a href="#" class="btn sml">문의하기</a>
+    								<a href="#" class="btn sml" style="float:right;">문의하기</a>
     							</p>
     						</div>
     					</div>
