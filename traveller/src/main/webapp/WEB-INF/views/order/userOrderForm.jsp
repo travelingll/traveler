@@ -120,7 +120,7 @@
 					</li>
 					<li>
 						<label>결제 예정 금액</label>
-						<span id="expect_money">${order_total}원</span>
+						<span id="expect_money"><fmt:formatNumber value="${order_total}" />원</span>
 					</li>
 					<li class="order-radio"><%-- 보내는 데이터 --%>
 						<label for="payment">결제 수단</label>
