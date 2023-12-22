@@ -24,7 +24,7 @@ public class ListAction implements Action {
 		int count = dao.getAccomCount(keyfield, keyword,0);
 		
 		//페이지 처리
-		PageUtil page = new PageUtil(keyfield, keyword,Integer.parseInt(pageNum),count,10,10,"list.do");
+		PageUtil page = new PageUtil(keyfield, keyword,Integer.parseInt(pageNum),count,10,20,"list.do");
 		
 		List<AccomVO> list = null;
 		if(count > 0) {

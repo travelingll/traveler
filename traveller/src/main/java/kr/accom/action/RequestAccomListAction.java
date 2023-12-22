@@ -33,7 +33,7 @@ public class RequestAccomListAction implements Action {
 		int count = dao.getRequestAccomInfoCount(keyfield, keyword, accom_nums);
 		
 		//페이지 처리
-		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum),count,10,10,"requestAccomList.do");
+		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum),count,10,20,"requestAccomList.do");
 		
 		List<AccomInfoVO> list = null;
 		if(count > 0) {
