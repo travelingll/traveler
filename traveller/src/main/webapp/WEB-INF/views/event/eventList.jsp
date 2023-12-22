@@ -19,7 +19,20 @@
 					return false;
 				}
 			};//end of onsubmit
+			
+			let category_select = document.querySelectorAll('.category-select');
+
+			
+			
+			for(let i=0 ; i<category_select.length ; i++){
+				category_select[i].onclick = function(){
+					alert(category_select[i]);
+					console.log(category_select[i]);
+				};
+			}
+			
 		};//end of onload
+
 	</script>
 </head>
 <body class="chrome">
@@ -32,9 +45,9 @@
 	</div></div>
 		<div class="content_block" id="content">
 			<ul class="tab_page_cont" id="tab_page_cont">
-				<li><a href="${pageContext.request.contextPath}/event/eventList.do">진행중</a></li>
-				<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=1">회원</a></li>
-				<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=2">비회원</a></li>
+				<li class="on"><a class="category-select" href="${pageContext.request.contextPath}/event/eventList.do">진행중</a></li>
+				<li><a class="category-select" href="${pageContext.request.contextPath}/event/eventList.do?event_category=1">회원</a></li>
+				<li><a class="category-select" href="${pageContext.request.contextPath}/event/eventList.do?event_category=2">비회원</a></li>
 			</ul>
 			<form name="search_form" id="search_form" action="eventList.do" method="post">
 				<div class="brd_search">

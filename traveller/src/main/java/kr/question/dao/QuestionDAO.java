@@ -10,7 +10,6 @@ import kr.member.dao.MemberDAO;
 import kr.question.vo.QuestionVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
-import oracle.net.aso.q;
 
 public class QuestionDAO {
 	
@@ -202,6 +201,7 @@ public class QuestionDAO {
 				question.setQuestion_hit(rs.getInt("question_hit"));
 				question.setQuestion_lock(rs.getInt("question_lock"));
 				question.setQuestion_renum(rs.getInt("question_renum"));
+				question.setQuestion_level(rs.getInt("question_level"));
 				
 				list.add(question);
 			}

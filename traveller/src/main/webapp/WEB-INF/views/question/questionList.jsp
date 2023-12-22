@@ -20,6 +20,8 @@
 					return false;
 				}
 			};
+			
+			
 		};
 	</script>
 </head>
@@ -29,9 +31,9 @@
 		<dt class="type"><a href="${pageContext.request.contextPath}/faq/list.do">고객센터</a></dt>
 		<dd>
 			<ul class="list_lnb">
-				<li><a href="${pageContext.request.contextPath}/faq/list.do">자주찾는질문</a></li>
-				<li><a href="${pageContext.request.contextPath}/question/userQuestionWriteForm.do">1:1문의하기</a></li>
-				<li><a href="${pageContext.request.contextPath}/question/questionList.do">1:1문의</a></li>
+				<li class="on category-select"><a href="${pageContext.request.contextPath}/faq/list.do">자주찾는질문</a></li>
+				<li class="category-select"><a href="${pageContext.request.contextPath}/question/userQuestionWriteForm.do">1:1문의하기</a></li>
+				<li class="category-select"><a href="${pageContext.request.contextPath}/question/questionList.do">1:1문의</a></li>
 			</ul>
 		</dd>
 	</dl></div></div> 
@@ -89,7 +91,7 @@
 						<c:if test="${empty list}">
 							<tr><td style="float:right;"> 표시할 게시물이 없습니다.</td></tr>
 						</c:if>
-						<c:forEach var="question" items="${list}"><c:if test="${question.question_category==category || category==null}">
+						<c:forEach var="question" items="${list}"><c:if test="${question.question_level==1 && (question.question_category==category || category==null) }">
 							<tr>
 								<td>
 									<c:if test="${question.question_category==1}">상품</c:if>
