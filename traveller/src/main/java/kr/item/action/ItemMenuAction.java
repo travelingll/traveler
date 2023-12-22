@@ -46,10 +46,12 @@ public class ItemMenuAction implements Action{
 		list.add(dao.getItem(100063));
 		list.add(dao.getItem(100065));
 		
+		List<ItemVO> sampleList = dao.getItemSampleList(list_num);
+		
 		request.setAttribute("page", page.getPage());
 		request.setAttribute("list", list);
 		request.setAttribute("list_num", list_num);
-		
+		request.setAttribute("sampleList", sampleList);
 		
 		return "/WEB-INF/views/item/itemMenu.jsp";
 	}

@@ -52,9 +52,9 @@ a {
 						<ul class="list_lnb">
 							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1">동남아</a></li>
 							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=2">북미</a></li>
-							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1">호주</a></li>
-							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1">유럽</a></li>
-							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1">국내</a></li>
+							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=3">호주</a></li>
+							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=4">유럽</a></li>
+							<li><a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=5">국내</a></li>
 						</ul>
 					</dd>
 				</dl>
@@ -68,6 +68,27 @@ a {
 	
 		<div class="row">
 			<c:forEach var="item" items="${list}" varStatus="status">
+				<c:if test="${status.index < 3 && item.item_st1==list_num}">
+					<div class="col-md-4">
+						<div class="card" style="width:30rem;">
+							<a href="${pageContext.request.contextPath}/item/itemMiddle.do?item_case=${item.item_case}&list_num=${item.item_st1}" >
+								<img src="${pageContext.request.contextPath}/upload/${item.item_img1}" class="card-img-top">
+							</a>
+							<div class="card-body">
+								<h3 class="card-title">
+								<a href="${pageContext.request.contextPath}/item/itemMiddle.do?item_case=${item.item_case}&list_num=${item.item_st1}" >
+									<h3>${item.item_name}</h3>
+								</a></h3>
+								<p class="card-text">
+								<a href="${pageContext.request.contextPath}/item/itemMiddle.do?item_case=${item.item_case}&list_num=${item.item_st1}" >
+								${item.item_content}</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</c:if>
+			</c:forEach>
+			<c:forEach var="item" items="${sampleList}" varStatus="status">
 				<c:if test="${status.index < 3 && item.item_st1==list_num}">
 					<div class="col-md-4">
 						<div class="card" style="width:30rem;">

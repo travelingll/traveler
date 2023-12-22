@@ -108,7 +108,7 @@
 																		<dd>
 																			<ul>
 																				<li>
-																					<a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1" onclick="">동남아</a>
+																					<a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1">동남아</a>
 																				</li>
 																				<li>
 																					<a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=2">북미</a>
