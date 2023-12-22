@@ -165,7 +165,7 @@ input[id="id_check"]{
 input[type=button]:hover{
     background-color: lightgray;
 }
-input[id="home"]{
+input[id="home"],input[id="list"]{
 	margin: 30px 0 10px 0;
 	font-weight: bold;
 	background-color: #9c9c9c;

@@ -152,8 +152,14 @@
 							</tr>
 	                	</tbody>
 	              	</table>
-   				</div></div></div>
-		</div></div></div>
+   				</div>
+   			</div></div>
+   			<div class="panels">
+   			</div>
+		</div>
+		
+		</div>
+	
 	</div></div>
 </body>
 </html>

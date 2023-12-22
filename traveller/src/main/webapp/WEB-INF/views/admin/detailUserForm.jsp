@@ -6,94 +6,117 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보 수정(관리자 전용)</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
-<body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="side-menu">
-		<ul>
-	 		<li><a href="${pageContext.request.contextPath}/admin/main.do" style="font-weight:bold; font-size:24px; border-bottom:2px solid #000;">관리자 페이지</a></li>
-	  		<li><a href="${pageContext.request.contextPath}/admin/itemList.do">관리자 상품 게시판</a></li>
-	 		<li><a href="${pageContext.request.contextPath}/admin/itemInsert.do">관리자 상품등록</a></li>
-	 		<li><a href="${pageContext.request.contextPath}/admin/userList.do">회원관리</a></li>
-		</ul>
-	</div>
-	<div class="content-main">
-		<h2>${mem.id}의 회원정보 (관리자 전용)</h2>
-		<hr size="2" color="black">
-		<form action="detailUser.do" method="post" id="detail_form">
-			<input type="hidden" name="mem_num" value="${mem.mem_num}">
-			<ul>
-				<li>
-					<label for=id>아이디</label>
-					<input type="text" name="id" id="id" value="${mem.id}">
-				</li>
-				<li>
-					<label for="name">이름</label>
-					<input type="text" name="name" id="id" value="${mem.name}">
-				</li>
-				<li>
-					<label for="passwd">비밀번호</label>
-					<input type="text" name="passwd" id="passwd" value="${mem.passwd}">
-				</li>
-				<li>
-					<label for="phone">전화번호</label>
-					<input type="text" name="phone" id="phone" value="${mem.phone}">
-				</li>
-				<li>
-					<label for="birth">생년월일</label>
-					<input type="text" name="birth" id="birth" value="${mem.birth}">
-				</li>
-				<li>
-					<label>성별</label>
-					<input type="radio" name="gender" id="gender1" value="M"<c:if test="${mem.gender == 'M'}">checked</c:if>>남자
-					<input type="radio" name="gender" id="gender2" value="F"<c:if test="${mem.gender == 'F'}">checked</c:if>>여자
-				</li>
-				<li>
-					<label for="email">이메일</label>
-					<input type="email" name="email" id="email" value="${mem.email}">
-				</li>
-				<li>
-					<label for="zipcode">우편번호</label>
-					<input type="text" name="zipcode" id="zipcode" value="${mem.zipcode}">
-					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">
-				</li>
-				<li>
-					<label for="address1">주소</label>
-					<input type="text" name="address1" id="address1" value="${mem.address1}">
-				</li>
-				<li>
-					<label for="address2">상세주소</label>
-					<input type="text" name="address2" id="address2" value="${mem.address2}">
-				</li>
-				<li>
-					<label>광고 수신 동의</label>
-					<input type="radio" name="push" id="push1" value="Y"<c:if test="${mem.push == 'Y'}">checked</c:if>>동의
-					<input type="radio" name="push" id="push2" value="N"<c:if test="${mem.push == 'N'}">checked</c:if>>비동의
-				</li>
-			</ul>
-			<ul>
-				<li>
-					<label>등급</label>
-					<c:if test="${mem.auth != 9}">
-					<input type="radio" name="auth" value="0" id="auth1"<c:if test="${mem.auth == 0}">checked</c:if>>탈퇴
-					<input type="radio" name="auth" value="1" id="auth2"<c:if test="${mem.auth == 1}">checked</c:if>>VVIP
-					<input type="radio" name="auth" value="2" id="auth3"<c:if test="${mem.auth == 2}">checked</c:if>>VIP
-					<input type="radio" name="auth" value="3" id="auth4"<c:if test="${mem.auth == 3}">checked</c:if>>일반
-					</c:if>
-					<c:if test="${mem.auth == 9}">
-					<input type="radio" name="auth" value="9" id="auth5" checked>관리
-					</c:if>
-				</li>
-			</ul>
-			<div class="align-center">
-				<c:if test="${mem.auth != 9}">
-				<input type="submit" value="수정">
-				</c:if>
-				<input type="button" value="목록" onclick="location.href='userList.do'">
+<body class="chrome">
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+    <div id="__nuxt">
+    	<div id="__layout">
+    		<div id="wrapper">
+    			<div id="screenArea">
+    				<div id="wrap">
+    					<div id="container">
+    						<div class="inr">
+    						<!-- 여기서 부터 사이드바 입니다.-->
+    							<div id="lnb" class="lnb">
+    								<div class="inr">
+    									<dl>
+											<dt class="type">		
+												<a href="${pageContext.request.contextPath}/member/myPage.do">관리자 페이지</a>
+											</dt>
+											<dd>
+												<ul class="list_lnb">
+										  			<li><a href="${pageContext.request.contextPath}/admin/adminItemList.do">관리자 상품 게시판</a></li>
+										 			<li><a href="${pageContext.request.contextPath}/admin/adminOrderList.do">관리자 예약관리 게시판</a></li>
+										 			<li><a href="${pageContext.request.contextPath}/admin/itemInsert.do">관리자 상품등록</a></li>
+										 			<li><a href="${pageContext.request.contextPath}/admin/userList.do">회원관리</a></li>
+												</ul>
+											</dd>
+										</dl>
+    								</div>
+    							</div> 
+    							<!-- 여기까지 사이드바 입니다.-->
+    							<div id="contents" class="contents">
+    								<div class="order-form">
+									<h1 class="order-title order-center">회원정보 수정</h1>
+									<form action="detailUser.do" method="post" id="detail_form" class="input-form">
+										<input type="hidden" name="mem_num" value="${mem.mem_num}">
+										<ul class="order-ul">
+											<li>
+												<label for=id>아이디</label>
+												<input type="text" name="id" id="id" value="${mem.id}">
+											</li>
+											<li>
+												<label for="name">이름</label>
+												<input type="text" name="name" id="id" value="${mem.name}">
+											</li>
+											<li>
+												<label for="passwd">비밀번호</label>
+												<input type="text" name="passwd" id="passwd" value="${mem.passwd}">
+											</li>
+											<li>
+												<label for="phone">전화번호</label>
+												<input type="text" name="phone" id="phone" value="${mem.phone}">
+											</li>
+											<li>
+												<label for="birth">생년월일</label>
+												<input type="text" name="birth" id="birth" value="${mem.birth}">
+											</li>
+											<li>
+												<label>성별</label>
+												<input type="radio" name="gender" id="gender1" value="M"<c:if test="${mem.gender == 'M'}">checked</c:if>>남자
+												<input type="radio" name="gender" id="gender2" value="F"<c:if test="${mem.gender == 'F'}">checked</c:if>>여자
+											</li>
+											<li>
+												<label for="email">이메일</label>
+												<input type="email" name="email" id="email" value="${mem.email}">
+											</li>
+											<li>
+												<label for="zipcode">우편번호</label>
+												<input type="text" name="zipcode" id="zipcode" value="${mem.zipcode}">
+												<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" id="zipcode_check">
+											</li>
+											<li>
+												<label for="address1">주소</label>
+												<input type="text" name="address1" id="address1" value="${mem.address1}">
+											</li>
+											<li>
+												<label for="address2">상세주소</label>
+												<input type="text" name="address2" id="address2" value="${mem.address2}">
+											</li>
+											<li>
+												<label>광고 수신 동의</label>
+												<input type="radio" name="push" id="push1" value="Y"<c:if test="${mem.push == 'Y'}">checked</c:if>>동의
+												<input type="radio" name="push" id="push2" value="N"<c:if test="${mem.push == 'N'}">checked</c:if>>비동의
+											</li>
+											<li>
+												<label>등급</label>
+												<c:if test="${mem.auth != 9}">
+												<input type="radio" name="auth" value="0" id="auth1"<c:if test="${mem.auth == 0}">checked</c:if>>탈퇴
+												<input type="radio" name="auth" value="1" id="auth2"<c:if test="${mem.auth == 1}">checked</c:if>>VVIP
+												<input type="radio" name="auth" value="2" id="auth3"<c:if test="${mem.auth == 2}">checked</c:if>>VIP
+												<input type="radio" name="auth" value="3" id="auth4"<c:if test="${mem.auth == 3}">checked</c:if>>일반
+												</c:if>
+												<c:if test="${mem.auth == 9}">
+												<input type="radio" name="auth" value="9" id="auth5" checked>관리
+												</c:if>
+											</li>
+										</ul>
+										<div class="align-center">
+											<c:if test="${mem.auth != 9}">
+											<input type="submit" value="수정">
+											</c:if>
+											<input type="button" value="목록" onclick="location.href='userList.do'" id="home">
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</form>
+		</div>
 	</div>
 </div>
 </body>

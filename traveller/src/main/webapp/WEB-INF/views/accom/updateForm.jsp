@@ -22,11 +22,6 @@ $(function(){
 			$('#accom_content').val('').focus();
 			return false;
 		}
-		if($('#accom_filename').val().trim()==''){
-			alert('파일을 등록하세요');
-			$('#accom_filename').val('').focus();
-			return false;
-		}
 		if($('#accom_quantity').val().trim()==''){
 			alert('모집인원을 입력하세요');
 			$('#accom_quantity').val('').focus();
