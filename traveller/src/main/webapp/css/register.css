@@ -187,3 +187,8 @@ input[type="checkbox"]{
     position: relative;
     accent-color: #bbd6f0;
 }
+.my-btn-align{
+	text-align:center;
+	padding-left:160px;
+	padding-right:90px;
+}
