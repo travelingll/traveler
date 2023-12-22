@@ -34,23 +34,32 @@
 		    	<div class="text_wrap big fix">
 		    		<strong class="tit">예약 번호 [${order.order_num}] 상세 내역</strong>
 		    	</div>
-		    	<%-- 주문 상태별로 버튼 출력 유무 결정할 수 있또록  --%>
-		    	<div class="ordertable-right">
-			    	<input type="button" value="예약자 정보 수정" onclick="location.href='userOrderModifyForm.do?order_num=${order.order_num}'">
-			    	<input type="button" value="예약 내역 취소" onclick="location.href=''">
-				</div>	
+		    	<c:if test="${order.order_status==1}"><%--사용 전에만 사용 가능--%>
+			    	<div class="ordertable-right">
+				    	<input type="button" value="예약자 정보 수정" onclick="location.href='userOrderModifyForm.do?order_num=${order.order_num}'">
+				    	<input id="ordercancel_btn" type="button" value="예약 전체 취소">
+						<script type="text/javascript">
+							document.getElementById('ordercancel_btn').onclick = function(){
+								if(confirm('예약을 취소하겠습니까? 되돌릴 수 없습니다!'))
+									location.href='userCancel.do?order_num='+${order.order_num};
+							};
+						</script>
+					</div>	
+				</c:if>
   			<div class="panels"><div id="tabPkg" class="panel selected"><div class="tbl">
 				<table class="board_type">
 					<colgroup>
 						<col style="width: 15%;">
-						<col style="width: 60%;"> 
-						<col style="width: 25%;"> 
+						<col style="width: 50%;"> 
+						<col style="width: 20%;"> 
+						<col style="width: 15%;">
 					</colgroup> 
 					<thead>
 						<tr>
 							<th>예약 번호</th> 
 							<th>상품명</th> 
 							<th>예약일</th>
+							<th>예약 상태</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -58,6 +67,12 @@
 							<td>${order.order_num}</td>
 							<td class="txl"><strong class="title">${order.item_name}</strong></td> 
                    			<td>${order.order_date}</td> 
+                   			<td>
+                   				<c:if test="${order.order_status==1}">여행 전</c:if>
+                   				<c:if test="${order.order_status==2}">여행 중</c:if>
+                   				<c:if test="${order.order_status==3}">여행 불참</c:if>
+                   				<c:if test="${order.order_status==4}">예약 취소</c:if>
+                   			</td>	
 						</tr>
                 	</tbody>
               	</table>
@@ -65,18 +80,19 @@
    				<div class="panels"><div id="tabPkg" class="panel selected"><div class="tbl">
 					<table class="board_type">
 						<colgroup>
-							<col style="width: 15%;">
-							<col style="width: 50%;"> 
+							<col style="width: 10%;">
+							<col style="width: 40%;"> 
 							<col style="width: 20%;">
+							<col style="width: 15%;">
 							<col style="width: 15%;">
 						</colgroup> 
 						<thead>
 							<tr>
-								<th>예약 상세 번호</th> 
+								<th>상세 번호</th> 
 								<th>상품명</th> 
 								<th>기간</th>
-								<th>상품가격</th>
-								<th>상품갯수</th>
+								<th>가격</th>
+								<th>예약 갯수</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -84,8 +100,8 @@
 								<tr>
 									<td>${detail.detail_num}</td>
 									<td class="txl"><a href="userOrderDetail.do?order_num=${order.order_num}"><strong class="title">${detail.item_name}</strong></a></td> 
-		                   			<td>${detail.item_price}</td> 
-		                   			<td>${detail.item_price}</td> 
+		                   			<td>${detail.itemVO.date_start}~${detail.itemVO.date_end}</td> 
+		                   			<td><fmt:formatNumber value="${detail.itemVO.item_price}"/>원</td> 
 		                   			<td>${detail.order_quantity}</td>
 								</tr>
 							</c:forEach>
