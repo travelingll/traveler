@@ -248,7 +248,7 @@ public class OrderDAO {
 		return list;
 	}
 	
-	//예약 order_item 상세
+	//예약 order_item
 	public OrderVO getOrder(int order_num, int mem_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -298,26 +298,22 @@ public class OrderDAO {
 		return order;
 	}
 	
-	//예약 order_detail 상세
-	public OrderDetailVO getOrderDetail(int order_num, int mem_num) throws Exception {
+	//예약 상세 order_detail
+	public OrderDetailVO getOrderDetail(int detail_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		OrderDetailVO orderDetail = null;
 		String sql = null;
-		String sub_sql = "";
 		
 		try {
 			conn = DBUtil.getConnection();
 			
-			if(order_num!=0) sub_sql += "order_num=?"; //관리자 페이지에서 사용
-			else sub_sql += "mem_num=?"; //마이페이지에서 사용
-			sql = "SELECT * FROM order_detail WHERE " + sub_sql;
+			sql = "SELECT * FROM order_detail WHERE detail_num=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			if(order_num!=0) pstmt.setInt(1, order_num); //관리자 페이지에서 사용
-			else pstmt.setInt(1, mem_num); //마이페이지에서 사용			
+			 pstmt.setInt(1, detail_num);		
 			
 			rs = pstmt.executeQuery();
 			orderDetail = new OrderDetailVO();

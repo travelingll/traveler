@@ -96,7 +96,7 @@
 																</td>
 															<!-- 2,3,4번 -->
 																<td class="txl">
-																	<a><strong class="title">${order.item_name}</strong></a>
+																	<a href="userOrderDetail.do?order_num=${order.order_num}"><strong class="title">${order.item_name}</strong></a>
 																</td> 
 									                   		<!-- 5,6번 -->	
 									                   			<td style="text-align:center;">
