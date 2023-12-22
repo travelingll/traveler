@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>아이디 찾기 완료</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/find.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -20,7 +21,7 @@
     							
     								<span>이전페이지</span>
     							</a> 
-    							<h1 class="title">아이디 찾기 완료</h1> 
+    							<h1 class="title">아이디 찾기 결과</h1> 
     						<!---->
     					</div>
     				</div> 
@@ -29,11 +30,17 @@
     					<div class="contents_wrap login_wrap">
     						<div class="logo_wrap">
     							<span class="logo">트래블러</span>
-    						</div> 
+    						</div>
+    						<dl class="inner_cont text_wrap mt28"><dt class="tit">회원님!<br>아이디를 찾았어요.</dt> <dd class="txt">회원님의 정보로 1개의 아이디를 찾았어요.</dd></dl>
+	  						<div class="inner_cont grey_box big">
+	  							<ul class="list_line">
+			  						<li>
+			  							${member.name}님의 아이디는 ${member.id}입니다.
+			      					</li>
+			      				</ul>
+			      			</div>
   						</div>
   						<div class="tab_cont on">
-  							${member.name}님의 아이디는 ${member.id}입니다.
-							<p>
 							<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
   						</div>
   					</div>

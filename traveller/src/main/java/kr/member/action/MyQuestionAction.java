@@ -26,10 +26,10 @@ public class MyQuestionAction implements Action{
 		MemberVO member = dao.getMember(user_num);
 		
 		QuestionDAO qdao = QuestionDAO.getInstance();
-		int count = qdao.getQuestionCount(null, null, user_num);
+		int count = qdao.getQuestionCount(null, null, user_num, null);
 		List<QuestionVO> questionList = null;
 		if(count > 0) {
-			questionList = qdao.getQuestionList(null, null, 1, 5, user_num);
+			questionList = qdao.getQuestionList(null, null, 1, 5, user_num, null);
 		}
 		
 		request.setAttribute("count", count);
