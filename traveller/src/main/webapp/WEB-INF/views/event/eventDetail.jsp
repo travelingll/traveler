@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/detailStyle.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/eventReply.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/event${event.event_num}.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/eventExecute.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -33,7 +33,31 @@
 				<div class="detail-center detail-detailcontent">
 					<img src="${pageContext.request.contextPath}/upload/${event.event_photo1}" width="500">
 					<p>${event.event_content}</p>
-					<jsp:include page="/WEB-INF/views/eventInclude/${event.event_num}.jsp"/><%-- 개별 이벤트 include --%>
+					<c:if test="${event.event_category==1 && check==0 && !empty user_num}">
+						<div id="event_div">
+							<input id="event_btn" type="button" value="${event.event_title}" data-eventnum="${event.event_num}">
+						</div>
+					</c:if>
+					<c:if test="${event.event_category==1 && check==1 && !empty user_num}">
+						<div id="event_div">
+							<span class="event-output">이미 참여한 이벤트입니다 : (</span>
+						</div>
+					</c:if>
+					<c:if test="${event.event_category==1 && empty user_num}">
+						<div id="event_div">
+							<input id="event_btn" type="button" value="회원 참여 가능" disabled>
+						</div>
+					</c:if>
+					<c:if test="${event.event_category==2 && !empty user_num}">
+						<div id="event_div">
+							<span class="event-output">비회원만 참여 가능합니다 : (</span>
+						</div>
+					</c:if>
+					<c:if test="${event.event_category==2 && empty user_num}">
+						<div id="event_div">
+							<input id="event_btn2" type="button" value="${event.event_title}" onclick="location.href='${pageContext.request.contextPath}/member/registerUserForm.do'">
+						</div>
+					</c:if>
 				</div>
 				<hr size="1" noshade="noshade" width="100%">
 				<div id="reply_div" class="detail-reply">

@@ -25,7 +25,7 @@
 	margin: 40px 0 40px 0;
 	line-height: 25px;
 }
-#event_btn{
+#event_btn, #event_btn2 {
 	box-shadow: none;
 	border:solid 1px lightgray;
 	margin: 0 0 40px 0;
@@ -84,6 +84,17 @@
 .rep-content{
 	width:700px;
 	height:50px
+}
+
+/*------이벤트 출력-------*/
+.event-output{
+	padding:10px 20px 10px 20px;
+	border: 1px solid gray;
+	border-radius: 10px 10px 10px 10px;
+	display: inline-block;
+	background: #f5f5f5;
+	font-weight: bold;
+	margin-bottom: 42px;
 }
 
 /*-------수정폼-------*/

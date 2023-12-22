@@ -19,20 +19,7 @@
 					return false;
 				}
 			};//end of onsubmit
-			
-			let category_select = document.querySelectorAll('.category-select');
-
-			
-			
-			for(let i=0 ; i<category_select.length ; i++){
-				category_select[i].onclick = function(){
-					alert(category_select[i]);
-					console.log(category_select[i]);
-				};
-			}
-			
 		};//end of onload
-
 	</script>
 </head>
 <body class="chrome">

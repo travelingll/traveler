@@ -26,33 +26,31 @@ public class EventExecuteAction implements Action {
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		int event_num = Integer.parseInt(request.getParameter("event_num"));
-		
-		request.setCharacterEncoding("utf-8");
-		
-		Map<String,String> mapAjax = new HashMap<String, String>();
 		EventDAO dao = EventDAO.getInstance();
 		EventVO event = dao.getEventDetail(event_num);
-
+		String event_title = event.getEvent_title();
+		
+		Map<String,String> mapAjax = new HashMap<String, String>();
+		
 		MoneyDAO moneyDAO = MoneyDAO.getInstance();
-		boolean check = moneyDAO.checkEvent(user_num, "랜덤 적립금 이벤트 참여");
+		int check = moneyDAO.checkEvent(user_num, event_title); //미참여시 0
+		System.out.println(check);
 		
 		if(user_num==null) {//로그인 조건체크
 			mapAjax.put("result","logout");
 		} else if(event.getEvent_count()<=0) { //종료된 이벤트
 			mapAjax.put("result","end");
-		} else if(check==true) { //이미 참여한 이벤트
+		} else if(check==1) { //이미 참여한 이벤트
 			mapAjax.put("result","done");
-		} else {
+		} else if(event_title.equals("랜덤 적립금 지급")) {
 			/*-----랜덤 적립금 이벤트-----*/
 			MoneyVO moneyVo = new MoneyVO();
-			
-			System.out.println("참여 성공");
 			
 			String money = Integer.toString((int)(Math.random()*10000)/10*10);
 			
 			moneyVo.setMem_num(user_num);
 			moneyVo.setSaved_money(money);
-			moneyVo.setSm_content("랜덤 적립금 이벤트 참여");
+			moneyVo.setSm_content(event_title);
 			
 			dao.updateEventCount(event_num, moneyVo);
 			
