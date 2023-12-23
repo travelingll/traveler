@@ -46,7 +46,7 @@
 												<li><a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a></li> 
 												</c:if>
 												<c:if test="${!empty user_num && user_auth == 9}">
-												<li><a href="${pageContext.request.contextPath}/admin/main.do">관리자 페이지</a></li>
+												<li><a href="${pageContext.request.contextPath}/admin/adminItemList.do">관리자 페이지</a></li>
 												</c:if>
 												<c:if test="${!empty user_num}">
 												<li><a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a></li>
