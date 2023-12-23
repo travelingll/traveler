@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>여행상품 게시판(관리자)</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/eunseo.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -81,14 +82,13 @@ td{
 															<div class="tbl">
 															<table class="board_type">
 																<colgroup>
-																	<col style="width: 12%;"> 
-																	<col style="width: 8%;"> 
-																	<col style="width: 8%;"> 
-																	<col style="width: 34%;">
-																	<col style="width: 10%;">
-																	<col style="width: 10%;"> 
-																	<col style="width: 10%;"> 
-																	<col style="width: 8%;"> 
+																	<col style="width: 14%;"> 
+																	<col style="width: 9.5%;"> 
+																	<col style="width: 9.5%;"> 
+																	<col style="width: 29%;">
+																	<col style="width: 23%;"> 
+																	<col style="width: 13%;"> 
+																	<col style="width: 11%;"> 
 																</colgroup>								 								
 																	<thead>
 																		<tr>
@@ -96,8 +96,7 @@ td{
 																			<th>상태</th>
 																			<th>여행지</th>
 																			<th><a href="itemDetail.do">여행상품명</a></th>
-																			<th>출발일</th>
-																			<th>도착일</th>
+																			<th>여행날짜</th>
 																			<th>등록일</th>
 																			<th>모집인원</th>
 																		</tr>
@@ -119,8 +118,7 @@ td{
 																				<c:if test="${item.item_st1==5}">국내</c:if>
 																			</td>
 																			<td><a href="adminItemDetail.do?item_num=${item.item_num}">${item.item_name}</a></td>
-																			<td>${item.date_start}</td>
-																			<td>${item.date_end}</td>
+																			<td>${item.date_end} ~ ${item.date_start}</td>
 																			<td>${item.reg_date}</td>
 																			<td><span class="total_order">${item.orderCount}</span>/ ${item.quantity} 명</td>
 																		</tr>
@@ -147,5 +145,6 @@ td{
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 </html> 
