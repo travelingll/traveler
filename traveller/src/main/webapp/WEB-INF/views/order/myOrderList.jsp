@@ -76,15 +76,17 @@
 												<c:if test="${!empty list}">
 													<table class="board_type">
 														<colgroup>
-														<!-- 1번 --><col style="width: 15%;">
+														<!-- 1번 --><col style="width: 10%;">
 														<!-- 2번 --><col style="width: 60%;"> 
-														<!-- 3번 --><col style="width: 25%;">
+														<!-- 3번 --><col style="width: 15%;">
+														<!-- 3번 --><col style="width: 15%;">
 														</colgroup> 
 														<thead>
 															<tr>
 																<th>예약번호</th> 
 																<th style="text-align:center;">상품명</th> 
 																<th style="text-align:center;">예약일</th>
+																<th style="text-align:center;">예약 상태</th>
 															</tr>
 														</thead>
 														<tbody>
@@ -101,6 +103,12 @@
 									                   		<!-- 5,6번 -->	
 									                   			<td style="text-align:center;">
 									                   				${order.order_date}
+									                   			</td>
+									                   			<td style="text-align:center;">
+									                   				<c:if test="${order.order_status==1}">여행 전</c:if>
+									                   				<c:if test="${order.order_status==2}">여행 중</c:if>
+									                   				<c:if test="${order.order_status==3}">여행 불참</c:if>
+									                   				<c:if test="${order.order_status==4}">예약 취소</c:if>
 									                   			</td> 
 									                   		</tr>
 									                   	</c:forEach>

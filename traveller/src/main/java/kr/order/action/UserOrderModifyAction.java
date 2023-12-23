@@ -26,6 +26,15 @@ public class UserOrderModifyAction implements Action {
 		OrderVO db_order = dao.getOrder(order_num, user_num);
 		if(db_order.getMem_num()!=user_num) return "redirect:/main/main.do";
 		
+		//예약 상태 체크
+		int order_status = db_order.getOrder_status();
+		if(order_status!=1) { //여행 전 상태를 제외한 모든 상태
+			request.setAttribute("notice_msg", "여행 전의 상품만 예약자 정보를 수정할 수 있습니다!");
+			request.setAttribute("notice_url", "userOrderDetail.do?order_num="+order_num);
+			
+			return "/WEB-INF/views/common/alert_singleView.jsp";
+		}
+		
 		OrderVO order = new OrderVO();
 		
 		order.setOrder_num(order_num);
