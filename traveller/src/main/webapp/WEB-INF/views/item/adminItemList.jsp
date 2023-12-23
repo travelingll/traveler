@@ -35,13 +35,13 @@ td{
 									<div class="inr">
 										<dl>
 											<dt class="type">
-												<a href="${pageContext.request.contextPath}/admin/main.do">관리자 페이지</a>
+												<a href="${pageContext.request.contextPath}/admin/adminItemList.do">관리자 페이지</a>
 											</dt>
 											<dd>
 												<ul class="list_lnb">
-										  			<li><a href="${pageContext.request.contextPath}/admin/adminItemList.do">관리자 상품관리 게시판</a></li>
-										  			<li><a href="${pageContext.request.contextPath}/admin/adminOrderList.do">관리자 예약관리 게시판</a></li>
-										 			<li><a href="${pageContext.request.contextPath}/admin/itemInsert.do">관리자 상품등록</a></li>
+										  			<li><a href="${pageContext.request.contextPath}/admin/adminItemList.do">상품관리</a></li>
+										  			<li><a href="${pageContext.request.contextPath}/admin/adminOrderList.do">예약관리</a></li>
+										 			<li><a href="${pageContext.request.contextPath}/admin/itemInsert.do">상품등록</a></li>
 										 			<li><a href="${pageContext.request.contextPath}/admin/userList.do">회원관리</a></li>
 												</ul>
 											</dd>
