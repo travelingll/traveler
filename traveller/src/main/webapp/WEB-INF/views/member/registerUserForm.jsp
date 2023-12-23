@@ -160,12 +160,12 @@ $(function(){
 					<input type="text" name="address2" id="address2" maxlength="30" placeholder="상세주소" class="input-check">
 				</li>
 				<li>
-					<label>성별</label>
+					<label for="gender">성별</label>
 					<input type="radio" name="gender" value="M">남자
 					<input type="radio" name="gender" value="F">여자
 				</li>
 				<li>
-					<label>선호하는 여행지</label>
+					<label for="style1">선호하는 여행지</label>
 					<input type="checkbox" name="style1" value="1"">동남아
 					<input type="checkbox" name="style1" value="2">북미
 					<input type="checkbox" name="style1" value="3">유럽
@@ -173,19 +173,19 @@ $(function(){
 					<input type="checkbox" name="style1" value="5">국내
 				</li>
 				<li>
-					<label>여행 스타일1</label>
+					<label for="style2">여행 스타일1</label>
 					<input type="checkbox" name="style2" value="1">혼자
 					<input type="checkbox" name="style2" value="2">연인
 					<input type="checkbox" name="style2" value="3">친구
 				</li>
 				<li>
-					<label>여행 스타일2</label>
+					<label for="style3">여행 스타일2</label>
 					<input type="checkbox" name="style3" value="1">휴양
 					<input type="checkbox" name="style3" value="2">액티비티
 					<input type="checkbox" name="style3" value="3">관광
 				</li>
 				<li>
-					<label>광고 수신 동의</label>
+					<label for="push">광고 수신 동의</label>
 					<input type="radio" name="push" value="Y">동의
 					<input type="radio" name="push" value="N">비동의
 				</li>
