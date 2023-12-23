@@ -70,7 +70,7 @@ $(function(){
 										<input type="hidden" name="mem_num" value="${mem.mem_num}">
 										<ul class="order-ul">
 											<li>
-												<label>이름</label>
+												<label for="name1">이름</label>
 												${member.name}
 											</li>
 											<li>
