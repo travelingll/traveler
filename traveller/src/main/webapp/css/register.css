@@ -192,3 +192,29 @@ input[type="checkbox"]{
 	padding-left:160px;
 	padding-right:90px;
 }
+input[type=file]{
+	width: 300px;
+	height: 40px;
+	border-color: lightgray;
+	display: block;
+	line-height: 30px;
+	border-width: 0 0 1px 0;
+}
+.admin-ul > li label{
+	font-size: 11pt;
+	font-weight: bold;
+	white-space: nowrap;
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	color:#545454;
+	margin: 0 50px 0 60px;
+}
+.admin-ul > li{
+	padding: 10px;
+	margin: 10px;
+	line-height: 40px;
+}
+.admin-ul > li input[id="price"]{
+	display:inline;
+}

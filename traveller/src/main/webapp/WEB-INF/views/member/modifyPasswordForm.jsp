@@ -71,19 +71,19 @@ $(function(){
 										<ul class="order-ul">
 											<li>
 												<label for="id">아이디</label>
-												<input type="text" name="id" id="id" maxlength="12">
+												<input type="text" name="id" id="id" maxlength="12" placeholder="아이디를 입력">
 											</li>
 											<li>
 												<label for="origin_passwd">현재 비밀번호</label>
-												<input type="password" name="origin_passwd" id="origin_passwd" maxlength="12">
+												<input type="password" name="origin_passwd" id="origin_passwd" maxlength="12" placeholder="현재 비밀번호 입력">
 											</li>
 											<li>
 												<label for="passwd">새 비밀번호</label>
-												<input type="password" name="passwd" id="passwd" maxlength="12">
+												<input type="password" name="passwd" id="passwd" maxlength="12" placeholder="새 비밀번호 입력">
 											</li>
 											<li>
 												<label for="cpasswd">새 비밀번호 확인</label>
-												<input type="password" id="cpasswd" maxlength="12">
+												<input type="password" id="cpasswd" maxlength="12" placeholder="새 비밀번호 입력">
 											</li>
 										</ul>
 										<div class="my-btn-align">
