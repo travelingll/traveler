@@ -225,7 +225,7 @@ input[type=file]{
 .admin-ul > li input[id="price"]{
 	display:inline;
 }
-label[for="gender"],label[for="style1"],label[for="style2"],label[for="style3"],label[for="push"],label[for="auth"] {
+label[for="gender"],label[for="style1"],label[for="style2"],label[for="style3"],label[for="push"],label[for="auth"],label[for="name1"] {
 	position: relative;
     top: -11px;
 }
