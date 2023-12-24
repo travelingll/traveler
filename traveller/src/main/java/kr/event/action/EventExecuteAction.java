@@ -2,6 +2,7 @@ package kr.event.action;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +35,7 @@ public class EventExecuteAction implements Action {
 		Map<String,String> mapAjax = new HashMap<String, String>();
 		
 		MoneyDAO moneyDAO = MoneyDAO.getInstance();
-		int check = moneyDAO.checkEvent(user_num, event_title); //미참여시 0
+		int check = moneyDAO.checkEvent(user_num, event_num); //미참여시 0
 		
 		MoneyVO moneyVo = new MoneyVO();
 		String money;
@@ -62,10 +63,9 @@ public class EventExecuteAction implements Action {
 		} else if(event_title.equals("로또 번호 맞추기")) {
 			
 			String lotto_num = "";
-			String user_number = request.getParameter("answer"); //user가 입력한 값
-			String[] array = user_number.split(" "); //띄어쓰기를 구분자로 자른 뒤 배열에 저장
+			String[] array = request.getParameter("answer").split(" "); //사용자가 입력한 값을 잘라서 배열에 저장
 			
-			boolean lotto_check=true;
+			int lotto_check=0;
 			moneyVo = new MoneyVO();
 			moneyVo.setMem_num(user_num);
 			
@@ -74,27 +74,35 @@ public class EventExecuteAction implements Action {
 			while(hs.size()<6) {
 				int num = (int)(Math.random()*45)+1;
 				hs.add(num);
-				lotto_num += num + " ";
 			}
 			
-			for(int i=0; i<array.length ; i++) {
-				if(hs.contains(Integer.parseInt(array[i]))==false) { //로또 번호 하나라도 맞지 않으면
-					moneyVo.setSaved_money("100");
-					
-					mapAjax.put("result", "failed"); //실패 메세지 전송
-					lotto_check=false;
-					break;//반복문을 빠져나감
+			hs.stream().sorted(); //작은 숫자부터 정렬
+			
+			//일치 여부 확인
+			Iterator<Integer> it = hs.iterator();
+	        while(it.hasNext()) {
+	        	int i = 0;
+	        	if( hs.contains(Integer.parseInt(array[i])) ) {
+					lotto_check++;
 				}
-			}
+				lotto_num += it.next()+" ";
+				i++;
+	        }
+			
 			//로또 번호 전체가 일치할 경우 
-			if(lotto_check==true) {
+			if(lotto_check==6) {
 				moneyVo.setSaved_money("100000");
+				moneyVo.setSm_content(event_title);
 				
 				mapAjax.put("result", "success");
 				mapAjax.put("money", "100000");
+			} else {
+				moneyVo.setSaved_money("100");
+				moneyVo.setSm_content("로또 번호 맞추기 실패! 위로금 지급");
+				
+				mapAjax.put("result", "failed"); //실패 메세지 전송
 			}
 			
-			moneyVo.setSm_content(event_title);
 			dao.updateEventCount(event_num, moneyVo);
 			
 			mapAjax.put("event", event_title);

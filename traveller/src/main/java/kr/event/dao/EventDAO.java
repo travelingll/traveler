@@ -418,11 +418,12 @@ public class EventDAO {
 			pstmt.executeUpdate();
 			
 			/*----적립금 지급-----*/
-			sql = "INSERT INTO money (sm_num,mem_num,saved_money,sm_content) VALUES (money_seq.nextval,?,?,?)";
+			sql = "INSERT INTO money (sm_num,mem_num,saved_money,sm_content,event_num) VALUES (money_seq.nextval,?,?,?,?)";
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, money.getMem_num());
 			pstmt2.setString(2, money.getSaved_money());
 			pstmt2.setString(3, money.getSm_content());
+			pstmt2.setInt(4, event_num);
 			pstmt2.executeUpdate();
 			
 			conn.commit();
