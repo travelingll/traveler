@@ -32,7 +32,7 @@ public class ApplyAccomListAction implements Action {
 		int count = dao.getAccomInfoCountByMem_num(keyfield, keyword, user_num);
 		
 		//페이지 처리
-		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum),count,20,10,"applyAccomList.do");
+		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum),count,10,20,"applyAccomList.do");
 		
 		List<AccomInfoVO> list = null;
 		if(count > 0) {

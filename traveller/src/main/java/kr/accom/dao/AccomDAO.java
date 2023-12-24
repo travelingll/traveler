@@ -323,6 +323,7 @@ public class AccomDAO {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;
+		PreparedStatement pstmt4 = null;
 		String sql = null;
 		
 		try {
@@ -341,11 +342,16 @@ public class AccomDAO {
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, accom_num);
 			pstmt2.executeUpdate();
-			//부모글 삭제
-			sql = "DELETE FROM accom WHERE accom_num=?";
+			//자식글 삭제
+			sql = "DELETE FROM accom_info WHERE accom_num=?";
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setInt(1,accom_num);
 			pstmt3.executeUpdate();
+			//부모글 삭제
+			sql = "DELETE FROM accom WHERE accom_num=?";
+			pstmt4 = conn.prepareStatement(sql);
+			pstmt4.setInt(1,accom_num);
+			pstmt4.executeUpdate();
 			
 			conn.commit();
 		}catch(Exception e) {
@@ -353,6 +359,7 @@ public class AccomDAO {
 			conn.rollback();
 			throw new Exception(e);
 		}finally {
+			DBUtil.executeClose(null, pstmt4, null);
 			DBUtil.executeClose(null, pstmt3, null);
 			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(null, pstmt, conn);

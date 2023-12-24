@@ -34,6 +34,7 @@ public class UpdateAction implements Action{
 		}
 		//로그인한 회원번호와 작성자 회원번호가 일치
 		AccomVO accom = new AccomVO();
+		accom.setAccom_num(Integer.parseInt(multi.getParameter("accom_num")));
 		accom.setAccom_title(multi.getParameter("accom_title"));
 		accom.setAccom_content(multi.getParameter("accom_content"));
 		accom.setAccom_status(Integer.parseInt(multi.getParameter("accom_status")));

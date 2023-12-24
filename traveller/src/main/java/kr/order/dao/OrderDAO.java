@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.item.vo.ItemVO;
 import kr.order.vo.OrderDetailVO;
 import kr.order.vo.OrderVO;
 import kr.util.DBUtil;
@@ -118,7 +119,7 @@ public class OrderDAO {
 		}
 	}
 	
-	//개별 아이템의 예약 횟수 - 예약한 인원 수
+	//개별 아이템의 예약 횟수 - 예약한 인원 수 (예약 상태 5번 제외)
 	public int getOrderItemCount(int item_num) throws Exception {
 		
 		Connection conn = null;
@@ -336,6 +337,7 @@ public class OrderDAO {
 	
 	
 	/*-----관리자-----*/
+	//상세 목록
 	public List<OrderDetailVO> getListOrderDetailVO(int order_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -347,7 +349,7 @@ public class OrderDAO {
 			//커넥션풀로부터 커넥션 객체 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "SELECT * FROM order_detail WHERE order_num=? ORDER BY item_num DESC";
+			sql = "SELECT * FROM order_detail JOIN item USING(item_num) WHERE order_num=? ORDER BY item_num DESC";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -358,6 +360,7 @@ public class OrderDAO {
 			list = new ArrayList<OrderDetailVO>();
 			while(rs.next()) {
 				OrderDetailVO vo = new OrderDetailVO();
+				
 				vo.setDetail_num(rs.getInt("detail_num"));	
 				vo.setItem_num(rs.getInt("item_num"));
 				vo.setItem_name(rs.getString("item_name"));
@@ -365,11 +368,16 @@ public class OrderDAO {
 				vo.setOrder_num(order_num);
 				vo.setOrder_quantity(rs.getInt("order_quantity"));
 				
-				list.add(vo);
+				ItemVO item = new ItemVO();
 				
+				item.setDate_start(rs.getString("date_start"));
+				item.setDate_end(rs.getString("date_end"));
+				item.setItem_price(rs.getInt("item_price"));
+				
+				vo.setItemVO(item);
+				
+				list.add(vo);
 			}
-			
-			
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
@@ -404,4 +412,57 @@ public class OrderDAO {
 		}
 	}
 	
+	//예약자 정보 수정
+	public void userOrderModify(OrderVO order) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "UPDATE order_item SET order_name=?,order_email=?,order_gender=?,"
+					+ "order_phone=?,order_birth=?,notice=? WHERE order_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, order.getOrder_name());
+			pstmt.setString(2, order.getOrder_email());
+			pstmt.setString(3, order.getOrder_gender());
+			pstmt.setString(4, order.getOrder_phone());
+			pstmt.setString(5, order.getOrder_birth());
+			pstmt.setString(6, order.getNotice());
+			pstmt.setInt(7, order.getOrder_num());
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+	}
+	
+	//예약 취소
+	public void orderCancel(int order_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			/*----주문 테이블의 예약 상태, 예약 수정일 변경------*/
+			sql = "UPDATE order_item SET order_status=4,order_modate=SYSDATE WHERE order_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, order_num);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 }

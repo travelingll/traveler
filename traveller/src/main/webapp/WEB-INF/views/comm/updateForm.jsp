@@ -23,8 +23,7 @@ $(function(){
 		}
 		if($('input[name="category"]:radio:checked').length<1){
 			alert('카테고리를 체크해주세요');
-			return false;
-		}
+
 		if($('input[name="tag"]:checkbox:checked').length<1){
 			alert('태그를 1개 이상 체크해주세요');
 			return false;
@@ -285,6 +284,7 @@ $(function(){
 							</script>  
 						</div>
 					</c:if>
+
 										</li> 
 									</ul>
 								</div>
@@ -313,6 +313,7 @@ $(function(){
 </div>
 </div>
 </div>
+
 </body>
 </html>
 

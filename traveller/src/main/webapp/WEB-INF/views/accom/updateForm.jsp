@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>게시판 글 수정</title>
 <link rel ="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/accomWriteForm.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -20,11 +21,6 @@ $(function(){
 		if($('#accom_content').val().trim()==''){
 			alert('내용을 입력하세요');
 			$('#accom_content').val('').focus();
-			return false;
-		}
-		if($('#accom_filename').val().trim()==''){
-			alert('파일을 등록하세요');
-			$('#accom_filename').val('').focus();
 			return false;
 		}
 		if($('#accom_quantity').val().trim()==''){
