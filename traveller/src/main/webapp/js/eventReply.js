@@ -66,7 +66,7 @@ $(function(){
 		
 		if($('#event_recontent').val().trim()==''){
 			alert('댓글 내용을 작성해주세요');
-			$('#event_recontent').val().focus();
+			$('#event_recontent').val('').focus();
 			return false;
 		}
 		

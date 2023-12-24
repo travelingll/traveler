@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>동행구하기 게시판 글쓰기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/enuseo.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/accomWriteForm.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -59,8 +60,33 @@ $(function(){
 <body>
 <div class = "page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+    <div id="__nuxt">
+    	<div id="__layout">
+    		<div id="wrapper">
+    			<div id="screenArea">
+    				<div id="wrap">
+    					<div id="container">
+    						<div class="inr">
+    						<!-- 여기서 부터 사이드바 입니다.-->
+    							<div id="lnb" class="lnb">
+    								<div class="inr">
+    									<dl>
+											<dt class="type">		
+												<a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a>
+											</dt>
+											<dd>
+												<ul class="list_lnb">
+													<li><a href="${pageContext.request.contextPath}/accom/list.do">동행구하기</a></li>
+													<li><a href="${pageContext.request.contextPath}/comm/list.do">커뮤니티</a></li>
+												</ul>
+											</dd>
+										</dl>
+    								</div>
+    							</div> 
+    							<!-- 여기까지 사이드바 입니다.-->
 	<div class = "content-main">
 		<h2>게시판 글쓰기</h2>
+		<br>
 		<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
 		<ul>
 			<li>
@@ -103,6 +129,13 @@ $(function(){
 			</div>
 		</form>
 	</div>	
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
 </div>
 </body>
 </html>

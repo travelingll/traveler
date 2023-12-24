@@ -25,7 +25,9 @@ public class EventDetailAction implements Action {
 		EventVO event = dao.getEventDetail(event_num);
 		
 		MoneyDAO moneyDAO = MoneyDAO.getInstance();
-		int check = moneyDAO.checkEvent(user_num, event.getEvent_title()); //이벤트 참여 여부 체크
+		int check = 0;
+		if(user_num!=null)
+			check = moneyDAO.checkEvent(user_num, event.getEvent_num()); //이벤트 참여 여부 체크
 		
 		event.setEvent_title(StringUtil.useBrNoHtml(event.getEvent_title()));
 		event.setEvent_content(StringUtil.useBrNoHtml(event.getEvent_content()));

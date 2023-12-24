@@ -64,7 +64,7 @@
 												<input type="text" name="birth" id="birth" value="${mem.birth}">
 											</li>
 											<li>
-												<label>성별</label>
+												<label for="gender">성별</label>
 												<input type="radio" name="gender" id="gender1" value="M"<c:if test="${mem.gender == 'M'}">checked</c:if>>남자
 												<input type="radio" name="gender" id="gender2" value="F"<c:if test="${mem.gender == 'F'}">checked</c:if>>여자
 											</li>
@@ -86,12 +86,12 @@
 												<input type="text" name="address2" id="address2" value="${mem.address2}">
 											</li>
 											<li>
-												<label>광고 수신 동의</label>
+												<label for="push">광고 수신 동의</label>
 												<input type="radio" name="push" id="push1" value="Y"<c:if test="${mem.push == 'Y'}">checked</c:if>>동의
 												<input type="radio" name="push" id="push2" value="N"<c:if test="${mem.push == 'N'}">checked</c:if>>비동의
 											</li>
 											<li>
-												<label>등급</label>
+												<label for="auth">등급</label>
 												<c:if test="${mem.auth != 9}">
 												<input type="radio" name="auth" value="0" id="auth1"<c:if test="${mem.auth == 0}">checked</c:if>>탈퇴
 												<input type="radio" name="auth" value="1" id="auth2"<c:if test="${mem.auth == 1}">checked</c:if>>VVIP

@@ -102,7 +102,7 @@ window.onload=function(){
 					<colgroup>
 					<col style="width: 7%;"> 
 					<col > 
-					<col style="width: 10%;"> 
+					<col style="width: 12%;"> 
 					<col style="width: 12%;"> 
 					<col style="width: 7%;"> 
 					</colgroup>								 								
@@ -118,7 +118,7 @@ window.onload=function(){
 					<tbody>
 						<tr>
 							<td></td>
-							<td style="float:right;">적릭된 금액이 없습니다.</td>
+							<td style="float:right;">표시할 게시물이 없습니다.</td>
 							<td></td>
 							<td></td>
 							<td></td>
@@ -131,7 +131,7 @@ window.onload=function(){
 				<colgroup>
 					<col style="width: 7%;"> 
 					<col > 
-					<col style="width: 10%;"> 
+					<col style="width: 12%;"> 
 					<col style="width: 12%;"> 
 					<col style="width: 7%;"> 
 				</colgroup> 

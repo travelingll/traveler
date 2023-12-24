@@ -107,7 +107,7 @@ public class MoneyDAO {
 	}
 	
 	//이벤트 참여 체크 메서드
-	public int checkEvent(int mem_num, String sm_content) throws Exception {
+	public int checkEvent(int mem_num, int event_num) throws Exception {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -117,10 +117,10 @@ public class MoneyDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM money WHERE mem_num=? AND sm_content=?";
+			sql = "SELECT * FROM money WHERE mem_num=? AND event_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
-			pstmt.setString(2, sm_content);
+			pstmt.setInt(2, event_num);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) check=1; //이벤트를 참여했을 경우 true

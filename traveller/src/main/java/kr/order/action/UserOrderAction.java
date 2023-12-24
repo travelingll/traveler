@@ -107,10 +107,10 @@ public class UserOrderAction implements Action {
 		order.setOrder_birth(request.getParameter("order_birth"));
 		order.setOrder_gender(request.getParameter("order_gender"));
 		
-		orderDAO.insertOrder(order, orderDetailList);
+		int order_num = orderDAO.insertOrder(order, orderDetailList);
 		
 		request.setAttribute("notice_msg", "여행 상품 예약을 완료했습니다! 예약 정보로 넘어갑니다");
-		request.setAttribute("notice_url", request.getContextPath()+"/order/myOrderList.do"); //마이페이지
+		request.setAttribute("notice_url", request.getContextPath()+"/order/userOrderDetail.do?order_num="+order_num); //마이페이지
 		
 		return "/WEB-INF/views/common/alert_singleView.jsp";
 	}

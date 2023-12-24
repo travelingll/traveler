@@ -150,7 +150,7 @@ public class EventDAO {
 				event.setEvent_photo2(rs.getString("event_photo2"));
 				event.setEvent_photo3(rs.getString("event_photo3"));
 				event.setEvent_photo4(rs.getString("event_photo4"));
-				event.setEvent_photo5(rs.getString("event_photo5"));
+				event.setEvent_answer(rs.getString("event_answer"));
 				event.setEvent_content(rs.getString("event_content"));
 				event.setEvent_hit(rs.getInt("event_hit"));
 				event.setEvent_regdate(rs.getDate("event_regdate"));
@@ -192,22 +192,27 @@ public class EventDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
+		String sub_sql = "";
+		int cnt = 0;
 		
 		try {
 			conn = DBUtil.getConnection();
 			
-			sql = "UPDATE event SET event_start=?,event_end=?,event_photo1=?,"
-					+ "event_content=?,event_modifydate=sysdate,event_count=? "
+			if(event.getEvent_photo1()!=null) sub_sql += ",event_photo1=?";
+			sql = "UPDATE event SET event_start=?,event_end=?,event_content=?,"
+					+ "event_modifydate=sysdate,event_count=?,event_answer=? "
+					+ sub_sql
 					+ "WHERE event_num=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, event.getEvent_start());
-			pstmt.setString(2, event.getEvent_end());
-			pstmt.setString(3, event.getEvent_photo1());
-			pstmt.setString(4, event.getEvent_content());
-			pstmt.setInt(5, event.getEvent_count());
-			pstmt.setInt(6, event.getEvent_num());
+			pstmt.setString(++cnt, event.getEvent_start());
+			pstmt.setString(++cnt, event.getEvent_end());
+			pstmt.setString(++cnt, event.getEvent_content());
+			pstmt.setInt(++cnt, event.getEvent_count());
+			pstmt.setString(++cnt, event.getEvent_answer());
+			if(event.getEvent_photo1()!=null) pstmt.setString(++cnt, event.getEvent_photo1());
+			pstmt.setInt(++cnt, event.getEvent_num());
 			
 			pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -413,11 +418,12 @@ public class EventDAO {
 			pstmt.executeUpdate();
 			
 			/*----적립금 지급-----*/
-			sql = "INSERT INTO money (sm_num,mem_num,saved_money,sm_content) VALUES (money_seq.nextval,?,?,?)";
+			sql = "INSERT INTO money (sm_num,mem_num,saved_money,sm_content,event_num) VALUES (money_seq.nextval,?,?,?,?)";
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, money.getMem_num());
 			pstmt2.setString(2, money.getSaved_money());
 			pstmt2.setString(3, money.getSm_content());
+			pstmt2.setInt(4, event_num);
 			pstmt2.executeUpdate();
 			
 			conn.commit();

@@ -7,19 +7,18 @@
 	<meta charset="UTF-8">
 	<title>이벤트 목록</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/eventList.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript"> 
-		window.onload = function(){
-			let searchForm = document.getElementById('search_form');
-			searchForm.onsubmit=function(){
-				let keyword = document.getElementById('keyword');
-				if(keyword.value.trim()==""){
-					alert('검색어를 입력하세요');
-					keyword.value='';
-					keyword.focus();
+		$(function() {
+			//검색어 유효성 체크
+			$('#search_form').submit(function(){
+				if($('#keyword').val().trim()==''){
+					alert('검색어를 입력하세요!');
+					$('#keyword').val('').focus();
 					return false;
 				}
-			};//end of onsubmit
-		};//end of onload
+			});
+		});
 	</script>
 </head>
 <body class="chrome">
@@ -32,9 +31,9 @@
 	</div></div>
 		<div class="content_block" id="content">
 			<ul class="tab_page_cont" id="tab_page_cont">
-				<li class="on"><a class="category-select" href="${pageContext.request.contextPath}/event/eventList.do">진행중</a></li>
-				<li><a class="category-select" href="${pageContext.request.contextPath}/event/eventList.do?event_category=1">회원</a></li>
-				<li><a class="category-select" href="${pageContext.request.contextPath}/event/eventList.do?event_category=2">비회원</a></li>
+				<li><a href="${pageContext.request.contextPath}/event/eventList.do">진행중</a></li>
+				<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=1">회원</a></li>
+				<li><a href="${pageContext.request.contextPath}/event/eventList.do?event_category=2">비회원</a></li>
 			</ul>
 			<form name="search_form" id="search_form" action="eventList.do" method="post">
 				<div class="brd_search">
@@ -49,7 +48,7 @@
 			<p class="tbl_count"></p>
 			<div class="promotion_block">
 				<c:if test="${count==0}">
-					<div class="result-display" style="float:center center;">표시할 이벤트가 없습니다</div>
+					<div class="result-display">표시할 이벤트가 없습니다</div>
 				</c:if>
 				<c:if test="${count>0}">
 					<ul class="promotion_list">

@@ -2,6 +2,8 @@ package kr.order.vo;
 
 import java.sql.Date;
 
+import kr.item.vo.ItemVO;
+
 public class OrderVO {
 	private int order_num;
 	private String item_name;
@@ -19,9 +21,15 @@ public class OrderVO {
 	private String order_phone;
 	private String order_birth;
 	private String order_gender;
-
+	private ItemVO itemVO;
 	
 	
+	public ItemVO getItemVO() {
+		return itemVO;
+	}
+	public void setItemVO(ItemVO itemVO) {
+		this.itemVO = itemVO;
+	}
 	public String getOrder_gender() {
 		return order_gender;
 	}

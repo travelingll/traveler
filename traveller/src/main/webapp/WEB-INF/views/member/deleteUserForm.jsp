@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원탈퇴</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -34,12 +34,12 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="page-main">
+<div class="chrome">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div class="content-main">
-		<h2>회원탈퇴</h2>
-		<form action="deleteUser.do" method="post" id="delete_form">
-			<ul>
+	<div class="order-form">
+		<h1 class="order-title order-center">회원탈퇴</h1>
+		<form action="deleteUser.do" method="post" id="delete_form" class="input-form">
+			<ul class="order-ul">
 				<li>
 					<label for="id">아이디</label>
 					<input type="text" name="id" id="id" maxlength="12">
@@ -53,9 +53,9 @@ $(function(){
 					<input type="password" id="cpasswd" maxlength="12">
 				</li>
 			</ul>
-			<div class="align-center">
+			<div class="my-btn-align">
 				<input type="submit" value="탈퇴">
-				<input type="button" value="My페이지" onclick="location.href='myPage.do'">
+				<input type="button" value="My페이지" onclick="location.href='myPage.do'" id="home">
 			</div>
 		</form>
 	</div>

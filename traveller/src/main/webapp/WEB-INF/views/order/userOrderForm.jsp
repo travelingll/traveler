@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -119,7 +120,11 @@
 					</li>
 					<li>
 						<label>결제 예정 금액</label>
+<<<<<<< HEAD
 						<span id="expect_money">0원</span>
+=======
+						<span id="expect_money"><fmt:formatNumber value="${order_total}" />원</span>
+>>>>>>> branch 'main' of https://github.com/travelingll/traveler.git
 					</li>
 					<li class="order-radio"><%-- 보내는 데이터 --%>
 						<label for="payment">결제 수단</label>
