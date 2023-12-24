@@ -44,6 +44,7 @@ public class EventUpdateAction implements Action {
 		event.setEvent_photo1(event_photo1);
 		event.setEvent_content(multi.getParameter("event_content"));
 		event.setEvent_count(Integer.parseInt(multi.getParameter("event_count")));
+		event.setEvent_answer(multi.getParameter("event_answer"));
 		
 		dao.eventUpdate(event);
 		

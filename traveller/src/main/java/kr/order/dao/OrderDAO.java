@@ -25,7 +25,7 @@ public class OrderDAO {
 	
 	/*-----사용자-----*/
 	//예약하기(order,order detail insert)
-	public void insertOrder(OrderVO order, List<OrderDetailVO> detailList) throws Exception {
+	public int insertOrder(OrderVO order, List<OrderDetailVO> detailList) throws Exception {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -91,14 +91,16 @@ public class OrderDAO {
 			pstmt3.executeBatch();
 			
 			/*------ㅡmoney 테이블에 등록------*/
-			sql = "INSERT INTO money (sm_num,mem_num,saved_money,sm_content) "
-					+ "VALUES (money_seq.nextval,?,?,?)";
-			pstmt4 = conn.prepareStatement(sql);
-			pstmt4.setInt(1, order.getMem_num());
-			pstmt4.setInt(2, order.getUse_money()*(-1)); //마이너스 적립금
-			pstmt4.setString(3, "여행 예약");
-			
-			pstmt4.executeUpdate();
+			if(order.getUse_money()>0) {
+				sql = "INSERT INTO money (sm_num,mem_num,saved_money,sm_content) "
+						+ "VALUES (money_seq.nextval,?,?,?)";
+				pstmt4 = conn.prepareStatement(sql);
+				pstmt4.setInt(1, order.getMem_num());
+				pstmt4.setInt(2, order.getUse_money()*(-1)); //마이너스 적립금
+				pstmt4.setString(3, "여행 예약");
+				
+				pstmt4.executeUpdate();
+			}
 			
 			/*-----장바구니 테이블 delete-----*/
 			sql = "DELETE FROM cart WHERE mem_num=?";
@@ -117,9 +119,10 @@ public class OrderDAO {
 			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
+		return seq;
 	}
 	
-	//개별 아이템의 예약 횟수 - 예약한 인원 수 (예약 상태 5번 제외)
+	//개별 아이템의 예약 횟수 - 예약한 인원 수 (예약 상태 4번 제외)
 	public int getOrderItemCount(int item_num) throws Exception {
 		
 		Connection conn = null;
@@ -130,7 +133,7 @@ public class OrderDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT SUM(order_quantity) FROM order_detail WHERE item_num=?";
+			sql = "SELECT SUM(order_quantity) FROM order_detail JOIN order_item USING(order_num) WHERE item_num=? AND order_status NOT IN (4)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, item_num);
 			rs = pstmt.executeQuery();
@@ -448,16 +451,25 @@ public class OrderDAO {
 	public void orderCancel(int order_num) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		String sql = null;
 		
 		try {
 			conn = DBUtil.getConnection();
+			conn.getAutoCommit();
 			
 			/*----주문 테이블의 예약 상태, 예약 수정일 변경------*/
 			sql = "UPDATE order_item SET order_status=4,order_modate=SYSDATE WHERE order_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, order_num);
 			pstmt.executeUpdate();
+			
+			/*---------사용한 적립금 복귀---------*/
+			sql = "UPDATE money SET saved_money=0,sm_content=? WHERE order_num=?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setString(1, "여행 예약 취소, 적립금 사용 취소");
+			pstmt2.setInt(2, order_num);
+			pstmt2.executeUpdate();
 			
 		} catch (Exception e) {
 			throw new Exception(e);

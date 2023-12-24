@@ -48,6 +48,12 @@
 							<label for="event_count">이벤트 참여 횟수</label>
 							<input type="number" name="event_count" id="event_count" value="${event.event_count}" class="input">
 						</li>
+						<c:if test="${!empty event.event_answer}">
+							<li>
+								<label for="event_answer">이벤트 답</label>
+								<input type="text" name="event_answer" id="event_answer" value="${event.event_answer}" class="input">
+							</li>
+						</c:if>
 						<li>
 							<label for="event_photo1">이벤트 썸네일</label>
 							<input type="file" name="event_photo1" id="event_photo1" accept="image/gif,image/png,image/jpeg">									

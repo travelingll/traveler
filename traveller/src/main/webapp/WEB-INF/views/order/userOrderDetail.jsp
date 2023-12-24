@@ -141,7 +141,10 @@
 							</tr>
 							<tr>
 								<th>남기신 말씀</th>
-								<td>${order.notice}</td>
+								<td>
+									<c:if test="${!empty order.notice}">${order.notice}</c:if>
+									<c:if test="${empty order.notice}">-</c:if>
+								</td>
 							</tr>
 	                	</tbody>
 	              	</table>

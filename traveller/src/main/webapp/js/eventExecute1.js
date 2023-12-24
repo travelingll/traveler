@@ -10,18 +10,23 @@ function outputEvent(text){
 };
 
 $(function(){
-	
 	$('#event_btn').click(function(){
-		let event_num = $('#event_btn').attr('data-eventnum');		
+		
+		/*-----ajax 통신-----*/
 		$.ajax({
 			url:'eventExecute.do',
 			type:'post',
-			data: {event_num:event_num},
+			data: {event_num:$('#event_btn').attr('data-eventnum'),
+					answer:$('#event_answer').val()},
 			dataType:'json',
 			success:function(param){
 				if(param.result=='success'){
-					let text='<span id="event_getmoney">'+param.money+'</span>원이 지급되었습니다 : )';
+					let text = '';
+					if($('#event_answer')>0) text += '로또 번호는 ' + param.lotto_num + '입니다!<br>';
+					text='성공! <span id="event_getmoney">'+param.money+'</span>원이 지급되었습니다 : )';
 					outputEvent(text);
+				} else if (param.result=='failed'){
+					outputEvent('답 맞추기 실패 : (');
 				} else if(param.result=='end'){
 					outputEvent('종료된 이벤트입니다 : (');
 				} else if(param.result=='done'){

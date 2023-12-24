@@ -13,14 +13,19 @@ public class EventVO {
 	private String event_photo2;
 	private String event_photo3;
 	private String event_photo4;
-	private String event_photo5;
+	private String event_answer;
 	private String event_content;
 	private int event_hit;
 	private Date event_regdate;
 	private Date event_modifydate;
 	private int event_count;
 	
-	
+	public String getEvent_answer() {
+		return event_answer;
+	}
+	public void setEvent_answer(String event_answer) {
+		this.event_answer = event_answer;
+	}
 	public int getEvent_num() {
 		return event_num;
 	}
@@ -74,12 +79,6 @@ public class EventVO {
 	}
 	public void setEvent_photo4(String event_photo4) {
 		this.event_photo4 = event_photo4;
-	}
-	public String getEvent_photo5() {
-		return event_photo5;
-	}
-	public void setEvent_photo5(String event_photo5) {
-		this.event_photo5 = event_photo5;
 	}
 	public String getEvent_content() {
 		return event_content;

@@ -1086,3 +1086,6 @@ table td, table th{
   opacity: 1;
   visibility: visible;
 }
+.result-display {
+	text-align: center;
+}
