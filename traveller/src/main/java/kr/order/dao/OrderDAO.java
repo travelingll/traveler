@@ -92,12 +92,13 @@ public class OrderDAO {
 			
 			/*------ㅡmoney 테이블에 등록------*/
 			if(order.getUse_money()>0) {
-				sql = "INSERT INTO money (sm_num,mem_num,saved_money,sm_content) "
-						+ "VALUES (money_seq.nextval,?,?,?)";
+				sql = "INSERT INTO money (sm_num,mem_num,saved_money,sm_content,order_num) "
+						+ "VALUES (money_seq.nextval,?,?,?,?)";
 				pstmt4 = conn.prepareStatement(sql);
 				pstmt4.setInt(1, order.getMem_num());
 				pstmt4.setInt(2, order.getUse_money()*(-1)); //마이너스 적립금
 				pstmt4.setString(3, "여행 예약");
+				pstmt4.setInt(4, seq);
 				
 				pstmt4.executeUpdate();
 			}
@@ -467,7 +468,7 @@ public class OrderDAO {
 			/*---------사용한 적립금 복귀---------*/
 			sql = "UPDATE money SET saved_money=0,sm_content=? WHERE order_num=?";
 			pstmt2 = conn.prepareStatement(sql);
-			pstmt2.setString(1, "여행 예약 취소, 적립금 사용 취소");
+			pstmt2.setString(1, "여행 예약 취소(적립금 사용 취소)");
 			pstmt2.setInt(2, order_num);
 			pstmt2.executeUpdate();
 			

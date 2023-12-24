@@ -99,7 +99,7 @@
 							<c:forEach var="detail" items="${detail}">
 								<tr>
 									<td>${detail.detail_num}</td>
-									<td class="txl"><a href="userOrderDetail.do?order_num=${order.order_num}"><strong class="title">${detail.item_name}</strong></a></td> 
+									<td class="txl"><strong class="title">${detail.item_name}</strong></td> 
 		                   			<td>${detail.itemVO.date_start}~${detail.itemVO.date_end}</td> 
 		                   			<td><fmt:formatNumber value="${detail.itemVO.item_price}"/>원</td> 
 		                   			<td>${detail.order_quantity}</td>
