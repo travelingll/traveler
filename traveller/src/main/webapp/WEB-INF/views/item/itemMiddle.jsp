@@ -55,7 +55,7 @@
     <div id="content" style="width: 80%;">
         <!-- 오른쪽 내용 -->
         <div class="row" style="width: 70%;" style="text-align:right;">
-			<c:forEach var="item" items="${list}" varStatus="status">
+			<c:forEach var="item" items="${newList}" varStatus="status">
 				<c:if test="${status.index <3}">
 				<c:if test="${item.item_case==item_case}">
 						<div class="card" style="width:30rem;" style="text-align: center;">

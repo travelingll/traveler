@@ -40,18 +40,15 @@ public class ItemMenuAction implements Action{
 		
 		
 		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum),count, 3, 10, "itemMenuList.do");
-		List<ItemVO> list = new ArrayList<ItemVO>();
-		
-		list.add(dao.getItem(100062));
-		list.add(dao.getItem(100063));
-		list.add(dao.getItem(100065));
 		
 		List<ItemVO> sampleList = dao.getItemSampleList(list_num);
 		
 		request.setAttribute("page", page.getPage());
-		request.setAttribute("list", list);
 		request.setAttribute("list_num", list_num);
 		request.setAttribute("sampleList", sampleList);
+		
+		
+	
 		
 		return "/WEB-INF/views/item/itemMenu.jsp";
 	}

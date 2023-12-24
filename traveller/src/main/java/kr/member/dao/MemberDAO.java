@@ -571,4 +571,25 @@ public class MemberDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	//사용자 상품예약정보 구하기 //상품 후기글 구하기
+	public int getReplyAuth(int memnum, int item_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			//커넥션풀로부터 커넥션객체 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT * FROM item_num";
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return count;
+	}
 }

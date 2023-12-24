@@ -51,23 +51,22 @@
 				}
 			};
 			//동적으로 결제금액 태그 생성하기
-			let money_input = document.getElementById('use_money');
 			money_input.onkeyup = function(){
-				//적립금보다 많은 숫자 입력 시 경고
-				if(${user_money}<money_input.value){
-					alert('적립금보다 많은 금액은 사용할 수 없습니다!');
-					money_input.value = '';
-					return;
-				}
-				if(money_input.value<0){
-					alert('음수는 입력할 수 없습니다!');
-					money_input.value = '';
-					return;
-				}
-				let use_money = this.value;
-				let expect_money = document.getElementById('expect_money');
-				expect_money.innerText = (${order_total}-use_money).toLocaleString()+'원';
-			};
+	            //적립금보다 많은 숫자 입력 시 경고
+	            if(${user_money}<money_input.value){
+	               alert('적립금보다 많은 금액은 사용할 수 없습니다!');
+	               money_input.value = '';
+	               return;
+	            }
+	            if(money_input.value<0){
+	               alert('음수는 입력할 수 없습니다!');
+	               money_input.value = '';
+	               return;
+	            }
+	            let use_money = this.value;
+	            let expect_money = document.getElementById('expect_money');
+	            expect_money.innerText = (${order_total}-use_money).toLocaleString()+'원';
+	         };
 		};
 	</script>
 </head>
@@ -120,7 +119,7 @@
 					</li>
 					<li>
 						<label>결제 예정 금액</label>
-						<span id="expect_money">${order_total}원</span>
+						<span id="expect_money">0원</span>
 					</li>
 					<li class="order-radio"><%-- 보내는 데이터 --%>
 						<label for="payment">결제 수단</label>

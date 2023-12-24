@@ -203,6 +203,12 @@ img{
 	<div class="content-center">
 		<h2>여행후기</h2>
 		<hr size="10px">
+			<form action="itemReply.do" method="post">
+	        <label for="comment">후기 내용:</label>
+	        <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
+	        <br>
+	        <input type="submit" value="후기 작성">
+    		</form>
 	</div>
 	<!-- 여행 후기 끝 -->
 	<!-- 트래블러's pick 시작-->

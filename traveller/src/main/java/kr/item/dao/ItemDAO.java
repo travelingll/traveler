@@ -3,6 +3,7 @@ package kr.item.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -494,4 +495,214 @@ private static ItemDAO instance = new ItemDAO();
 		
 		return list;
 	}
+	
+	public List<ItemVO> getItemUserSampleList(int[] item_st1, int[] item_st2, int[] item_st3) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		List<ItemVO> list = null;
+		
+		try {
+			//커넥션풀로부터 커넥션객체 할당
+			conn = DBUtil.getConnection();
+			
+			//SQL문 작성
+			sql = "WITH RankedItems AS ("
+					+ "  SELECT"
+					+ "    item_num,item_name,item_content,item_price,"
+					+ "    item_img1,item_img2,item_img3,item_img4,item_img5,item_img6,"
+					+ "    item_st1,item_st2,item_st3,date_start,date_end,status,reg_date,"
+					+ "    modify_date,quantity,item_case,"
+					+ "    ROW_NUMBER() OVER (PARTITION BY item_st1, item_case ORDER BY reg_date DESC, item_num DESC) AS row_num"
+					+ "  FROM"
+					+ "    item"
+					+ "  WHERE "
+					+ "     (item_st1 IN ? AND item_st2 IN ?)  OR (item_st1 IN ? AND item_st3 IN ?) "
+					+ "  )"
+					+ "  SELECT"
+					+ "  item_num,item_name,item_content,item_price, "
+					+ "  item_img1,item_img2,item_img3,item_img4,item_img5,item_img6, "
+					+ "  item_st1,item_st2,item_st3,date_start,date_end,status,reg_date,"
+					+ "  modify_date,quantity,item_case"
+					+ "  FROM"
+					+ "  RankedItems"
+					+ "  WHERE"
+					+ "  row_num = 1";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, arrayToSqlInString(item_st1));
+			pstmt.setString(2, arrayToSqlInString(item_st2));
+			pstmt.setString(3, arrayToSqlInString(item_st1));
+			pstmt.setString(4, arrayToSqlInString(item_st3));
+			
+			System.out.println(arrayToSqlInString(item_st1));
+			System.out.println(arrayToSqlInString(item_st2));
+			System.out.println(arrayToSqlInString(item_st3));
+			System.out.println(sql);
+			
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<ItemVO>();
+			while(rs.next()) {
+				ItemVO item = new ItemVO();
+				item.setItem_num(rs.getInt("item_num"));
+				item.setItem_name(rs.getString("item_name"));
+				item.setItem_content(rs.getString("item_content"));
+				item.setItem_price(rs.getInt("item_price"));
+				item.setItem_img1(rs.getString("item_img1"));
+				item.setItem_img2(rs.getString("item_img2"));
+				item.setItem_img3(rs.getString("item_img3"));
+				item.setItem_img4(rs.getString("item_img4"));
+				item.setItem_img5(rs.getString("item_img5"));
+				item.setItem_img6(rs.getString("item_img6"));
+				item.setItem_st1(rs.getString("item_st1"));
+				item.setItem_st2(rs.getString("item_st2"));
+				item.setItem_st3(rs.getString("item_st3"));
+				item.setStatus(rs.getString("status"));
+				item.setDate_start(rs.getString("date_start"));
+				item.setDate_end(rs.getString("date_end"));
+				item.setReg_date(rs.getDate("reg_date"));
+				item.setQuantity(rs.getInt("quantity"));
+				item.setItem_case(rs.getString("item_case"));
+				
+				OrderDAO dao = OrderDAO.getInstance();
+				item.setOrderCount(dao.getOrderItemCount(rs.getInt("item_num")));
+				
+				
+				list.add(item);
+				
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
+	
+	private static String arrayToSqlInString(int[] array) {
+	    StringBuilder result = new StringBuilder();
+
+	    for (int i = 0; i < array.length; i++) {
+	        result.append("'").append(array[i]).append("'");
+	        if (i < array.length - 1) {
+	            result.append(", ");
+	        }
+	    }
+
+	    return result.toString();
+	}
+	
+	
+	//사용자맞춤추천 테스트
+	public List<ItemVO> gettestList(int[] item_st1, int[] item_st2, int[] item_st3) throws Exception {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    String sql = null;
+	    List<ItemVO> list = null;
+
+	    try {
+	        conn = DBUtil.getConnection();
+
+	        sql = "WITH RankedItems AS ("
+	                + "  SELECT"
+	                + "    item_num,item_name,item_content,item_price,"
+	                + "    item_img1,item_img2,item_img3,item_img4,item_img5,item_img6,"
+	                + "    item_st1,item_st2,item_st3,date_start,date_end,status,reg_date,"
+	                + "    modify_date,quantity,item_case,"
+	                + "    ROW_NUMBER() OVER (PARTITION BY item_st1, item_case ORDER BY reg_date DESC, item_num DESC) AS row_num"
+	                + "  FROM"
+	                + "    item"
+	                + "  WHERE "
+	                + "     (item_st1 IN (" + getInClause(item_st1) + ") AND item_st2 IN (" + getInClause(item_st2) + "))" +
+	                " OR (item_st1 IN (" + getInClause(item_st1) + ") AND item_st3 IN (" + getInClause(item_st3) + "))"
+	                + "  )"
+	                + "  SELECT"
+	                + "  item_num,item_name,item_content,item_price, "
+	                + "  item_img1,item_img2,item_img3,item_img4,item_img5,item_img6, "
+	                + "  item_st1,item_st2,item_st3,date_start,date_end,status,reg_date,"
+	                + "  modify_date,quantity,item_case"
+	                + "  FROM"
+	                + "  RankedItems"
+	                + "  WHERE"
+	                + "  row_num = 1";
+
+	        pstmt = conn.prepareStatement(sql);
+	        // 여기서는 별도의 메서드를 통해 ?에 데이터를 바인딩합니다.
+			/*
+			 * bindArrayValues(pstmt, 1, item_st1); bindArrayValues(pstmt, 2, item_st2);
+			 * bindArrayValues(pstmt, 3, item_st1); bindArrayValues(pstmt, 4, item_st3);
+			 */
+	     // ?에 데이터 바인딩
+	        bindArrayValues(pstmt, 1, item_st1);
+	        bindArrayValues(pstmt, 1 + item_st1.length, item_st2);
+	        bindArrayValues(pstmt, 1 + item_st1.length + item_st2.length, item_st1);
+	        bindArrayValues(pstmt, 1 + item_st1.length + item_st2.length + item_st3.length, item_st3);
+	        
+	        rs = pstmt.executeQuery();
+	        list = new ArrayList<>();
+	        while (rs.next()) {
+	        	ItemVO item = new ItemVO();
+				item.setItem_num(rs.getInt("item_num"));
+				item.setItem_name(rs.getString("item_name"));
+				item.setItem_content(rs.getString("item_content"));
+				item.setItem_price(rs.getInt("item_price"));
+				item.setItem_img1(rs.getString("item_img1"));
+				item.setItem_img2(rs.getString("item_img2"));
+				item.setItem_img3(rs.getString("item_img3"));
+				item.setItem_img4(rs.getString("item_img4"));
+				item.setItem_img5(rs.getString("item_img5"));
+				item.setItem_img6(rs.getString("item_img6"));
+				item.setItem_st1(rs.getString("item_st1"));
+				item.setItem_st2(rs.getString("item_st2"));
+				item.setItem_st3(rs.getString("item_st3"));
+				item.setStatus(rs.getString("status"));
+				item.setDate_start(rs.getString("date_start"));
+				item.setDate_end(rs.getString("date_end"));
+				item.setReg_date(rs.getDate("reg_date"));
+				item.setQuantity(rs.getInt("quantity"));
+				item.setItem_case(rs.getString("item_case"));
+				
+				OrderDAO dao = OrderDAO.getInstance();
+				item.setOrderCount(dao.getOrderItemCount(rs.getInt("item_num")));
+				
+				
+				list.add(item);
+				
+	        }
+
+	    } catch (SQLException e) {
+	    	e.printStackTrace();
+	    } finally {
+	        DBUtil.executeClose(rs, pstmt, conn);
+	    }
+
+	    return list;
+	}
+
+	// ?에 데이터를 바인딩하는 메서드
+	
+
+	private void bindArrayValues(PreparedStatement pstmt, int startIndex, int[] array) throws SQLException {
+	    for (int i = 0; i < array.length; i++) {
+	        pstmt.setInt(startIndex + i, array[i]);
+	    }
+	}
+	// IN 절에 사용될 ?, ?, ?... 문자열을 생성하는 메서드
+	private String getInClause(int[] array) {
+	    StringBuilder result = new StringBuilder();
+	    for (int i = 0; i < array.length; i++) {
+	        result.append("?");
+	        if (i < array.length - 1) {
+	            result.append(", ");
+	        }
+	    }
+	    return result.toString();
+	}
+	
 }

@@ -45,6 +45,12 @@ public class ItemMiddleAction implements Action{
 		list.add(dao.getItem(100063));
 		list.add(dao.getItem(100065));
 		
+		List<ItemVO> newList = dao.getItemSampleList(list_num);
+		request.setAttribute("newList", newList);
+		for(ItemVO vo : newList) {
+			System.out.println(vo.getItem_st1());
+		}
+		
 		request.setAttribute("page", page.getPage());
 		request.setAttribute("list", list);
 		request.setAttribute("list_num", list_num);

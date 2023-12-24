@@ -173,9 +173,9 @@ border: 1px solid black;
 						<input type="hidden" value="${order.order_num}" name="order_num" id="order_num">
 							<ul>
 								<li>
-									<input type="radio" value="1" name="orderStatus" id="st1">예약
-									<input type="radio" value="2" name="orderStatus" id="st2">사용완료
-									<input type="radio" value="3" name="orderStatus" id="st3">사용미완료
+									<input type="radio" value="1" name="orderStatus" id="st1">예약(사용전)
+									<input type="radio" value="2" name="orderStatus" id="st2">사용중
+									<input type="radio" value="3" name="orderStatus" id="st3">노쇼
 									<input type="radio" value="4" name="orderStatus" id="st4">예약취소
 									<br><br>
 									<input type="submit" value="수정">

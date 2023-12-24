@@ -172,7 +172,7 @@ form ul li label{
 			</ul>
 			<div class="align-center">
 				<input type="submit" value="등록">
-				<input type="button" value="목록" onclick="location.href='itemList.do'">
+				<input type="button" value="목록" onclick="location.href='adminItemList.do'">
 			<!--<input type="button" value="홈으로" onclick=request.getContextPath()+"/main/main.do">  -->
 			</div>
 		</form>
