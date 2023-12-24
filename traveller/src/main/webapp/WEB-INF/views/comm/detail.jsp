@@ -66,7 +66,7 @@
 															<span></span> 
 															<span>${comm.reg_date}</span>
 														</div> 
-														<a href="#none" class="report">신고</a>
+														
 													</div> 
 													<div class="product_info">
 														<ul>

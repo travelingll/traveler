@@ -102,7 +102,7 @@ window.onload=function(){
 					<colgroup>
 					<col style="width: 7%;"> 
 					<col > 
-					<col style="width: 10%;"> 
+					<col style="width: 12%;"> 
 					<col style="width: 12%;"> 
 					<col style="width: 7%;"> 
 					</colgroup>								 								
@@ -131,7 +131,7 @@ window.onload=function(){
 				<colgroup>
 					<col style="width: 7%;"> 
 					<col > 
-					<col style="width: 10%;"> 
+					<col style="width: 12%;"> 
 					<col style="width: 12%;"> 
 					<col style="width: 7%;"> 
 				</colgroup> 

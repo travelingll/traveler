@@ -1,0 +1,244 @@
+@charset "UTF-8";
+
+.tbl {
+    position: relative;
+}
+.tbl {
+    table-layout: fixed;
+    display: table;
+    width: 100%;
+}
+.tbl table {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    border-collapse: separate;
+    table-layout: fixed;
+    font-size: 15px;
+}
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+colgroup {
+    display: table-column-group;
+}
+col {
+    display: table-column;
+}
+.tbl tbody {
+    position: relative;
+}
+.tbl table.type2 tr:first-child th, .tbl .type2 tr:first-child td {
+    border-top: 1px solid #999;
+}
+.tbl table.type2 th {
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+.tbl th {
+    background-color: #f7f7f7;
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+}
+.tbl th, .tbl td {
+    text-align: left;
+    min-height: 54px;
+    padding: 15px 20px;
+    font-weight: 400;
+    line-height: 23px;
+}
+.impt {
+    display: inline-block;
+    position: relative;
+    padding-right: 10px;
+}
+.impt:before {
+    content: '*';
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #5e2bb8;
+}
+*:before, *:after {
+    box-sizing: initial;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+    -webkit-tap-highlight-color: transparent;
+    -moz-tap-highlight-color: transparent;
+}
+.tbl table.type2 tr:first-child th, .tbl .type2 tr:first-child td {
+    border-top: 1px solid #999;
+}
+
+.tbl table.type2 td {
+    border-top: 1px solid #ddd;
+}
+.tbl td {
+    color: #333;
+    font-size: 15px;
+}
+.tbl th, .tbl td {
+    text-align: left;
+    min-height: 54px;
+    padding: 15px 20px;
+    font-weight: 400;
+    line-height: 23px;
+}
+.form_holder {
+    position: relative;
+    vertical-align: top;
+}
+.form_holder input[type='text'], .form_holder input[type='password'], .form_holder .select_item, .form_holder button.calandar {
+    float: left;
+}
+.form_holder .inpt_text {
+    padding-right: 30px;
+}
+input[type=text], input[type=number], input[type=date], input[type=password] {
+    height: 42px;
+    padding: 0 15px;
+    border: 1px solid #cdcdcd;
+    background-color: #fff;
+    border-radius: 2px;
+}
+input[type='text'], input[type='email'], input[type='search'], input[type='password'] {
+    -webkit-appearance: none;
+   
+}
+
+.tbl td {
+    color: #333;
+    font-size: 15px;
+}
+.tbl th, .tbl td {
+    text-align: left;
+    min-height: 54px;
+    padding: 15px 20px;
+    font-weight: 400;
+    line-height: 23px;
+}
+
+.tbl table.type2 th {
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+.tbl table.type2 td {
+    border-top: 1px solid #ddd;
+}
+.form_holder {
+    position: relative;
+    vertical-align: top;
+}
+.form_holder textarea {
+    resize: none;
+    width: 100%;
+    padding: 15px;
+}
+textarea {
+    border: 1px solid #cdcdcd;
+    border-radius: 2px;
+    padding: 16px;
+}
+
+.tbl table.type2 td {
+    border-top: 1px solid #ddd;
+}
+.tbl td {
+    color: #333;
+    font-size: 15px;
+}
+.tbl th, .tbl td {
+    text-align: left;
+    min-height: 54px;
+    padding: 15px 20px;
+    font-weight: 400;
+    line-height: 23px;
+}
+
+
+
+
+<!---->
+
+
+
+
+span.form_holder {
+    display: inline-block;
+    margin-right: 20px;
+}
+.form_holder {
+    position: relative;
+    vertical-align: top;
+}
+<!--  -->
+
+input[type="radio"] {
+  display:none;
+}
+
+input[type="radio"]{
+  display:inline-block;
+  width: 22px;height: 22px;
+  margin: 4px 4px 4px 10px;
+  font-size: 0;
+  vertical-align: middle;
+  cursor:pointer;
+}
+input[type="checkbox"] {
+  display:none;
+}
+
+input[type="checkbox"]{
+  display:inline-block;
+  width: 22px;height: 22px;
+  margin: 4px 4px 4px 10px;
+  font-size: 0;
+  vertical-align: middle;
+  cursor:pointer;
+}
+
+input[type="radio"]:checked + label span.round {
+  background: url('../images/common/radio_brn_slc.png') no-repeat;
+  
+  
+  
+}
+
+<!---->
+.tbl table.type2 td .txt.billiard {
+    line-height: 20px;
+    letter-spacing: -.52px;
+}
+
+
+.file_attach_wrap ul {
+    overflow: hidden;
+    height: 100px;
+}
+
+.tbl p.txt {
+    line-height: 14px;
+    color: #666;
+}
+.file_attach_wrap + p.txt {
+    margin-top: 10px;
+}
+
+.txt.billiard {
+    line-height: 20px;
+    color: #888;
+    padding-left: 17px;
+    font-size: 13px;
+}
+
+p.txt, span.txt, .txt>li {
+    position: relative;
+    line-height: 23px;
+    color: #666;
+    font-size: 14px;
+}
