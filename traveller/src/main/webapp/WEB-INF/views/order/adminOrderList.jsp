@@ -68,7 +68,7 @@ $(function(){
 												<tr>
 													<td><a href="orderDetail.do?order_num=${order.order_num}">${order.order_num}</a></td>
 													<td><a href="orderDetail.do?order_num=${order.order_num}">${order.item_name}</a></td>
-													<td><a href="orderDetail.do?order_num=${order.order_num}">${order.order_status}</a></td>
+													<td style="text-align:center;"><a href="orderDetail.do?order_num=${order.order_num}">${order.order_status}</a></td>
 												</tr>
 											</c:forEach>
 											</tbody>
