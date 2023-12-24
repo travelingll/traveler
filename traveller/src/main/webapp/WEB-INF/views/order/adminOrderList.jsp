@@ -73,7 +73,8 @@ $(function(){
 											</c:forEach>
 											</tbody>
 										</table>
-											<div class="align-center">
+										<br><br>
+											<div style="text-align:center;">
 												${page}
 											</div>
 										</div>
