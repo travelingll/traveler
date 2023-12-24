@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 예약관리 게시판</title>
+<title>관리자 예약관리</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eunseo.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -45,7 +45,7 @@ $(function(){
 							</div> 
 							<div id="contents" class="contents" style="min-height:70%;">
 				    			<div class="text_wrap big fix">
-				    						<strong class="tit">관리자 예약관리 게시판</strong>
+				    						<strong class="tit">관리자 예약관리</strong>
 				    			</div>
 				    			<div class="panels">
 									<div id="tabPkg" class="panel selected">
