@@ -54,8 +54,33 @@ $(function(){
 <body>
 <div class = "page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	    <div id="__nuxt">
+    	<div id="__layout">
+    		<div id="wrapper">
+    			<div id="screenArea">
+    				<div id="wrap">
+    					<div id="container">
+    						<div class="inr">
+    						<!-- 여기서 부터 사이드바 입니다.-->
+    							<div id="lnb" class="lnb">
+    								<div class="inr">
+    									<dl>
+											<dt class="type">		
+												<a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a>
+											</dt>
+											<dd>
+												<ul class="list_lnb">
+													<li><a href="${pageContext.request.contextPath}/accom/list.do">동행구하기</a></li>
+													<li><a href="${pageContext.request.contextPath}/comm/list.do">커뮤니티</a></li>
+												</ul>
+											</dd>
+										</dl>
+    								</div>
+    							</div> 
+    							<!-- 여기까지 사이드바 입니다.-->
 	<div class = "content-main">
 		<h2>게시판 글수정</h2>
+		<br>
 		<form id="write_form" action="update.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="accom_num" value="${accom.accom_num}">
 		<ul>
@@ -137,6 +162,13 @@ $(function(){
 			</div>
 		</form>
 	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>
