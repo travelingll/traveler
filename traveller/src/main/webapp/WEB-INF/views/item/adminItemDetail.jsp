@@ -132,7 +132,7 @@ $(function(){
 													</li>
 													<br>
 														</c:if>
-														<c:if test="${!empty item.item_img4 && item.item_img5}">
+														<c:if test="${!empty item.item_img4 && !empty item.item_img5}">
 													<li>
 													<br>
 														<b>5일차 사진</b><br>
@@ -140,7 +140,7 @@ $(function(){
 														<br>
 													</li>
 														</c:if>
-														<c:if test="${!empty item.item_img4 && item.item_img5 && item.item_img6}">
+														<c:if test="${!empty item.item_img4 && !empty item.item_img5 && ! empty item.item_img6}">
 													<li>
 													<br>
 														<b>6일차 사진</b><br>

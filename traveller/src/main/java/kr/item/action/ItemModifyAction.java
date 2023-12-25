@@ -110,7 +110,7 @@ public class ItemModifyAction implements Action{
 		dao.modifyItem(item);
 	
 		
-		response.addHeader("Refresh", "2;url=adminItemDetail.do?item_num="+item_num);
+		response.addHeader("Refresh", "1;url=adminItemDetail.do?item_num="+item_num);
 		request.setAttribute("accessMsg", "성공적으로 수정되었습니다.");
 		request.setAttribute("accessUrl", "2;url=adminItemDetail.do?item_num="+item_num);
 	

@@ -32,8 +32,8 @@ private static ItemDAO instance = new ItemDAO();
 			//SQL문 작성
 			sql = "INSERT INTO item (item_num, item_name, item_content, item_price, "
 					+ "item_img1, item_img2, item_img3, item_img4, item_img5, item_img6, "
-					+ "item_st1, item_st2, item_st3, date_start, date_end, status,quantity) "
-					+ "VALUES(item_seq.nextval, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+					+ "item_st1, item_st2, item_st3, date_start, date_end, status,quantity,item_case)  "
+					+ "VALUES(item_seq.nextval, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -53,6 +53,7 @@ private static ItemDAO instance = new ItemDAO();
 			pstmt.setString(14,item.getDate_end());
 			pstmt.setString(15,item.getStatus());
 			pstmt.setInt(16,item.getQuantity());
+			pstmt.setString(17, item.getItem_case());			
 			//SQL문 실행
 			pstmt.executeUpdate();
 			

@@ -50,7 +50,7 @@ $(function(){
 		
 		});
 		
-		$('.photo').change(function(){
+		/* $('.photo').change(function(){
 			photo_path = $(this).parent().parent().find('.photo');
 			let pic = $(this).parent().parent().find('.pic');
 			let my_photo = this.files[0];
@@ -67,13 +67,13 @@ $(function(){
 			}
 			
 			
-		});
+		}); */
 		$('.photo_reset').click(function(){
 			
 			$(this).parent().parent().find('.pic').attr('src', photo_path);
 			$(this).siblings('.photo').val('');
 			$(this).parent().hide();
-			$(this).parent().siblings('.photo_btn').show();
+			$(this).parent().parent().find('.photo_btn').show();
 		
 		});
 		const status = $('#closing').attr('data-num');
@@ -202,7 +202,6 @@ $(function(){
 															<div class="photo_choice" style="display:none;">
 																<input type="file" id="pic1" name="pic1" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
 																<br>
-																<input type="button" value="등록" class="photo_submit" data-num="1">
 																<input type="button" value="취소" class="photo_reset">	
 															</div>
 															<div class="align-center">
@@ -221,7 +220,6 @@ $(function(){
 														<div class="photo_choice" style="display:none;">
 															<input type="file" id="pic2" name="pic2" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
 															<br>
-															<input type="button" value="등록" class="photo_submit" data-num="2">
 															<input type="button" value="취소" class="photo_reset">	
 														</div>
 														<div class="align-center">
@@ -240,7 +238,6 @@ $(function(){
 														<div class="photo_choice" style="display:none;">
 															<input type="file" id="pic3" name="pic3" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
 															<br>
-															<input type="button" value="등록" class="photo_submit" data-num="3">
 															<input type="button" value="취소" class="photo_reset">	
 														</div>
 														<div class="align-center">
@@ -265,7 +262,6 @@ $(function(){
 														<div class="photo_choice" style="display:none;">
 															<input type="file" id="pic4" name="pic4" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
 															<br>
-															<input type="button" value="등록" class="photo_submit" data-num="4">
 															<input type="button" value="취소" class="photo_reset">	
 														</div>
 														<div class="align-center">
@@ -290,7 +286,6 @@ $(function(){
 														<div class="photo_choice" style="display:none;">
 															<input type="file" id="pic5" name="pic5" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
 															<br>
-															<input type="button" value="등록" class="photo_submit" data-num="5">
 															<input type="button" value="취소" class="photo_reset">	
 														</div>
 														<div class="align-center">
@@ -315,7 +310,6 @@ $(function(){
 														<div class="photo_choice" style="display:none;">
 															<input type="file" id="pic6" name="pic6" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
 															<br>
-															<input type="button" value="등록" class="photo_submit" data-num="6">
 															<input type="button" value="취소" class="photo_reset">	
 														</div>
 														<div class="align-center">
@@ -364,6 +358,7 @@ $(function(){
 												<div class="align-center">
 													<input type="submit" value="수정">
 													<input type="button" value="목록" onclick="location.href='itemUpdateList.do'">
+													<input type="button" value="본 상품으로 이동" onclick="location.href='${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}'">
 												<!--<input type="button" value="홈으로" onclick=request.getContextPath()+"/main/main.do">  -->
 												</div>
 											</form>

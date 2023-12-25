@@ -42,7 +42,7 @@ a {
 hr{
     color: black;
   }
-#button {
+.button {
   background-color: #4CAF50;
   border: none;
   color: white;
@@ -60,6 +60,7 @@ hr{
 img{
 	width:80%;
 }
+
 </style>
 <script>
 	function openPopup1() {
@@ -122,14 +123,20 @@ img{
 				</div>
 				</div>
 					<div>
+					<c:if test="${item.status==2}">
 						<form id="reservationForm" action="${pageContext.request.contextPath}/cart/write.do" method="post">
 						<label for="order_quantity">구매수량</label>
 						<input type="number" name="order_quantity" id="order_quantity" value="1" min="1" max="${item.quantity}">
 						<input type="hidden" name="item_num" value="${item.item_num}" >
 						<input type="hidden" name="item_price" value="${item.item_price}" >
 						<input type="hidden" name="quantity" value="${item.quantity}">
-	 					<input type="submit" value="장바구니에 담기" id="button">
+	 					<input type="submit" value="장바구니에 담기" class="button">
 						</form>
+					</c:if>
+					<c:if test="${item.status==3}">
+	 					<input type="submit" value="판매종료" class="button" id="nosale">
+	 					<script>$('#nosale').click(function(){alert('본 상품은 조기마감되었습니다. 감사합니다.')})</script>
+					</c:if>
 					</div>
 			</div>
 		</div>
