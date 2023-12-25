@@ -126,8 +126,8 @@
 					<li class="order-radio"><%-- 보내는 데이터 --%>
 						<label for="payment">결제 수단</label>
 						<div class="radio-right">
-							<input type="radio" name="payment" class="radio-select" value="1"> 카드 결제
-							<input type="radio" name="payment" class="radio-select" value="2"> 무통장 입금
+							<input type="radio" name="payment" class="radio-select" value="1"> 카드 결제 
+							<input type="radio" name="payment" class="radio-select" value="2"> 무통장 입금 
 						</div>
 					</li>
 				</ul>

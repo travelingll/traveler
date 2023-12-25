@@ -941,7 +941,7 @@ a {
     z-index: 1;
 }
 
-input[type=text],input[type=email],input[type=number],input[type=number] {
+input[type=text],input[type=email],input[type=number],input[type=number],input[type=password] {
 	width: 95%;
 	height: 40px;
 	border-color: lightgray;
