@@ -250,37 +250,80 @@ $(function(){
 														</div>					
 														<br> 
 													</li>
-													
 													<li>
 														<br>
-														<label for="pic4"><b>4일차 사진(선택입력)</b></label>
-														<input type="file" id="pic4" name="pic4" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="plus">
-														<br>
+														<div class="align-center;">
+															<label for="pic4"><b>4일차 사진(선택입력)</b></label>
+															<c:if test="${empty item.item_img4}">
+															<input type="file" id="pic4" name="pic4" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="plus">
+															</c:if>
+															<c:if test="${!empty item.item_img4}">
+															<input type="button" value="수정" class="photo_btn">
+															</c:if>
+														</div>
 														<c:if test="${!empty item.item_img4}">
-														<img src="${pageContext.request.contextPath}/upload/${item.item_img4}" width="150px">
-														<input type="button" value="수정"> 
+														<div class="photo_choice" style="display:none;">
+															<input type="file" id="pic4" name="pic4" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
+															<br>
+															<input type="button" value="등록" class="photo_submit" data-num="4">
+															<input type="button" value="취소" class="photo_reset">	
+														</div>
+														<div class="align-center">
+															<img src="${pageContext.request.contextPath}/upload/${item.item_img4}" width="150px">
+															<br>
+															<br>
+														</div>
 														</c:if>
-														<br>
 													</li>
 													<li>
-														<label for="pic5"><b>5일차 사진(선택입력)</b></label>
-														<input type="file" id="pic5" name="pic5" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="plus">
 														<br>
-														<c:if test="${!empty item.item_img4 && item.item_img5}">
-														<img src="${pageContext.request.contextPath}/upload/${item.item_img5}" width="150px">
-														<input type="button" value="수정"> 
+														<div class="align-center;">
+															<label for="pic5"><b>5일차 사진(선택입력)</b></label>
+															<c:if test="${empty item.item_img5}">
+															<input type="file" id="pic5" name="pic5" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="plus">
+															</c:if>
+															<c:if test="${!empty item.item_img5}">
+															<input type="button" value="수정" class="photo_btn">
+															</c:if>
+														</div>
+														<c:if test="${!empty item.item_img5}">
+														<div class="photo_choice" style="display:none;">
+															<input type="file" id="pic5" name="pic5" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
+															<br>
+															<input type="button" value="등록" class="photo_submit" data-num="5">
+															<input type="button" value="취소" class="photo_reset">	
+														</div>
+														<div class="align-center">
+															<img src="${pageContext.request.contextPath}/upload/${item.item_img5}" width="150px">
+															<br>
+															<br>
+														</div>
 														</c:if>
-														<br>
 													</li>
 													<li>
-														<label for="pic6"><b>6일차 사진(선택입력)</b></label>
-														<input type="file" id="pic6" name="pic6" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="plus">
-														<c:if test="${!empty item.item_img4 && item.item_img5 && item.item_img6}">
 														<br>
-														<img src="${pageContext.request.contextPath}/upload/${item.item_img6}" width="150px">
-														<input type="button" value="수정"> 
+														<div class="align-center;">
+															<label for="pic6"><b>6일차 사진(선택입력)</b></label>
+															<c:if test="${empty item.item_img6}">
+															<input type="file" id="pic6" name="pic6" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="plus">
+															</c:if>
+															<c:if test="${!empty item.item_img6}">
+															<input type="button" value="수정" class="photo_btn">
+															</c:if>
+														</div>
+														<c:if test="${!empty item.item_img6}">
+														<div class="photo_choice" style="display:none;">
+															<input type="file" id="pic6" name="pic6" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
+															<br>
+															<input type="button" value="등록" class="photo_submit" data-num="6">
+															<input type="button" value="취소" class="photo_reset">	
+														</div>
+														<div class="align-center">
+															<img src="${pageContext.request.contextPath}/upload/${item.item_img6}" width="150px">
+															<br>
+															<br>
+														</div>
 														</c:if>
-														<br>
 													</li>
 													<li>
 													<br>
