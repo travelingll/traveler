@@ -45,8 +45,8 @@
 										<table class="board_type">
 											<colgroup>
 												<col style="width: 20%;"> 
-												<col style="width: 48%;"> 
-												<col style="width: 20%;"> 
+												<col style="width: 45%;"> 
+												<col style="width: 23%;"> 
 												<col style="width: 12%;">
 											</colgroup>
 										<thead>
@@ -79,6 +79,8 @@
 			</div>
 		</div>
 	</div>
+</div>
+</div>
 </body>
 </html>
 
