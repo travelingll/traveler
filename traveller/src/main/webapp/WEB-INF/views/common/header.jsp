@@ -189,7 +189,7 @@
 										<div>
 											<ul id="main-menu" class="list_gnb_menu">
 											<li >
-												<a href="${pageContext.request.contextPath}/item/itemMain.do" class="dropdown-btn">여행상품</a>
+												<a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1" class="dropdown-btn">여행상품</a>
 												<div>
 												</div>
 											</li>
