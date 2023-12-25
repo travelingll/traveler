@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>게시판 글쓰기</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/commDetailWrite.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -23,6 +24,7 @@ $(function(){
 		}
 		if($('input[name="category"]:radio:checked').length<1){
 			alert('카테고리를 체크해주세요');
+		}
 
 		if($('input[name="tag"]:checkbox:checked').length<1){
 			alert('태그를 1개 이상 체크해주세요');
@@ -60,7 +62,7 @@ $(function(){
     							</div> 
     							<!-- 여기까지 사이드바 입니다.-->
     							<div id="contents" class="contents">
-    								<div class="text_wrap big fix"><strong class="tit">개인정보</strong></div> 
+    								<div class="text_wrap big fix"><strong class="tit">글 수정</strong></div> 
     								<div class="js_tabs link type1 v-tabs">
     									<ul class="tabs"></ul> 
     										<div class="panels">
@@ -267,7 +269,7 @@ $(function(){
 													if(param.result=='logout'){
 														alert('로그인 후 사용하세요');
 													}else if(param.result=='success'){
-														$('#file_detail1').hide();
+														$('#file_detail3').hide();
 													}else if(param.result=='wrongAccess'){
 														alert('잘못된 접속입니다');
 													}else{

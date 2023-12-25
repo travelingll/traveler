@@ -23,19 +23,9 @@ $(function(){
 				return false;
 			}
 		}
-<<<<<<< HEAD
-
-		
 		if($('input[name="category"]:radio:checked').length<1){
 			alert('카테고리를 체크해주세요');
-=======
-		
-		if($('input[name="category"]:checkbox:checked').length<1){
-			alert('여행 스타일을 체크해주세요');
->>>>>>> branch 'main' of https://github.com/travelingll/traveler.git
-			return false;
 		}
-		
 
 		if($('input[name="tag"]:checkbox:checked').length<1){
 			alert('태그를 1개 이상 체크해주세요');
@@ -81,7 +71,6 @@ $(function(){
     										<div class="panels">
     											<div id="tabCon01" class="panel selected">
     												<div class="tbl">  
-<<<<<<< HEAD
     												
     												
     												
@@ -170,11 +159,6 @@ $(function(){
 								<div class="file_attach_wrap mt20">
 									<ul>
 										<li>
-											<span class="img">
-												<img src="" alt="" style="display:none;"><label for="filename1" style="display:none;">파일</label>
-											</span> 
-											<a class="cls" style="cursor:pointer;display:none;">삭제</a> 
-											<span class="img" style="display:;"></span> 
 											<a class="btn" style="cursor:pointer;display:;"><label for="filename1">파일</label></a> 
 											<input type="file" name="filename1" id="filename1"  accept="image/gif, image/png, image/jpeg" style="display:none;" class="insert_check">
 										</li> 
@@ -223,85 +207,11 @@ $(function(){
 </div>
 </div>
 </div>
-=======
-													<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
- 														<table class="type2">
-    														<colgroup>
-    															<col style="width: 20%;"><col>
-    														</colgroup> 
-    														<tbody>
-    															<tr>
-    																<th><label for="comm_title">제목</label></th><td><input type="text" name="comm_title" id="comm_title" maxlength="50" class="insert_check"></td>
-    															</tr> 
-    															<tr>
-    																<th><label for="comm_content">내용</label></th>
-    																<td>
-    																	<textarea rows="5" cols="30" name="comm_content" id="comm_content" class="insert_check"></textarea>
-    																</td>
-    															</tr> 
-    															<tr>
-    																<th><label for="filename1">파일</label></th> 
-    																<td>
-    																	<input type="file" name="filename1" id="filename1" accept="image/gif, image/png, image/jpeg" class="insert_check">
-    																</td>
-    															</tr>
-    															<tr>
-    																<th><label for="filename">파일</label></th> 
-    																<td>
-    																	<input type="file" name="filename2" id="filename2" accept="image/gif, image/png, image/jpeg" class="insert_check">
-    																</td>
-    															</tr> 
-    															<tr>
-    																<th><label for="filename">파일</label></th> 
-    																<td>
-    																	<input type="file" name="filename3" id="filename3" accept="image/gif, image/png, image/jpeg" class="insert_check">
-    																</td>
-    															</tr> 
-    															<tr>
-    																<th><label>여행스타일</label></th> 
-    																<td>
-    																	<label>여행스타일</label>
-																		<input type="radio" name="category" class="category" value="1">커플여행
-																		<input type="radio" name="category" class="category" value="2">가족여행
-																		<input type="radio" name="category" class="category" value="3">아동동반여행
-																		<input type="radio" name="category" class="category" value="4">친구모임
-																		<input type="radio" name="category" class="category" value="5">나홀로여행
-																		<input type="radio" name="category" class="category" value="6">기타
-    																</td>
-    															</tr>
-    															<tr>
-    																<th><label>태그</label></th> 
-    																<td>
-    																	<input type="checkbox" name="tag" value="1">객실뷰가 좋아요
-																		<input type="checkbox" name="tag" value="2">일정이 알차요
-																		<input type="checkbox" name="tag" value="3">현지 음식이 맛있어요
-																		<input type="checkbox" name="tag" value="4">가이드가 배려 깊고 세심해요
-																		<input type="checkbox" name="tag" value="5">가격이 합리적이에요
-																		
-																	</td>
-    															</tr> 
-    														</tbody>
-    														
-    													</table>
-    													<div class="align-center">
-															<input type="submit" value="등록">
-															<input type="button" value="목록" onclick="location.href='list.do'">
-														</div>
-    													</form>
+
+
+
     													
-    												</div>     
-    											</div>
-    										</div>
-    									</div> <!---->
-    								</div>
-    							</div>
-    						</div>
-    					</div> 
-    				</div> <!----> 										
-    			</div>
-    		</div>
-    	</div>
->>>>>>> branch 'main' of https://github.com/travelingll/traveler.git
+    			
 </body>
 
 </html>

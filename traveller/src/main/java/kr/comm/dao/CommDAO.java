@@ -158,6 +158,7 @@ public class CommDAO {
 				comm.setComm_hit(rs.getInt("comm_hit"));
 				comm.setReg_date(rs.getDate("reg_date"));
 				comm.setId(rs.getString("id"));
+				comm.setCategory(rs.getInt("category"));
 				
 				list.add(comm);	
 			}
@@ -255,7 +256,7 @@ public class CommDAO {
 			//커넥션풀로부터 커넥션객체 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "UPDATE comm SET filename='' WHERE comm_num=?";
+			sql = "UPDATE comm SET filename1='' WHERE comm_num=?";
 			//preparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩

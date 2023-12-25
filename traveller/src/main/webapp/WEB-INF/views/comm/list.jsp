@@ -11,6 +11,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/totalMenu.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/list2.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eunseo.css">
 
 
@@ -59,7 +60,7 @@ window.onload=function(){
 <!-- 여기서부터는 본문 입니다. -->
 		<div id="contents" class="contents">
 			<div class="ly_wrap main_cuc">
-				<div class="inr">
+				<div class="inr" style="width: 690px;">
 					<div class="text_wrap big fix">
 						<strong class="tit"><em>트래블러 커뮤니티</em> 입니다.</strong>
 					</div> 
@@ -73,30 +74,30 @@ window.onload=function(){
 							<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>내용</option>
 						</select>
 				
-						<input type="search" class="input_keyword" size="20" placeholder="검색어를 입력해 주세요" name="keyword" id="keyword" value="${param.keyword}" >
+						<input type="search" class="input_keyword" size="20" placeholder="검색어를 입력해 주세요" name="keyword" id="keyword" value="${param.keyword}" style=" width: 502px;" >
 						<input type="submit" class="btn"  value="검색" style="height:54px;">
 						
 						</form>
 						</div> 
 					</div>
 					<!-- 여기까지 검색창입니다. -->
-				<div id="contents" class="contents" data-v-bead000e="">
-					<div class="text_wrap big"><strong class="tit">최근 게시물</strong>
+					<div id="contents" class="contents" data-v-bead000e="">
+						<div class="text_wrap big"><strong class="tit">최근 게시물</strong>
 						<!-- 여기서부터 버튼입니다. -->
 						
 						<!-- 여기까지 버튼입니다. -->
 						
-						<div class="panels">
-							<div id="tabPkg" class="panel selected">
-								<div class="option_wrap">
-									<div class="list-space">
+							<div class="panels">
+								<div id="tabPkg" class="panel selected">
+									<div class="option_wrap">
+										<div class="list-space">
 										<input class="btn" type="button" value="글쓰기" onclick="location.href='writeForm.do'"
 			   								 <c:if test="${empty user_num}">disabled="disabled"</c:if>> 
 										<input class="btn" type="button" value="목록" onclick="location.href='list.do'"> 
 										<input class="btn" type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">                      
-									</div>		
-								</div> 
-								<div class="tbl" style="width:100%">
+										</div>		
+									</div> 
+									<div class="tbl" style="width:100%">
     		<c:if test="${count == 0}">
 				<table class="board_type">
 					<colgroup>
@@ -129,11 +130,11 @@ window.onload=function(){
 			<c:if test="${count > 0}">
 				<table class="board_type">
 				<colgroup>
-					<col style="width: 7%;"> 
+					<col style="width: 13%;"> 
 					<col > 
-					<col style="width: 12%;"> 
-					<col style="width: 12%;"> 
-					<col style="width: 7%;"> 
+					<col style="width: 16%;"> 
+					<col style="width: 20%;"> 
+					<col style="width: 10%;"> 
 				</colgroup> 
  					<thead>
  						<tr>						
@@ -148,7 +149,12 @@ window.onload=function(){
    					<tbody>
    						<tr>
 							<td style="text-align: center;">${comm.comm_num}</td>
-							<td><a href="detail.do?comm_num=${comm.comm_num}">${comm.comm_title}</a></td>
+							<td><a href="detail.do?comm_num=${comm.comm_num}">
+							<c:if test="${comm.comm_hit > 99}">
+								<span class="hot_article" 
+								style=" font-size: 10px; background: red; border-radius: 3px; padding: 1px 3px; color: #fff;">HOT</span>
+							</c:if>
+							${comm.comm_title}</a></td>
 							<td style="text-align: center;">${comm.id}</td>
 							<td style="text-align: center;">${comm.reg_date}</td>
 							<td style="text-align: center;">${comm.comm_hit}</td>
@@ -163,8 +169,79 @@ window.onload=function(){
   						</div>
   					</div>
   				</div>
+  				
   			</div>
+  			<div class="inr right">
+  				<div class="side_box_wrap">
+  					<div class="text_wrap mid">
+  						<strong class="tit">1:1문의</strong> 
+  						<p>불편한 게시물을 신고해주세요.</p>
+  					</div>
+  					<div class="btn_wrap txl">
+  					 	<a href="${pageContext.request.contextPath}/question/questionList.do" class="btn sml">신고내역 확인</a> 
+  					 	<a href="${pageContext.request.contextPath}/question/userQuestionWriteForm.do" class="btn sml line">신고하기</a>
+  					</div>
+  				</div> 
+  				<div class="text_wrap big type">
+  					<strong class="tit">HOT 게시물</strong> 
+  					
+  				</div> 
+  					<ul class="default_list cut_down">
+  					
+  						<li>
+  						<c:forEach var="comm" items="${list}">
+  						  <c:if test="${comm.comm_hit > 19}">
+        					<div class="tit eps"><!----> <!---->
+        					
+        					<c:if test="${comm.category == 1}">
+   								 <div class="tit eps">
+        							<span class="category">[커플여행]</span>
+        							<a href="#">${comm.comm_title}</a>
+   								 </div>
+							</c:if>
+ 							<c:if test="${comm.category == 2}">
+   								 <div class="tit eps">
+        							<span class="category">[가족여행]</span>
+        							<a href="#">${comm.comm_title}</a>
+   								 </div>
+							</c:if>
+							<c:if test="${comm.category == 3}">
+   								 <div class="tit eps">
+        							<span class="category">[아동동반여행]</span>
+        							<a href="#">${comm.comm_title}</a>
+   								 </div>
+							</c:if>
+							<c:if test="${comm.category == 4}">
+   								 <div class="tit eps">
+        							<span class="category">[친구모임]</span>
+        							<a href="#">${comm.comm_title}</a>
+   								 </div>
+							</c:if>
+							<c:if test="${comm.category == 5}">
+   								 <div class="tit eps">
+        							<span class="category">[나홀로여행]</span>
+        							<a href="#">${comm.comm_title}</a>
+   								 </div>
+							</c:if>
+							<c:if test="${comm.category == 6}">
+   								 <div class="tit eps">
+        							<span class="category">[기타]</span>
+        							<a href="#">${comm.comm_title}</a>
+   								 </div>
+							</c:if>
+							
+            				<a href="#">${comm.comm_title}</a>
+        					</div>
+   						 </c:if>
+						
+				</c:forEach>
+  						</li>
+  					
+  					</ul>   
+  				</div>
+  		
   		</div>
+  				
    	</div>
 </div>
 </div>

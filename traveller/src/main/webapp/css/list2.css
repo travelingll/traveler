@@ -1,0 +1,218 @@
+@charset "UTF-8";
+.main_cuc .inr.right {
+    padding-top: 56px;
+    padding-left: 22px;
+}
+.main_cuc > .inr.right {
+    width: 320px;
+}
+.ly_wrap .inr.right {
+    float: right;
+}
+.main_cuc > .inr {
+    width: 690px;
+}
+.ly_wrap .inr {
+    width: 50%;
+    float: left;
+}
+.side_box_wrap {
+    padding: 21px 0 23px 22px;
+    width: 100%;
+    border: 2px solid #5e2bb8;
+    background-color: #fff;
+}
+.side_box_wrap .text_wrap {
+    margin-top: 0;
+    margin-bottom: 9px;
+}
+.text_wrap.mid {
+    margin-top: 40px;
+    margin-bottom: 24px;
+}
+
+.text_wrap {
+    position: relative;
+    margin: 40px 0 0;
+    padding: 0;
+}
+.text_wrap.mid strong.tit {
+    font-size: 17px;
+    color: #111;
+    font-weight: 200;
+}
+.text_wrap strong.tit {
+    display: inline-block;
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 400;
+    color: #111;
+}
+.text_wrap.mid strong.tit + p, .text_wrap.mid + p {
+    margin-top: 24px;
+}
+.side_box_wrap .text_wrap > p {
+    padding-top: 0.7px;
+    margin-top: 0 !important;
+}
+p {
+    line-height: 1.5;
+}
+.side_box_wrap > .btn_wrap {
+    margin-top: 10px;
+}
+.txl {
+    text-align: left !important;
+}
+.side_box_wrap > .btn_wrap .btn.sml {
+    height: 34px;
+    line-height: 32px;
+}
+.btn.sml, .text_wrap .right_cont>.btn, .option_wrap .right_cont>.btn, .option_wrap .left_cont>.btn {
+    min-width: 110px;
+    height: 36px;
+    line-height: 34px;
+    font-size: 13px;
+    padding: 0 20px;
+}
+
+.btn_wrap .btn+.btn {
+    margin-left: 5px;
+}
+
+.side_box_wrap > .btn_wrap .btn.sml {
+    height: 34px;
+    line-height: 32px;
+}
+
+.main_cuc .text_wrap.big {
+    margin-bottom: 15px;
+}
+
+.side_box_wrap + .text_wrap {
+    margin-top: 36px;
+}
+
+
+
+.text_wrap.fix strong, .text_wrap.big strong.tit {
+    font-size: 22px;
+    font-weight: 600;
+    color: #111;
+}
+
+.text_wrap.type strong.tit {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.text_wrap strong.tit {
+    display: inline-block;
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 400;
+    color: #111;
+}
+
+.right_cont {
+    float: right;
+}
+
+
+.main_cuc .text_wrap .right_cont .txt.arrow_r {
+    margin-top: 5px;
+}
+
+
+.text_wrap .right_cont .txt.arrow_r {
+    margin-right: 5px;
+}
+
+a.txt.arrow_r {
+    padding-right: 13px;
+}
+
+
+a.txt {
+    font-size: 13px;
+    display: inline-block;
+    position: relative;
+    line-height: 1;
+}
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+.txt.arrow_r:after {
+    width: 7px;
+    height: 12px;
+    background-position: -30px 0;
+    top: 1px;
+}
+
+
+a.txt:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+.btn:after, .txt:after {
+    background-image: url('https://image.hanatour.com/usr/static/img2/pc/com/spr_btn.png');
+}
+
+.default_list {
+    border-top: 1px solid #838999;
+}
+
+.default_list>li {
+    position: relative;
+    border-bottom: 1px solid #dadce1;
+    padding: 16px 10px;
+}
+ol, ul, li {
+    list-style: none;
+}
+
+.inr.right .default_list.cut_down>li .tit {
+    width: 290px;
+}
+
+.default_list.cut_down>li .tit {
+    padding-left: 3px;
+    width: 100%;
+}
+
+.default_list>li .tit {
+    font-size: 14px;
+    line-height: 23px;
+    position: relative;
+    padding-left: 132px;
+}
+
+.eps {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+.default_list.cut_down>li .category {
+    position: static;
+}
+
+.default_list>li .category {
+    position: absolute;
+    top: 18px;
+    left: 12px;
+    font-size: 14px;
+    color: #5e2bb8;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}

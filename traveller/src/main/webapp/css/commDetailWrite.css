@@ -21,6 +21,14 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+.tbl table.bord_type span.hot_article {
+    font-family: Trebuchet MS;
+    font-size: 10px;
+    background: red;
+    border-radius: 3px;
+    padding: 1px 3px;
+    color: #fff;
+}
 colgroup {
     display: table-column-group;
 }
@@ -217,8 +225,8 @@ input[type="radio"]:checked + label span.round {
 
 
 .file_attach_wrap ul {
-    overflow: hidden;
-    height: 100px;
+    overflow: scroll;
+    height: 130px;
 }
 
 .tbl p.txt {

@@ -77,8 +77,10 @@
 					<!----> 
 					<!---->
 														</ul>
-													</div> 
+													</div>
+													
 													<div class="review_cont con">${comm.comm_content}</div> 
+												 	
   													<div class="review_cate">
   														<span class="topic_icon topic-12">객실 뷰가 좋아요</span>
   														<span class="topic_icon topic-13">일정이 알차요</span>
