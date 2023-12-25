@@ -81,7 +81,7 @@ window.onload=function(){
 								</form>
 				    			<div class="panels">
 									<div id="tabPkg" class="panel selected">
-										<div class="tbl">
+										<div class="tbl">					
 									    	<c:if test="${empty list}">
 													<table class="board_type">
 														<colgroup>
@@ -105,7 +105,7 @@ window.onload=function(){
 									                	</tbody>
 									              	</table>
 												</c:if>
-												<c:if test="${!empty list}">
+													<c:if test="${!empty list}">
 													<table class="board_type">
 														<colgroup>
 														<!-- 1번 --><col style="width: 15%;">
