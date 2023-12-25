@@ -151,9 +151,9 @@ $(function(){
 					value="${accom.accom_end}" maxlength="100" size="20">
 				</li>
 				<li>
-					<label>진행여부</label>
-					<input type="radio" name="accom_status" value="0" id="accom_status0">진행중
-					<input type="radio" name="accom_status" value="1" id="accom_status1">완료
+					<label for="accom_status">진행여부</label>
+					<input type="radio" name="accom_status" value="0" id="accom_status0" <c:if test="${accom.accom_status == 0}">checked</c:if>>진행중
+    				<input type="radio" name="accom_status" value="1" id="accom_status1" <c:if test="${accom.accom_status == 1}">checked</c:if>>완료
 				</li>
 		</ul>
 		<div class="align-center">
