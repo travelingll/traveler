@@ -68,9 +68,9 @@
 							<td class="txl"><strong class="title">${order.item_name}</strong></td> 
                    			<td>${order.order_date}</td> 
                    			<td>
-                   				<c:if test="${order.order_status==1}">여행 전</c:if>
-                   				<c:if test="${order.order_status==2}">여행 중</c:if>
-                   				<c:if test="${order.order_status==3}">여행 불참</c:if>
+                   				<c:if test="${order.order_status==1}">예약 완료</c:if>
+                   				<c:if test="${order.order_status==2}">사용 중</c:if>
+                   				<c:if test="${order.order_status==3}">노쇼</c:if>
                    				<c:if test="${order.order_status==4}">예약 취소</c:if>
                    			</td>	
 						</tr>
