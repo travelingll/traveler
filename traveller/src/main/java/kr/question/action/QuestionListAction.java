@@ -17,6 +17,7 @@ public class QuestionListAction implements Action {
 
 		request.setCharacterEncoding("utf-8");
 		
+		//페이징 처리
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum==null) pageNum = "1";
 		
@@ -29,8 +30,8 @@ public class QuestionListAction implements Action {
 		
 		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 10,10,"questionList.do");
 		
+		//문의 목록 얻어오기
 		List<QuestionVO> list = null;
-		
 		if(count>0) list = dao.getQuestionList(keyword, keyfield, page.getStartRow(), page.getEndRow(),0, question_category);
 		
 		request.setAttribute("list", list);

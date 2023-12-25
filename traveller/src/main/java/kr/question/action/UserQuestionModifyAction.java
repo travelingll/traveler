@@ -38,7 +38,7 @@ public class UserQuestionModifyAction implements Action {
 		
 		//비회원 글의 경우 비밀번호 미체크 시 체크 페이지로
 		String passwdCheck = (String)session.getAttribute("passwdCheck");
-		if(passwdCheck==null) {
+		if(passwdCheck==null && db_question.getQuestion_passwd()!=null) {
 			request.setAttribute("question_num", question_num); //확인을 위해 문의글 primary key 저장
 			return "/WEB-INF/views/question/userQuestionPasswd.jsp"; //비밀번호 확인페이지로
 		}
