@@ -478,4 +478,38 @@ public class OrderDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	//상품사용완료
+	public int getOrderUsed(int item_num, int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		int order_status = 9;
+		
+		try {
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT order_status FROM member JOIN order_item USING (mem_num) JOIN order_detail USING (order_num) WHERE item_num=? AND mem_num=?" ;
+			//preparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, item_num);
+			pstmt.setInt(2, mem_num);
+			
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				order_status = rs.getInt("order_status");
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally{
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return order_status;
+		
+		
+	}
 }

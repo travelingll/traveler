@@ -93,6 +93,7 @@ $(function(){
 					if(param.result=='logout'){
 						alert('로그인 후 사용하세요');
 					}else if(param.result=='success'){
+						location.reload();
 						alert('본 상품을 마감처리하였습니다. 상세페이지에서 확인해주세요');
 					}else{
 						alert('마감처리 오류 발생');
@@ -175,8 +176,17 @@ $(function(){
 														<input type="radio" name="status" value="3" id="status3" <c:if test="${item.status==3}"> checked="checked"</c:if> >종료
 													</li><br>
 													<li>
-														<label><b>유형 : </b>${item.item_case}</label>
+														<b>지역 : 
+														<c:if test="${item.item_st1==1}">동남아</c:if>
+														<c:if test="${item.item_st1==2}">북미</c:if>
+														<c:if test="${item.item_st1==3}">호주</c:if>
+														<c:if test="${item.item_st1==4}">유럽</c:if>
+														<c:if test="${item.item_st1==5}">국내</c:if>
+														</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														<label><b>상품유형 : </b>${item.item_case}</label>
 														<br><br>
+													</li>
+													<li>
 													</li>
 													<li>
 														<label for="name"><b>상품명 : </b></label>

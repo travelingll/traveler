@@ -154,9 +154,9 @@ ul li:last-child {
 									<li>결제수단 :
 											<c:if test="${order.payment==1}">카드 결제</c:if>
 											<c:if test="${order.payment==2}">무통장 입금</c:if></li>
-									<li>예약 상태 : <c:if test="${order.order_status==1}">예약완료</c:if>
-										 <c:if test="${order.order_status==2}">사용완료</c:if>
-										 <c:if test="${order.order_status==3}">사용미완료</c:if>
+									<li>예약 상태 : <c:if test="${order.order_status==1}">예약(사용전)</c:if>
+										 <c:if test="${order.order_status==2}">사용중</c:if>
+										 <c:if test="${order.order_status==3}">노쇼</c:if>
 										 <c:if test="${order.order_status==4}">예약취소</c:if>
 										 <br><br>
 									</li>
@@ -169,10 +169,10 @@ ul li:last-child {
 												<input type="hidden" value="${order.order_num}" name="order_num" id="order_num">
 												<ul>
 													<li>
-														<input type="radio" value="1" name="orderStatus" id="st1">여행전
-														<input type="radio" value="2" name="orderStatus" id="st2">여행중
-														<input type="radio" value="3" name="orderStatus" id="st3">여행불참
-														<input type="radio" value="4" name="orderStatus" id="st4">예약취소
+														<input type="radio" value="1" name="orderStatus" <c:if test="${order.order_status==1}">checked</c:if> id="st1">예약(사용전)
+														<input type="radio" value="2" name="orderStatus" <c:if test="${order.order_status==2}">checked</c:if>  id="st2">사용중
+														<input type="radio" value="3" name="orderStatus" <c:if test="${order.order_status==3}">checked</c:if> id="st3">노쇼
+														<input type="radio" value="4" name="orderStatus" <c:if test="${order.order_status==4}">checked</c:if>  id="st4">예약취소
 														<br><br>
 														<input type="submit" value="수정">
 													</li>

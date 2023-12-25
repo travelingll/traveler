@@ -20,13 +20,17 @@ public class ItemDetailAction implements Action{
 		
 		int item_num = Integer.parseInt(request.getParameter("item_num"));
 		
+		
 		ItemDAO dao = ItemDAO.getInstance();
 		ItemVO item = dao.getItem(item_num);
 		
+		OrderDAO orderDao = OrderDAO.getInstance();
+		Integer order_status = orderDao.getOrderUsed(item_num, user_num);
 		
 		request.setAttribute("item", item);
 		request.setAttribute("user_num", user_num);
 		request.setAttribute("user_auth", user_auth);
+		request.setAttribute("order_status", order_status);
 		
 		
 		
