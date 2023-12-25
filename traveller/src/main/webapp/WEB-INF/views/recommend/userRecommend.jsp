@@ -25,7 +25,7 @@
     								<div class="inr">
     									<dl>
 											<dt class="type">		
-												<a href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a>
+												<a href="${pageContext.request.contextPath}/recommend/userRecommend.do">트래블러 PICK</a>
 											</dt>
 											<dd>
 												<ul class="list_lnb">
