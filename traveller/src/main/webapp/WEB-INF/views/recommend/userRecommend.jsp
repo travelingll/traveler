@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>사용자 맞춤 여행 추천</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/eunseo.css">
 </head>
 <body class="chrome">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -38,21 +39,34 @@
     							<!-- 여기까지 사이드바 입니다.-->
     							<div id="contents" class="contents">
     								<div class="text_wrap big fix"><strong class="tit">사용자 맞춤 추천</strong></div> 
-									<div class="content-main">
-										<table>
+									<div class="panels">
+											<div id="tabPkg" class="panel selected">
+												<div class="tbl">
+										<table class="board_type">
+											<colgroup>
+												<col style="width: 20%;"> 
+												<col style="width: 48%;"> 
+												<col style="width: 20%;"> 
+												<col style="width: 12%;">
+											</colgroup>
+										<thead>
 											<tr>
 												<th colspan="2">여행상품</th>
+												<th>여행날짜</th>
 												<th>가격<br></th>
 											</tr>
-											<c:forEach var="item" items="${itemList}">
+										</thead>
+										<tbody>
+											<c:forEach var="item" items="${list}">
 												<tr>
 													<td><img src="${pageContext.request.contextPath}/upload/${item.item_img1}" width="150px"></td>
-													<td><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}"><b>${item.item_name}</b>
-														<br>${item.item_content}<br>${item.date_start} ~ ${item.date_end}</a></td>
+													<td><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}"><b>${item.item_name}</b></a></td>
+													<td>${item.date_start} ~ ${item.date_end}</td>
 													<td><fmt:formatNumber value="${item.item_price}"/>원<br></td>
 												</tr>
 											</c:forEach>
-										</table>
+										</tbody>
+										</table><br><br>
 										<div class="printArea" style="text-align:center;">
 											${page}
 										</div>

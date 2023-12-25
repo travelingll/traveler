@@ -18,6 +18,37 @@ private static RecommendDAO instance = new RecommendDAO();
 	
 	private RecommendDAO(){};
 	
+	//저장된 문자열에서 (,)단위로 쪼개 배열에 저장
+	public String[] getStyleArray(String styleColumn,int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String[] styles = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT " + styleColumn + " FROM member_detail WHERE mem_num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mem_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String styleValues = rs.getString(styleColumn);
+				if(styleValues != null && !styleValues.isEmpty()) {
+					styles = styleValues.split(",");
+				}
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return styles;
+	}
+	
 	//개수
 	public int getRecommendCount(int mem_num) throws Exception {
 	    Connection conn = null;
@@ -74,7 +105,7 @@ private static RecommendDAO instance = new RecommendDAO();
 	    return count;
 	}
 
-	
+	//반복문 없이 특정값 넣어서 개수 세기
 	public int getRecommendCount(String item_st1,String item_st2,String item_st3)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -159,36 +190,6 @@ private static RecommendDAO instance = new RecommendDAO();
 		return list;
 	}
 	
-	public String[] getStyleArray(String styleColumn,int mem_num)throws Exception{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = null;
-		String[] styles = null;
-		
-		try {
-			conn = DBUtil.getConnection();
-			
-			sql = "SELECT " + styleColumn + " FROM member_detail WHERE mem_num=?";
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, mem_num);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				String styleValues = rs.getString(styleColumn);
-				if(styleValues != null && !styleValues.isEmpty()) {
-					styles = styleValues.split(",");
-				}
-			}
-		}catch(Exception e) {
-			throw new Exception(e);
-		}finally {
-			DBUtil.executeClose(rs, pstmt, conn);
-		}
-		
-		return styles;
-	}
-	
 	//아이템 추천 메서드
 	public List<ItemVO> getRecommendedItems(int start, int end, int mem_num) throws Exception {
 	    Connection conn = null;
@@ -243,13 +244,20 @@ private static RecommendDAO instance = new RecommendDAO();
 				item.setItem_content(rs.getString("item_content"));
 				item.setItem_price(rs.getInt("item_price"));
 				item.setItem_img1(rs.getString("item_img1"));
+				item.setItem_img2(rs.getString("item_img2"));
+				item.setItem_img3(rs.getString("item_img3"));
+				item.setItem_img4(rs.getString("item_img4"));
+				item.setItem_img5(rs.getString("item_img5"));
+				item.setItem_img6(rs.getString("item_img6"));
+				item.setItem_st1(rs.getString("item_st1"));
+				item.setItem_st2(rs.getString("item_st2"));
+				item.setItem_st3(rs.getString("item_st3"));
+				item.setStatus(rs.getString("status"));
 				item.setDate_start(rs.getString("date_start"));
 				item.setDate_end(rs.getString("date_end"));
 				item.setReg_date(rs.getDate("reg_date"));
 				item.setQuantity(rs.getInt("quantity"));
-				item.setItem_st1(rs.getString("item_st1"));
-				item.setItem_st2(rs.getString("item_st2"));
-				item.setItem_st3(rs.getString("item_st3"));
+				item.setItem_case(rs.getString("item_case"));
 
 	            list.add(item);
 	        }
@@ -315,6 +323,42 @@ private static RecommendDAO instance = new RecommendDAO();
 	    }
 
 	    return item;
+	}
+	
+	public List<ItemVO> getRecommendItems(int mem_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		List<ItemVO> list = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			String[] style1 = getStyleArray("style1", mem_num);
+	        String[] style2 = getStyleArray("style2", mem_num);
+	        String[] style3 = getStyleArray("style3", mem_num);
+	        
+			sql = "SELECT * FROM item WHERE ";
+			
+			for (int i = 0; i < style1.length; i++) {
+	            sql += "item_st1=? OR ";
+	        }
+	        for (int i = 0; i < style2.length; i++) {
+	            sql += "item_st2=? OR ";
+	        }
+	        for (int i = 0; i < style3.length; i++) {
+	            sql += "item_st3=? ";
+	        }
+	        sql += "";
+	        
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
 	}
 
 }
