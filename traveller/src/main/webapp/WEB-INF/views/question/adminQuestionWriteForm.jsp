@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>[관리자] 일대일 문의 작성</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/detailStyle.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/orderTable.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 	<script type="text/javascript">
 		window.onload = function(){
@@ -31,8 +31,8 @@
 	<div id="container"><div class="inr"><jsp:include page="question_sidemenu.jsp"/></div></div>
 	<div id="containerr" style="display: flex;">
 	    <div id="sidebar" style="width: 80%;">
-			<div  class="question-user">
-				<h2>Q. ${question.question_title}</h2>
+	    	<div class="user-answer">
+				<h2 style="font-weight: bold">Q. ${question.question_title}</h2>
 				<ul>
 					<li>
 						<img src="${pageContext.request.contextPath}/images/eventdetail_replydate.png" width="10">
@@ -44,7 +44,6 @@
 						<img src="${pageContext.request.contextPath}/images/eventdetail_check.png" width="15">${question.question_hit}
 					</li>
 				</ul>
-				<hr size="1" width="90%" noshade="noshade">
 				<div class="detail-detailcontent">
 					<c:if test="${!empty question.question_photo}">
 						<img src="${pageContext.request.contextPath}/upload/${question.question_photo}" width="500">
@@ -52,26 +51,35 @@
 					<p>${question.question_content}</p>
 				</div>
 			</div>
-			<div class="admin-answer">
-				<h2 class="detail-center form-title">[관리자] 일대일 문의 답변 등록</h2>
+			<h2 style="font-weight: bold">[관리자] 일대일 문의 답변 등록</h2>
+			<div class="panels"><div id="tabPkg" class="panel selected"><div class="tbl">
 				<form class="detail-form" id="question_writeForm" action="adminQuestionWrite.do" method="post">
 					<input type="hidden" value="${question.question_num}" name="question_num" id="question_num">
 					<input type="hidden" value="${question.question_category}" name="question_category" id="question_category">
-					<ul class="input-form">
-						<li>
-							<label for="question_title">제목</label>
-							<input type="text" id="question_title" name="question_title" value="고객님 문의 답변드립니다 :)">
-						</li>
-						<li>
-							<label for="question_content">답변</label>
-							<textarea rows="5" cols="50" id="question_content" name="question_content" class="input"></textarea>
-						</li>
-					</ul>
-					<div class="file-right">
+					<table class="board_type">
+						<colgroup>
+							<col style="width:20%">
+							<col style="width:80%"> 
+							<col>
+						</colgroup>
+						<tr>
+							<th><label for="question_title">제목</label></th>
+							<td>
+								<input type="text" id="question_title" name="question_title" value="고객님 문의 답변드립니다 :)">
+							</td>
+						</tr>
+						<tr>
+							<th><label for="question_content">답변</label></th>
+							<td>
+								<textarea rows="5" cols="50" id="question_content" name="question_content" class="input"></textarea>
+							</td>
+						</tr>
+					</table>
+					<div class="ordertable-right">
 						<input type="submit" value="답변 등록">
 					</div>
 				</form>
-			</div>
+			</div></div></div>
 		</div>
 	</div>
 </body>

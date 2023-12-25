@@ -133,8 +133,6 @@ public class QuestionDAO {
 			
 			if(rs.next()) count = rs.getInt(1);
 			
-			System.out.println(count+sql);
-			
 		} catch (Exception e) {
 			throw new Exception();
 		} finally {
@@ -175,7 +173,6 @@ public class QuestionDAO {
 			sql = "SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM question "
 					+ sub_sql + sub_sql2 + sub_sql3
 					+ " ORDER BY question_num DESC)a) WHERE rnum>=? AND rnum<=?";
-			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			
 			if(keyword!=null && !"".equals(keyword)) pstmt.setString(++cnt, "%"+keyword+"%");

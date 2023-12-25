@@ -80,6 +80,7 @@
 .question-user, .question-answer{
 	border: 1px solid;
 	padding: 40px;
+	line-height: 25px;
 }
 .rep-content{
 	width:700px;
@@ -97,6 +98,7 @@
 	margin-bottom: 42px;
 }
 
+
 /*-------수정폼-------*/
 .form-title{
 	font-size: 15pt;
@@ -106,19 +108,12 @@
 .input-form li{
 	margin: 20px;
 }
-li label{
-	font-weight: bold;
-	font-size: 14px;
-	display:inline-block;
-	text-align:left;
-	width:150px;
-}
+
 .file-right{
 	text-align: right;
 	margin-right: 100px;
 }
 [type="text"], [type="number"],[type="password"]{
-	width:600px;
 	border-width: 0 0 1px 0;
 }
 [type="radio"]:checked {

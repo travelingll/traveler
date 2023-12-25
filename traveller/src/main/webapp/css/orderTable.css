@@ -441,7 +441,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 .search_field .box_search.wide_type {
     overflow: hidden;
 }
-button, input, textarea {
+button, input, textarea,[type=file] {
     -webkit-border-radius: 0;
     border-radius: 0;
 }
@@ -456,7 +456,7 @@ button, input, textarea {
 .search_field .btn{
     min-width: 90px;
 }
-[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled), [type=file] {
     cursor: pointer;
 }
 .btn {
@@ -532,7 +532,6 @@ textarea{
     color: #666;
     background-color: #fff;
     font-weight: 400;
-    text-align: center;
     border-radius: 4px;
     border: solid 1px #c2c2c2;
 }
@@ -649,7 +648,6 @@ colgroup {
     min-height: 350px;
 }
 table td, table th{
-	text-align: center;
 	padding:10px;
 }
 /*----------버튼*/
@@ -713,6 +711,7 @@ table td, table th{
 }
 
 .ordertable-right{
+	margin-top: 10px;
 	text-align:right;
 }
 
@@ -942,8 +941,60 @@ a {
     z-index: 1;
 }
 
+input[type=text],input[type=email],input[type=number],input[type=number] {
+	width: 95%;
+	height: 40px;
+	border-color: lightgray;
+	display: block;
+	line-height: 30px;
+	border-width: 0 0 1px 0;
+}
+textarea{
+	width: 95%;
+	height: 200px;
+	border-color: lightgray;
+	display: block;
+	line-height: 30px;
+	border-width: 0 0 1px 0;
+}
+input[type=radio]{
+	appearance: none;
+	border: max(2px, 0.1em) solid gray;
+	border-radius: 50%;
+	width: 1.3em;
+	height: 1.3em;
+	transition: border 0.5s ease-in-out;
+	vertical-align:middle;
+}
+[type="radio"]:checked {
+	border: 0.4em solid lightgray;
+}
+.order-radio{
+	font-size: 11pt;
+	white-space: nowrap;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+}
+.radio-right{
+	text-align:right;
+	margin-right:30px;
+}
 
 
+.user-answer{
+	padding:40px;
+	border: 1px solid lightgray;
+	margin-bottom: 40px;
+	
+}
+.user-answer > ul > li{
+	text-align: right;
+}
+.detail-detailcontent{
+	line-height : 30px;
+	text-align: center;
+}
 
 body{
     margin: 0;
