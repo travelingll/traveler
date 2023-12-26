@@ -39,12 +39,12 @@ public class UserQuestionWriteAction implements Action {
 		if(multi.getParameter("question_passwd") != null) question.setQuestion_passwd(multi.getParameter("question_passwd")); //비회원 글 작성 시 비밀번호 설정
 		
 		QuestionDAO dao = QuestionDAO.getInstance();
-		dao.writeQuestion(question);
-		
+		int question_num = dao.writeQuestion(question);
 		
 		
 		request.setAttribute("notice_msg", "문의글이 등록되었습니다!");
-		request.setAttribute("notice_url", "questionList.do");
+		request.setAttribute("notice_url", "questionDetail.do?question_num="+question_num);
+		session.setAttribute("passwdCheck", "success");
 		
 		return "/WEB-INF/views/common/alert_singleView.jsp";
 	}
