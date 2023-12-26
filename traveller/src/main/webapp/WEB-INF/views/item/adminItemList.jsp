@@ -118,7 +118,7 @@ td{
 																				<c:if test="${item.item_st1==5}">국내</c:if>
 																			</td>
 																			<td><a href="adminItemDetail.do?item_num=${item.item_num}">${item.item_name}</a></td>
-																			<td>${item.date_end} ~ ${item.date_start}</td>
+																			<td>${item.date_start} ~ ${item.date_end}</td>
 																			<td>${item.reg_date}</td>
 																			<td><span class="total_order">${item.orderCount}</span>/ ${item.quantity} 명</td>
 																		</tr>
