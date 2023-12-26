@@ -23,6 +23,7 @@ public class UpdateAction implements Action{
 		
 		MultipartRequest multi = FileUtil.createFile(request);
 		int comm_num = Integer.parseInt(multi.getParameter("comm_num"));
+		
 		String filename1 = multi.getFilesystemName("filename1");
 		String filename2 = multi.getFilesystemName("filename2");
 		String filename3 = multi.getFilesystemName("filename3");
@@ -31,6 +32,7 @@ public class UpdateAction implements Action{
 		//수정전 데이터 반환
 		CommVO db_comm = dao.getComm(comm_num);
 		if(user_num != db_comm.getMem_num()) {//로그인한 회원번호와 작성자 회원번호가 불일치
+			
 			FileUtil.removeFile(request, filename1);
 			FileUtil.removeFile(request, filename2);
 			FileUtil.removeFile(request, filename3);
@@ -42,10 +44,11 @@ public class UpdateAction implements Action{
 		comm.setComm_title(multi.getParameter("comm_title"));
 		comm.setComm_content(multi.getParameter("comm_content"));
 		comm.setIp(request.getRemoteAddr());
+		
 		comm.setFilename1(filename1);
 		comm.setFilename2(filename2);
 		comm.setFilename3(filename3);
-		comm.setCategory(Integer.parseInt(multi.getParameter("category")));
+		comm.setCategory(Integer.parseInt(multi.getParameter("travelStyle")));
 		comm.setTag(processComma(multi.getParameterValues("tag")));
 		//글 수정
 		dao.updateComm(comm);
