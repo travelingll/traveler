@@ -80,8 +80,8 @@
 														</thead>
 														<tbody>
 															<tr>
-																
-																<td style="float:right;"> 표시할 게시물이 없습니다.</td>
+																<td></td>
+																<td style="text-align:center;"> 표시할 게시물이 없습니다.</td>
 															</tr>
                    										</tbody>
                    									</table>
