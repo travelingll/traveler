@@ -341,10 +341,6 @@ button {
 						</div>
 	</div>
 	<!-- test끝 -->
-	<!-- 여행 후기 시작 -->
-	
-	<!-- 여행 후기 끝 -->
-	
 	<!-- 트래블러's pick 시작-->
 	<div class="content-center" style="width:100%;">
 		<div id="contents" class="contents">
