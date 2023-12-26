@@ -56,7 +56,7 @@
 											<a href="${pageContext.request.contextPath }/member/myWriteAccom.do">동행게시판</a>
 										</li> 
 										<li class="fx-cobrand-fnd" style="width: 32.3333%;">
-											<a href="#">후기글</a>
+											<a href="${pageContext.request.contextPath }/member/myItemReply.do">후기글</a>
 										</li>
 									</ul> 
 								<div class="panels">

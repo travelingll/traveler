@@ -10,7 +10,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/eunseo.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 </head>
-<body class="chrome">  
+
+<body class="chrome">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <div id="__nuxt">
     	<div id="__layout">
@@ -34,7 +35,7 @@
 	 												<li><a href="${pageContext.request.contextPath}/member/myMoney.do">적립금</a></li>
 	 												<li><a href="${pageContext.request.contextPath}/accom/applyAccomList.do">동행 신청내역</a></li>
 	 												<li><a href="${pageContext.request.contextPath}/accom/requestAccomList.do">받은 동행 신청내역</a></li>
-	 												<li><a href="${pageContext.request.contextPath}/cart/list.do">장바구니</a></li>
+													<li><a href="${pageContext.request.contextPath}/cart/list.do">장바구니</a></li>
 													<li><a href="${pageContext.request.contextPath}/order/myOrderList.do">예약내역</a></li>
 												</ul>
 											</dd>
@@ -48,13 +49,13 @@
 								</div> 
 								<div class="js_tabs type1 v-tabs">
 									<ul class="tabs">
-										<li class="fx-cobrand-htl" style="width: 33.3333%;">
+										<li class="fx-cobrand-fnd" style="width: 33.3333%;">
 											<a href="${pageContext.request.contextPath}/member/myWriteComm.do">커뮤니티</a>
 										</li> 
-										<li class="selected fx-cobrand-pkg" style="width: 33.3333%;">
+										<li class="fx-cobrand-htl" style="width: 33.3333%;">
 											<a href="${pageContext.request.contextPath }/member/myWriteAccom.do">동행게시판</a>
 										</li> 
-										<li class="fx-cobrand-fnd" style="width: 32.3333%;">
+										<li class="selected fx-cobrand-pkg" style="width: 32.3333%;">
 											<a href="${pageContext.request.contextPath }/member/myItemReply.do">후기글</a>
 										</li>
 									</ul> 
@@ -65,15 +66,15 @@
 											<c:if test="${count == 0}">
 											<table class="board_type">
 													<colgroup>
-													<col> 
 													<col style="width: 15%;"> 
+													<col> 
 													<col style="width: 15%;"> 
 													<col style="width: 13%;"></colgroup> 
 														<thead>
 															<tr>
-																<th>제목</th> 
+																<th>상품번호</th> 
+																<th>내용</th> 
 																<th>작성일</th> 
-																<th>조회수</th> 
 																<th></th>
 															</tr>
 														</thead>
@@ -88,46 +89,46 @@
 											</c:if>
 											<c:if test="${count > 0}">
 											<table class="board_type">
-														<colgroup>
-													<col> 
+													<colgroup>
 													<col style="width: 15%;"> 
+													<col> 
 													<col style="width: 15%;"> 
 													<col style="width: 13%;"></colgroup> 
 														<thead>
 															<tr>
-																<th>제목</th> 
+																<th>상품번호</th> 
+																<th>내용</th> 
 																<th>작성일</th> 
-																<th>조회수</th> 
 																<th></th>
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach var="accom" items="${accomList}">
+															<c:forEach var="item" items="${itemReply}">
 															<tr>
 																<td class="txl">
 																	
-																	<a href="${pageContext.request.contextPath}/accom/detail.do?accom_num=${accom.accom_num}">
+																	<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}">
 																		<strong class="item_title">
-																			${accom.accom_title}
+																			${item.item_num}
 																		</strong>
 																	</a> 
-									
-																</td> 
-																<td>
-																	<p class="date">
-																		${accom.accom_regdate}
-																	</p> 
-										
-																</td> 
+																	
+																</td>
 																<td>
 																	<span class="hit">
-                   														&nbsp;&nbsp;&nbsp;&nbsp;${accom.accom_hit}
+                   														&nbsp;&nbsp;&nbsp;&nbsp;${item.item_recontent}
                    														
                    													</span>
                    												</td> 
+																<td>
+																	<p class="date">
+																		${item.item_redate}
+																	</p> 
+										
+																</td>
                    												<td>
                    													<div class="btn_wrap">
-                   														<a href="${pageContext.request.contextPath}/accom/detail.do?accom_num=${accom.accom_num}" class="btn sml">
+                   														<a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}" class="btn sml">
                    															보기
                    														</a>
                    													</div>
@@ -154,4 +155,5 @@
 </div>
 </body>
 </html>
- 
+
+

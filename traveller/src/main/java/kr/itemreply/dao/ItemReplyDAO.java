@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.itemreply.vo.ItemReplyVO;
 import kr.util.DBUtil;
+import oracle.jdbc.proxy.annotation.Pre;
 
 public class ItemReplyDAO {
 	
@@ -128,5 +129,70 @@ public class ItemReplyDAO {
 		}
 		
 		return result;
+	}
+	
+	//후기글 개수 검색
+	public int getItemReplyCount(String user_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT COUNT(*) FROM item_reply WHERE user_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return count;
+	}
+	
+	//후기글 불러오기
+	public List<ItemReplyVO> getMyItemReply(String user_id)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ItemReplyVO> list = null;
+		String sql = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT * FROM item_reply WHERE user_id=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<ItemReplyVO>();
+			while(rs.next()) {
+				ItemReplyVO ireply = new ItemReplyVO();
+				ireply.setItem_num(rs.getInt("item_num"));
+				ireply.setItem_recontent(rs.getString("item_recontent"));
+				ireply.setItem_redate(rs.getDate("item_redate"));
+				ireply.setItem_num(rs.getInt("item_num"));
+				ireply.setItem_renum(rs.getInt("item_renum"));
+				
+				list.add(ireply);
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
 	}
 }
