@@ -92,7 +92,7 @@ $(function(){
 									</tr>
 									<tr>
 										<th>상품명</th>
-										<td>${item.item_name}</td>
+										<td>${item.item_name} </td>
 									</tr>
 									<tr>
 										<th>방문 도시</th>
