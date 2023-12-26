@@ -52,7 +52,7 @@ $(function(){
 										<div class="tbl">
 										<table class="board_type">
 											<colgroup>
-												<col style="width: 15%;">
+												<col style="width: 15%;"> 
 												<col style="width: 60%;"> 
 												<col style="width: 10%;"> 
 											</colgroup> 
