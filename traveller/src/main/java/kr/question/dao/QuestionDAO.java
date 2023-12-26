@@ -22,7 +22,7 @@ public class QuestionDAO {
 	private QuestionDAO (){}
 	
 	//글 등록
-	public void writeQuestion(QuestionVO question) throws Exception {
+	public int writeQuestion(QuestionVO question) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
@@ -89,6 +89,8 @@ public class QuestionDAO {
 			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(rs, pstmt1, conn);
 		}
+		
+		return question_num;
 	}
 	
 	//글 갯수
