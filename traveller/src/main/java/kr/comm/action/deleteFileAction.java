@@ -28,21 +28,41 @@ public class deleteFileAction implements Action{
 			//전송된 데이터 인코딩
 			request.setCharacterEncoding("utf-8");
 			int comm_num = Integer.parseInt(request.getParameter("comm_num"));
+			String file_del = request.getParameter("file_del");
 			
 			CommDAO dao = CommDAO.getInstance();
 			CommVO db_comm = dao.getComm(comm_num);
 			if(user_num != db_comm.getMem_num()) {
 				mapAjax.put("result", "wronAccess");				
-			}else {//로그인한 회원번호와 작성자 회원번호가 일치해서 파일 삭제 가능
+			
+			}else if(user_num == db_comm.getMem_num() && file_del.equals("1")){//로그인한 회원번호와 작성자 회원번호가 일치해서 파일 삭제 가능
 				mapAjax.put("result", null);
 				dao.deleteFile(comm_num);
 				
-				//파일 삭제
 				FileUtil.removeFile(request, db_comm.getFilename1());
+				
+				mapAjax.put("result", "success");
+				//파일 삭제
+				
+			}else if(user_num == db_comm.getMem_num() && file_del.equals("2")){//로그인한 회원번호와 작성자 회원번호가 일치해서 파일 삭제 가능
+				mapAjax.put("result", null);
+				dao.deleteFile(comm_num);
+				
 				FileUtil.removeFile(request, db_comm.getFilename2());
+				
+				mapAjax.put("result", "success");
+				//파일 삭제
+			
+			}else if(user_num == db_comm.getMem_num() && file_del.equals("3")){//로그인한 회원번호와 작성자 회원번호가 일치해서 파일 삭제 가능
+				mapAjax.put("result", null);
+				dao.deleteFile(comm_num);
+				
 				FileUtil.removeFile(request, db_comm.getFilename3());
 				
 				mapAjax.put("result", "success");
+				//파일 삭제
+			
+				
 			}
 		}
 		
