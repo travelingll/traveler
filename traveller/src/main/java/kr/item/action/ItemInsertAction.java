@@ -29,6 +29,8 @@ public class ItemInsertAction implements Action {
 			list = dao.getItemList(page.getStartRow(), page.getEndRow(), null, null, null, null);
 		}
 		
+		
+		
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("page", page.getPage());

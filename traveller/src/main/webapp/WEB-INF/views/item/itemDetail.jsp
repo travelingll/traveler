@@ -207,18 +207,33 @@ img{
 	</div>
 	<!-- 여행 상세정보 끝 -->
 	<!-- 여행 후기 시작 -->
-	<c:if test="${order_status==2}">
 	<div class="content-center">
 		<h2>여행후기</h2>
 		<hr size="10px">
+	<c:if test="${order_status==2 && replyUsed==0}">
 			<form action="itemReply.do" method="post">
 	        <label for="comment">후기 내용:</label>
-	        <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
+	        <input type="hidden" name="item_num" value="${item.item_num}">
+	        <input type="hidden" name="item_st1" value="${item.item_st1}">
+	        <input type="hidden" name="item_case" value="${item.item_case}">
+	        <textarea id="comment" name="item_recontent" rows="4" cols="50"></textarea>
 	        <br>
 	        <input type="submit" value="후기 작성">
     		</form>
-	</div>
 	</c:if>
+    	<c:if test="${!empty replyList}">
+    		<c:forEach var="reply" items="${replyList}">
+    		<ul>
+    		
+    			<li>작성자 id : ${reply.user_id}      등록일 : ${reply.item_redate}</li>
+    			<li>${reply.item_recontent}</li>
+            </ul>
+    		</c:forEach>
+    	</c:if>
+    	<c:if test="${empty replyList}">
+    		<h2>등록된 후기가 없습니다.</h2>
+    	</c:if>
+	</div>
 	<!-- 여행 후기 끝 -->
 	<!-- 트래블러's pick 시작-->
 	<div class="content-center">

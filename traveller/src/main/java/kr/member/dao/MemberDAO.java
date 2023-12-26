@@ -571,4 +571,35 @@ public class MemberDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	public String getUserID(int mem_num)throws Exception{
+		Connection conn= null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String userId = "";
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 객체 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT id FROM member WHERE mem_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setInt(1, mem_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				userId = rs.getString("id");
+			}
+		}catch(Exception e) {
+			throw new Exception (e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return userId;
+	}
+	
 }
