@@ -11,6 +11,7 @@
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/orderTable.css">
 <script type="text/javascript">
 </script>
 <style>
@@ -82,7 +83,14 @@
      <div id="sidebar" style="width: 20%;">
      </div>
      <div id="sidebar" style="width: 80%;">
-      <table>
+ 	<div class="panels"><div id="tabPkg" class="panel selected"><div class="tbl">
+      <table class="board_type">
+      	<colgroup>
+			<col style="width: 25%;">
+			<col style="width: 25%;"> 
+			<col style="width: 25%;"> 
+			<col style="width: 45%;"> 
+		</colgroup> 
          <tr>
             <th>출발일</th>
             <th>도착일</th>
@@ -90,7 +98,6 @@
             <th>가격</th>
          </tr>
          <c:forEach var="item" items="${itemList}" >
-         
             <c:if test="${item.item_case==item_case}">
             <tr>
                <td id="start"><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}">${item.date_start}</a></td>
@@ -104,7 +111,8 @@
       </div>
       </div>
 </div>
-
-      
+</div>
+</div>
+</div>
 </body>
 </html> 
