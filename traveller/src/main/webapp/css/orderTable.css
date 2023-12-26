@@ -1011,5 +1011,14 @@ body{
 }
 
 
+.item-card {
+	justify-content: center;
+}
+.card-title {
+	font-weight: bold;
+}
+.card{
+	width:30rem;
+	text-align: center;
 
-
+}
