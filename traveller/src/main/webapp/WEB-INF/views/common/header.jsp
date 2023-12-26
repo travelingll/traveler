@@ -130,12 +130,12 @@
 																<div class="group_list">
 																	<dl>
 																		<dt>
-																			<a href="${pageContext.request.contextPath}/recommend/userRecommend.do" onclick="">트래블러PICK</a>
+																			<a href="${pageContext.request.contextPath}/recommend/adminRecommend.do" onclick="">트래블러PICK</a>
 																		</dt>
 																		<dd>
 																			<ul>
 																				<li>
-																					<a href="${pageContext.request.contextPath}" onclick="">트래블러추천</a>
+																					<a href="${pageContext.request.contextPath}/recommend/adminRecommend.do" onclick="">트래블러추천</a>
 																				</li>
 																				<li>
 																					<a href="${pageContext.request.contextPath}/recommend/userRecommend.do">사용자맞춤추천</a>

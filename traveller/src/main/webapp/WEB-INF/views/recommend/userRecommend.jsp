@@ -25,11 +25,11 @@
     								<div class="inr">
     									<dl>
 											<dt class="type">		
-												<a href="${pageContext.request.contextPath}/recommend/userRecommend.do">트래블러 PICK</a>
+												<a href="${pageContext.request.contextPath}/recommend/adminRecommend.do">트래블러 PICK</a>
 											</dt>
 											<dd>
 												<ul class="list_lnb">
-													<li><a href="${pageContext.request.contextPath}">트래블러추천</a></li>
+													<li><a href="${pageContext.request.contextPath}/recommend/adminRecommend.do">트래블러추천</a></li>
 	 												<li><a href="${pageContext.request.contextPath}/recommend/userRecommend.do">사용자맞춤추천</a></li>
 												</ul>
 											</dd>

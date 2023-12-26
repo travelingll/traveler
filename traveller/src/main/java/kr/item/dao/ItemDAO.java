@@ -557,4 +557,72 @@ private static ItemDAO instance = new ItemDAO();
 		
 		return item_case;
 	}
+	public List<ItemVO> getItemRecommendList(Integer sum) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String sub_sql = "";
+		
+		List<ItemVO> list = null;
+		
+		try {
+			//커넥션풀로부터 커넥션객체 할당
+			conn = DBUtil.getConnection();
+			if(sum!=null) {
+				sub_sql+="WHERE ROWNUM <= + ?";
+			}
+			//SQL문 작성
+			sql = "SELECT * FROM ( SELECT * FROM item "
+						+"    WHERE TO_DATE(DATE_START, 'YYYY-MM-DD') >= TRUNC(SYSDATE) "
+						+"    ORDER BY TO_DATE(DATE_START, 'YYYY-MM-DD') ASC )"
+						+sub_sql;
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			if(sum!=null) {
+				pstmt.setInt(1, sum);
+			}
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<ItemVO>();
+			while(rs.next()) {
+				ItemVO item = new ItemVO();
+				item.setItem_num(rs.getInt("item_num"));
+				item.setItem_name(rs.getString("item_name"));
+				item.setItem_content(rs.getString("item_content"));
+				item.setItem_price(rs.getInt("item_price"));
+				item.setItem_img1(rs.getString("item_img1"));
+				item.setItem_img2(rs.getString("item_img2"));
+				item.setItem_img3(rs.getString("item_img3"));
+				item.setItem_img4(rs.getString("item_img4"));
+				item.setItem_img5(rs.getString("item_img5"));
+				item.setItem_img6(rs.getString("item_img6"));
+				item.setItem_st1(rs.getString("item_st1"));
+				item.setItem_st2(rs.getString("item_st2"));
+				item.setItem_st3(rs.getString("item_st3"));
+				item.setStatus(rs.getString("status"));
+				item.setDate_start(rs.getString("date_start"));
+				item.setDate_end(rs.getString("date_end"));
+				item.setReg_date(rs.getDate("reg_date"));
+				item.setQuantity(rs.getInt("quantity"));
+				item.setItem_case(rs.getString("item_case"));
+				
+				OrderDAO dao = OrderDAO.getInstance();
+				item.setOrderCount(dao.getOrderItemCount(rs.getInt("item_num")));
+				
+				
+				list.add(item);
+				
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
+	
 }

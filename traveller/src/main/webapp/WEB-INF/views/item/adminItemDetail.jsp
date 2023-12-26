@@ -187,7 +187,7 @@ $(function(){
 												<br>
 												<div class="align-center">
 													<input type="button" value="수정" onclick="location.href='itemModifyForm.do?item_num=${item.item_num}'">
-													<input type="button" value="목록" onclick="location.href='itemUpdateList.do'">
+													<input type="button" value="목록" onclick="location.href='adminItemList.do'">
 												<!--<input type="button" value="홈으로" onclick=request.getContextPath()+"/main/main.do">  -->
 												</div>
 											</form>
