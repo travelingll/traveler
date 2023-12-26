@@ -49,7 +49,7 @@ public class ItemReplyAction implements Action{
 
 		response.addHeader("Refresh", "1;url=itemDetail.do?item_num="+item_num);
 		request.setAttribute("accessMsg", "성공적으로 등록되었습니다.");
-		request.setAttribute("accessUrl", "2;url=itemDetail.do?item_num="+item_num);
+		request.setAttribute("accessUrl", "itemDetail.do?item_num="+item_num);
 	
 	
 		return "/WEB-INF/views/common/notice.jsp"; 
