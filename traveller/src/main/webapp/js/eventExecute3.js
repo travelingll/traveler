@@ -31,7 +31,7 @@ $(function(){
 		
 		for(let i=0 ; i<answer.length ; i++){
 			//숫자 외의 값이 있는 경우
-			if(/^[0-9]$/.test(answer[i])==false){
+			if( !/^[0-9]+$/.test(answer[i])){
 				alert('숫자 외의 문자는 입력할 수 없습니다!');
 				$('#event_answer').val('').focus();
 				return;
