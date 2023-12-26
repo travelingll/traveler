@@ -83,10 +83,7 @@
 												 	
   													<div class="review_cate">
   														<span class="topic_icon topic-12">객실 뷰가 좋아요</span>
-  														<span class="topic_icon topic-13">일정이 알차요</span>
-  														<span class="topic_icon topic-16">현지 음식이 맛있어요</span>
-  														<span class="topic_icon topic-24">가이드가 배려 깊고 세심해요</span>
-  														<span class="topic_icon topic-20">가격이 합리적이에요</span>
+  														
   													</div> 
   													<div class="review_img_list">
   														<ul>
