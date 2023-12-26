@@ -30,7 +30,7 @@
     								<div class="inr">
     									<dl>
 											<dt class="type">		
-												<a href="${pageContext.request.contextPath}/member/myPage.do">트래블러 클럽</a>
+												<a href="${pageContext.request.contextPath}/accom/list.do">트래블러 클럽</a>
 											</dt>
 											<dd>
 												<ul class="list_lnb">
@@ -143,6 +143,7 @@
 		<!-- 댓글 목록 출력 끝 -->
 		<!-- 댓글 끝 -->
 	</div>	
+	
 </div>
 </div>
 </div>

@@ -52,7 +52,7 @@ $(function(){
     								<div class="inr">
     									<dl>
 											<dt class="type">		
-												<a href="${pageContext.request.contextPath}/member/myPage.do">트래블러 클럽</a>
+												<a href="${pageContext.request.contextPath}/comm/list.do">트래블러 클럽</a>
 											</dt>
 											<dd>
 												<ul class="list_lnb">
@@ -210,10 +210,8 @@ $(function(){
 
 
 
-    													
-    			
+    																
 </body>
-
 </html>
 													
 				
