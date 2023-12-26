@@ -43,12 +43,15 @@ public class ItemDetailAction implements Action{
 		
 		Integer replyUsed = reDao.getReplyUsed(user_num, item_num);
 		
+		List<ItemVO> pickList = dao.getItemRecommendList(3);
+		
 		
 		request.setAttribute("item", item);
 		request.setAttribute("user_num", user_num);
 		request.setAttribute("user_auth", user_auth);
 		request.setAttribute("replyList", replyList);
 		request.setAttribute("replyUsed", replyUsed);
+		request.setAttribute("pickList", pickList);
 		
 		return "/WEB-INF/views/item/itemDetail.jsp";
 		

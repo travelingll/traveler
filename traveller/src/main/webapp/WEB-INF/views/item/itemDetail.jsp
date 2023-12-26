@@ -231,14 +231,46 @@ img{
     		</c:forEach>
     	</c:if>
     	<c:if test="${empty replyList}">
-    		<h2>등록된 후기가 없습니다.</h2>
+    		<h2>등록된 후기가 없습니다.</h2><br><br><br><br><br><br>
     	</c:if>
 	</div>
 	<!-- 여행 후기 끝 -->
 	<!-- 트래블러's pick 시작-->
 	<div class="content-center">
-		<h2>트래블러's pick</h2>
-		<hr size="10px">
+		<div id="contents" class="contents">
+    								<div class="text_wrap big fix"><strong class="tit">트래블러's Pick</strong></div> 
+									<div class="panels">
+											<div id="tabPkg" class="panel selected">
+												<div class="tbl">
+										<table class="board_type">
+											<colgroup>
+												<col style="width: 20%;"> 
+												<col style="width: 45%;"> 
+												<col style="width: 23%;"> 
+												<col style="width: 12%;">
+											</colgroup>
+										<thead>
+											<tr>
+												<th colspan="2">여행상품</th>
+												<th>여행날짜</th>
+												<th>가격<br></th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="item" items="${pickList}">
+												<tr>
+													<td><img src="${pageContext.request.contextPath}/upload/${item.item_img1}" width="150px"></td>
+													<td><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}"><b>${item.item_name}</b></a></td>
+													<td>${item.date_start} ~ ${item.date_end}</td>
+													<td><fmt:formatNumber value="${item.item_price}"/>원<br></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+										</table><br><br>
+									</div>
+								</div>
+							</div>
+						</div>
 	</div>
 	<!-- 트래블러's pick 끝-->
 	</div>
