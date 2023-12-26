@@ -22,7 +22,7 @@ $(function(){
 				return false;
 			}
 		}
-		if($('input[name="category"]:radio:checked').length<1){
+		if($('input[name="travelStyle"]:radio:checked').length<1){
 			alert('카테고리를 체크해주세요');
 		}
 
@@ -98,54 +98,56 @@ $(function(){
 			</th> 
 			<td colspan="3">
 				<div class="form_holder v-placeholder" style="width:819px">
-					<textarea rows="10"  name="comm_content" id="comm_content" placeholder="내용을 입력해 주세요." class="insert_check"></textarea> 
+					<textarea rows="10"  name="comm_content" id="comm_content" placeholder="내용을 입력해 주세요." class="insert_check">${comm.comm_content}</textarea> 
                 </div>
             </td>
         </tr>
         <tr>
-			<th>
-				<span class="impt"><label>여행스타일</label></span>
-			</th> 
-			<td colspan="3">
-				<div class="form_wrap">
-					<span class="form_holder check">
-											<input type="radio" name="category" id="category" value="1" class="inpt_checkbox"> 
-											<label for="radioText01" class="label_checkbox">커플여행</label>
-											<input type="radio" name="category" id="category" value="2" class="inpt_checkbox"> 
-											<label for="radioText02" class="label_checkbox">가족여행</label>
-											<input type="radio" name="category" id="category" value="3" class="inpt_checkbox"> 
-											<label for="radioText03" class="label_checkbox">아동동반여행</label>
-											<input type="radio" name="category" id="category" value="4" class="inpt_checkbox"> 
-											<label for="radioText04" class="label_checkbox">친구모임</label>
-											<input type="radio" name="category" id="category" value="5" class="inpt_checkbox"> 
-											<label for="radioText04" class="label_checkbox">나홀로여행</label>
-											<input type="radio" name="category" id="category" value="6" class="inpt_checkbox"> 
-											<label for="radioText04" class="label_checkbox">기타</label>
-					</span>
-				</div>
-            </td>
-        </tr>
-        <tr>
-			<th>
-				<span class="impt"><label>태그</label></span>
-			</th> 
-			<td colspan="3">
-				<div class="form_wrap">
-					<span class="form_holder check">
-											<input type="checkbox" name="tag" value="1">
-											<label for="radioText01" class="label_checkbox">객실뷰가 좋아요</label>
-											<input type="checkbox" name="tag" value="2">
-											<label for="radioText02" class="label_checkbox">일정이 알차요</label>
-											<input type="checkbox" name="tag" value="3">
-											<label for="radioText03" class="label_checkbox">현지 음식이 맛있어요</label>
-											<input type="checkbox" name="tag" value="4"> 
-											<label for="radioText04" class="label_checkbox">가이드가 배려 깊고 세심해요</label>
-											<input type="checkbox" name="tag" value="5"> 
-											<label for="radioText04" class="label_checkbox">가격이 합리적이에요</label>
-					</span>
-				</div>
-            </td>
-        </tr>
+        <th>
+            <span class="impt"><label>여행스타일</label></span>
+        </th>
+        <td colspan="3">
+            <div class="form_wrap">
+                <span class="form_holder check">
+                    <!-- 여행스타일 radio 버튼들에 각각 다른 name 부여 -->
+                    <input type="radio" name="travelStyle" id="travelStyle1" value="1" class="inpt_checkbox" ${comm.category == 1 ? 'checked' : ''}>
+                    <label for="travelStyle1" class="label_checkbox">커플여행</label>
+                    <input type="radio" name="travelStyle" id="travelStyle2" value="2" class="inpt_checkbox" ${comm.category == 2 ? 'checked' : ''}>
+                    <label for="travelStyle2" class="label_checkbox">가족여행</label>
+                    <input type="radio" name="travelStyle" id="travelStyle3" value="3" class="inpt_checkbox" ${comm.category == 3 ? 'checked' : ''}>
+                    <label for="travelStyle3" class="label_checkbox">아동동반여행</label>
+                    <input type="radio" name="travelStyle" id="travelStyle4" value="4" class="inpt_checkbox" ${comm.category == 4 ? 'checked' : ''}>
+                    <label for="travelStyle4" class="label_checkbox">친구모임</label>
+                    <input type="radio" name="travelStyle" id="travelStyle5" value="5" class="inpt_checkbox" ${comm.category == 5 ? 'checked' : ''}>
+                    <label for="travelStyle5" class="label_checkbox">나홀로여행</label>  
+                    <input type="radio" name="travelStyle" id="travelStyle6" value="6" class="inpt_checkbox" ${comm.category == 6 ? 'checked' : ''}>
+                    <label for="travelStyle6" class="label_checkbox">기타</label>
+                </span>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <span class="impt"><label>태그</label></span>
+        </th>
+        <td colspan="3">
+            <div class="form_wrap">
+                <span class="form_holder check">
+                    
+                    <input type="checkbox" name="tag" value="1" ${comm.tag == 1 ? 'checked' : ''}>
+                    <label for="tag1" class="label_checkbox">객실뷰가 좋아요</label>
+                    <input type="checkbox" name="tag" value="2" ${comm.tag == 2 ? 'checked' : ''}>
+                    <label for="tag2" class="label_checkbox">일정이 알차요</label>
+                    <input type="checkbox" name="tag" value="3" ${comm.tag == 3 ? 'checked' : ''}>
+                    <label for="tag3" class="label_checkbox">현지 음식이 맛있어요</label>
+                    <input type="checkbox" name="tag" value="4" ${comm.tag == 4 ? 'checked' : ''}>
+                    <label for="tag4" class="label_checkbox">가이드가 배려 깊고 세심해요</label>
+                    <input type="checkbox" name="tag" value="5" ${comm.tag == 5 ? 'checked' : ''}>
+                    <label for="tag5" class="label_checkbox">가격이 합리적이에요</label>
+                </span>
+            </div>
+        </td>
+    </tr>
         <tr>
 			<th>
 				<span class="impt"><label>파일첨부</label></span>
@@ -163,19 +165,20 @@ $(function(){
 											<span class="img" style="display:;"></span> 
 											<a class="btn" style="cursor:pointer;display:;"><label for="filename1">파일</label></a> 
 											<input type="file" name="filename1" id="filename1"  accept="image/gif, image/png, image/jpeg" style="display:none;" class="insert_check">
-											<c:if test="${!empty comm.filename1}">
-						<div id="file_detail">
+						
+						<c:if test="${!empty comm.filename1}">
+						<div id="file_detail1">
 							(${comm.filename1})파일이 등록되어 있습니다.
-							<input type="button" value="파일삭제" id="file_del">
+							<input type="button" value="파일삭제" id="file_del1" data-filed1 = "1">
 							<script>
 								$(function(){
-									$('#file_del').click(function(){
+									$('#file_del1').click(function(){
 										let choice = confirm('삭제하시겠습니까?');
 										if(choice){
 											$.ajax({
 												url:'deleteFile.do',
 												type:'post',
-												data:{comm_num:${comm.comm_num}},
+												data:{comm_num:${comm.comm_num},file_del:$('#file_del1').attr('data-filed1')},
 												dataType:'json',
 												success:function(param){
 													if(param.result=='logout'){
@@ -208,12 +211,12 @@ $(function(){
 											<a class="btn" style="cursor:pointer;display:;"><label for="filename2">파일</label></a> 
 											<input type="file" name="filename2" id="filename2"  accept="image/gif, image/png, image/jpeg" style="display:none;">
 											<c:if test="${!empty comm.filename2}">
-						<div id="file_detail">
+						<div id="file_detail2">
 							(${comm.filename2})파일이 등록되어 있습니다.
-							<input type="button" value="파일삭제" id="file_del">
+							<input type="button" value="파일삭제" id="file_del2">
 							<script>
 								$(function(){
-									$('#file_del').click(function(){
+									$('#file_del2').click(function(){
 										let choice = confirm('삭제하시겠습니까?');
 										if(choice){
 											$.ajax({
@@ -252,12 +255,12 @@ $(function(){
 											<a class="btn" style="cursor:pointer;display:;"><label for="filename3">파일</label></a> 
 											<input type="file" name="filename3" id="filename3"  accept="image/gif, image/png, image/jpeg" style="display:none;">
 											<c:if test="${!empty comm.filename3}">
-						<div id="file_detail">
+						<div id="file_detail3">
 							(${comm.filename3})파일이 등록되어 있습니다.
-							<input type="button" value="파일삭제" id="file_del">
+							<input type="button" value="파일삭제" id="file_del3">
 							<script>
 								$(function(){
-									$('#file_del').click(function(){
+									$('#file_del3').click(function(){
 										let choice = confirm('삭제하시겠습니까?');
 										if(choice){
 											$.ajax({
