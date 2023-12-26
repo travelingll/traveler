@@ -44,33 +44,18 @@ $(function(){
 			let photo_choice = $(this).parent().parent().find('.photo_choice');
 			photo_choice.show();
 			$(this).hide();
+			$(this).parent().find('.photo').show();
+		    $(this).parent().find('.photo_reset').show();
 			
 		photo_path = $(this).parent().parent().find('.pic').attr('src');
 		
 		});
 		
-		/* $('.photo').change(function(){
-			photo_path = $(this).parent().parent().find('.photo');
-			let pic = $(this).parent().parent().find('.pic');
-			let my_photo = this.files[0];
-			
-			if(!my_photo){
-				pic.attr('src',photo_path);
-				return false;
-			}
-			if(my_photo.size>10*1024*1024){
-				alert(Math.round(my_photo.size/1024*1024) + 'MB (10MB까지만 업로드 가능)');
-				pic.attr('src',photo_path);
-				$(this).val('');
-				return;
-			}
-			
-			
-		}); */
 		$('.photo_reset').click(function(){
 			
-			$(this).parent().hide();
-			$(this).parent().parent().find('.photo_btn').show();
+			$(this).hide();
+			$(this).parent().find('.photo').hide();
+			$(this).parent().find('.photo_btn').show();
 		
 		});
 		const status = $('#closing').attr('data-num');
@@ -207,34 +192,37 @@ $(function(){
 												<tr>
 													<th><label for="price"><b>상품가격</b></label></th>
 													<td>
-														<input type="number" id="price" name="price" maxlength="30" size="20" value="${item.item_price}" class="insert_check">원
+														<input type="number" id="price" name="price" maxlength="30" size="17" value="${item.item_price}" class="insert_check">원
 													</td>
 												</tr>
 												<tr>
 													<th><label for="pic1"><b>1일차 사진(필수입력)</b></label></th>
 													<td>
-														<input type="button" value="수정" class="photo_btn">
-														<input type="file" id="pic1" name="pic1" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
-														<input type="button" value="취소" class="photo_reset">	
 														<img src="${pageContext.request.contextPath}/upload/${item.item_img1}" width="150px" class="pic">
+														<br>
+														<input type="button" value="수정" class="photo_btn">
+														<input type="file" id="pic1" name="pic1" style="display:none;" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
+														<input type="button" value="취소" style="display:none;" class="photo_reset">	
 													</td>
 												</tr>
 												<tr>
 													<th><label for="pic"><b>2일차 사진(필수입력)</b></label></th>
 													<td>
-														<input type="button" value="수정" class="photo_btn">
-														<input type="file" id="pic2" name="pic2" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
-														<input type="button" value="취소" class="photo_reset">	
 														<img src="${pageContext.request.contextPath}/upload/${item.item_img2}" width="150px" class="pic">
+														<br>
+														<input type="button" value="수정" class="photo_btn">
+														<input type="file" id="pic2" name="pic2" style="display:none;"  class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
+														<input type="button" value="취소" style="display:none;"  class="photo_reset">	
 													</td>
 												</tr>
 												<tr>
 													<th><label for="pic"><b>3일차 사진(필수입력)</b></label></th>
 													<td>
-														<input type="button" value="수정" class="photo_btn">
-														<input type="file" id="pic3" name="pic3" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
-														<input type="button" value="취소" class="photo_reset">	
 														<img src="${pageContext.request.contextPath}/upload/${item.item_img3}" width="150px" class="pic">
+														<br>
+														<input type="button" value="수정" class="photo_btn">
+														<input type="file" id="pic3" name="pic3" style="display:none;"  class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
+														<input type="button" value="취소" style="display:none;"  class="photo_reset">	
 													</td>
 												</tr>
 												<tr>
@@ -244,15 +232,13 @@ $(function(){
 														<input type="file" id="pic4" name="pic4" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="plus">
 														</c:if>
 														<c:if test="${!empty item.item_img4}">
+															<img src="${pageContext.request.contextPath}/upload/${item.item_img4}" width="150px">
+															<br>
 														<input type="button" value="수정" class="photo_btn">
 														</c:if>
 														<c:if test="${!empty item.item_img4}">
-															<div class="photo_choice" style="display:none;">
-																<input type="file" id="pic4" name="pic4" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
-																<br>
-																<input type="button" value="취소" class="photo_reset">	
-															</div>
-																<img src="${pageContext.request.contextPath}/upload/${item.item_img4}" width="150px">
+																<input type="file" id="pic4" name="pic4" style="display:none;"  class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
+																<input type="button" value="취소" style="display:none;"  class="photo_reset">	
 														</c:if>
 													</td>
 												</tr>
@@ -263,12 +249,13 @@ $(function(){
 														<input type="file" id="pic5" name="pic5" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="plus">
 														</c:if>
 														<c:if test="${!empty item.item_img5}">
+															<img src="${pageContext.request.contextPath}/upload/${item.item_img5}" width="150px">
+															<br>
 														<input type="button" value="수정" class="photo_btn">
 														</c:if>
 														<c:if test="${!empty item.item_img5}">
-															<input type="file" id="pic5" name="pic5" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
-															<input type="button" value="취소" class="photo_reset">	
-															<img src="${pageContext.request.contextPath}/upload/${item.item_img5}" width="150px">
+															<input type="file" id="pic5" name="pic5"  style="display:none;" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
+															<input type="button" value="취소"  style="display:none;" class="photo_reset">	
 														</c:if>
 													</td>
 												</tr>
@@ -279,12 +266,13 @@ $(function(){
 														<input type="file" id="pic6" name="pic6" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" class="plus">
 														</c:if>
 														<c:if test="${!empty item.item_img6}">
+															<img src="${pageContext.request.contextPath}/upload/${item.item_img6}" width="150px">
+															<br>
 														<input type="button" value="수정" class="photo_btn">
 														</c:if>
 														<c:if test="${!empty item.item_img6}">
-															<input type="file" id="pic6" name="pic6" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
-															<input type="button" value="취소" class="photo_reset">	
-															<img src="${pageContext.request.contextPath}/upload/${item.item_img6}" width="150px">
+															<input type="file" id="pic6" name="pic6"  style="display:none;" class="photo" maxlength="30" size="20" accept="image/gif, image/jpeg, image/png" value="${item.item_img1}" class="insert_check">
+															<input type="button" value="취소"  style="display:none;" class="photo_reset">	
 														</c:if>
 													</td>
 												</tr>
