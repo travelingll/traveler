@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>여행상세정보</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/orderTable.css">
+
 <style>
 	.content-center{
 		float: left;
@@ -23,9 +25,6 @@
 	}
 	.last-div{
 	clear: right;
-	}
-	button{
-	width:300px;
 	}
 	
 a {
@@ -43,9 +42,9 @@ hr{
     color: black;
   }
 .button {
-  background-color: #4CAF50;
+  background-color: black;
   border: none;
-  color: white;
+  color: black;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
@@ -53,14 +52,37 @@ hr{
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  border-radius: 4px;
   padding: 18px 20px;
   margin-right: 20px;
+  border-radius: 8px;
 }
 img{
 	width:80%;
 }
+th {
+  background-color:#e3e3e3; /* 살짝 회색 배경색을 나타내는 색상 코드 */
+}
 
+
+.notice:hover {
+  background-color:  #a2a4a8; /* 마우스 호버 시 배경색 변경 */
+}
+button {
+    position: relative;
+    display: inline-block;
+    height: 35px;
+    line-height: 23px;
+    font-size: 12px;
+    padding: 0 10px;
+    margin-bottom: 10px;
+    color: #666;
+    background-color: #fff;
+    font-weight: 400;
+    text-align: center;
+    border-radius: 4px;
+    border: solid 1px #c2c2c2;
+    width:320px;
+}
 </style>
 <script>
 	function openPopup1() {
@@ -69,6 +91,7 @@ img{
 	function openPopup2() {
     window.open("popup2.do", "여행시 유의사항", "width=500,height=500");
 	}
+
 </script>
 </head>
 <body>
@@ -109,24 +132,26 @@ img{
 				</div>
 			</div>
 			<div class="content-right">
-				<div style="border: 1px solid black;">
+				<div >
 					<h3>상품코드 ${item.item_num}</h3> <br>
 				</div>
 				<br>
-				<div style="border: 1px solid black;">
+				<div>
 					<h3>${item.item_name}</h3><br>
 				</div>
 				<br>
-				<div style="border: 1px solid black;">
+				<div >
 				<div class="last-div">
 					<h2>가격 <fmt:formatNumber value="${item.item_price}"/>원</h2>
 				</div>
 				</div>
 					<div>
+					<br><br><br>
 					<c:if test="${item.status==2}">
 						<form id="reservationForm" action="${pageContext.request.contextPath}/cart/write.do" method="post">
 						<label for="order_quantity">구매수량</label>
 						<input type="number" name="order_quantity" id="order_quantity" value="1" min="1" max="${item.quantity}">
+						<br><br><br><br><br>
 						<input type="hidden" name="item_num" value="${item.item_num}" >
 						<input type="hidden" name="item_price" value="${item.item_price}" >
 						<input type="hidden" name="quantity" value="${item.quantity}">
@@ -140,23 +165,47 @@ img{
 					</div>
 			</div>
 		</div>
+		<!-- 테이블 시작 -->
+		<!-- 트래블러's pick 시작-->
+	<div class="content-center">
+		<div id="contents" class="contents">
+    								<div class="text_wrap big fix"><strong class="tit">${item.item_name}</strong></div> 
+									<div class="panels">
+											<div id="tabPkg" class="panel selected">
+												<div class="tbl">
+										<table class="board_type" style="width: 100%;">
+											<colgroup>
+												<col style="width: 20%;"> 
+												<col style="width: 45%;"> 
+												<col style="width: 23%;"> 
+												<col style="width: 12%;">
+											</colgroup>
+										<thead>
+											<tr>
+												<th colspan="4" >여행주요일정</th>
+											</tr>
+										</thead>
+										<tbody>
+												<tr>
+													<td colspan="4">
+													<h2>여행 기간 : ${item.date_start} ~ ${item.date_end }</h2>
+													<br><br><br>
+													<h3>여행 도시 : ${item.item_content}</h3>
+													<br><br><br>
+													<h3>모집 인원 : <span id="apply">${item.orderCount}</span>/${item.quantity}명</h3>
+													
+													</td>
+												</tr>
+										</tbody>
+										</table><br><br>
+									</div>
+								</div>
+							</div>
+						</div>
+	</div>
+	<!-- 트래블러's pick 끝-->
+		<!-- 테이블 끝 -->
 	<!-- item-header 영역 끝 -->
-		<div style="clear:both;">
-		<h2>여행 주요일정</h2>
-		<hr size="5px" color="black">
-		<br><br><br>
-		</div>
-		<!-- 여행 주요일정 시작 -->
-		
-		<div class="content-center">
-		<h2>여행 기간 : ${item.date_start} ~ ${item.date_end }</h2>
-		<br><br><br>
-		<h3>여행 도시 : ${item.item_content}</h3>
-		<br><br><br>
-		<h3>모집 인원 : <span id="apply">${item.orderCount}</span>/${item.quantity}명</h3>
-		<br><br><br>
-		</div>
-		<!-- 여행 주요일정 끝 -->
 		
 	<!-- 상품가격 알림 시작 -->
 		<div class="content-center">
@@ -176,41 +225,89 @@ img{
 		<br>
 		<br>
 		<hr size="5px" color="black">
-			<button onclick="openPopup1()">예약시 유의사항</button>	
-			<button onclick="openPopup2()">여행시 유의사항</button>	
+			<button class="notice" onclick="openPopup1()">예약시 유의사항</button>	
+			<button class="notice" onclick="openPopup2()">여행시 유의사항</button>	
 			<br><br><br>
 		</div>
 	<!-- 상품가격 알림 끝 -->
 		
 	
 	<!-- 여행 상세정보 시작 -->
+	<!-- 시작 -->
 	<div class="content-center">
-		<h2>여행 상세정보</h2>
-		<br>
-		<hr size="5px" color="black">
+		<div id="contents" class="contents">
+    								<div class="text_wrap big fix"><strong class="tit"></strong></div> 
+									<div class="panels">
+											<div id="tabPkg" class="panel selected">
+												<div class="tbl">
+										<table class="board_type" style="width: 100%;">
+											<colgroup>
+												<col style="width: 20%;"> 
+												<col style="width: 45%;"> 
+												<col style="width: 23%;"> 
+												<col style="width: 12%;">
+											</colgroup>
+										<thead>
+											<tr>
+												<th colspan="4" >여행 상세정보</th>
+											</tr>
+										</thead>
+										<tbody>
+												<tr>
+													<td colspan="4">
+													<img src="${pageContext.request.contextPath}/upload/${item.item_img2}" >
 		
-		<img src="${pageContext.request.contextPath}/upload/${item.item_img2}" >
+													<img src="${pageContext.request.contextPath}/upload/${item.item_img3}" >
+													
+													<c:if test="${!empty item.item_img4}">
+													<img src="${pageContext.request.contextPath}/upload/${item.item_img4}" >
+													</c:if>
+													<c:if test="${!empty item.item_img4 && !empty item.item_img5}">
+													<img src="${pageContext.request.contextPath}/upload/${item.item_img5}" >
+													</c:if>
+													<c:if test="${!empty item.item_img4 && !empty item.item_img5 && !empty item.item_img6}">
+													<img src="${pageContext.request.contextPath}/upload/${item.item_img6}" >
+													</c:if>
+													</td>
+												</tr>
+										</tbody>
+										</table><br><br>
+									</div>
+								</div>
+							</div>
+						</div>
+	</div>
+	<!-- 끝 -->
+	<div class="content-center">
 		
-		<img src="${pageContext.request.contextPath}/upload/${item.item_img3}" >
 		
-		<c:if test="${!empty item.item_img4}">
-		<img src="${pageContext.request.contextPath}/upload/${item.item_img4}" >
-		</c:if>
-		<c:if test="${!empty item.item_img4 && !empty item.item_img5}">
-		<img src="${pageContext.request.contextPath}/upload/${item.item_img5}" >
-		</c:if>
-		<c:if test="${!empty item.item_img4 && !empty item.item_img5 && !empty item.item_img6}">
-		<img src="${pageContext.request.contextPath}/upload/${item.item_img6}" >
-		</c:if>
 		
 	
 	</div>
 	<!-- 여행 상세정보 끝 -->
-	<!-- 여행 후기 시작 -->
+	<!-- test시작 -->
 	<div class="content-center">
-		<h2>여행후기</h2>
-		<hr size="10px">
-	<c:if test="${order_status==2 && replyUsed==0}">
+		<div id="contents" class="contents">
+    								<div class="text_wrap big fix"><strong class="tit"></strong></div> 
+									<div class="panels">
+											<div id="tabPkg" class="panel selected">
+												<div class="tbl">
+										<table class="board_type" style="width: 100%;">
+											<colgroup>
+												<col style="width: 20%;"> 
+												<col style="width: 45%;"> 
+												<col style="width: 23%;"> 
+												<col style="width: 12%;">
+											</colgroup>
+										<thead>
+											<tr>
+												<th colspan="4" >여행 후기</th>
+											</tr>
+										</thead>
+										<tbody>
+												<tr>
+													<td colspan="4">
+													<c:if test="${order_status==2 && replyUsed==0}">
 			<form action="itemReply.do" method="post">
 	        <label for="comment">후기 내용:</label>
 	        <input type="hidden" name="item_num" value="${item.item_num}">
@@ -227,16 +324,29 @@ img{
     		
     			<li>작성자 id : ${reply.user_id}      등록일 : ${reply.item_redate}</li>
     			<li>${reply.item_recontent}</li>
+    			
             </ul>
     		</c:forEach>
     	</c:if>
     	<c:if test="${empty replyList}">
-    		<h2>등록된 후기가 없습니다.</h2><br><br><br><br><br><br>
+    		<h2>등록된 후기가 없습니다.</h2>
     	</c:if>
+													</td>
+												</tr>
+										</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
 	</div>
+	<!-- test끝 -->
+	<!-- 여행 후기 시작 -->
+	
 	<!-- 여행 후기 끝 -->
+	
 	<!-- 트래블러's pick 시작-->
-	<div class="content-center">
+	<div class="content-center" style="width:100%;">
 		<div id="contents" class="contents">
     								<div class="text_wrap big fix"><strong class="tit">트래블러's Pick</strong></div> 
 									<div class="panels">
@@ -266,7 +376,7 @@ img{
 												</tr>
 											</c:forEach>
 										</tbody>
-										</table><br><br>
+										</table>
 									</div>
 								</div>
 							</div>
