@@ -66,6 +66,7 @@
 			<img src="${pageContext.request.contextPath}/upload/${accom.accom_filename}" class="detail-img">
 		</div>	
 		</c:if>
+		<br>
 		<p>
 			${accom.accom_content}
 		</p>
