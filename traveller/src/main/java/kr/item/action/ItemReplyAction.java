@@ -39,7 +39,7 @@ public class ItemReplyAction implements Action{
 		revo.setItem_reip(item_reip);
 		revo.setItem_st1(item_st1);
 		revo.setItem_case(item_case);
-		revo.setUser_id(user_id);
+		revo.setUser_id(user_id); 
 		
 		redao.insertReply(revo);
 		
