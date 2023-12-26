@@ -172,7 +172,7 @@ $(function(){
 													<col style="width: 70%;"> 
 												</colgroup> 
 													<tr>
-														<th><label><b>상품표시여부 : </b></label></th>
+														<th><label><b>상품표시여부</b></label></th>
 														<td>
 															<input type="radio" name="status" value="1" id="status1" <c:if test="${item.status==1}"> checked="checked"</c:if> >미표시
 															<input type="radio" name="status" value="2" id="status2" <c:if test="${item.status==2}"> checked="checked"</c:if> >판매가능
@@ -180,7 +180,7 @@ $(function(){
 														</td>
 													</tr>
 													<tr>
-														<th><label>지역</label></th>
+														<th><label><b>지역</b></label></th>
 														<td>
 															<c:if test="${item.item_st1==1}">동남아</c:if>
 															<c:if test="${item.item_st1==2}">북미</c:if>
@@ -195,19 +195,19 @@ $(function(){
 														</td>
 													</tr>
 													<tr>
-														<th><label for="name"><b>상품명 : </b></label></th>
+														<th><label for="name"><b>상품명</b></label></th>
 														<td>
 															<textarea id="name" name="name" cols="50" rows="5" class="insert_check" >${item.item_name}</textarea><br>
 														</td>
 													</tr>
 													<tr>
-														<th><label for="city"><b>방문도시 : </b></label></th>
+														<th><label for="city"><b>방문도시</b></label></th>
 														<td>
 															<textarea id="city" name="city" cols="50" rows="5" class="insert_check">${item.item_content}</textarea>
 														</td>
 													</tr>
 													<tr>
-														<th><label for="price"><b>상품가격 : </b></label></th>
+														<th><label for="price"><b>상품가격</b></label></th>
 														<td>
 															<input type="number" id="price" name="price" maxlength="30" size="20" value="${item.item_price}" class="insert_check">원
 														</td>
