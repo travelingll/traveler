@@ -173,7 +173,8 @@ $(function(){
 							<script>
 								$(function(){
 									$('#file_del1').click(function(){
-										let choice = confirm('삭제하시겠습니까?');
+										alert ($('#file_del1').attr('data-filed1'));
+										let choice = confirm('삭제하시겠습니까?' );
 										if(choice){
 											$.ajax({
 												url:'deleteFile.do',
@@ -210,10 +211,10 @@ $(function(){
 											<span class="img" style="display:;"></span> 
 											<a class="btn" style="cursor:pointer;display:;"><label for="filename2">파일</label></a> 
 											<input type="file" name="filename2" id="filename2"  accept="image/gif, image/png, image/jpeg" style="display:none;">
-											<c:if test="${!empty comm.filename2}">
+										<c:if test="${!empty comm.filename2}">
 						<div id="file_detail2">
 							(${comm.filename2})파일이 등록되어 있습니다.
-							<input type="button" value="파일삭제" id="file_del2">
+							<input type="button" value="파일삭제" id="file_del2" data-filed1 = "2">
 							<script>
 								$(function(){
 									$('#file_del2').click(function(){
@@ -222,13 +223,13 @@ $(function(){
 											$.ajax({
 												url:'deleteFile.do',
 												type:'post',
-												data:{comm_num:${comm.comm_num}},
+												data:{comm_num:${comm.comm_num},file_del:$('#file_del2').attr('data-filed2')},
 												dataType:'json',
 												success:function(param){
 													if(param.result=='logout'){
 														alert('로그인 후 사용하세요');
 													}else if(param.result=='success'){
-														$('#file_detail2').hide();
+														$('#file_detail1').hide();
 													}else if(param.result=='wrongAccess'){
 														alert('잘못된 접속입니다');
 													}else{
@@ -257,7 +258,7 @@ $(function(){
 											<c:if test="${!empty comm.filename3}">
 						<div id="file_detail3">
 							(${comm.filename3})파일이 등록되어 있습니다.
-							<input type="button" value="파일삭제" id="file_del3">
+							<input type="button" value="파일삭제" id="file_del3" data-filed3 = "3">
 							<script>
 								$(function(){
 									$('#file_del3').click(function(){
@@ -266,7 +267,7 @@ $(function(){
 											$.ajax({
 												url:'deleteFile.do',
 												type:'post',
-												data:{comm_num:${comm.comm_num}},
+												data:{comm_num:${comm.comm_num},file_del:$('#file_del3').attr('data-filed3')},
 												dataType:'json',
 												success:function(param){
 													if(param.result=='logout'){

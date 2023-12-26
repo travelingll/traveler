@@ -37,7 +37,9 @@ public class deleteFileAction implements Action{
 			
 			}else if(user_num == db_comm.getMem_num() && file_del.equals("1")){//로그인한 회원번호와 작성자 회원번호가 일치해서 파일 삭제 가능
 				mapAjax.put("result", null);
-				dao.deleteFile(comm_num);
+				
+				dao.deleteFile(comm_num, Integer.parseInt(file_del));
+				
 				
 				FileUtil.removeFile(request, db_comm.getFilename1());
 				
@@ -46,7 +48,7 @@ public class deleteFileAction implements Action{
 				
 			}else if(user_num == db_comm.getMem_num() && file_del.equals("2")){//로그인한 회원번호와 작성자 회원번호가 일치해서 파일 삭제 가능
 				mapAjax.put("result", null);
-				dao.deleteFile(comm_num);
+				dao.deleteFile(comm_num, Integer.parseInt(file_del));
 				
 				FileUtil.removeFile(request, db_comm.getFilename2());
 				
@@ -55,7 +57,7 @@ public class deleteFileAction implements Action{
 			
 			}else if(user_num == db_comm.getMem_num() && file_del.equals("3")){//로그인한 회원번호와 작성자 회원번호가 일치해서 파일 삭제 가능
 				mapAjax.put("result", null);
-				dao.deleteFile(comm_num);
+				dao.deleteFile(comm_num, Integer.parseInt(file_del));
 				
 				FileUtil.removeFile(request, db_comm.getFilename3());
 				
