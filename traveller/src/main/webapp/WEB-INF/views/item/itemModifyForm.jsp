@@ -69,8 +69,6 @@ $(function(){
 		}); */
 		$('.photo_reset').click(function(){
 			
-			$(this).parent().parent().find('.pic').attr('src', photo_path);
-			$(this).siblings('.photo').val('');
 			$(this).parent().hide();
 			$(this).parent().parent().find('.photo_btn').show();
 		
