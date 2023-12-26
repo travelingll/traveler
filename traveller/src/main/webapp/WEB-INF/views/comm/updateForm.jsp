@@ -262,6 +262,7 @@ $(function(){
 							<script>
 								$(function(){
 									$('#file_del3').click(function(){
+										alert($('#file_del3').attr('data-filed3'));
 										let choice = confirm('삭제하시겠습니까?');
 										if(choice){
 											$.ajax({

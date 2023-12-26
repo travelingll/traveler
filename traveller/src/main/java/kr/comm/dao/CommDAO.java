@@ -262,13 +262,13 @@ public class CommDAO {
 			//커넥션풀로부터 커넥션객체 할당
 			conn = DBUtil.getConnection();
 			if(filename == 1) {
-				sub_sql1 += " filename1=?";
+				sub_sql1 += " filename1=''";
 			}
 			if(filename == 2) {
-				sub_sql2 += " filename2=?";
+				sub_sql2 += " filename2=''";
 			}
 			if(filename == 3) {
-				sub_sql3 += " filename3=?";
+				sub_sql3 += " filename3=''";
 			}
 			//SQL문 작성
 			sql = "UPDATE comm SET " + sub_sql1 + sub_sql2 + sub_sql3 +" WHERE comm_num=?";
