@@ -62,7 +62,7 @@ public class EventExecuteAction implements Action {
 			
 		} else if(event_title.equals("로또 번호 맞추기")) {
 			
-			String lotto_num = "";
+			
 			String[] array = request.getParameter("answer").split(" "); //사용자가 입력한 값을 잘라서 배열에 저장
 			
 			int lotto_check=0;
@@ -72,30 +72,25 @@ public class EventExecuteAction implements Action {
 			//로또 번호 생성
 			HashSet<Integer> hs = new HashSet<Integer>();
 			while(hs.size()<6) {
-				int num = (int)(Math.random()*45)+1;
+				int num = (int)(Math.random()*9)+1;
 				hs.add(num);
 			}
 			
-			hs.stream().sorted(); //작은 숫자부터 정렬
-			
-			//일치 여부 확인
-			Iterator<Integer> it = hs.iterator();
-	        while(it.hasNext()) {
-	        	int i = 0;
-	        	if( hs.contains(Integer.parseInt(array[i])) ) {
+			for(int i=0 ; i<hs.size() ; i++) {
+				if( hs.contains(Integer.parseInt(array[i])) ) {
 					lotto_check++;
 				}
-				lotto_num += it.next()+" ";
-				i++;
-	        }
+			}
+			
+			String lotto_num = hs.toString();
 			
 			//로또 번호 전체가 일치할 경우 
 			if(lotto_check==6) {
-				moneyVo.setSaved_money("100000");
+				moneyVo.setSaved_money("10000");
 				moneyVo.setSm_content(event_title);
 				
 				mapAjax.put("result", "success");
-				mapAjax.put("money", "100000");
+				mapAjax.put("money", "10000");
 			} else {
 				moneyVo.setSaved_money("100");
 				moneyVo.setSm_content("로또 번호 맞추기 실패! 위로금 지급");
