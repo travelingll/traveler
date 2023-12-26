@@ -71,7 +71,7 @@ public class EventExecuteAction implements Action {
 			//로또 번호 생성
 			HashSet<Integer> hs = new HashSet<Integer>();
 			while(hs.size()<6) {
-				int num = (int)(Math.random()*45)+1;
+				int num = (int)(Math.random()*9)+1;
 				hs.add(num);
 			}
 			
