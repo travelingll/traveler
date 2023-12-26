@@ -203,7 +203,7 @@ a {
 						       						<a href="${pageContext.request.contextPath}/item/itemMiddle.do?item_case=${item.item_case}&list_num=${item.item_st1}">
 						            					<span class="thumb_pic">
 						            						<span class="tag">
-						            							<span class="tag_square pkg">
+						            							<span class="tag_square pkg"> 
 						            								<span>해외 패키지</span>
 						            							</span>
 						            							<span class="tag_square pre">
