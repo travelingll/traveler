@@ -68,7 +68,14 @@ $(function(){
 												<tr>
 													<td><a href="orderDetail.do?order_num=${order.order_num}">${order.order_num}</a></td>
 													<td><a href="orderDetail.do?order_num=${order.order_num}">${order.item_name}</a></td>
-													<td style="text-align:center;"><a href="orderDetail.do?order_num=${order.order_num}">${order.order_status}</a></td>
+													<td style="text-align:center;">
+														<a href="orderDetail.do?order_num=${order.order_num}">
+															<c:if test="${order.order_status==1}">예약 완료</c:if>
+							                   				<c:if test="${order.order_status==2}">사용 중</c:if>
+							                   				<c:if test="${order.order_status==3}">노쇼</c:if>
+							                   				<c:if test="${order.order_status==4}">예약 취소</c:if>
+														</a>
+													</td>
 												</tr>
 											</c:forEach>
 											</tbody>
