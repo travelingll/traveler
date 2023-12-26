@@ -20,7 +20,7 @@ $(function(){
 		}
 		
 		//입력받은 값을 띄어쓰기를 구분자로 배열에 저장
-		let answer = $('#event_answer').val().split(' ');
+		let answer = $('#event_answer').val().trim().split(' ');
 		
 		//6개보다 많거나 작게 입력한 경우
 		if( answer.length != 6){
