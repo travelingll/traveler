@@ -194,7 +194,7 @@
 												</div>
 											</li>
 											<li>
-												<a href="${pageContext.request.contextPath}/recommend/userRecommend.do" class="dropdown-btn" style="pointer-events : auto;">트래블러PICK</a>
+												<a href="${pageContext.request.contextPath}/recommend/adminRecommend.do" class="dropdown-btn" style="pointer-events : auto;">트래블러PICK</a>
 												
 												<div>
 												</div>
