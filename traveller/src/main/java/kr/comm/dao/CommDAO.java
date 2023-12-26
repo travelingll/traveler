@@ -251,7 +251,7 @@ public class CommDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
-		String sub_sql1 = "";
+		
 		String sub_sql2 = "";
 		String sub_sql3 = "";
 		
@@ -261,9 +261,7 @@ public class CommDAO {
 			
 			//커넥션풀로부터 커넥션객체 할당
 			conn = DBUtil.getConnection();
-			if(filename == 1) {
-				sub_sql1 += " filename1=''";
-			}
+			
 			if(filename == 2) {
 				sub_sql2 += " filename2=''";
 			}
@@ -271,7 +269,7 @@ public class CommDAO {
 				sub_sql3 += " filename3=''";
 			}
 			//SQL문 작성
-			sql = "UPDATE comm SET " + sub_sql1 + sub_sql2 + sub_sql3 +" WHERE comm_num=?";
+			sql = "UPDATE comm SET " + sub_sql2 + sub_sql3 +" WHERE comm_num=?";
 			//preparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
