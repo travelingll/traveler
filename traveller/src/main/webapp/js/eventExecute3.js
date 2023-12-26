@@ -17,6 +17,7 @@ $(function(){
 			alert('숫자를 입력해주세요!');
 			$('#event_answer').val('').focus();
 			return;
+			
 		}
 		
 		//입력받은 값을 띄어쓰기를 구분자로 배열에 저장
