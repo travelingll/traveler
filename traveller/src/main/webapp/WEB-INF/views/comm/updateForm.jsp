@@ -178,7 +178,7 @@ $(function(){
 											$.ajax({
 												url:'deleteFile.do',
 												type:'post',
-												data:{comm_num:${comm.comm_num},file_del:$('#file_del1').attr('data-filed1')})},
+												data:{comm_num:${comm.comm_num},file_del:$('#file_del1').attr('data-filed1')},
 												dataType:'json',
 												success:function(param){
 													if(param.result=='logout'){
