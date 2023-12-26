@@ -34,7 +34,7 @@ $(function(){
 			if( !/^[0-9]+$/.test(answer[i])){
 				alert('숫자 외의 문자는 입력할 수 없습니다!');
 				$('#event_answer').val('').focus();
-				return; 
+				return;
 			}
 			//입력한 숫자가 1~45 사이가 아닌 경우
 			if(answer[i]<=0 || answer[i]>45) {
