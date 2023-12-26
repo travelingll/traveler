@@ -154,7 +154,7 @@ a {
 											<a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=5">국내</a>
 										</li>
 									</c:if>
-									<c:if test="${list_num == 5 }">
+									<c:if test="${list_num ==5}">
 										<li class="fx-cobrand-htl" style="width: 20%;">
 											<a href="${pageContext.request.contextPath}/item/itemMenu.do?list_num=1">동남아</a>
 										</li> 
@@ -195,7 +195,7 @@ a {
 						 		 
 									<div class="bx-wrapper" style="max-width: 100%;">
 									
-										<div class="bx-viewport" aria-live="polite" style="width: 100%; overflow: hidden; position: relative; height: 410px;">
+										<div class="bx-viewport" aria-live="polite" style="width: 115%; overflow: hidden; position: relative; height: 410px;">
 											<ul class="psl_catalog main_slides" style="width: 6215%; position: relative; transition-duration: 0.5s; transform: translate3d(0px, 0px, 0px);">
 												<c:forEach var="item" items="${sampleList}" varStatus="status">
 												 <c:if test="${status.index < 3 && item.item_st1==list_num}">

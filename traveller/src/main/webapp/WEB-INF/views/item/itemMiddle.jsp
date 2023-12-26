@@ -46,9 +46,9 @@
       
       
    <div id="containerr" style="display: flex;">
-    <div id="sidebarr" style="width: 20%;">
+    <div id="sidebarr" style="width: 27%;">
     </div>
-    <div id="sidebar" style="width: 80%;">
+    <div id="sidebar" style="width: 73%;">
         <!-- 왼쪽 사이드바 내용 -->
       
    
@@ -59,7 +59,7 @@
             <c:if test="${status.index <3}">
             <c:if test="${item.item_case==item_case}">
                   <div class="card" style="width:30rem;" style="text-align: center;">
-                        <img src="${pageContext.request.contextPath}/upload/${item.item_img1}" class="card-img-top"  style="width:30rem;">
+                        <img src="${pageContext.request.contextPath}/upload/${item.item_img1}" class="card-img-top"  style="width:28.5rem;">
                      <div class="card-body">
                         <h3 class="card-title">
                            <h3>${item.item_name}</h3>
@@ -75,6 +75,13 @@
       </div>
       </div>
    
+      
+      </div>
+    </div>
+    <div id="containerr" style="display: flex;">
+     <div id="sidebar" style="width: 20%;">
+     </div>
+     <div id="sidebar" style="width: 80%;">
       <table>
          <tr>
             <th>출발일</th>
@@ -87,7 +94,6 @@
             <c:if test="${item.item_case==item_case}">
             <tr>
                <td id="start"><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}">${item.date_start}</a></td>
-               <td id="start"><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}">${item.date_start}</a></td>
                <td id="end"><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}">${item.date_end}</a></td>
                <td><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}"><span class="total_order">${item.orderCount}</span>/ ${item.quantity} 명</a></td>
                <td><a href="${pageContext.request.contextPath}/item/itemDetail.do?item_num=${item.item_num}"><fmt:formatNumber value="${item.item_price}"/>원</a></td>
@@ -95,9 +101,8 @@
             </c:if>
          </c:forEach>
       </table>
-      
       </div>
-    </div>
+      </div>
 </div>
 
       

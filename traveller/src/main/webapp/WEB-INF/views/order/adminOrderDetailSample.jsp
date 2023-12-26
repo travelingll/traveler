@@ -65,7 +65,7 @@ table th {
 }
 
 table tr:hover {
-  background-color: #b2edc2;
+  background-color: #f2f2f2;
 }
 
 ul li:before {
