@@ -126,6 +126,7 @@
 	          			</c:if></c:forEach>
 					</tbody>
 				</table>
+				<div style="text-align:center;">${page}</div>
 			</div></div></div>
 		</div>
 	</div>

@@ -28,7 +28,7 @@ public class QuestionListAction implements Action {
 		QuestionDAO dao = QuestionDAO.getInstance();
 		int count = dao.getQuestionCount(keyword, keyfield, 0, question_category);
 		
-		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 10,10,"questionList.do");
+		PageUtil page = new PageUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 20,20,"questionList.do");
 		
 		//문의 목록 얻어오기
 		List<QuestionVO> list = null;
