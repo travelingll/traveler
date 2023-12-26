@@ -61,19 +61,19 @@ public class ItemModifyAction implements Action{
 			item.setItem_img3(multi.getFilesystemName("pic3"));
 		}
 		
-		if(multi.getFilesystemName("pic4")==db_item.getItem_img4()) {
+		if(multi.getFilesystemName("pic4")==null) {
 			item.setItem_img4(db_item.getItem_img4());
 		}else {
 			item.setItem_img4(multi.getFilesystemName("pic4"));
 		}
 		
-		if(multi.getFilesystemName("pic5")==db_item.getItem_img5()) {
+		if(multi.getFilesystemName("pic5")==null) {
 			item.setItem_img5(db_item.getItem_img5());
 		}else {
 			item.setItem_img5(multi.getFilesystemName("pic5"));
 		}
 		
-		if(multi.getFilesystemName("pic6")==db_item.getItem_img6()) {
+		if(multi.getFilesystemName("pic6")==null) {
 			item.setItem_img6(db_item.getItem_img6());
 		}else {
 			item.setItem_img6(multi.getFilesystemName("pic6"));
