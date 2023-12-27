@@ -190,7 +190,7 @@ window.onload=function(){
   					
   						<li>
   						<c:forEach var="comm" items="${list}">
-  						  <c:if test="${comm.comm_hit > 19}">
+  						  <c:if test="${comm.comm_hit > 99}">
         					<div class="tit eps"><!----> <!---->
         					
         					<c:if test="${comm.category == 1}">
