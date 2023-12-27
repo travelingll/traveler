@@ -28,13 +28,6 @@ create table member_detail(
 );
 create sequence member_seq;
 
-create table push(
- push_num number(1) not null,
- push_detail varchar2(4000) not null, 
- constraint push_pk primary key (push_num)
-);
-create sequence push_seq;
-
 create table money(
  sm_num number not null,
  mem_num number not null,
